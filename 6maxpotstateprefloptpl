@@ -1,0 +1,249 @@
+custom
+preflop
+ 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Pot State Preflop Template With Positional Awareness: 6Max Version - v1.5 - 11/04/2010
+// Copyright Shanky Bot Profiles 2010 - shankybotprofiles.com
+// This template is free for personal or commercial use as long as you acknowledge its use.
+// DISCLAIMER: This is just a template and obviously won't win anything without some work.
+//
+// ~~~ Notes ~~~
+// Position and pot state are provided. You'll need to add the hands and actions to the lines.
+// You will probably need to duplicate some lines yourself, eg:
+//              When StillToAct = 8 and (Hand = AA or Hand = KK or Hand = QQ) Raise 3 Force
+//              When StillToAct = 8 and (Hand = 55 or Hand = 44 or Hand = 33) Call Force
+//
+// ~~~ Changelog ~~~
+// v1.2 - Cleaned up the code
+// v1.3 - Added section for one raise and >= 2 cold callers, added section for raises=2 and >= 1 cold callers
+// v1.4 - Cleaned up the code and improved the commenting
+// v1.5 Replaced BotsActionsOnThisRound with BotsActionsOnThisRound
+//
+//
+//
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+// #################################### Table of Contents: ####################################
+ 
+// Description                                  Line Number
+// (1). Unraised Pots:                          41
+// (2). Raised Pots On First Orbit:             85
+// (3). 3Bet Pots On First Orbit:               168
+// (4). Re-Raised Pots On Second Orbit:         193
+// (5). Re-Re-Raised Pots On Third+ Orbit:      231
+// (6). When Others:                            242
+ 
+ 
+ 
+ 
+// ################################################################################
+// ##### Unraised Pots #####
+// ################################################################################
+ 
+ 
+// Unopened Pot
+When Raises = 0 and Calls = 0
+        When StillToAct = 5
+        When StillToAct = 4
+        When StillToAct = 3
+        When In Button
+        When In SmallBlind
+ 
+// One Limper
+When Raises = 0 and Calls = 1  
+        When StillToAct = 4
+        When StillToAct = 3
+        When In Button
+        When In SmallBlind
+        When In BigBlind
+       
+// Two Limpers
+When Raises = 0 and Calls = 2  
+        When StillToAct = 3
+        When In Button
+        When In SmallBlind
+        When In BigBlind
+       
+// Three Limpers
+When Raises = 0 and Calls = 3  
+        When In Button
+        When In SmallBlind
+        When In BigBlind
+ 
+// Four Limpers
+When Raises = 0 and Calls = 4
+        When In SmallBlind
+        When In BigBlind
+ 
+// Five Limpers
+When Raises = 0 and Calls = 5  
+        When In BigBlind
+       
+       
+// ################################################################################
+// ##### Raised Pots on First Orbit #####
+// ################################################################################
+ 
+// ########## No Cold Callers ##########
+ 
+// Facing Raise from: Under the Gun
+When BotsActionsOnThisRound = 0 and Raises = 1 and CallsSinceLastRaise = 0 and LastRaiserPosition = 5
+        When StillToAct = 4
+        When StillToAct = 3
+        When In Button
+        When In SmallBlind
+        When In BigBlind
+ 
+// Facing Raise from: Middle Position
+When BotsActionsOnThisRound = 0 and Raises = 1 and CallsSinceLastRaise = 0 and LastRaiserPosition = 4
+        When StillToAct = 3
+        When In Button
+        When In SmallBlind
+        When In BigBlind
+ 
+// Facing Raise from: Cutoff
+When BotsActionsOnThisRound = 0 and Raises = 1 and CallsSinceLastRaise = 0 and LastRaiserPosition = 3
+        When In Button
+        When In SmallBlind
+        When In BigBlind
+       
+// Facing Raise from: Button
+When BotsActionsOnThisRound = 0 and Raises = 1 and CallsSinceLastRaise = 0 and LastRaiserPosition = 2
+        When In SmallBlind
+        When In BigBlind
+       
+// Facing Raise from: Small Blind
+When BotsActionsOnThisRound = 0 and Raises = 1 and CallsSinceLastRaise = 0 and LastRaiserPosition = 1
+        When In BigBlind
+ 
+       
+       
+// ########## One Cold Caller ##########
+       
+       
+// Facing Raise from: Under the Gun
+When BotsActionsOnThisRound = 0 and Raises = 1 and CallsSinceLastRaise = 1 and LastRaiserPosition = 5
+        When StillToAct = 3
+        When In Button
+        When In SmallBlind
+        When In BigBlind
+ 
+// Facing Raise from: Middle Position
+When BotsActionsOnThisRound = 0 and Raises = 1 and CallsSinceLastRaise = 1 and LastRaiserPosition = 4
+        When In Button
+        When In SmallBlind
+        When In BigBlind
+ 
+// Facing Raise from: Cutoff
+When BotsActionsOnThisRound = 0 and Raises = 1 and CallsSinceLastRaise = 1 and LastRaiserPosition = 3
+        When In SmallBlind
+        When In BigBlind
+       
+// Facing Raise from: Button
+When BotsActionsOnThisRound = 0 and Raises = 1 and CallsSinceLastRaise = 1 and LastRaiserPosition = 2
+        When In BigBlind
+ 
+       
+// ########## Two or More Cold Callers ##########
+       
+       
+// Facing Raise from: Under the Gun
+When BotsActionsOnThisRound = 0 and Raises = 1 and CallsSinceLastRaise >= 2 and LastRaiserPosition = 8
+        When In Button
+        When In SmallBlind
+        When In BigBlind
+ 
+// Facing Raise from: Under the Gun + 1
+When BotsActionsOnThisRound = 0 and Raises = 1 and CallsSinceLastRaise >= 2 and LastRaiserPosition = 7
+        When In SmallBlind
+        When In BigBlind
+ 
+// Facing Raise from: Middle Position
+When BotsActionsOnThisRound = 0 and Raises = 1 and CallsSinceLastRaise >= 2 and LastRaiserPosition = 6
+        When In BigBlind
+ 
+ 
+// ################################################################################
+// ##### 3Bet Pots On First Orbit #####
+// ################################################################################
+ 
+ 
+// Facing two raises with no cold callers
+When BotsActionsOnThisRound = 0 and Raises = 2 and CallsSinceLastRaise = 0
+        When StillToAct = 3
+        When In Button
+        When In SmallBlind
+        When In BigBlind
+       
+// Facing two raises with one or more cold callers
+When BotsActionsOnThisRound = 0 and Raises = 2 and CallsSinceLastRaise >= 1
+        When In Button
+        When In SmallBlind
+        When In BigBlind
+ 
+// Facing 3 or more raises
+When BotsActionsOnThisRound = 0 and Raises >= 3 and CallsSinceLastraise >= 0
+        When In Button
+        When In SmallBlind
+        When In BigBlind
+       
+       
+// ################################################################################
+// ##### Re-Raised Pots On Second Orbit #####
+// ################################################################################
+// Everyone has acted in this hand by now, so we abandon preflop position in favor of postflop position
+ 
+ 
+// ########## One Reraise ##########
+When BotsActionsOnThisRound = 1 and BotsLastAction = Raise and RaisesSinceLastPlay = 1
+ 
+    // Have position and got reraised someone who already called/raised
+    When Position = Last
+   
+    // Got reraised by someone we have position on and might have position given subsequent folds by opponents who called our raise
+    When CallsSinceLastRaise = 0 and Position = Middle
+   
+    // Got 3bet by someone with position on us with one or more subsequent calls and will be in middle if we call
+    When CallsSinceLastRaise >= 1 and Position = Middle
+   
+    // Don't have position, got 3bet by someone with position on us
+    When Position = First
+ 
+ 
+// ########## Two or More Reraises ##########
+When BotsActionsOnThisRound = 1 and BotsLastAction = Raise and RaisesSinceLastPlay >= 2
+ 
+    // Got reraised by two people, but we have position on them
+    When Position = Last
+           
+    // Got reraised by two people and we don't have position on both of them
+    When not Position = Last
+ 
+ 
+// ########## Bot Called and subsequent reraise ##########
+// Normally here we should fold unless we have good pot odds on something like a suited connector or we slowplayed something like AA
+When BotsActionsOnThisRound = 1 and RaisesSinceLastPlay >= 1
+    When BotsLastAction = Call
+ 
+ 
+// ################################################################################
+// ##### Re-Re-Raised Pots #####
+// ################################################################################
+ 
+ 
+// These situations should be minimized by actions taken on re-raised pots.
+When BotsActionsOnThisRound >= 2 and RaisesSinceLastPlay >= 1
+    When BotsLastAction = Call
+    When BotsLastAction = Raise
+ 
+ 
+// ################################################################################
+// ##### When Others #####
+// ################################################################################
+ 
+ 
+// Fold everything else
+// Comment out these lines if you want a PPL file or the bot's default programming to handle the rest.
+When Others
+        When Others Fold Force
