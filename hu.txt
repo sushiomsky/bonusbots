@@ -1,0 +1,208 @@
+MaxSessionHands = 10000
+MaxSessionTime = 720
+BathroomBreakAfter = 720
+BathroomBreakTime = 3
+SitOutWhenOpponentsAreLessThan = 1
+MakePotSizedPreFlopRaisesWhen = 1
+FoldToPre-FlopRaisesForAQAJsKQ = OFF
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = OFF
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 1
+FoldToPost-FlopRaisesWithPairedBoardsFor = 3
+NeverBetTurnOrRiverWithHandBelow = 4
+NeverBetFlopWithHandBelowMiddlePairWhen = 4
+NeverCallPairedBoardsWithHandBelow = 6
+NeverCallFlushPossibleBoardsWithHandBelow = 6
+FoldToPre-FlopRaiseWith55Or66When = 1
+FoldToPre-FlopRaiseWith77Or88When = 3
+FoldToPre-FlopRaiseWith99OrTTWhen = 3
+FoldToPre-FlopRaiseWithJJOrQQWhen = 3
+FoldToPre-FlopRaiseWithAKWhen = 3
+FoldToPre-FlopRaiseWithAQsWhen = 3
+FoldToPre-FlopRaiseWithAKsWhen = 3
+FoldToPre-FlopRaiseWithKQsWhen = 3
+SuperTightPlay = OFF
+SemiSuperTightPlay = OFF
+NoLimp = 4
+AggressivePreFlop = 7
+AggressivePostFlop = 3
+MiningForSets = 0
+PostFlopinBlindsOverride = 3
+PreFlopReRaiseOverride = OFF
+MinBetOverride = 6
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5
+AlwaysCallWhenOpponentsRaiseIsLessThan = 3
+Verbose = ON
+AutoPlay = ON
+
+
+//Version 2 Egors fixed limit heads up profile
+
+custom
+preflop
+When stacksize < 5 and (hand = A or pairinhand) raise force
+When ( hand = A A  or hand = K K  or hand = A K suited ) raise force
+When ( hand = A K  or hand = Q Q ) raise force
+When ( hand = A Q suited  or hand = A J suited ) raise force
+When ( hand = K Q suited  or hand = J J  or hand = T T ) raise force
+When hand = A Q raise force
+When ( hand = A T suited  or hand = K J suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = K T suited  or hand = Q T suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = Qd Jd  or hand = Js Ts  or hand = Tc 9c  or hand = 9h 8h ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = A J  or hand = K Q ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = 9 9  or hand = 8 8  or hand = 7 7 ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = A T  or hand = K J  or hand = Q J ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = K T  or hand = Q T  or hand = J T ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = 6d 6c  or hand = 5s 5h  or hand = 4d 4s ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2 ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = A 9 suited  or hand = A 8 suited  or hand = A 7 suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = A 6 suited  or hand = A 5 suited  or hand = A 4 suited  or hand = A 3 suited  or hand = A 2 suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When hand = A 9 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = A 8  or hand = A 7 ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = A 6  or hand = A 5 ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = A 4  or hand = A 3  or hand = A 2 ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = Ks 9s  or hand = Kh 9h  or hand = Ks 8s  or hand = Kd 8d  or hand = Kc 7c  or hand = Kd 7d ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = K 9 suited  or hand = K 8 suited  or hand = K 7 suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = Ks 6s  or hand = Kh 6h  or hand = Ks 5s  or hand = Kd 5d  or hand = Kc 4c  or hand = Kd 4d ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = K 6 suited  or hand = K 5 suited  or hand = K 4 suited  or hand = K 3 suited  or hand = K 2 suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = K 8  or hand = K 7 ) 
+When BotsLastAction = raise call force
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = Qd 9d  or hand = Qs 9s  or hand = Qd 8d  or hand = Qs 8s ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = Q 9 suited  or hand = Q 8 suited  or hand = Q 7 suited  or hand = J 9 suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = Q 6 suited  or hand = Q 5 suited  or hand = Q 4 suited  or hand = Q 3 suited  or hand = Q 2 suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = 8 7 suited  or hand = 7 6 suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = 6 5 suited  or hand = 5 4 suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = J 8 suited  or hand = J 7 suited  or hand = T 8 suited  or hand = T 7 suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = Q 9  or hand = Q 8  or hand = J 9  or hand = T 9  or hand = Q 7  or hand = J 8  or hand = J 7  or hand = 9 8 ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = 9 7 suited  or hand = 9 6 suited  or hand = 8 6 suited  or hand = 8 5 suited  or hand = 7s 5s  or hand = 6h 4h ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = T 8  or hand = T 7  or hand = 9 7 ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = 7 5 suited  or hand = 6 4 suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = J suited  or hand = T suited ) 
+When BotsLastAction = raise call force
+When raises = 1 call force
+When raises = 0  and calls = 0  raise force
+When ( hand = 9 6  or hand = 8 6  or hand = 7 6  or hand = 6 5 ) 
+When raises >= 1 fold force
+When raises = 0  and calls = 0  raise force
+When ( hand = 9 5  or hand = 8 5  or hand = 7 5 ) 
+When raises >= 1 fold force
+When raises = 0  and calls = 0  raise force
+When stacksize < 4 and (hand = A or hand = K suited or pairinhand) raise force
+
+flop
+when stacksize < 4 and (havetwopair or haveset or havetrips or havestraight or haveflush or havestraightdraw or haveflushdraw) raise force 
+When botslastaction = raise and bets = 0 and raises = 0 bet force
+When stacksize < 5 and (hand = A or havepair or botslastaction = raise) raise force
+When not (flushpossible or straightpossible or paironboard) and (haveset or havetwopair) call force
+When (flushpossible or straightpossible) and havetoppair call force
+When hand = AK and bets = 1 and not (paironboard or flushpossible or straightpossible or board = Q) call force
+When (haveflushdraw or havestraightdraw) and not (flushpossible or straightpossible) call force
+When haveoverpair and (not paironboard) raise force
+
+turn
+when stacksize < 4 and (havetwopair or haveset or havetrips or havestraight or haveflush or havestraightdraw or haveflushdraw) raise force 
+When stacksize < 5 and (hand = A or havepair or botslastaction = raise) raise force
+When nobettingonflop and bets = 0 and raises = 0 and not (hand = 2 or hand = 3 or hand = 4) bet force
+When not (flushpossible or straightpossible or paironboard) and (haveset or havetwopair) raise force
+When not (flushpossible or straightpossible or paironboard) and (havetoppair and havebestkicker) raise force
+When have3rdtoppair and not (board = A or board = KQ or onecardstraightpossible or flushpossible or paironboard) call force
+When paironboard and not (onecardflushpossible or onecardstraightpossible) and havetrips and position = first and bets = 0 and raises = 0 call force
+When paironboard and not (onecardflushpossible or onecardstraightpossible) and havetrips and raises = 0 raise force
+
+river
+When stacksize < 5 and (hand = A or havepair or botslastaction = raise) raise force
+When raisesonturn and not (havestraightflush or havequads or havefullhouse or haveflush or havestraight or havetrips or haveset or havetwopair or havetoppair) call force
+When flushpossible and not (onecardflushpossible or onecardstraightpossible or paironboard) and havepair and position = first call force
+When onecardstraightpossible and havetwopair call force
+

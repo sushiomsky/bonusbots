@@ -1,0 +1,22 @@
+custom
+Preflop
+When hand = AA User_BombenBlatt
+When hand = KK User_BombenBlatt
+When hand = QQ User_BombenBlatt
+When hand = JJ User_BombenBlatt
+When hand = TT User_BombenBlatt
+When hand = 99 User_BombenBlatt
+When hand = AK User_BombenBlatt
+When hand = AQ suited User_BombenBlatt
+
+When OpponentsAtTable > 6 User_Full_Ring
+When OpponentsAtTable < 7 User_6_Max
+
+//When User_BombenBlatt call force
+When stacksize >= 200% startingstacksize sitout force
+
+flop
+
+turn
+
+river

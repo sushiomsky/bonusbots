@@ -1,0 +1,22 @@
+custom
+preflop
+when (stilltoact > 3 or raises = 1) and amounttocall <= 4 and (hand = 56 or hand = 67 or hand = 78 or hand = 89 or hand = 9T or hand = 22 or hand = 33 or hand = 44 or hand = 55 or hand = 66 or hand = 77 or hand = 88 or hand = A suited or hand = KT suited or hand = K9 suited or hand = K8 suited or hand = QT suited or hand = Q9 suited or hand = Q8 suited or hand = J9 suited or hand = J8 suited or hand = T8 suited or hand = 97 suited or hand = 45 suited) call force
+
+when stilltoact <= 3 and raises = 0 and calls = 0 and (hand = 56 or hand = 67 or hand = 78 or hand = 89 or hand = 9T or hand = 22 or hand = 33 or hand = 44 or hand = 55 or hand = 66 or hand = 77 or hand = 88 or hand = A suited or hand = KT suited or hand = K9 suited or hand = K8 suited or hand = QT suited or hand = Q9 suited or hand = Q8 suited or hand = J9 suited or hand = J8 suited or hand = T8 suited or hand = 97 suited or hand = 45 suited) raise 2 force
+
+when calls >= 1 and raises = 0 and (hand = 56 or hand = 67 or hand = 78 or hand = 89 or hand = 9T or hand = 22 or hand = 33 or hand = 44 or hand = 55 or hand = 66 or hand = 77 or hand = 88 or hand = A suited or hand = KT suited or hand = K9 suited or hand = K8 suited or hand = QT suited or hand = Q9 suited or hand = Q8 suited or hand = J9 suited or hand = J8 suited or hand = T8 suited or hand = 97 suited or hand = 45 suited) call force
+
+flop
+when hand = AK and havetoppair and opponents = 1 and position = first and bets = 0 and raises = 0 call force
+
+when hand = AK and havetoppair and opponents = 1 and not (paironboard or flushpossible or threecardstraightonboard or board = KJT or board = KQT or board = AQT or board = QT9 or board = AQJ or board = QJ9 or board = AKJ or board = KJ9 or board = KQ9 or board = Q98) raisemax force
+
+when suitsonboard = 2 and haveflushdraw and not (paironboard or raises >= 1 or amounttocall > 12 or paironboard or flushpossible or threecardstraightonboard or board = KJT or board = KQT or board = AQT or board = QT9 or board = AQJ or board = QJ9 or board = AKJ or board = KJ9 or board = KQ9 or board = Q98) raisemax force
+
+when haveset and not (paironboard or flushpossible or threecardstraightonboard or board = KJT or board = KQT or board = AQT or board = QT9 or board = AQJ or board = QJ9 or board = AKJ or board = KJ9 or board = KQ9 or board = Q98) raisemax force
+
+when havetwopair and not (paironboard or flushpossible or threecardstraightonboard or board = KJT or board = KQT or board = AQT or board = QT9 or board = AQJ or board = QJ9 or board = AKJ or board = KJ9 or board = KQ9 or board = Q98 or raises > 1 or amounttocall > 15) raisemax force
+
+when haveoverpair and (hand = AA or hand = KK or hand = QQ) and not (paironboard or flushpossible or threecardstraightonboard or board = KJT or board = KQT or board = AQT or board = QT9 or board = AQJ or board = QJ9 or board = AKJ or board = KJ9 or board = KQ9 or board = Q98 or raises > 1 or amounttocall > 15) raisemax force
+
+when havestraightdraw and not (straightpossible or flushpossible or paironboard or raises >= 1 or amounttocall > 12) raisemax force

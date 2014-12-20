@@ -1,0 +1,1821 @@
+﻿// Framework
+
+Framework - Overview
+
+Preflop
+  [PFPP] Pocket Pairs
+  [PFBSC] Big suited Cards
+  [PFBOC] Big offsuit cards
+  [PFSA] Suited Aces
+  [PFOA] Offsuit Aces
+  [PFSC] suited connectors
+  [PF1G] suited 1-Gappers
+
+Flop
+  [FSTTI] short stack and total invested
+  [FSF] straightflush
+  [FQU] quads
+  [FFH] fullhouse
+  [FNF] nutflush
+  [FFl] flush
+  [FNS] nutstraight
+  [FST] straight
+  [FSET] set
+  [FTR] trips
+  [FOFS] overpair and flushdraw and straightdraw
+  [FTFS] toppair and flushdraw and straightdraw
+  [FOF] overpair and flushdraw
+  [FTF] toppair and flushdraw
+  [FOS] overpair and straightdraw
+  [FTS] tp and straightdraw
+  [FTTP] toptwopair
+  [FTP] twopair
+  [FOP] overpair
+  [FTP] toppair
+  [F2O] 2nd overpair
+  [F2T] 2ndtoppair
+  [FCD] combodraw
+  [FNFD] nutflushdraw
+  [FFD] flushdraw
+  [FNSD] nutstraightdraw
+  [FSD] straightdraw
+  [FOC]  overcards=2
+  [FCB] cbet code
+  
+Turn
+  [TSTTI] short stack and total invested
+  [TSF] straightflush
+  [TQU] quads
+  [TFH] fullhouse
+  [TNF] nutflush
+  [TFl] flush
+  [TNS] nutstraight
+  [TST] straight
+  [TSET] set
+  [TTR] trips
+  [TOFS] overpair and flushdraw and straightdraw
+  [TTFS] toppair and flushdraw and straightdraw
+  [TOF] overpair and flushdraw
+  [TTF] toppair and flushdraw
+  [TOS] overpair and straightdraw
+  [TTS] tp and straightdraw
+  [TTTP] toptwopair
+  [TTP] twopair
+  [TOP] overpair
+  [TTP] toppair
+  [T2O] 2nd overpair
+  [T2T] 2ndtoppair
+  [TCD] combodraw
+  [TNFD] nutflushdraw
+  [TFD] flushdraw
+  [TNSD] nutstraightdraw
+  [TSD] straightdraw
+  [TOC]  overcards=2
+  [TCB] cbet code
+  
+ River
+  [RSTTI] short stack and total invested
+  [RSF] straightflush
+  [RQU] quads
+  [RFH] fullhouse
+  [RNF] nutflush
+  [RFl] flush
+  [RNS] nutstraight
+  [RST] straight
+  [RSET] set
+  [RTR] trips
+  [RTTP] toptwopair
+  [RTP] twopair
+  [ROP] overpair
+  [RTP] toppair
+  [R2O] 2nd overpair
+  [R2T] 2ndtoppair
+  [ROC]  overcards=2
+
+custom
+
+preflop
+
+// [PFPP] pocket pairs
+
+when Hand = AA
+  when Calls = 0 and Raises = 0 Raise 3 Force
+  when Calls = 1 and Raises = 0 Raise 4 Force
+  when Calls = 2 and Raises = 0 Raise 5 Force
+  when Calls >= 3 and Raises = 0 Raise 6 Force
+  when Raises = 0 RaisePot Force
+  when Others RaiseMax Force
+
+when Hand = KK
+
+when Hand = QQ
+
+when Hand = JJ
+
+when Hand = TT
+
+when (Hand = 99 or Hand = 88)
+
+when (Hand = 77 or Hand = 66)
+
+when (Hand = 55 or Hand = 44 or Hand = 33 or Hand = 22)
+
+// [PFBSC] big suited cards
+
+when Hand = AK suited
+
+when Hand = AQ suited
+
+when Hand = AJ suited
+
+when Hand = KQ suited
+
+when Hand = KJ suited
+
+when Hand = QJ suited
+
+// [PFBOC] big offsuit cards
+
+when Hand = AK
+
+when Hand = AQ
+
+when Hand = AJ
+
+when Hand = KQ
+
+when Hand = KJ
+
+when Hand = QJ
+
+// [PFSA] suited Aces
+
+when Hand = AT suited
+
+when Hand = A9 suited
+
+when (Hand = A8 suited or Hand = A7 suited or Hand = A6 suited)
+
+when Hand = A suited
+
+  when Calls = 0 and Raises = 0 and In Button Raise 3 Force
+  when Others Fold Force
+
+// [PFOA] off suited aces
+
+when Hand = AT
+
+when Hand = A9
+
+when Hand = A8
+
+when (Hand = A7 or Hand = A6 or Hand = A5)
+
+// [PFSC] suited connectors
+
+when Hand = JT suited
+
+when Hand = T9 suited
+
+when (Hand = 98 suited or Hand = 87 suited or Hand = 76 suited)
+
+// [PF1G] suited 1-Gappers
+
+when (Hand = J9 suited or Hand = T8 suited or Hand = 97 suited)
+
+when Others
+  when Others Fold Force
+
+flop
+
+// [FSTTI] short stack and total invested
+
+when OpponentIsAllIn Call Force
+when TotalInvested >= 166% StackSize Call Force
+
+// [FSF] straightflush
+
+when HaveStraightFlush and Position = First
+when Opponents = 1 call
+when Opponents = 2 call
+when Opponents >= 3 call
+  when Others Call Force
+
+when HaveStraightFlush and Position = Middle
+when Opponents = 2 call
+  when Others Call Force
+
+when HaveStraightFlush and Position = Last
+  when Others Call Force
+
+// [FQU] quads
+
+when HaveQuads and Position = First
+  when Others Call Force
+
+when HaveQuads and Position = Middle
+  when Others Call Force
+
+when HaveQuads and Position = Last
+  when Others Call Force
+
+// [FFH] Full House
+
+// Full House with TripsOnBoard
+
+when HaveFullHouse and TripsOnBoard and Position = First
+
+when HaveFullHouse and TripsOnBoard and Position = Middle
+
+when HaveFullHouse and TripsOnBoard and Position = Last
+
+// Full House without TripsOnBoard
+
+when HaveFullHouse and not TripsOnBoard and Position = First
+
+when HaveFullHouse and not TripsOnBoard and Position = Middle
+
+when HaveFullHouse and not TripsOnBoard and Position = Last
+
+// [FNF] nutflush
+
+when HaveNutFlush and Position = First
+
+when HaveNutFlush and Position = Middle
+
+when HaveNutFlush and Position = Last
+
+// [FFL] Flush
+
+when HaveFlush and Position = First
+
+when HaveFlush and Position = Middle
+
+when HaveFlush and Position = Last
+
+// [FST] nutstraight
+
+// FlushPossible
+
+when HaveNutStraight and FlushPossible and Position = First
+
+when HaveNutStraight and FlushPossible and Position = Middle
+
+when HaveNutStraight and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveNutStraight and (not FlushPossible) and Position = First
+
+when HaveNutStraight and (not FlushPossible) and Position = Middle
+
+when HaveNutStraight and (not FlushPossible) and Position = Last
+
+// [FST] straight
+
+// FlushPossible
+
+when HaveStraight and FlushPossible and Position = First
+
+when HaveStraight and FlushPossible and Position = Middle
+
+when HaveStraight and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveStraight and (not FlushPossible) and Position = First
+
+when HaveStraight and (not FlushPossible) and Position = Middle
+
+when HaveStraight and (not FlushPossible) and Position = Last
+
+// [FSET] set
+
+// FlushPossible
+
+when HaveSet and FlushPossible and Position = First
+
+when HaveSet and FlushPossible and Position = Middle
+
+when HaveSet and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveSet and (not FlushPossible) and Position = First
+
+when HaveSet and (not FlushPossible) and Position = Middle
+
+when HaveSet and (not FlushPossible) and Position = Last
+
+// [FTR] trips
+
+// FlushPossible
+
+when HaveTrips and FlushPossible and Position = First
+
+when HaveTrips and FlushPossible and Position = Middle
+
+when HaveTrips and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTrips and (not FlushPossible) and Position = First
+
+when HaveTrips and (not FlushPossible) and Position = Middle
+
+when HaveTrips and (not FlushPossible) and Position = Last
+
+// [FOFS] overpair and flushdraw and straightdraw
+
+when HaveOverPair and HaveFlushDraw and HaveStraightDraw and Position = First
+
+when HaveOverPair and HaveFlushDraw and HaveStraightDraw and Position = Middle
+
+when HaveOverPair and HaveFlushDraw and HaveStraightDraw and Position = Last
+
+// [FTFS] toppair and flushdraw and straightdraw
+
+// FlushPossible
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and FlushPossible and Position = First
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and FlushPossible and Position = Middle
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and (not FlushPossible) and Position = First
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and (not FlushPossible) and Position = Middle
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and (not FlushPossible) and Position = Last
+
+// [FOF] overpair and flushdraw
+
+when HaveOverPair and HaveFlushDraw and Position = First
+
+when HaveOverPair and HaveFlushDraw and Position = Middle
+
+when HaveOverPair and HaveFlushDraw and Position = Last
+
+// [FTF] toppair and flushdraw
+
+// FlushPossible
+
+when HaveTopPair and HaveFlushDraw and FlushPossible and Position = First
+
+when HaveTopPair and HaveFlushDraw and FlushPossible and Position = Middle
+
+when HaveTopPair and HaveFlushDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTopPair and HaveFlushDraw and (not FlushPossible) and Position = First
+
+when HaveTopPair and HaveFlushDraw and (not FlushPossible) and Position = Middle
+
+when HaveTopPair and HaveFlushDraw and (not FlushPossible) and Position = Last
+
+// [FOS] overpair and straightdraw
+
+// FlushPossible
+
+when HaveOverPair and HaveStraightDraw and FlushPossible and Position = First
+
+when HaveOverPair and HaveStraightDraw and FlushPossible and Position = Middle
+
+when HaveOverPair and HaveStraightDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveOverPair and HaveStraightDraw and (not FlushPossible) and Position = First
+
+when HaveOverPair and HaveStraightDraw and (not FlushPossible) and Position = Middle
+
+when HaveOverPair and HaveStraightDraw and (not FlushPossible) and Position = Last
+
+// [FTS] toppair and straightdraw
+
+// FlushPossible
+
+when HaveTopPair and HaveStraightDraw and FlushPossible and Position = First
+
+when HaveTopPair and HaveStraightDraw and FlushPossible and Position = Middle
+
+when HaveTopPair and HaveStraightDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTopPair and HaveStraightDraw and (not FlushPossible) and Position = First
+
+when HaveTopPair and HaveStraightDraw and (not FlushPossible) and Position = Middle
+
+when HaveTopPair and HaveStraightDraw and (not FlushPossible) and Position = Last
+
+// [FTTP] toptwopair
+
+// FlushPossible
+
+when HaveTopTwoPair and FlushPossible and Position = First
+
+when HaveTopTwoPair and FlushPossible and Position = Middle
+
+when HaveTopTwoPair and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTopTwoPair and (not FlushPossible) and Position = First
+
+when HaveTopTwoPair and (not FlushPossible) and Position = Middle
+
+when HaveTopTwoPair and (not FlushPossible) and Position = Last
+
+// [F2P] twopair
+
+// FlushPossible
+
+when HaveTwoPair and FlushPossible and Position = First
+
+when HaveTwoPair and FlushPossible and Position = Middle
+
+when HaveTwoPair and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTwoPair and (not FlushPossible) and Position = First
+
+when HaveTwoPair and (not FlushPossible) and Position = Middle
+
+when HaveTwoPair and (not FlushPossible) and Position = Last
+
+// [FOP] overpair
+
+// FlushPossible
+
+when HaveOverPair and FlushPossible and Position = First
+
+when HaveOverPair and FlushPossible and Position = Middle
+
+when HaveOverPair and FlushPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when HaveOverPair and not (FlushPossible or PairOnBoard) and Position = First
+
+when HaveOverPair and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when HaveOverPair and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when HaveOverPair and (not FlushPossible) and PairOnBoard and Position = First
+
+when HaveOverPair and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when HaveOverPair and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [FTP] toppair
+
+// FlushPossible
+
+when HaveTopPair and FlushPossible and Position = First
+
+when HaveTopPair and FlushPossible and Position = Middle
+
+when HaveTopPair and FlushPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when HaveTopPair and not (FlushPossible or PairOnBoard) and Position = First
+
+when HaveTopPair and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when HaveTopPair and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when HaveTopPair and (not FlushPossible) and PairOnBoard and Position = First
+
+when HaveTopPair and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when HaveTopPair and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [F2O] 2nd overpair
+
+// FlushPossible
+
+when Have2ndOverPair and (not HaveFlushDraw) and FlushPossible and Position = First
+
+when Have2ndOverPair and (not HaveFlushDraw) and FlushPossible and Position = Middle
+
+when Have2ndOverPair and (not HaveFlushDraw) and FlushPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when Have2ndOverPair and not (FlushPossible or PairOnBoard) and Position = First
+
+when Have2ndOverPair and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when Have2ndOverPair and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when Have2ndOverPair and (not FlushPossible) and PairOnBoard and Position = First
+
+when Have2ndOverPair and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when Have2ndOverPair and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [F2T] 2ndtoppair
+
+// FlushPossible
+
+when Have2ndTopPair and not HaveFlushDraw and FlushPossible and Position = First
+
+when Have2ndTopPair and not HaveFlushDraw and FlushPossible and Position = Middle
+
+when Have2ndTopPair and not HaveFlushDraw and FlushPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when Have2ndTopPair and not HaveFlushDraw and not (FlushPossible or PairOnBoard) and Position = First
+
+when Have2ndTopPair and not HaveFlushDraw and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when Have2ndTopPair and not HaveFlushDraw and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when Have2ndTopPair and not HaveFlushDraw and (not FlushPossible) and PairOnBoard and Position = First
+
+when Have2ndTopPair and not HaveFlushDraw and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when Have2ndTopPair and not HaveFlushDraw and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [FCD] combodraw
+
+// FlushPossible
+
+when HaveStraightDraw and HaveFlushDraw and FlushPossible and Position = First
+
+when HaveStraightDraw and HaveFlushDraw and FlushPossible and Position = Middle
+
+when HaveStraightDraw and HaveFlushDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveStraightDraw and HaveFlushDraw and (not FlushPossible) and Position = First
+
+when HaveStraightDraw and HaveFlushDraw and (not FlushPossible) and Position = Middle
+
+when HaveStraightDraw and HaveFlushDraw and (not FlushPossible) and Position = Last
+
+// [FNFD] nutflushdraw
+
+when HaveNutFlushDraw and FlushPossible and Position = First
+
+when HaveNutFlushDraw and FlushPossible and Position = Middle
+
+when HaveNutFlushDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveNutFlushDraw and (not FlushPossible) and Position = First
+
+when HaveNutFlushDraw and (not FlushPossible) and Position = Middle
+
+when HaveNutFlushDraw and (not FlushPossible) and Position = Last
+
+// [FFD] flushdraw
+
+// FlushPossible
+
+when HaveFlushDraw and FlushPossible and Position = First
+
+when HaveFlushDraw and FlushPossible and Position = Middle
+
+when HaveFlushDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveFlushDraw and (not FlushPossible) and Position = First
+
+when HaveFlushDraw and (not FlushPossible) and Position = Middle
+
+when HaveFlushDraw and (not FlushPossible) and Position = Last
+
+// [FNSD] nutstraightdraw
+
+// FlushPossible
+
+when HaveNutStraightDraw and FlushPossible and Position = First
+
+when HaveNutStraightDraw and FlushPossible and Position = Middle
+
+when HaveNutStraightDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveNutStraightDraw and (not FlushPossible) and Position = First
+
+when HaveNutStraightDraw and (not FlushPossible) and Position = Middle
+
+when HaveNutStraightDraw and (not FlushPossible) and Position = Last
+
+// [FSD] straightdraw
+
+// FlushPossible
+
+when HaveStraightDraw and FlushPossible and Position = First
+
+when HaveStraightDraw and FlushPossible and Position = Middle
+
+when HaveStraightDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveStraightDraw and (not FlushPossible) and Position = First
+
+when HaveStraightDraw and (not FlushPossible) and Position = Middle
+
+when HaveStraightDraw and (not FlushPossible) and Position = Last
+
+// [FOC] Overcards = 2
+
+// FlushPossible
+
+when Overcards = 2 and FlushPossible and Position = First
+
+when Overcards = 2 and FlushPossible and Position = Middle
+
+when Overcards = 2 and FlushPossible and Position = Last
+
+// not FlushPossible no PairOnBoard
+
+when Overcards = 2 and (not FlushPossible) and (not PairOnBoard) and Position = First
+
+when Overcards = 2 and (not FlushPossible) and (not PairOnBoard) and Position = Middle
+
+when Overcards = 2 and (not FlushPossible) and (not PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when Overcards = 2 and (not FlushPossible) and PairOnBoard and Position = First
+
+when Overcards = 2 and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when Overcards = 2 and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [FCB] cbet code
+
+when BotRaisedBeforeFlop and Position = First
+
+when BotRaisedBeforeFlop and Position = Middle
+
+when BotRaisedBeforeFlop and Position = Last
+
+when others
+  when others fold force
+
+turn
+
+// [TSTTI] short stack and total invested
+
+when OpponentIsAllIn Call Force
+when TotalInvested >= 166% StackSize Call Force
+
+// [TSF] straightflush
+
+when HaveStraightFlush and Position = First
+when Opponents = 1 call
+when Opponents = 2 call
+when Opponents >= 3 call
+  when Others Call Force
+
+when HaveStraightFlush and Position = Middle
+when Opponents = 2 call
+  when Others Call Force
+
+when HaveStraightFlush and Position = Last
+  when Others Call Force
+
+// [TQU] quads
+
+when HaveQuads and Position = First
+  when Others Call Force
+
+when HaveQuads and Position = Middle
+  when Others Call Force
+
+when HaveQuads and Position = Last
+  when Others Call Force
+
+// [TFH] Full House
+
+// Full House with TripsOnBoard
+
+when HaveFullHouse and TripsOnBoard and Position = First
+
+when HaveFullHouse and TripsOnBoard and Position = Middle
+
+when HaveFullHouse and TripsOnBoard and Position = Last
+
+// Full House without TripsOnBoard
+
+when HaveFullHouse and not TripsOnBoard and Position = First
+
+when HaveFullHouse and not TripsOnBoard and Position = Middle
+
+when HaveFullHouse and not TripsOnBoard and Position = Last
+
+// [TNF] nutflush
+
+// PairOnBoard
+
+when HaveNutFlush and PairOnBoard and Position = First
+
+when HaveNutFlush and PairOnBoard and Position = Middle
+
+when HaveNutFlush and PairOnBoard and Position = Last
+
+// not PairOnBoard
+
+when HaveNutFlush and (not PairOnBoard) and Position = First
+
+when HaveNutFlush and (not PairOnBoard) and Position = Middle
+
+when HaveNutFlush and (not PairOnBoard) and Position = Last
+
+// [TFL] Flush
+
+// PairOnBoard
+
+when HaveFlush and PairOnBoard and Position = First
+
+when HaveFlush and PairOnBoard and Position = Middle
+
+when HaveFlush and PairOnBoard and Position = Last
+
+// not PairOnBoard
+
+when HaveFlush and (not PairOnBoard) and Position = First
+
+when HaveFlush and (not PairOnBoard) and Position = Middle
+
+when HaveFlush and (not PairOnBoard) and Position = Last
+
+// [TNS] nutstraight
+
+// FlushPossible
+
+// PairOnBoard (when Others Fold Force is needed at the end of your codeblock)
+
+when HaveNutStraight and PairOnBoard and Position = First
+  when Bets = 0 and Raises = 0 betpot Force
+  when Others Fold Force
+
+when HaveNutStraight and PairOnBoard and Position = Middle
+  when Others Fold Force
+
+when HaveNutStraight and PairOnBoard and Position = Last
+  when Others Fold Force
+
+// FlushPossible
+
+when HaveNutStraight and FlushPossible and Position = First
+
+when HaveNutStraight and FlushPossible and Position = Middle
+
+when HaveNutStraight and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveNutStraight and (not FlushPossible) and Position = First
+
+when HaveNutStraight and (not FlushPossible) and Position = Middle
+
+when HaveNutStraight and (not FlushPossible) and Position = Last
+
+// [TST] straight
+
+// PairOnBoard (when Others Fold Force is needed at the end of your codeblock)
+
+when HaveStraight and PairOnBoard and Position = First
+  when Bets = 0 and Raises = 0 betpot Force
+  when Others Fold Force
+
+when HaveStraight and PairOnBoard and Position = Middle
+  when Others Fold Force
+
+when HaveStraight and PairOnBoard and Position = Last
+  when Others Fold Force
+
+// FlushPossible
+
+when HaveStraight and FlushPossible and Position = First
+
+when HaveStraight and FlushPossible and Position = Middle
+
+when HaveStraight and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveStraight and (not FlushPossible) and Position = First
+
+when HaveStraight and (not FlushPossible) and Position = Middle
+
+when HaveStraight and (not FlushPossible) and Position = Last
+
+// [TSET] set
+
+// FlushPossible
+
+when HaveSet and FlushPossible and Position = First
+
+when HaveSet and FlushPossible and Position = Middle
+
+when HaveSet and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when HaveSet and OneCardStraightPossible and Position = First
+
+when HaveSet and OneCardStraightPossible and Position = Middle
+
+when HaveSet and OneCardStraightPossible and Position = Last
+
+// not FlushPossible
+
+when HaveSet and (not FlushPossible) and Position = First
+
+when HaveSet and (not FlushPossible) and Position = Middle
+
+when HaveSet and (not FlushPossible) and Position = Last
+// [TTR] trips
+
+// FlushPossible
+
+when HaveTrips and FlushPossible and Position = First
+
+when HaveTrips and FlushPossible and Position = Middle
+
+when HaveTrips and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when HaveTrips and OneCardStraightPossible and Position = First
+
+when HaveTrips and OneCardStraightPossible and Position = Middle
+
+when HaveTrips and OneCardStraightPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTrips and (not FlushPossible) and Position = First
+
+when HaveTrips and (not FlushPossible) and Position = Middle
+
+when HaveTrips and (not FlushPossible) and Position = Last
+
+// [TOFS] overpair and flushdraw and straightdraw
+
+// PairOnBoard
+
+when HaveOverPair and HaveFlushDraw and HaveStraightDraw and PairOnBoard and Position = First
+
+when HaveOverPair and HaveFlushDraw and HaveStraightDraw and PairOnBoard and Position = Middle
+
+when HaveOverPair and HaveFlushDraw and HaveStraightDraw and PairOnBoard and Position = Last
+
+// no PairOnBoard
+
+when HaveOverPair and HaveFlushDraw and HaveStraightDraw and (not PairOnBoard) and Position = First
+
+when HaveOverPair and HaveFlushDraw and HaveStraightDraw and (not PairOnBoard) and Position = Middle
+
+when HaveOverPair and HaveFlushDraw and HaveStraightDraw and (not PairOnBoard) and Position = Last
+
+// [TTFS] toppair and flushdraw and straightdraw
+
+// PairOnBoard
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and FlushPossible and PairOnBoard and Position = First
+  when Others Fold Force
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and FlushPossible and PairOnBoard and Position = Middle
+  when Others Fold Force
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and FlushPossible and PairOnBoard and Position = Last
+  when Others Fold Force
+
+// FlushPossible
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and FlushPossible and Position = First
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and FlushPossible and Position = Middle
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and (not FlushPossible) and Position = First
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and (not FlushPossible) and Position = Middle
+
+when HaveTopPair and HaveFlushDraw and HaveStraightDraw and (not FlushPossible) and Position = Last
+
+// [TOF] overpair and flushdraw
+
+// PairOnBoard
+
+when HaveOverPair and PairOnBoard and Position = First
+
+when HaveOverPair and PairOnBoard and Position = Middle
+
+when HaveOverPair and PairOnBoard and Position = Last
+
+// no PairOnBoard
+
+when HaveOverPair and HaveFlushDraw and (not PairOnBoard) and Position = First
+
+when HaveOverPair and HaveFlushDraw and (not PairOnBoard) and Position = Middle
+
+when HaveOverPair and HaveFlushDraw and (not PairOnBoard) and Position = Last
+
+// [TTF] toppair and flushdraw
+
+// PairOnBoard
+
+when HaveTopPair and HaveFlushDraw and PairOnBoard and Position = First
+
+when HaveTopPair and HaveFlushDraw and PairOnBoard and Position = Middle
+
+when HaveTopPair and HaveFlushDraw and PairOnBoard and Position = Last
+
+// FlushPossible
+
+when HaveTopPair and HaveFlushDraw and FlushPossible and Position = First
+
+when HaveTopPair and HaveFlushDraw and FlushPossible and Position = Middle
+
+when HaveTopPair and HaveFlushDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTopPair and HaveFlushDraw and (not FlushPossible) and Position = First
+
+when HaveTopPair and HaveFlushDraw and (not FlushPossible) and Position = Middle
+
+when HaveTopPair and HaveFlushDraw and (not FlushPossible) and Position = Last
+
+// [TOS] overpair and straightdraw
+
+// PairOnBoard
+
+// FlushPossible
+
+when HaveOverPair and HaveStraightDraw and PairOnBoard and Position = First
+
+when HaveOverPair and HaveStraightDraw and PairOnBoard and Position = Middle
+
+when HaveOverPair and HaveStraightDraw and PairOnBoard and Position = Last
+
+// FlushPossible
+
+when HaveOverPair and HaveStraightDraw and FlushPossible and Position = First
+
+when HaveOverPair and HaveStraightDraw and FlushPossible and Position = Middle
+
+when HaveOverPair and HaveStraightDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveOverPair and HaveStraightDraw and (not FlushPossible) and Position = First
+
+when HaveOverPair and HaveStraightDraw and (not FlushPossible) and Position = Middle
+
+when HaveOverPair and HaveStraightDraw and (not FlushPossible) and Position = Last
+
+// [TTS] toppair and straightdraw
+
+// PairOnBoard
+
+when HaveTopPair and HaveStraightDraw and PairOnBoard and Position = First
+
+when HaveTopPair and HaveStraightDraw and PairOnBoard and Position = Middle
+
+when HaveTopPair and HaveStraightDraw and PairOnBoard and Position = Last
+
+// FlushPossible
+
+when HaveTopPair and HaveStraightDraw and FlushPossible and Position = First
+
+when HaveTopPair and HaveStraightDraw and FlushPossible and Position = Middle
+
+when HaveTopPair and HaveStraightDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTopPair and HaveStraightDraw and (not FlushPossible) and Position = First
+
+when HaveTopPair and HaveStraightDraw and (not FlushPossible) and Position = Middle
+
+when HaveTopPair and HaveStraightDraw and (not FlushPossible) and Position = Last
+
+// [TTTP] toptwopair
+
+// FlushPossible
+
+when HaveTopTwoPair and FlushPossible and Position = First
+
+when HaveTopTwoPair and FlushPossible and Position = Middle
+
+when HaveTopTwoPair and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when HaveTopTwoPair and OneCardStraightPossible and Position = First
+
+when HaveTopTwoPair and OneCardStraightPossible and Position = Middle
+
+when HaveTopTwoPair and OneCardStraightPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTopTwoPair and (not FlushPossible) and Position = First
+
+when HaveTopTwoPair and (not FlushPossible) and Position = Middle
+
+when HaveTopTwoPair and (not FlushPossible) and Position = Last
+
+// [T2P] twopair
+
+// FlushPossible
+
+when HaveTwoPair and FlushPossible and Position = First
+
+when HaveTwoPair and FlushPossible and Position = Middle
+
+when HaveTwoPair and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when HaveTwoPair and OneCardStraightPossible and Position = First
+
+when HaveTwoPair and OneCardStraightPossible and Position = Middle
+
+when HaveTwoPair and OneCardStraightPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTwoPair and (not FlushPossible) and Position = First
+
+when HaveTwoPair and (not FlushPossible) and Position = Middle
+
+when HaveTwoPair and (not FlushPossible) and Position = Last
+
+// [TOP] overpair
+
+// FlushPossible
+
+when HaveOverPair and FlushPossible and Position = First
+
+when HaveOverPair and FlushPossible and Position = Middle
+
+when HaveOverPair and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when HaveOverPair and OneCardStraightPossible and Position = First
+
+when HaveOverPair and OneCardStraightPossible and Position = Middle
+
+when HaveOverPair and OneCardStraightPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when HaveOverPair and not (FlushPossible or PairOnBoard) and Position = First
+
+when HaveOverPair and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when HaveOverPair and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when HaveOverPair and (not FlushPossible) and PairOnBoard and Position = First
+
+when HaveOverPair and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when HaveOverPair and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [TTP] toppair
+
+// FlushPossible
+
+when HaveTopPair and FlushPossible and Position = First
+  when HaveBestKicker betpot Force
+  when Others Fold Force
+
+when HaveTopPair and FlushPossible and Position = Middle
+
+when HaveTopPair and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when HaveTopPair and OneCardStraightPossible and Position = First
+
+when HaveTopPair and OneCardStraightPossible and Position = Middle
+
+when HaveTopPair and OneCardStraightPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when HaveTopPair and not (FlushPossible or PairOnBoard) and Position = First
+
+when HaveTopPair and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when HaveTopPair and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when HaveTopPair and (not FlushPossible) and PairOnBoard and Position = First
+
+when HaveTopPair and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when HaveTopPair and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [T2O] 2nd overpair
+
+// FlushPossible
+
+when Have2ndOverPair and FlushPossible and Position = First
+
+when Have2ndOverPair and FlushPossible and Position = Middle
+
+when Have2ndOverPair and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when Have2ndOverPair and OneCardStraightPossible and Position = First
+
+when Have2ndOverPair and OneCardStraightPossible and Position = Middle
+
+when Have2ndOverPair and OneCardStraightPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when Have2ndOverPair and not (FlushPossible or PairOnBoard) and Position = First
+
+when Have2ndOverPair and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when Have2ndOverPair and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when Have2ndOverPair and (not FlushPossible) and PairOnBoard and Position = First
+
+when Have2ndOverPair and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when Have2ndOverPair and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [T2T] 2ndtoppair
+
+// FlushPossible
+
+when Have2ndTopPair and FlushPossible and Position = First
+  when HaveBestKicker betpot Force
+  when Others Fold Force
+
+when Have2ndTopPair and FlushPossible and Position = Middle
+
+when Have2ndTopPair and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when Have2ndTopPair and OneCardStraightPossible and Position = First
+
+when Have2ndTopPair and OneCardStraightPossible and Position = Middle
+
+when Have2ndTopPair and OneCardStraightPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when Have2ndTopPair and not (FlushPossible or PairOnBoard) and Position = First
+
+when Have2ndTopPair and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when Have2ndTopPair and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when Have2ndTopPair and (not FlushPossible) and PairOnBoard and Position = First
+
+when Have2ndTopPair and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when Have2ndTopPair and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [TCD] combodraw
+
+// PairOnBoard
+
+when HaveStraightDraw and HaveFlushDraw and PairOnBoard and Position = First
+
+when HaveStraightDraw and HaveFlushDraw and PairOnBoard and Position = Middle
+
+when HaveStraightDraw and HaveFlushDraw and PairOnBoard and Position = Last
+
+// FlushPossible
+
+when HaveStraightDraw and HaveFlushDraw and FlushPossible and Position = First
+
+when HaveStraightDraw and HaveFlushDraw and FlushPossible and Position = Middle
+
+when HaveStraightDraw and HaveFlushDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveStraightDraw and HaveFlushDraw and (not FlushPossible) and Position = First
+
+when HaveStraightDraw and HaveFlushDraw and (not FlushPossible) and Position = Middle
+
+when HaveStraightDraw and HaveFlushDraw and (not FlushPossible) and Position = Last
+
+// [TNFD] nutflushdraw
+
+// PairOnBoard
+
+when HaveNutFlushDraw and PairOnBoard and Position = First
+
+when HaveNutFlushDraw and PairOnBoard and Position = Middle
+
+when HaveNutFlushDraw and PairOnBoard and Position = Last
+
+// FlushPossible
+
+when HaveNutFlushDraw and FlushPossible and Position = First
+
+when HaveNutFlushDraw and FlushPossible and Position = Middle
+
+when HaveNutFlushDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveNutFlushDraw and (not FlushPossible) and Position = First
+
+when HaveNutFlushDraw and (not FlushPossible) and Position = Middle
+
+when HaveNutFlushDraw and (not FlushPossible) and Position = Last
+
+// [TFD] flushdraw
+
+// PairOnBoard
+
+when HaveFlushDraw and PairOnBoard and Position = First
+
+when HaveFlushDraw and PairOnBoard and Position = Middle
+
+when HaveFlushDraw and PairOnBoard and Position = Last
+
+// FlushPossible
+
+when HaveFlushDraw and FlushPossible and Position = First
+
+when HaveFlushDraw and FlushPossible and Position = Middle
+
+when HaveFlushDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveFlushDraw and (not FlushPossible) and Position = First
+
+when HaveFlushDraw and (not FlushPossible) and Position = Middle
+
+when HaveFlushDraw and (not FlushPossible) and Position = Last
+
+// [TNSD] nutstraightdraw
+
+// PairOnBoard
+
+when HaveNutStraightDraw and PairOnBoard and Position = First
+
+when HaveNutStraightDraw and PairOnBoard and Position = Middle
+
+when HaveNutStraightDraw and PairOnBoard and Position = Last
+
+// FlushPossible
+
+when HaveNutStraightDraw and FlushPossible and Position = First
+
+when HaveNutStraightDraw and FlushPossible and Position = Middle
+
+when HaveNutStraightDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveNutStraightDraw and (not FlushPossible) and Position = First
+
+when HaveNutStraightDraw and (not FlushPossible) and Position = Middle
+
+when HaveNutStraightDraw and (not FlushPossible) and Position = Last
+
+// [TSD] straightdraw
+
+// PairOnBoard
+
+when HaveStraightDraw and PairOnBoard and Position = First
+
+when HaveStraightDraw and PairOnBoard and Position = Middle
+
+when HaveStraightDraw and PairOnBoard and Position = Last
+
+// FlushPossible
+
+when HaveStraightDraw and FlushPossible and Position = First
+
+when HaveStraightDraw and FlushPossible and Position = Middle
+
+when HaveStraightDraw and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveStraightDraw and (not FlushPossible) and Position = First
+
+when HaveStraightDraw and (not FlushPossible) and Position = Middle
+
+when HaveStraightDraw and (not FlushPossible) and Position = Last
+
+// [TOC] Overcards = 2
+
+// FlushPossible
+
+when Overcards = 2 and FlushPossible and Position = First
+
+when Overcards = 2 and FlushPossible and Position = Middle
+
+when Overcards = 2 and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when Overcards = 2 and OneCardStraightPossible and Position = First
+
+when Overcards = 2 and OneCardStraightPossible and Position = Middle
+
+when Overcards = 2 and OneCardStraightPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when Overcards = 2 and not (FlushPossible or PairOnBoard) and Position = First
+
+when Overcards = 2 and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when Overcards = 2 and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when Overcards = 2 and (not FlushPossible) and PairOnBoard and Position = First
+
+when Overcards = 2 and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when Overcards = 2 and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [TCB] cbet code
+
+when BotRaisedBeforeFlop and Position = First
+
+when BotRaisedBeforeFlop and Position = Middle
+
+when BotRaisedBeforeFlop and Position = Last
+
+when Others
+  when Others Fold Force
+
+river
+
+// [RSTTI] short stack and total invested
+
+when OpponentIsAllIn Call Force
+when TotalInvested >= 166% StackSize Call Force
+
+// [RSF] straightflush
+
+when HaveStraightFlush and Position = First
+when Opponents = 1 call force
+when Opponents = 2 call force
+when Opponents >= 3 call force
+  when Others Call Force
+
+when HaveStraightFlush and Position = Middle
+when Opponents = 2 call
+  when Others Call Force
+
+when HaveStraightFlush and Position = Last
+  when Others Call Force
+
+// [RQU] quads
+
+when HaveQuads and Position = First
+  when Others Call Force
+
+when HaveQuads and Position = Middle
+  when Others Call Force
+
+when HaveQuads and Position = Last
+  when Others Call Force
+
+// [RFH] Full House
+
+// Full House with TripsOnBoard
+
+when HaveFullHouse and TripsOnBoard and Position = First
+
+when HaveFullHouse and TripsOnBoard and Position = Middle
+
+when HaveFullHouse and TripsOnBoard and Position = Last
+
+// Full House without TripsOnBoard
+
+when HaveFullHouse and not TripsOnBoard and Position = First
+
+when HaveFullHouse and not TripsOnBoard and Position = Middle
+
+when HaveFullHouse and not TripsOnBoard and Position = Last
+
+// [RNF] nutflush
+// PairOnBoard
+
+when HaveNutFlush and PairOnBoard and Position = First
+
+when HaveNutFlush and PairOnBoard and Position = Middle
+
+when HaveNutFlush and PairOnBoard and Position = Last
+
+// not PairOnBoard
+
+when HaveNutFlush and (not PairOnBoard) and Position = First
+
+when HaveNutFlush and (not PairOnBoard) and Position = Middle
+
+when HaveNutFlush and (not PairOnBoard) and Position = Last
+
+// [RFL] Flush
+
+// PairOnBoard
+
+when HaveFlush and PairOnBoard and Position = First
+
+when HaveFlush and PairOnBoard and Position = Middle
+
+when HaveFlush and PairOnBoard and Position = Last
+
+// not PairOnBoard
+
+when HaveFlush and (not PairOnBoard) and Position = First
+
+when HaveFlush and (not PairOnBoard) and Position = Middle
+
+when HaveFlush and (not PairOnBoard) and Position = Last
+
+// [RNS] nutstraight
+
+// PairOnBoard (when Others Fold Force is needed at the end of your codeblock)
+
+when HaveNutStraight and PairOnBoard and Position = First
+  when Bets = 0 and Raises = 0 call Force
+  when Others Fold Force
+
+when HaveNutStraight and PairOnBoard and Position = Middle
+  when Others Fold Force
+
+when HaveNutStraight and PairOnBoard and Position = Last
+  when Others Fold Force
+
+// FlushPossible
+
+when HaveNutStraight and FlushPossible and Position = First
+
+when HaveNutStraight and FlushPossible and Position = Middle
+
+when HaveNutStraight and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveNutStraight and (not FlushPossible) and Position = First
+
+when HaveNutStraight and (not FlushPossible) and Position = Middle
+
+when HaveNutStraight and (not FlushPossible) and Position = Last
+
+// [RST] straight
+
+// PairOnBoard (when Others Fold Force is needed at the end of your codeblock)
+
+when HaveStraight and PairOnBoard and Position = First
+  when Bets = 0 and Raises = 0 call Force
+  when Others Fold Force
+
+when HaveStraight and PairOnBoard and Position = Middle
+  when Others Fold Force
+
+when HaveStraight and PairOnBoard and Position = Last
+  when Others Fold Force
+
+// FlushPossible
+
+when HaveStraight and FlushPossible and Position = First
+
+when HaveStraight and FlushPossible and Position = Middle
+
+when HaveStraight and FlushPossible and Position = Last
+
+// not FlushPossible
+
+when HaveStraight and (not FlushPossible) and Position = First
+
+when HaveStraight and (not FlushPossible) and Position = Middle
+
+when HaveStraight and (not FlushPossible) and Position = Last
+
+// [RSET] set
+
+// FlushPossible
+
+when HaveSet and FlushPossible and Position = First
+
+when HaveSet and FlushPossible and Position = Middle
+
+when HaveSet and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when HaveSet and OneCardStraightPossible and Position = First
+
+when HaveSet and OneCardStraightPossible and Position = Middle
+
+when HaveSet and OneCardStraightPossible and Position = Last
+
+// not FlushPossible
+
+when HaveSet and (not FlushPossible) and Position = First
+
+when HaveSet and (not FlushPossible) and Position = Middle
+
+when HaveSet and (not FlushPossible) and Position = Last
+
+// [RTR] trips
+
+// FlushPossible
+
+when HaveTrips and FlushPossible and Position = First
+
+when HaveTrips and FlushPossible and Position = Middle
+
+when HaveTrips and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when HaveTrips and OneCardStraightPossible and Position = First
+
+when HaveTrips and OneCardStraightPossible and Position = Middle
+
+when HaveTrips and OneCardStraightPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTrips and (not FlushPossible) and Position = First
+
+when HaveTrips and (not FlushPossible) and Position = Middle
+
+when HaveTrips and (not FlushPossible) and Position = Last
+
+// [RTTP] toptwopair
+
+// FlushPossible
+
+when HaveTopTwoPair and FlushPossible and Position = First
+
+when HaveTopTwoPair and FlushPossible and Position = Middle
+
+when HaveTopTwoPair and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when HaveTopTwoPair and OneCardStraightPossible and Position = First
+
+when HaveTopTwoPair and OneCardStraightPossible and Position = Middle
+
+when HaveTopTwoPair and OneCardStraightPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTopTwoPair and (not FlushPossible) and Position = First
+
+when HaveTopTwoPair and (not FlushPossible) and Position = Middle
+
+when HaveTopTwoPair and (not FlushPossible) and Position = Last
+
+// [R2P] twopair
+
+// FlushPossible
+
+when HaveTwoPair and FlushPossible and Position = First
+
+when HaveTwoPair and FlushPossible and Position = Middle
+
+when HaveTwoPair and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when HaveTwoPair and OneCardStraightPossible and Position = First
+
+when HaveTwoPair and OneCardStraightPossible and Position = Middle
+
+when HaveTwoPair and OneCardStraightPossible and Position = Last
+
+// not FlushPossible
+
+when HaveTwoPair and (not FlushPossible) and Position = First
+
+when HaveTwoPair and (not FlushPossible) and Position = Middle
+
+when HaveTwoPair and (not FlushPossible) and Position = Last
+
+// [FOP] overpair
+
+// FlushPossible
+
+when HaveOverPair and FlushPossible and Position = First
+
+when HaveOverPair and FlushPossible and Position = Middle
+
+when HaveOverPair and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when HaveOverPair and OneCardStraightPossible and Position = First
+
+when HaveOverPair and OneCardStraightPossible and Position = Middle
+
+when HaveOverPair and OneCardStraightPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when HaveOverPair and not (FlushPossible or PairOnBoard) and Position = First
+
+when HaveOverPair and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when HaveOverPair and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when HaveOverPair and (not FlushPossible) and PairOnBoard and Position = First
+
+when HaveOverPair and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when HaveOverPair and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [RTP] toppair
+
+// FlushPossible
+
+when HaveTopPair and FlushPossible and Position = First
+  when HaveBestKicker call Force
+  when Others Fold Force
+
+when HaveTopPair and FlushPossible and Position = Middle
+
+when HaveTopPair and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when HaveTopPair and OneCardStraightPossible and Position = First
+
+when HaveTopPair and OneCardStraightPossible and Position = Middle
+
+when HaveTopPair and OneCardStraightPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when HaveTopPair and not (FlushPossible or PairOnBoard) and Position = First
+
+when HaveTopPair and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when HaveTopPair and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when HaveTopPair and (not FlushPossible) and PairOnBoard and Position = First
+
+when HaveTopPair and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when HaveTopPair and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [R2O] 2nd overpair
+
+// FlushPossible
+
+when Have2ndOverPair and FlushPossible and Position = First
+
+when Have2ndOverPair and FlushPossible and Position = Middle
+
+when Have2ndOverPair and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when Have2ndOverPair and OneCardStraightPossible and Position = First
+
+when Have2ndOverPair and OneCardStraightPossible and Position = Middle
+
+when Have2ndOverPair and OneCardStraightPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when Have2ndOverPair and not (FlushPossible or PairOnBoard) and Position = First
+
+when Have2ndOverPair and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when Have2ndOverPair and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when Have2ndOverPair and (not FlushPossible) and PairOnBoard and Position = First
+
+when Have2ndOverPair and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when Have2ndOverPair and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [R2T] 2ndtoppair
+
+// FlushPossible
+
+when Have2ndTopPair and FlushPossible and Position = First
+  when HaveBestKicker call Force
+  when Others Fold Force
+
+when Have2ndTopPair and FlushPossible and Position = Middle
+
+when Have2ndTopPair and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when Have2ndTopPair and OneCardStraightPossible and Position = First
+
+when Have2ndTopPair and OneCardStraightPossible and Position = Middle
+
+when Have2ndTopPair and OneCardStraightPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when Have2ndTopPair and not (FlushPossible or PairOnBoard) and Position = First
+
+when Have2ndTopPair and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when Have2ndTopPair and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when Have2ndTopPair and (not FlushPossible) and PairOnBoard and Position = First
+
+when Have2ndTopPair and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when Have2ndTopPair and (not FlushPossible) and PairOnBoard and Position = Last
+
+// [ROC] Overcards = 2
+
+// FlushPossible
+
+when Overcards = 2 and FlushPossible and Position = First
+
+when Overcards = 2 and FlushPossible and Position = Middle
+
+when Overcards = 2 and FlushPossible and Position = Last
+
+// 1cardstraightpossible
+
+when Overcards = 2 and OneCardStraightPossible and Position = First
+
+when Overcards = 2 and OneCardStraightPossible and Position = Middle
+
+when Overcards = 2 and OneCardStraightPossible and Position = Last
+
+// not FlushPossible and not PairOnBoard
+
+when Overcards = 2 and not (FlushPossible or PairOnBoard) and Position = First
+
+when Overcards = 2 and not (FlushPossible or PairOnBoard) and Position = Middle
+
+when Overcards = 2 and not (FlushPossible or PairOnBoard) and Position = Last
+
+// not FlushPossible and PairOnBoard
+
+when Overcards = 2 and (not FlushPossible) and PairOnBoard and Position = First
+
+when Overcards = 2 and (not FlushPossible) and PairOnBoard and Position = Middle
+
+when Overcards = 2 and (not FlushPossible) and PairOnBoard and Position = Last
+
+when Others
+  when Others Fold Force
+
+
+

@@ -1,0 +1,87 @@
+// 6-Pack Version 11 updated 11/23/2014
+
+custom
+preflop
+
+// The following three lines are user-variables for the Doodle profile, in case you are using the Doodle as the back-up. If not, no harm done in simply setting them true.
+When raises = 1 and lastraiserposition >= 6 UserEarlyRaiser
+When raises = 0 and calls >= 1 and firstcallerposition >= 7 and stilltoact >= 3 UserTrap1
+When opponentisallin UserDead
+
+When (hand = AA or hand = KK) and raises = 0 and calls = 0 and stilltoact >= 4 and random <= 33 raise force
+
+When raises = 0 and calls = 0 and stilltoact <= 3 and (pairinhand or hand = A or hand = KQ or hand = KJ suited or hand = K9 suited or hand = K8 suited or hand = K7 suited or hand = QJ suited or hand = Q9 suited or hand = Q8 suited or hand = JT or hand = J9 or hand = J8 suited or hand = J7 suited or hand = T9 or hand = T8 suited or hand = T7 suited or hand = 98 or hand = 97 suited or hand = 96 suited or hand = 87 or hand = 86 suited or hand = 85 suited or hand = 76 or hand = 75 suited or hand = 74 suited or hand = 65 or hand = 64 suited or hand = 54 suited) raise 2 force
+
+When raises = 0 and calls = 0 and stilltoact <= 2 and (hand = 86 or hand = 97 or hand = T8 or hand = T7 or hand = J8) raise 2 force
+
+When raises = 0 and calls = 1 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = AK or hand = AQ suited or hand = AJ suited or hand = KQ suited) raise 3 force
+
+When raises = 0 and calls = 1 and stilltoact <= 3 and (hand = 88 or hand = 77 or hand = 66 or hand = 55  or hand = AQ or hand = AJ or hand = AT or hand = A suited or hand = KQ or hand = K9 suited or hand = JT or hand = J9 suited or hand = J8 suited or hand = T9 or hand = T8 suited or hand = 98 or hand = 97 suited or hand = 87 or hand = 86 suited or hand = 76 or hand = 75 suited or hand = 65 or hand = 64 suited or hand = 54 suited) raise 2 force
+
+When raises = 1 and amounttocall <= 4 and stilltoact <= 3 and calls >= 1 and (hand = AA or hand = KK or hand = QQ or hand = AK) raise 80% force
+
+When raises = 1 and amounttocall <= 4 and stilltoact <= 3 and (hand = AA or hand = KK or hand = QQ or hand = AK) and random <= 80 raise 80% force
+
+When raises = 1 and calls = 0 and amounttocall <= 4 and stilltoact <= 3 and (pairinhand or hand = A suited or hand = KQ or hand = QJ suited or hand = JT or hand = J9 suited or hand = J8 suited or hand = T9 or hand = 98 or hand = 97 suited or hand = 87 or hand = 86 suited or hand = 85 suited or hand = 76 or hand = 75 suited or hand = 65 or hand = 64 suited or hand = 54 suited) and random <= 40 raise 80% force
+
+When raises = 1 and calls = 0 and amounttocall <= 4 and stilltoact <= 3 and (pairinhand or hand = A suited or hand = KQ or hand = K9 suited or hand = K8 suited or hand = K7 suited or hand = QJ suited or hand = Q9 suited or hand = Q8 suited or hand = JT or hand = J9 suited or hand = J8 suited or hand = J7 suited or hand = T9 or hand = 98 or hand = 97 suited or hand = 96 suited or hand = 87 or hand = 86 suited or hand = 85 suited or hand = 76 or hand = 75 suited or hand = 65 or hand = 64 suited or hand = 54 suited) call force
+
+When raises = 1 and amounttocall <= 4 and stilltoact <= 3 and (pairinhand or hand = AJ suited or hand = AT suited or hand = KQ or hand = KJ suited or hand = QJ suited or hand = JT suited) call force
+
+When raises = 1 and amounttocall <= 2 and stilltoact <= 3 and (hand = A suited or hand = KT suited or hand = KJ or hand = QJ or hand = JT or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited) call force
+
+
+
+
+flop
+
+// The following three lines are user-variables for the Doodle profile, in case you are using the Doodle as the back-up. If not, no harm done in simply setting them true.
+When opponents = 1 and position = last and bets = 1 and raises = 0 and betsize = 1 UserMinBettor
+When Opponentisallin and (not UserDead) UserDead2
+When (not havetoppair) user2set
+
+When botslastpreflopaction = raise and bets = 0 and raises = 0 and position = first and opponents = 1 usercr
+When usercr and bets = 0 and raises = 0 and random <= 33 call force
+When usercr and bets = 1 and raises = 0 and amounttocall < 57% potsize and amounttocall < 20% stacksize and random <= 60 and not (opponentisallin) raisepot force
+When usercr and bets = 0 and raises = 0 bet 75% force
+When botslastpreflopaction = raise and opponents <= 2 and bets = 0 and raises = 0 bet 75% force
+
+When pairinhand and havestraightdraw and raises = 1 and amounttocall < 16% stacksize call force
+
+When opponents = 1 and bets = 1 and raises = 0 and not (botslastpreflopaction = raise or position = first or amounttocall > 50% potsize or amounttocall > 15% stacksize) and random <= 25 raise 80% force
+
+When (bets = 1 or raises = 1) and opponents = 1 and potsize > 5% stacksize and potsize < 20% stacksize and not (paironboard or flushpossible or straightpossible) and (haveset or havetwopair or hand = AA or havenutflushdraw) and random <= 50 raisemax force
+
+When (bets = 1 or raises = 1) and opponents = 1 and potsize > 5% stacksize and potsize < 20% stacksize and not (paironboard or flushpossible or straightpossible) and havestraightdraw and overcards >= 1 and random <= 25 raisemax force
+
+When havetrips userfloptrips
+
+When havetrips and raises <= 1 raisepot force
+
+
+
+
+
+turn
+
+// The following four lines are user-variables for the Doodle profile, in case you are using the Doodle as the back-up. If not, no harm done in simply setting them true.
+When not (board = A or board = K or board = Q or flushpossible or straightpossible) UserLowTurn
+When twopaironboard User2PB
+When Opponentisallin and not (UserDead or UserDead2) UserDead3
+When opponents = 1 and onecardstraightpossible and (bets = 1 or raises = 1) and (not paironboard) UserTurnGood
+
+When paironflop and not (nobettingonflop or calledonflop or board = AA or board = KK or board = QQ or board = 22 or board = 33) and opponentsonflop = 1 and position = first and bets = 0 and raises = 0 and random <= 66 userturncr
+
+When userturncr and bets = 0 and raises = 0 call force
+
+When userturncr and bets = 1 and raises = 0 and amounttocall < 57% potsize and amounttocall < 20% stacksize and not (opponentisallin) raise 120% force
+
+When usercr and not (nobettingonflop or calledonflop or opponents > 1 or bets = 1 or raises >= 1) and not (suitsonflop = 2 and flushpossible and board = A) and random <= 50 bet 60% force
+
+When havetrips and not (flushpossible or straightpossible or twopaironboard or userfloptrips) and raises <= 1 raisepot force
+
+ 
+
+
+river
+When nobettingonturn and opponents = 1 and bets = 0 and raises = 0 and potsize < 15% stacksize and (not havepair) and random <= 50 bet 52% force
