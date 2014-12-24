@@ -1,0 +1,225 @@
+MaxSessionHands = 10000
+MaxSessionTime = 720
+MaxStackSize = 2147483647
+BathroomBreakAfter = 900
+BathroomBreakTime = 2
+SitOutWhenOpponentsAreLessThan = 1
+MinBetOverride = 6
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 100
+Verbose = ON
+AutoPlay = ON
+AutoRebuyAtUB = ON
+AggressiveTournamentSetting = ON
+FoldNonNut = 25
+
+custom
+preflop
+
+When opponents = 1 and opponentisallin and betsize < 25% stacksize call force
+
+When stacksize > 100 and raises >= 1 and betsize > 12 and not (hand = AA or hand = Asuited2 or hand = Asuited34 or hand = Asuited35 or hand = Asuited36 or hand = Asuited3KQ or hand = Asuited3KJ or hand = Asuited3QJ or hand = Asuited3KT or hand = Asuited3QT or hand = Asuited3JT or hand = AsuitedKK or hand = A23 or hand = A24) fold force
+
+When raises >= 1 and betsize > 4 and hand = AA raisepot force
+
+When OpponentsAtTable = 1  and (hand = A  or hand = K K  or hand = Q Q or hand = J J or hand = KQJT  or hand = KQJ9  or hand = KQT9  or hand = KJT9  or hand = KQJT or hand = KQJ9  or hand = KQT9 or hand = 234  or hand = 235  or hand = 245  or hand = 246 ) and not (hand = KKK or hand = QQQ or hand = JJJ) RaisePot force
+
+When OpponentsAtTable = 2  and BotsLastAction = raise  and ( hand = A A  or hand = A 2  or hand = A suited ) RaisePot force
+When OpponentsAtTable = 2  and ( hand = A suited  or hand = K K  or hand = Q Q  or hand = A 4  or hand = A 5  or hand = 2 3 4  or hand = 2 3 5  or hand = 2 3 K suited  or hand = 2 4 5  or hand = 2 3 6  or hand = 2 4 5 6 ) and not (hand = KKK or hand = QQQ) RaiseMin force
+
+When In BigBlind and BetSize < 1 and stacksize > 15 call force
+
+When In Smallblind and stacksize > 15 and raises = 0 and calls >= 1 and (hand = A  or hand = K K  or hand = Q Q or hand = J J or hand = KQJT  or hand = KQJ9  or hand = KQT9  or hand = KJT9  or hand = KQJT or hand = KQJ9  or hand = KQT9 or hand = 234  or hand = 235  or hand = 245  or hand = 246 or twopairinhand) call force
+
+When tripsinhand and not (hand = AA) fold force
+
+When stacksize > 75 and raises >= 1 and betsize > 10
+ when not (hand = AA or hand = A2 or hand = Asuited34 or hand = Asuited35 or hand = Asuited36 or hand = Asuited45K or hand = A34K or hand = A35Ksuited or hand = A36Ksuited or hand = AKsuited45 or hand = A345 or hand = A346 or hand = Asuited456 or hand = A34Qsuited or hand = A35Qsuited or hand = KKQQ or hand = AKKsuited) fold force
+ when not (hand = Asuited or hand = Jsuited) and (hand = A289 or hand = A228 or hand = A229 or hand = A22T or hand = A28T or hand = A29T or hand = A222 or hand = A279 or hand = A27T or hand = A27J or hand = A28J or hand = A29J) fold force
+
+When StackSize <= 12
+ When ( hand = A A  or hand = A 2  or hand = A suited 3  or hand = A 3 4  or hand = A 3 5  or hand = A 3 6  or hand = A 3 K suited  or hand = A 4 5  or hand = A suited 4 6  or hand = A suited 5 6 7  or hand = A K suited 4 6  or hand = K K Q Q  or hand = K K J J  or hand = Q Q J J  or hand = A suited K Q J  or hand = A suited K Q T  or hand = A suited K J T  or hand = A suited Q J T  or hand = A K K  or hand = A suited QQ) and not (hand = KKK or hand = QQQ) RaisePot force
+
+When StackSize <= 8
+ When ( hand = A  or hand = K K  or hand = Q Q  or hand = 2 3 4  or hand = 2 3 5  or hand = 2 4 5  or hand = 2 4 6  or hand = K suited Q J T  or hand = K suited Q J 9  or hand = K suited Q T 9  or hand = K suited J T 9  or hand = K Q suited J T  or hand = K Q suited J 9  or hand = K Q suited T 9 or twopairinhand) and not (hand = KKK or hand = QQQ) RaisePot force
+     
+When Stacksize <= 6
+ When botslastaction = raise raisepot force
+
+When Betsize > 25% stacksize
+ when hand = AA raisepot force
+
+When BetSize > 12
+ When ( hand = A A 2  or hand = A A 3  or hand = A A 4  or hand = A A suited ) RaisePot force
+
+When BetSize > 20% stacksize and stacksize > 50
+ When not ( hand = A A 2  or hand = A A 3  or hand = A A 4  or hand = A A suited  or hand = A suited 2  or hand = A suited 3 4  or hand = A suited 3 5  or hand = A suited 3 6  or hand = A suited 3 4 5  or hand = A 2 3  or hand = A 2 4  or hand = A 2 5  or hand = A 3 K suited 4 ) fold force
+
+When OpponentsAtTable <= 4  and In SmallBlind  and raises = 0
+ When calls = 0  and raises = 0  and ( hand = A  or hand = K K  or hand = Q Q  or hand = 2 3 4  or hand = 2 3 5  or hand = 2 4 5  or hand = 2 4 6  or hand = K suited Q J T  or hand = K suited Q J 9  or hand = K suited Q T 9  or hand = K suited J T 9  or hand = K Q suited J T  or hand = K Q suited J 9  or hand = K Q suited T 9 ) RaiseMin force
+ When raises = 0  and calls >= 1  and ( hand = A  or hand = K K  or hand = Q Q  or hand = 2 3 4  or hand = 2 3 5  or hand = 2 4 5  or hand = 2 4 6  or hand = K suited Q J T  or hand = K suited Q J 9  or hand = K suited Q T 9  or hand = K suited J T 9  or hand = K Q suited J T  or hand = K Q suited J 9  or hand = K Q suited T 9 ) call force
+
+
+
+flop
+
+When paironboard and (not straightflushpossiblebyothers) and nutfullhouseorfourofakind = 2 raisepot force
+
+When opponents = 1 and opponentisallin and betsize < 25% stacksize call force
+
+When havenutlowdraw and havenutflushdraw and (not paironboard) raisepot force
+
+When have2ndnutlowdraw and havenutflushdraw and opponents = 1 and (not paironboard) and totalinvested > 75% stacksize raisepot force
+
+When (not lowpossible) and (not flushpossible) and (not straightpossible) and havenutflushdraw and havestraightdraw raisepot force
+
+When opponentsattable = 1 and not (havenutlow or have2ndnutlow or haveset or havetoptwopair or straightpossible or flushpossible or paironboard)
+ when havepair and havelow and bets = 0 bet force
+ when havetoptwopair call force
+ when havepair and havelow call force
+ 
+
+When tripsonboard
+ when havequads call force
+ when (NutFullHouseorFourofAkind > 3 or NutFullHouseorFourofAkind = 0) fold force
+
+When StackSize <= 8
+ When ( BotsLastAction = raise  or BotsLastAction = bet ) RaisePot force
+ When not ( In BigBlind  or In SmallBlind ) RaisePot force
+
+When stacksize > 75 and betsize > 10
+ when paironboard and not (havefullhouse or havenutlowdraw) fold force
+ when (not paironboard) and flushpossible and not (havenutflush or havenutlow or havenutlowdraw) fold force
+ when (not paironboard) and (not flushpossible) and straightpossible and not (havenutstraight or havenutlow or havenutlowdraw) fold force
+ when (not paironboard) and (not flushpossible) and (not straightpossible) and not (haveset or havenutlow or havenutlowdraw or havenutflushdraw or havenutstraightdraw or have10outstraightdraw) fold force
+
+When opponents <= 2  and BetSize >= 40% StackSize
+ When (not PairOnBoard) and Have2ndNutFlush RaisePot force
+ When PairOnBoard  and (HaveTrips  and  Overcards >= 2)  RaisePot force
+
+When opponents = 1
+ When (not PairOnBoard) and Have2ndNutFlush RaisePot force
+ When PairOnBoard  and (HaveTrips  and  Overcards >= 2)  RaisePot force
+ When PairOnBoard  and (HaveTrips and hand = A) and (not board = AA ) RaisePot force
+ when raises >= 1 and havenutlow and not (haveflush or havestraight or haveset or havetwopair or havefullhouse or havestraightdraw or haveflushdraw or havetoppair) call force
+ 
+When lowpossible and (not wheelpossible) and (not paironboard) and (not flushpossible) and not (board = 236 or board = 246 or board = 256 or board = 346 or board = 356 or board = 347 or board = 357 or board = 367 or board = 457 or board = 467) and opponents = 1
+ when havelow and not (havenutlow or have2ndnutlow or havestraight) and (havetwopair or haveset) and bets = 0 and raises = 0 betpot force
+ when havelow and not (havenutlow or have2ndnutlow or havestraight) and (havetwopair or haveset) call force
+
+When opponents >= 2 and straightpossible and have2ndnutlow and not (havenutlow or havestraight or haveflush or haveset or havetoptwopair)
+ when bets = 0 and raises = 0 and (not position = last) call force
+ when raises >= 1 fold force
+ when betsize > 15% stacksize fold force
+
+turn
+
+When paironboard and (not straightflushpossiblebyothers) and nutfullhouseorfourofakind = 2 raisepot force
+
+When opponents = 1 and opponentisallin and betsize < 25% stacksize call force
+
+When (not lowpossible) and (not flushpossible) and (not straightpossible) and havenutflushdraw and havestraightdraw and havenutlowdraw raisepot force
+
+When (not lowpossible) and (not flushpossible) and (not straightpossible) and havenutflushdraw and havestraightdraw and betsize < 50% stacksize call force
+
+When twopaironboard and (not havenutlowdraw) and (NutFullHouseorFourofAkind > 3 or NutFullHouseorFourofAkind = 0) fold force
+
+When tripsonboard and (not havenutlowdraw) and (NutFullHouseorFourofAkind > 3 or NutFullHouseorFourofAkind = 0) fold force
+
+When quadsonboard and not (hand = AA or hand = KK) fold force
+
+When opponentsattable = 1 and not (havenutlow or have2ndnutlow or haveset or havetoptwopair or straightpossible or flushpossible or paironboard)
+ when havepair and havelow and bets = 0 bet force
+ when havetwopair call force
+ when havepair and havelow call force
+ 
+
+When havenutlow
+ when opponents >= 3 raisepotforce
+ when (haveflush or havestraight or haveset or havetrips or havequads or havefullhouse or havetwopair or havetoppair) raisepotforce
+
+When StackSize <= 8
+ When ( BotsLastAction = raise  or BotsLastAction = bet ) RaisePot force
+ When not ( In BigBlind  or In SmallBlind ) RaisePot force
+
+When stacksize > 75 and betsize > 15
+ when paironboard and not (havefullhouse or havenutlow) fold force
+ when (not paironboard) and flushpossible and not (havenutflush or havenutlow) fold force
+ when (not paironboard) and (not flushpossible) and straightpossible and not (havenutstraight or havenutlow) fold force
+ 
+When (not paironboard) and (not flushpossible) and (not straightpossible)
+ when havetwopair and havenutlowdraw and bets = 0 betpotforce
+ when havetwopair and havenutlowdraw and stacksize > 25 and bets = 1 call force
+ when havetwopair and have2ndnutlowdraw and stacksize > 25 and raises = 0 call force
+ when stacksize > 25 and betsize > 8 and not (haveset or havenutlow or havenutflushdraw or have12outstraightdraw) fold force
+
+When opponents <= 2  and BetSize >= 40% StackSize
+ When PairOnBoard  and (HaveTrips  and  Overcards >= 2)  RaisePot force
+
+When opponents = 1
+ When (not PairOnBoard)  and Have2ndNutFlush RaisePot force
+ When PairOnBoard  and (HaveTrips  and  Overcards >= 2)  RaisePot force
+ when raises >= 1 and havenutlow and not (haveflush or havestraight or haveset or havetwopair or havefullhouse or havestraightdraw or haveflushdraw or havetoppair) call force
+
+When lowpossible and (not wheelpossible) and (not paironboard) and (not flushpossible) and not (board = 236 or board = 246 or board = 256 or board = 346 or board = 356 or board = 347 or board = 357 or board = 367 or board = 457 or board = 467) and opponents = 1
+ when (have4thnutlow or have3rdnutlow or have2ndnutlow or havenutlow) and (havetwopair or haveset or havestraight) raisepot force
+ 
+When lowpossible and opponents = 1 and not (paironboard or flushpossible or straightpossible or nobettingonflop)
+ when havetoptwopair raisepot force
+
+When paironboard and nobettingonflop
+ when not (havenutlow or have2ndnutlow or havestraight or haveflush or havetrips or havefullhouse or havequads) fold force
+
+When (not paironboard) and nobettingonflop
+ when not (havenutlow or have2ndnutlow or havestraight or haveflush or havetrips or havefullhouse or havequads or haveset or havetwopair or havetoppair) fold force
+ 
+
+river
+
+When paironboard and (not straightflushpossiblebyothers) and nutfullhouseorfourofakind = 2 raisepot force
+
+When opponents = 1 and opponentisallin and betsize < 20% stacksize call force
+
+When twopaironboard and not (havenutlow or have2ndnutlow) and (NutFullHouseorFourofAkind > 3 or NutFullHouseorFourofAkind = 0) fold force
+
+When tripsonboard and not (havenutlow or have2ndnutlow) and (NutFullHouseorFourofAkind > 3 or NutFullHouseorFourofAkind = 0) fold force
+
+When quadsonboard and not (hand = AA or hand = KK) fold force
+
+When havenutlow
+ when opponents >= 3 raisepotforce
+ when (haveflush or havestraight or haveset or havetrips or havequads or havefullhouse or havetwopair or havetoppair) raisepotforce
+
+When StackSize <= 8
+ When ( BotsLastAction = raise  or BotsLastAction = bet ) RaisePot force
+ When not ( In BigBlind  or In SmallBlind ) RaisePot force
+
+When lowpossible and (not wheelpossible) and (not paironboard) and (not flushpossible) and not (board = 236 or board = 246 or board = 256 or board = 346 or board = 356 or board = 347 or board = 357 or board = 367 or board = 457 or board = 467) and opponents = 1
+ when havelow and havetoppair and havebestkicker raisepotforce
+ when havelow and haveset raisepot force
+ when havelow and havetwopair raisepot force
+ when havelow and havestraight raisepot force
+ when havelow and (not havenutlow) and havepair and betsize < 50% stacksize call force
+
+When opponents = 1 and (not paironboard)
+ When Have2ndNutFlush RaisePot force
+ when raises >= 1 and havenutlow and not (haveflush or havestraight or haveset or havetwopair or havepair) call force
+
+When opponentsattable = 1 and not (havenutlow or have2ndnutlow or haveset or havetoptwopair or straightpossible or flushpossible or paironboard)
+ when havepair and havelow and bets = 0 bet force
+ when havetwopair call force
+ when havepair and havelow call force
+   
+When opponents = 2 and (not paironboard)
+ when (not flushpossible) and (havetwopair and havetoppair) and havelow and raises = 0 call force
+ when (not flushpossible) and (haveset or havestraight) and havelow and raises = 0 call force
+ when haveflush and havelow and raises = 0 call force
+
+When stacksize < 20 and potsize > 10 and paironturn and nobettingonturn
+ when (not flushpossibleonturn) and havenutflush raisepot force
+ when (not straightpossibleonturn) and (not flushpossible) and havenutstraight raisepot force

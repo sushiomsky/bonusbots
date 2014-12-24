@@ -1,0 +1,54 @@
+MaxSessionHands = 10000
+MaxSessionTime = 720
+MaxStackSize = 10000000
+BathroomBreakAfter = 63
+BathroomBreakTime = 2
+SitOutWhenOpponentsAreLessThan = 1
+MinBetOverride = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 10000000
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 10000000
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 80
+Verbose = ON
+AutoPlay = ON
+UserDefinedGameType = 0
+UseOcrAtFullTilt = OFF
+AutoRebuyAtUB = ON
+AlwaysAskForTableName = OFF
+EnableFoldInTurn = ON
+AggressiveTournamentSetting = OFF
+
+custom
+flop
+
+//top
+
+when havebottomset and not (flushpossible or paironboard) and bets = 1 and raises = 0 and betsize > 25% potsize call force
+
+when havetoptwopair and not (flushpossible or paironboard or morethanonestraightpossibleonflop) and bets = 1 and raises = 0 and betsize > 25% potsize call force
+
+When suitsonboard = 2 and have12outstraightdraw and (bets = 1 or raises >= 1) and (not paironboard) and not (have16outstraightdraw and overcards >= 3) call force
+
+When suitsonboard = 2 and have12outstraightdraw and bets = 0 and raises = 0 and overcards >= 3 betpot force
+
+When haveflushdraw and botslastaction = check and raises >= 1 and not (havetoppair or haveoverpair or havetwopair or haveset or havetrips or havefullhouse or havequads or haveflush or havestraight or havestraightdraw) fold force
+
+turn
+
+//top
+
+when (haveset or havetoptwopair) and not (havetopset or flushpossible or paironboard or morethanonestraightpossibleonturn or raisesonflop) and bets = 1 and raises = 0 and betsize > 25% potsize call force
+
+When board = AA and (bets = 1 or raises >= 1) and not (havequads or havefullhouse or havestraightflush or amounttocall < 44% potsize) fold force
+
+when flushpossibleonflop and haveset and not (haveflush or paironboard or betsize > 33% potsize) call force
+
+
+river
+
+//top
+
+when flushpossibleonturn and haveflush and not (nobettingonturn or havenutflush or paironboard) and raises = 0 call force

@@ -59,7 +59,6 @@ when (hand = AA or hand = KK) and raises >= 1 raisemax force
 when (hand = QQ or hand = JJ or hand = AK) and raises = 0 raisepot force
 when (hand = QQ or hand = JJ or hand = AK) and raises = 1 raisepot force
 when (hand = QQ or hand = JJ or hand = AK) and raises > 1 call force
-
 when opponentsattable > 5 and stilltoact <= 6
 when (hand = AA or hand = KK) and raises = 0 raisepot force
 when (hand = AA or hand = KK) and raises >= 1 raisemax force
@@ -68,7 +67,6 @@ when (hand = QQ or hand = JJ or hand = AK) and raises = 1 raisepot force
 when (hand = QQ or hand = JJ or hand = AK) and raises > 1 call force
 when (hand = AQ or hand = AJ or hand = KQ or hand = TT or hand = 99) and raises = 0 call force
 when (hand = AQ or hand = AJ or hand = KQ or hand = TT or hand = 99) and raises = 1 and betsize <= 2 call force
-
 when opponentsattable > 5 and stilltoact <= 3
 when (hand = AA or hand = KK) and raises = 0 raisepot force
 when (hand = AA or hand = KK) and raises >= 1 raisemax force
@@ -95,6 +93,27 @@ When opponentsattable = 5 and stacksize <= 3
 when hand = AA raisemax force
 when (hand = A or hand = K or hand = QQ or hand = JJ or hand = TT or hand = 99) and opponentisallin and calls >= 1 fold force
 when (hand = A or hand = K or hand = QQ or hand = JJ or hand = TT or hand = 99) and not opponentisallin raisemax force
+
+///////////////////////
+/////opponents=4//////
+//////////////////////
+when opponentsattable = 4 and stacksize > 6
+when hand = AA and raises = 0 raisemin force
+when hand = AA and raises >= 1 call force
+when hand = AA and opponentisallin call force
+when hand = KK and raises = 0 raisemin force
+when hand = KK and raises >= 1  and betsize <= 3 call force
+when (hand = QQ or hand = JJ or hand = AK) and raises = 0 call force
+when (hand = QQ or hand = JJ or hand = AK) and raises >= 1 fold force
+when (hand = QQ or hand = JJ or hand = AK) and insmallblind and raises = 0 and calls = 0 raisemin force
+when (hand = QQ or hand = JJ or hand = AK) and inbigblind and raises = 0 raisemin force
+when (hand = AQ or hand = KQ or hand = QJ) and inbigblind and raises = 0 and calls = 1 raisemin force
+
+When opponentsattable = 4 and stacksize <= 3
+when hand = AA raisemax force
+when (hand = A or hand = K or hand = QQ or hand = JJ or hand = TT or hand = 99) and opponentisallin and calls >= 1 fold force
+when (hand = A or hand = K or hand = QQ or hand = JJ or hand = TT or hand = 99) and not opponentisallin raisemax force
+
 
 when others
 when others fold force

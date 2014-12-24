@@ -1,0 +1,55 @@
+custom
+preflop
+
+// Low blind structure (30+ bb)
+
+When StackSize >= 30 and StillToAct >= 7
+When raises = 0 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = AK suited or hand = AQ suited) RaiseMin force
+When raises = 0 and (hand = 99 or hand = 88 or hand = 77) call force
+When raises >= 1 and (hand = AA or hand = KK or hand = AK) RaiseMax force
+
+When StackSize >= 30 and (StillToAct = 6 or StillToAct = 5 or StillToAct = 4)
+When raises = 0 and calls = 0 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = 88 or hand = 77 or hand = AK or hand = AQ or hand = AJ) RaiseMin force
+When raises = 0 and (hand = AA or hand = KK or hand = AK) RaiseMin force
+When raises = 0 and (pairinhand) call force
+When raises >= 1 and (hand = AA or hand = KK or hand = AK) RaiseMax force
+
+When StackSize >= 30 and (StillToAct = 3 or In Button or In SmallBlind or In BigBlind)
+When raises = 0 and calls = 0 and (pairinhand or hand = AK or hand = AQ or hand = AJ or hand = AT or hand = KQ or hand = A9 suited or hand = A8 suited) RaiseMin force
+When raises = 0 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK) RaiseMin force
+When raises = 0 and (pairinhand or hand = A suited or hand = KQ suited or hand = KJ suited or hand = KT suited or hand = QJ suited or hand = QT suited or hand = JT suited) call force
+When raises = 0 and calls >= 3 and (hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) call force
+When raises = 1 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK) RaisePot force
+When raises > 1 and (hand = AA or hand = KK or hand = AK) RaiseMax force
+
+// Medium blind structure (15 - 30 bbs)
+
+When StackSize >= 15 and StackSize < 30 and OpponentsAtTable > 6 and StillToAct >= 7
+When raises = 0 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = AK suited or hand = AQ suited) RaiseMin force
+When raises = 0 and (hand = 99 or hand = 88 or hand = 77) call force
+When raises >= 1 and (hand = AA or hand = KK or hand = AK) RaiseMax force
+
+When StackSize >= 15 and StackSize < 30 and OpponentsAtTable > 6 and (StillToAct = 6 or StillToAct = 5 or StillToAct = 4)
+When raises = 0 and calls = 0 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = 88 or hand = 77 or hand = AK or hand = AQ or hand = AJ) RaiseMin force
+When raises = 0 and (hand = AA or hand = KK or hand = AK) RaiseMin force
+When raises = 0 and (pairinhand) call force
+When raises >= 1 and (hand = AA or hand = KK or hand = AK) RaiseMax force
+
+When StackSize >= 15 and StackSize < 30 and OpponentsAtTable <= 6 and StillToAct >= 4
+When raises = 0 and calls = 0 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = 88 or hand = 77 or hand = 66 or hand = AK or hand = AQ or hand = AJ or hand = AT) RaiseMin force
+When raises = 0 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = AK or hand = AQ) RaiseMin force
+When raises = 0 and (pairinhand) call force
+When raises = 1 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = AK or hand = AQ) and BetSize <= 20% StackSize RaisePot force
+When raises = 1 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = AK or hand = AQ) and BetSize > 20% StackSize RaiseMax force
+When raises > 1 and (hand = AA or hand = KK or hand = AK) RaiseMax force
+
+When StackSize >= 15 and StackSize < 30 and (StillToAct = 3 or In Button or In SmallBlind or In BigBlind)
+When raises = 0 and calls = 0 and (pairinhand or hand = AK or hand = AQ or hand = AJ or hand = AT or hand = A9 or hand = A8 or hand = A7 or hand = KQ or hand = KJ or hand = QJ or hand = JT suited or hand = T9 suited or hand = 98 suited) RaiseMin force
+When raises = 0 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = AK or hand = AQ) RaiseMin force
+When raises = 0 and (pairinhand or hand = AJ suited or hand = AT suited or hand = KQ suited or hand = KJ suited) call force
+When raises = 1 and not LastRaiserPosition = 8 and not LastRaiserPosition = 7 and not LastRaiserPosition = 6 and not LastRaiserPosition = 5 and BetSize <= 20% StackSize and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = AK or hand = AQ) RaisePot force
+When raises = 1 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK or hand = AQ) and BetSize <= 20% StackSize RaisePot force
+When raises = 1 and not LastRaiserPosition = 8 and not LastRaiserPosition = 7 and not LastRaiserPosition = 6 and not LastRaiserPosition = 5 and BetSize > 20% StackSize and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = AK or hand = AQ) RaiseMax force
+When raises = 1 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK or hand = AQ) and BetSize > 20% StackSize RaiseMax force
+When raises > 1 and (hand = AA or hand = KK or hand = AK) RaiseMax force
+

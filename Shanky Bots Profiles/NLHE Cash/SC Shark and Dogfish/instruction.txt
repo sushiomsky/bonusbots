@@ -1,0 +1,23 @@
+  
+SCDogfish Bible!!.......   
+  
+1. Remove ALL PPL and autoprofileholdem.txt files from your bot folder including the one downloaded with the bot. Add one of the attached PPL files to your bot folder. Only have the PPL for the profile you wish to play in your bot folder at any one time!. (same .txt for both profiles)   
+    
+2. Only play FT when there are more than 80k+ players  
+ 
+3. Only play UB with Shark when there are 20k+ players (BD play whenever!)
+   
+4. 9man table VPIP (min30+) HIGHER THE BETTER and Potsize (min 40c) HIGHER THE BETTER   
+   
+5. Buyin 100bb no topup......roll with it.. (Optional but thats how I produced my graph).   
+    
+6. Play Shark @ UB and DF at BD.... the winrate is at least twice that of FT on both sites... but dont shout about that for obvious reasons.
+ 
+7. Most importantly in the event of anything short of excellence....send me specific botlogs. I am available at thedreamteamportfolio@googlemail.com to help with any errors in your botting escapades!   
+ 
+Deviate from this bible and you play at your own risk. Stick to it and you will be a happy botter!
+Be aware some are having sitout and other issues at BD currently... dont dive in with 6 tables, start slow and if your VPIP is lower than 10% you are having this issue. I am currently running fine there though. Let me know if you have any problems.
+You know where I am if you need me...
+ 
+GOOD LUCK!
+ 

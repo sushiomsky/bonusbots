@@ -1,0 +1,225 @@
+MaxSessionHands = 10000
+MaxSessionTime = 720
+MaxStackSize = 1000000
+BathroomBreakAfter = 65
+BathroomBreakTime = 3
+SitOutWhenOpponentsAreLessThan = 1
+MakePotSizedPreFlopRaisesWhen = 1
+FoldToPre-FlopRaisesForAQAJsKQ = OFF
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = OFF
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 2
+FoldToPost-FlopRaisesWithPairedBoardsFor = 5
+NeverBetTurnOrRiverWithHandBelow = 4
+NeverBetFlopWithHandBelowMiddlePairWhen = 4
+NeverBetFlopWithHandBelowMiddlePairStackSize = 4
+NeverCallPairedBoardsWithHandBelow = 6
+NeverCallFlushPossibleBoardsWithHandBelow = 6
+FoldToPre-FlopRaiseWith55Or66When = 3
+FoldToPre-FlopRaiseWith77Or88When = 3
+FoldToPre-FlopRaiseWith99OrTTWhen = 3
+FoldToPre-FlopRaiseWithJJOrQQWhen = 3
+FoldToPre-FlopRaiseWithAKWhen = 3
+FoldToPre-FlopRaiseWithAQsWhen = 3
+FoldToPre-FlopRaiseWithAKsWhen = 3
+FoldToPre-FlopRaiseWithKQsWhen = 3
+SuperTightPlay = OFF
+SemiSuperTightPlay = OFF
+NoLimp = 15
+AggressivePreFlop = 7
+AggressivePostFlop = 3
+AggressivePreFlopStackSize = 1000000
+AggressivePostFlopStackSize = 1000000
+MiningForSets = 0
+PostFlopinBlindsOverride = 3
+PreFlopReRaiseOverride = OFF
+MinBetOverride = 6
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 90
+Verbose = ON
+AutoPlay = ON
+UserDefinedGameType = 0
+AutoRebuyAtUB = OFF
+AlwaysAskForTableName = OFF
+
+custom
+preflop
+
+// Version 1.0
+// 9 max limits up to $0.25
+
+// limit profile
+
+When BotsLastAction = raise and raises = 1
+When (hand = AA or hand = KK or hand = QQ) Raise force
+When (pairinhand or hand = AK or hand = AQ or hand = AJ or hand = AT suited or hand = KQ or hand = KJ or hand = KT suited or hand = QJ or hand = QT suited or hand = JT suited) call force
+
+When BotsLastAction = raise and raises > 1
+When (hand = AA or hand = KK or hand = QQ or hand = AK) Raise force
+When (hand = AQ or hand = KQ suited or hand = JJ or hand = TT or hand = 99) call force
+
+When StillToAct >= 7 and raises = 0
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK) raise force
+When (hand = KQ suited or hand = AQ or hand = AJ suited) raise force
+When (hand = TT or hand = 99 or hand = 88 or hand= 77 or hand = A suited or hand = KJ suited or hand = QJ suited or hand = JT suited) call force
+
+When StillToAct >= 7 and raises = 1
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK or hand = AQ or hand = AJ suited or hand = KQ suited) raise force
+When (hand = TT or hand = 99 or hand = 88 or hand = 77 or hand = KJ suited or hand = QJ suited or hand = JT suited or hand = AT suited or hand = A9 suited or hand = KQ) call force
+
+When (StillToAct = 6 or StillToAct = 5 or StillToAct = 4) and raises = 0 and calls = 0
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = 88 or hand = AK or hand = KQ) raise force
+When (hand = AQ or hand = KJ suited or hand = AJ or hand = AT) raise force
+When (hand = 77 or hand = 66 or hand = 55 or hand = JT or hand = T9 suited or hand = 98 suited or hand = QT suited or hand = J9 suited) raise force
+When (hand = A suited or hand = KJ or hand = KT suited or hand = K9 suited or hand = K8 suited or hand = QJ) raise force
+
+When (StillToAct = 6 or StillToAct = 5 or StillToAct = 4) and raises = 0 and calls <= 3
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = 88 or hand = AK or hand = KQ) raise force
+When (hand = AQ or hand = KJ suited or hand = AJ or hand = AT) raise force
+When (hand = 77 or hand = 66 or hand = 55 or hand = JT or hand = T9 suited or hand = 98 suited or hand = QT suited or hand = J9 suited) call force
+When (hand = A suited or hand = KJ or hand = KT suited or hand = K9 suited or hand = K8 suited or hand = QJ) call force
+
+When (StillToAct = 6 or StillToAct = 5 or StillToAct = 4) and raises = 0 and calls >= 4
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = 88 or hand = AK or hand = KQ) raise force
+When (hand = AQ or hand = KJ suited or hand = AJ or hand = AT) raise force
+When (hand = 77 or hand = 66 or hand = 55 or hand = JT or hand = T9 suited or hand = 98 suited or hand = QT suited or hand = J9 suited) call force
+When (hand = A suited or hand = KJ or hand = KT suited or hand = K9 suited or hand = K8 suited or hand = QJ) call force
+When (hand = 44 or hand = 33 or hand = 22 or hand = 87 suited or hand = 76 suited or hand = T8 suited or hand = K7 suited) call force
+When (hand = 75 suited or hand = 65 suited or hand = 64 suited or hand = 54 suited or hand = 53 suited or hand = 43 suited) call force
+
+When (StillToAct = 6 or StillToAct = 5 or StillToAct = 4) and raises = 1 and calls <= 2
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK or hand = AQ) raise force
+When (hand = TT or hand = 99 or hand = KQ suited or hand = KJ suited or hand = QJ suited or hand = AJ suited) call force
+
+When (StillToAct = 6 or StillToAct = 5 or StillToAct = 4) and raises = 1 and calls > 2
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK or hand = AQ) raise force
+When (hand = TT or hand = 99 or hand = KQ suited or hand = KJ suited or hand = QJ suited or hand = AJ suited) call force
+When (hand = 88 or hand = 77 or hand = AT suited) call force
+
+When (StillToAct = 3 or In Button) and raises = 0 and calls = 0
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = 88 or hand = AK or hand = KQ) raise force
+When (hand = AQ or hand = AJ or hand = AT or hand = A9 or hand = QJ suited or hand = KJ suited or hand = A8 suited) raise force
+When (hand = 77 or hand = 66 or hand = 55 or hand = A suited or hand = K suited or hand = QJ or hand = JT or hand = KJ or hand = QT or hand = KT) raise force
+
+When (StillToAct = 3 or In Button) and raises = 0 and calls <= 4
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = 88 or hand = AK or hand = KQ) raise force
+When (hand = AQ or hand = AJ or hand = AT or hand = A9 or hand = QJ suited or hand = KJ suited or hand = A8 suited) raise force
+When (hand = 77 or hand = 66 or hand = 55 or hand = A suited or hand = K suited or hand = QJ or hand = JT or hand = KJ or hand = QT or hand = KT) call force
+When (hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) call force
+When (hand = J9 suited or hand = T8 suited or hand = 97 suited or hand = 86 suited or hand = 75 suited) call force
+
+When (StillToAct = 3 or In Button) and raises = 0 and calls > 4
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = 88 or hand = AK or hand = KQ) raise force
+When (hand = AQ or hand = AJ or hand = AT or hand = A9 or hand = QJ suited or hand = KJ suited or hand = A8 suited) raise force
+When (hand = 77 or hand = 66 or hand = 55 or hand = A suited or hand = K suited or hand = QJ or hand = JT or hand = KJ or hand = QT or hand = KT) call force
+When (hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) call force
+When (hand = J9 suited or hand = T8 suited or hand = 97 suited or hand = 86 suited or hand = 75 suited) call force
+When (hand = 44 or hand = 33 or hand = 22 or hand = Q suited or hand = 64 suited or hand = 53 suited) call force
+
+When (StillToAct = 3 or In Button) and raises = 1 and calls <= 2
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK or hand = AQ) raise force
+When (hand = TT or hand = 99 or hand = KQ suited or hand = QJ suited or hand = KJ suited or hand = AJ suited) call force
+
+When (StillToAct = 3 or In Button) and raises = 1 and calls > 2
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK or hand = AQ) raise force
+When (hand = TT or hand = 99 or hand = KQ suited or hand = QJ suited or hand = KJ suited or hand = AJ suited) call force
+When (hand = 88 or hand = 77 or hand = AT suited or hand = A9 suited) call force
+
+When In BigBlind and raises = 0
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = 88 or hand = AK or hand = AQ or hand = KQ or hand = QJ suited or hand = KJ suited) raise force
+
+When In BigBlind and raises = 1
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK or hand = AQ) raise force
+When (pairinhand or hand = A suited or hand = K suited or hand = Q suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited) call force
+When (hand = 65 suited or hand = 54 suited or hand = 43 suited or hand = 32 suited or hand = T8 suited or hand = 97 suited or hand = 86 suited or hand = 75 suited or hand = 64 suited or hand = 53 suited or hand = 42 suited) call force
+
+When In SmallBlind and raises = 0
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK or hand = AQ) raise force
+When (pairinhand or hand = A or hand = K or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited) call force
+When (hand = 65 suited or hand = 54 suited or hand = 43 suited or hand = 32 suited or hand = T8 suited or hand = 97 suited or hand = 86 suited or hand = 75 suited or hand = 64 suited or hand = 53 suited or hand = 42 suited) call force
+
+When (In SmallBlind or In BigBlind) and raises = 1
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK or hand = AQ) raise force
+When (hand = TT or hand = 99 or hand = KQ suited or hand = KJ suited or hand = QJ suited or hand = AJ suited) call force
+When (hand = 88 or hand = 77 or hand = AT suited) call force
+
+When raises >= 2 
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK or hand = AQ or hand = KQ or hand = KJ suited or hand = QJ suited or hand = QT suited or hand = JT suited) call force
+
+flop
+
+When (HaveFullHouse or HaveQuads)
+When bets = 0 call force
+When (bets = 1 or raises >= 1) raise force
+
+When (HaveNutFlush or HaveStraightFlush)
+When suitsonboard = 1 raise force
+When bets = 0 call force
+When (bets = 1 or raises >= 1) raise force
+
+When HaveStraight 
+When suitsonboard = 1 and bets = 0 and raises = 0 raise force
+When suitsonboard = 1 and (bets = 1 or raises = 1) call force
+When bets >= 0 raise force
+
+When (HaveSet or HaveTrips)
+When not UncoordinatedFlop raise force
+When Position = first and UncoordinatedFlop call force
+When bets >= 0 raise force
+
+When HaveTwoPair
+When raises <= 1 raise force
+When raises > 1 call force
+
+When HaveOverPair 
+When not paironboard raise force
+When paironboard and bets = 0 and raises = 0 raise force
+When paironboard and (bets = 1 or raises = 1) call force
+
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker or Have3rdBestKicker) and Position = First
+When BotIsLastRaiser and not paironboard raise force
+When RaisesBeforeFlop and not BotRaisedBeforeFlop and bets = 0 and raises = 0 call force
+When RaisesBeforeFlop and not BotRaisedBeforeFlop raise force
+
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker or Have3rdBestKicker) and Position = Middle
+When BotIsLastRaiser and not paironboard raise force
+When RaisesBeforeFlop and not BotRaisedBeforeFlop and bets = 0 and raises = 0 and StillToAct > 0 call force
+When RaisesBeforeFlop and not BotRaisedBeforeFlop and bets = 0 and raises = 0 and StillToAct = 0 raise force
+When RaisesBeforeFlop and not BotRaisedBeforeFlop raise force
+
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker or Have3rdBestKicker) and Position = Middle
+When BotIsLastRaiser and not paironboard raise force
+When RaisesBeforeFlop and not BotRaisedBeforeFlop raise force
+
+When HaveTopPair
+When bets = 0 and raises = 0 raise force
+When (bets = 1 or raises >= 1) call force
+
+When (HaveNutFlushDraw or HaveNutStraightDraw) 
+When bets >= 0 raise force
+
+When HaveFlushDraw 
+When SuitsOnBoard = 1 fold force
+When HaveStraightDraw raise force
+When bets >= 0 call force
+
+When HaveStraightDraw
+When SuitsOnBoard = 1 fold force
+When bets >= 0 call force
+
+When Overcards = 2 and HaveBackDoorFlushDraw
+When bets >= 0 call force
+
+turn
+
+When TotalInvested >= 50% PotSize and (HaveBestKickerorBetter or HaveStraightDraw) and not OneCardFlushPossible call force
+When TotalInvested >= 50% PotSize and HaveFlushDraw call force
+
+river
+
+When TotalInvested >= 50% PotSize and (HaveTopPair or HaveOverPair) and not OneCardFlushPossible and raises >= 1 call force
+

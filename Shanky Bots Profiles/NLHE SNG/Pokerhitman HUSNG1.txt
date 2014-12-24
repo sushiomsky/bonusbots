@@ -1,0 +1,678 @@
+MaxSessionHands = 10000
+MaxSessionTime = 720
+MaxStackSize = 1000000
+BathroomBreakAfter = 999
+BathroomBreakTime = 2
+SitOutWhenOpponentsAreLessThan = 1
+MakePotSizedPreFlopRaisesWhen = 7
+FoldToPre-FlopRaisesForAQAJsKQ = OFF
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = OFF
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 2
+FoldToPost-FlopRaisesWithPairedBoardsFor = 4
+NeverBetTurnOrRiverWithHandBelow = 2
+NeverBetFlopWithHandBelowMiddlePairWhen = 1
+NeverBetFlopWithHandBelowMiddlePairStackSize = 100000
+NeverCallPairedBoardsWithHandBelow = 5
+NeverCallFlushPossibleBoardsWithHandBelow = 6
+FoldToPre-FlopRaiseWith55Or66When = 3
+FoldToPre-FlopRaiseWith77Or88When = 3
+FoldToPre-FlopRaiseWith99OrTTWhen = 3
+FoldToPre-FlopRaiseWithJJOrQQWhen = 2
+FoldToPre-FlopRaiseWithAKWhen = 3
+FoldToPre-FlopRaiseWithAQsWhen = 2
+FoldToPre-FlopRaiseWithAKsWhen = 3
+FoldToPre-FlopRaiseWithKQsWhen = 2
+SuperTightPlay = OFF
+SemiSuperTightPlay = OFF
+NoLimp = 15
+AggressivePreFlop = 7
+AggressivePostFlop = 3
+AggressivePreFlopStackSize = 1000000
+AggressivePostFlopStackSize = 1000000
+MiningForSets = 5
+PostFlopinBlindsOverride = 3
+PreFlopReRaiseOverride = OFF
+RaiseMinOverride = 6
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 90
+Verbose = ON
+AutoPlay = ON
+UserDefinedGameType = 0
+UseOcrAtFullTilt = OFF
+AutoRebuyAtUB = ON
+AlwaysAskForTableName = OFF
+EnableFoldInTurn = ON
+DefaultBetSizeFlop = 100
+DefaultBetSizeTurn = 75
+DefaultBetSizeRiver = 60
+
+custom
+preflop
+
+// Heads-Up Profile for FullTilt HU SNGs  - Version 7.2 - Dated 13th May 2010 - by Pokrhitman
+// The push and fold ranges are modified ICM suggestions in relation to stacksize and blind levels; 
+
+When hand = A K Raisemax force
+When (hand = Q Q or hand = J J ) raisemax force
+When In SmallBlind and ( hand = A A  or hand = K K ) raisepot force
+When In SmallBlind and ( hand = A A  or hand = K K ) and raises = 1 raisemax force
+when in BigBlind and ( hand = A A  or hand = K K  ) and raises = 0 raisepot force 
+when in BigBlind and (hand = A A or hand = K K ) and raises = 1 raisemax force
+
+//Instructions for Play from Small Blind - Blinds 10/20
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 135  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 120  and StackSize <= 134  and ( PairInHand or hand = A Q  or hand = A J  or hand = A T  or hand = A 9 or hand = A 8  or hand = A 7 suited  or hand = A 6 suited or hand = K Q  or hand = K J  or hand = K T or hand = K 9 or hand = K 8 suited or hand = Q J  or hand = Q T or hand = Q 9 or hand = Q 8 suited  or hand = J T or hand = J 9 or hand = T 9  or hand = T 8 suited ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 120  and StackSize <= 134  and raises = 1  and BetSize <= 3 and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = 9 8  or hand = 8 7 ) call Force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 120  and StackSize <= 134  and raises = 1  and BetSize  = 2 and ( hand = J 8  or hand = J 7 suited  or hand = T 8  or hand = T 7  or hand = 9 7  or hand = 9 6  or hand = 8 6  or hand = 8 5 or hand = 7 6  or hand = 7 5  or hand = 6 5 ) call Force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 120  and StackSize <= 134  and raises = 0  and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2 or hand = 9 8  or hand = 8 7 ) raise 3 force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 120  and StackSize <= 134  and raises = 0  and ( hand = J 8 suited  or hand = J 7 suited  or hand = T 8  or hand = T 7 suited  or hand = 9 7 suited  or hand = 9 6 suited  or hand = 8 6 suited  or hand = 7 6 or hand = 7 5 suited  or hand = 6 5  ) raisemin force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 100  and StackSize <= 119  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = A Q  or hand = A J  or hand = A T  or hand = K Q  or hand = K J  or hand = Q J  ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 100  and StackSize <= 119  and raises = 1  and BetSize <= 4 and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 9  or hand = A 8  or hand = K T  or hand = Q T) call force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 100  and StackSize <= 119  and raises = 1  and BetSize <= 3 and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = Q 9 or hand = J T or hand = T 9 or hand = 9 8 or hand = 8 7 ) call Force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 100  and StackSize <= 119  and raises = 1  and BetSize  = 2 and ( hand = A 7  or hand = A 6 or  hand = A 5 or hand = K 8 suited or hand = J 9  or hand = J 8  or hand = J 7 suited or hand = T 8  or hand = T 7  or hand = 9 7  or hand = 9 6  or hand = 8 6  or hand = 8 5 or hand = 7 6  or hand = 7 5  or hand = 6 5 ) call Force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 100  and StackSize <= 119  and raises = 0  and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 9  or hand = A 8  or hand = K T  or hand = Q T  or hand = J T) raise 3 force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 100  and StackSize <= 119  and raises = 0  and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8 suited  or hand = Q 9  or hand = Q 8 suited  or hand = J 9  or hand = J 8 suited  or hand = J 7 suited  or hand = T 9  or hand = T 8 suited  or hand = T 7 suited  or hand = 9 8  or hand = 9 7 suited  or hand = 9 6 suited  or hand = 8 7  or hand = 8 6 suited  or hand = 7 6  or hand = 7 5 suited  or hand = 6 5  ) raisemin force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 55 and StackSize <= 99 and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = A Q  or hand = A J ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 55 and StackSize <= 99 and raises = 1  and BetSize <= 4 and ( hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A T  or hand = K Q  or hand = K J  or hand = Q J ) Call Force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 55 and StackSize <= 99 and raises = 1  and BetSize <= 3 and (hand = A T  or hand = A 9  or hand = KT or hand= QT or hand = JT) call force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 55 and StackSize <= 99 and raises = 1  and BetSize = 2 and (hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q 9  or hand = Q 8 suited  or hand = J 9 suited  or hand = J 8 suited  or hand = J 7 suited  or hand = T 9  or hand = T 8 suited  or hand = T 7 suited  or hand = 9 8  or hand = 9 7 suited  or hand = 9 6 suited  or hand = 8 7  or hand = 8 6 suited  or hand = 7 6  or hand = 7 5 suited  or hand = 6 5 ) call Force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 55 and StackSize <= 99 and raises = 0 and ( hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A T  or hand = K Q  or hand = K J or hand = Q J or hand = J T  or hand = T 9 or hand = 9 8  or hand = 8 7  or hand = 7 6 ) Raise 3 force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 55 and StackSize <= 99 and raises = 0 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = Q 8 suited  or hand = J 9 suited  or hand = J 8 suited  or hand = J 7 suited  or hand = T 8 suited  or hand = T 7 suited  or hand = 9 7 suited  or hand = 9 6 suited  or hand = 8 6 suited  or hand = 7 5 suited  or hand = 6 5  ) RaiseMin force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 41 and StackSize <= 54  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = A Q  or hand = A J  or hand = A T  or hand = K Q  ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 41 and StackSize <= 54  and raises = 1  and BetSize <= 4 and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 9  or hand = K J  or hand = Q J  ) call force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 41 and StackSize <= 54  and raises = 1  and BetSize <= 3 and ( hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5 or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = Q T  or hand = J T  or hand = T 9  or hand = 9 8  or hand = 8 7 or hand = 7 6  ) call force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 41 and StackSize <= 54  and raises = 1  and BetSize = 2  and (hand = K 9  or hand = K 8 suited  or hand = Q 9  or hand = Q 8 suited  or hand = J 9 suited or hand = J 8 suited  or hand = J 7 suited  or hand = T 8 suited  or hand = T 7 suited  or hand = 9 7 suited  or hand = 9 6 suited  or hand = 8 6 suited  or hand = 7 5 suited or hand = 6 5 ) Fold force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 41 and StackSize <= 54  and raises = 0 and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 9  or hand = A 8  or hand = K J or hand = Q J or hand = J T ) raise 3 force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 41 and StackSize <= 54  and raises = 0 and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = Q T or hand = Q 9  or hand = Q 8 suitedor hand = J 9  or hand = J 8 suited  or hand = J 7 suited  or hand = T 9  or hand = T 8 suited  or hand = T 7 suited  or hand = 9 8  or hand = 9 7 suited  or hand = 9 6 suited  or hand = 8 7  or hand = 8 6 suited  or hand = 7 6  or hand = 7 5 suited  or hand = 6 5 ) RaiseMin force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 26 and StackSize <= 40  and ( PairInHand  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8  or hand = A 7 suited  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8 suited  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = Q 8 suited  or hand = J T  or hand = J 9 suited  or hand = T 9 ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 26 and StackSize <= 40   and raises = 1  and BetSize <= 3 and ( hand = A 6 or hand = A 5 or hand = A 4  or hand = A 3  or hand = A 2  or hand = 9 8 ) call force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 26 and StackSize <= 40   and raises = 1  and BetSize  = 2 and ( hand = J 8 suited  or hand = J 7 suited  or hand = T 8 suited  or hand = T 7 suited  or hand = 9 7 suited  or hand = 9 6 suited  or hand = 8 7 or hand = 8 6 suited  or hand = 7 6 or hand = 7 5 suited  or hand = 6 5 ) call force
+When In SmallBlind  and BigBlindSize = 20  and StackSize >= 26 and StackSize <= 40   and raises = 0 and ( hand = A 4  or hand = A 3  or hand = A 2  or hand = J 8 suited  or hand = J 7 suited  or hand = T 8 suited  or hand = T 7 suited  or hand = 9 8  or hand = 9 7 suited  or hand = 9 6 suited  or hand = 8 7  or hand = 8 6 suited  or hand = 7 6  or hand = 7 5 suited or hand = 6 5 ) raisemin force
+When In SmallBlind  and BigBlindSize = 20  and StackSize <= 25 and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 8 5  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+
+
+//Instructions for Play from Big Blind - Blinds 10/20
+
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 135 and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6 suited  or hand = A 5 suited  or hand = A 4 suited  or hand = A 3 suited  or hand = A 2 suitedor hand = K Q  or hand = K J  or hand = K T ) RaiseMax force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 135 and  raises = 1  and BetSize <= 3 and ( hand = 3 3  or hand = 2 2  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = Q J) and random < 50 raisepot force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 135 and  raises = 1  and BetSize <= 4 and ( hand = 3 3  or hand = 2 2  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = Q J) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 135 and  raises = 1  and BetSize <= 3 and ( hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9 ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 135 and  raises = 1  and BetSize = 2 and ( hand = J 8  or hand = J 7 suited  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 125 and StackSize <= 134 and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9) Raisemax force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 125 and StackSize <= 134 and  raises = 1  and BetSize <= 3 and ( hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = K Q  or hand = K J  or hand = Q J ) and random < 50 raisepot force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 125 and StackSize <= 134 and  raises = 1  and BetSize <= 4 and ( hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = K Q  or hand = K J  or hand = Q J ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 125 and StackSize <= 134 and  raises = 1  and BetSize <= 3 and ( hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = Q T  or hand = J T ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 125 and StackSize <= 134 and  raises = 1  and BetSize = 2 and ( hand = K 9  or hand = K 8  or hand = K 7 suited  or hand = Q 9  or hand = Q 8  or hand = Q 7 suited  or hand = J 9  or hand = J 8  or hand = J 7 suited  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 110 and StackSize <= 124 and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = A Q  or hand = A J  or hand = A T suited ) Raisemax force  
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 110 and StackSize <= 124 and  raises = 1  and BetSize <= 3  and ( hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A T  or hand = K Q  or hand = K J  or hand = Q J  ) and random < 50 raisepot force 
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 110 and StackSize <= 124 and  raises = 1  and BetSize <= 4  and ( hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A T  or hand = K Q  or hand = K J  or hand = Q J  ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 110 and StackSize <= 124 and  raises = 1  and BetSize <= 3  and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2 ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 110 and StackSize <= 124 and  raises = 1  and BetSize =  2  and ( hand = K 9  or hand = K 8  or hand = K 7 suited  or hand = Q 9  or hand = Q 8  or hand = Q 7 suited  or hand = J 9  or hand = J 8  or hand = J 7 suited  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 91  and Stacksize <= 109 and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = A Q ) RaiseMax force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 91  and Stacksize <= 109 and  raises = 1  and BetSize <= 3  and ( hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A J  or hand = A T  or hand = K Q  or hand = K J  or hand = Q J ) and random <50 raisepot force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 91  and Stacksize <= 109 and  raises = 1  and BetSize <= 4  and ( hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A J  or hand = A T  or hand = K Q  or hand = K J  or hand = Q J ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 91  and Stacksize <= 109 and  raises = 1  and BetSize <= 3  and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = Q T  or hand = J T ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 91  and Stacksize <= 109 and  raises = 1  and BetSize = 2 and ( hand = K 9  or hand = K 8  or hand = K 7 suited  or hand = Q 9  or hand = Q 8  or hand = Q 7 suited  or hand = J 9  or hand = J 8  or hand = J 7 suited  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 60  and Stacksize <= 90  and ( hand = T T  or hand = 9 9  or hand = A Q suited ) RaiseMax force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 60  and Stacksize <= 90  and  raises = 1  and BetSize <= 3 and ( hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A Q or hand = A J  or hand = K Q  or hand = K J  or hand = Q J ) and random <50 raisepot force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 60  and Stacksize <= 90  and  raises = 1  and BetSize <= 4 and ( hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A Q or hand = A J  or hand = K Q  or hand = K J  or hand = Q J ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 60  and Stacksize <= 90  and  raises = 1  and BetSize <= 3 and ( hand = A T  or hand = K T  or hand = Q T  or hand = J T ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 60  and Stacksize <= 90  and  raises = 1  and BetSize = 2  and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = K 7 suited  or hand = Q 9  or hand = Q 8  or hand = Q 7 suited  or hand = J 9  or hand = J 8  or hand = J 7 suited  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 41  and Stacksize <= 59  and ( hand = T T or hand = 9 9  or hand = 8 8  or hand = A Q ) Raisemax force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 41  and Stacksize <= 59  and  raises = 1  and BetSize <= 3 and ( hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A J  or hand = A T  or hand = K Q  or hand = K J  or hand = Q J ) and random < 50 raisepot force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 41  and Stacksize <= 59  and  raises = 1  and BetSize <= 4 and ( hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A J  or hand = A T  or hand = K Q  or hand = K J  or hand = Q J ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 41  and Stacksize <= 59  and  raises = 1  and BetSize <= 3 and ( hand = K T  or hand = Q T  or hand = J T ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 41  and Stacksize <= 59  and  raises = 1  and BetSize  = 2 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  and hand = K 9  or hand = K 8  or hand = K 7 suited or hand = Q 9  or hand = Q 8  or hand = Q 7 suited or hand = J 9  or hand = J 8  or hand = J 7 suited  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 26  and Stacksize <= 40  and ( hand = T T or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = A Q  or hand = A J suited ) Raisemax Force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 26  and Stacksize <= 40  and  raises = 1  and BetSize <= 3 and ( hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2or hand = A J or hand = A T  or hand = K Q  or hand = K J  or hand = Q J ) and random < 50 raisepot force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 26  and Stacksize <= 40  and  raises = 1  and BetSize <= 4 and ( hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2or hand = A J or hand = A T  or hand = K Q  or hand = K J  or hand = Q J ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 26  and Stacksize <= 40  and  raises = 1  and BetSize <= 3 and ( hand = K T  or hand = Q T  or hand = J T ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 26  and Stacksize <= 40  and  raises = 1  and BetSize  = 2 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = K 7 suited  or hand = Q 9  or hand = Q 8  or hand = Q 7 suited  or hand = J 9  or hand = J 8  or hand = J 7 suited  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 15  and Stacksize <= 25  and ( hand = T T or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9 suited ) Raisemax Force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 15  and Stacksize <= 25  and  raises = 1  and BetSize <= 3  and ( hand = K Q  or hand = K J  or hand = Q J  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2 ) and random < 50 raisepot force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 15  and Stacksize <= 25  and  raises = 1  and BetSize <= 4  and ( hand = K Q  or hand = K J  or hand = Q J  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2 ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 15  and Stacksize <= 25  and  raises = 1  and BetSize <= 3  and ( hand = K T  or hand = Q T  or hand = J T  or hand = T 9 ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize >= 15  and Stacksize <= 25  and  raises = 1  and BetSize  = 2  and ( hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = K 7 suited  or hand = Q 9  or hand = Q 8  or hand = Q 7 suited  or hand = J 9  or hand = J 8  or hand = J 7 suited  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) call force
+When In BigBlind  and BigBlindSize = 20  and StackSize <= 14  and ( PairInHand or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8  or hand = A 7 suited  or hand = A 6 suited  or hand = A 5 suited  or hand = A 4 suited  or hand = A 3 suited  or hand = A 2 suited or hand = K Q  or hand = K J  or hand = K T  or hand = K 9 suited ) raisemax force
+When In BigBlind  and BigBlindSize = 20  and StackSize <= 14  and raises = 1 and Betsize <= 3 and (hand = Q J  or hand = Q T  or hand = J T  or hand = T 9  or hand = 9 8 ) raisemax force
+When In BigBlind  and BigBlindSize = 20  and StackSize <= 14  and raises = 1 and Betsize  = 2 and (hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = T 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) call force
+
+//Instructions for Play from Small Blind - Blinds 15/30
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 77  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 8 5  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 67  and StackSize <= 76  and ( PairInHand  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8  or hand = A 7 suited  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8 suited  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = Q 8 suited or hand = J T  or hand = J 9  or hand = T 9  or hand = T 8 suited) RaiseMax force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 67  and StackSize <= 76  and  raises = 1  and BetSize <= 4 and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 67  and StackSize <= 76  and  raises = 1  and BetSize <= 3 and ( hand = K 8  or hand = Q 8  or hand = J 8  or hand = T 8  or hand = T 7  or hand = 9 8 ) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 67  and StackSize <= 76  and  raises = 1  and BetSize  = 2 and ( hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 67  and StackSize <= 76  and  raises = 0  and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = Q 8  or hand = J 8 suited  or hand = T 8 or hand = T 7 suited  or hand = 9 8  ) raise 3 force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 67  and StackSize <= 76  and  raises = 0  and ( hand = 9 7 suited  or hand = 9 6 suited  or hand = 8 7  or hand = 8 6 suited  or hand = 7 6  or hand = 7 5 suited  or hand = 6 5  ) raisemin force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 60  and StackSize <= 66  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = A Q  or hand = A J  or hand = A T  or hand = K Q  or hand = K J  or hand = K T  or hand = Q J  or hand = Q T  or hand = J T ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 60  and StackSize <= 66  and  raises = 1  and BetSize <= 4 and ( hand = 3 3  or hand = 2 2  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2 or hand = K 9  or hand = Q 9  or hand = J 9  or hand = 9 8) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 60  and StackSize <= 66  and  raises = 1  and BetSize <= 3 and ( hand = K 8  or hand = Q 8  or hand = J 8  or hand = T 8  or hand = T 7  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5 or hand = 6 5 ) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 60  and StackSize <= 66  and  raises = 0 and ( hand = 3 3  or hand = 2 2  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2 or hand = K 9  or hand = Q 9  or hand = J 9  or hand = 9 8 ) raise 3 force 
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 60  and StackSize <= 66  and  raises = 0 and ( hand = K 8  or hand = Q 8  or hand = J 8  or hand = T 8  or hand = T 7  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5 or hand = 6 5 ) raisemin force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 43  and StackSize <= 59  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9 suited  or hand = K Q  or hand = Q J suited ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 43  and StackSize <= 59  and  raises = 1  and BetSize <= 4 and ( hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 9  or hand = A 8  or hand = A 7 suited   or hand = K J  or hand = K T  or hand = Q J  or hand = Q T  or hand = J T  or hand = T 9 ) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 43  and StackSize <= 59  and  raises = 1  and BetSize <= 3 and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = T 8  or hand = T 7 ) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 43  and StackSize <= 59  and  raises = 1  and BetSize  = 2 and ( hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 43  and StackSize <= 59  and  raises = 0  and ( hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 9  or hand = A 8  or hand = A 7 suited   or hand = K J  or hand = K T  or hand = Q J  or hand = Q T  or hand = J T  or hand = T 9 ) raise 3 force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 43  and StackSize <= 59  and  raises = 0  and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) raisemin force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 37  and StackSize <= 42  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9 suited  or hand = A 8 suitedor hand = K Q  or hand = K J suited  or hand = K T suited or hand = Q J  or hand = Q T suited  or hand = J T suited) RaiseMax force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 37  and StackSize <= 42  and  raises = 1 and BetSize <= 4 and ( hand = 3 3  or hand = 2 2  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = Q 9or hand = J 9 suited  or hand = T 9 suitedor hand = 9 8 suited ) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 37  and StackSize <= 42  and  raises = 1 and BetSize <= 3 and ( hand = K 8  or hand = Q 8  or hand = J 9 or hand = T 9 or hand = 9 8  ) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 37  and StackSize <= 42  and  raises = 1 and BetSize <= 2 and ( hand = 9 7 suited  or hand = 9 6 suited  or hand = 8 7  or hand = 8 6 suited  or hand = 7 6  or hand = 7 5 suited  or hand = 6 5 ) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 37  and StackSize <= 42  and  raises = 0 and ( hand = 3 3  or hand = 2 2  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = T 9  or hand = 9 8  ) raise 3 force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 37  and StackSize <= 42  and  raises = 0 and ( hand = 9 7 suited  or hand = 9 6 suited  or hand = 8 7  or hand = 8 6 suited  or hand = 7 6  or hand = 7 5 suited  or hand = 6 5 ) raisemin force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 27  and StackSize <= 36  and ( PairInHand  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6 suited or hand = A 5 suited  or hand = A 4 suited  or hand = A 3 suited  or hand = A 2 suited  or hand = K Q  or hand = K J  or hand = K T or hand = K 9 suited  or hand = K 8 suited  or hand = Q J  or hand = Q T  or hand = Q 9 suited  or hand = Q 8 suited  or hand = J T  or hand = J 9 suited or hand = T 9  or hand = T 8 suited ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 27  and StackSize <= 36  and  raises = 1 and  BetSize <= 4  and ( hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2 ) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 27  and StackSize <= 36  and  raises = 1 and  BetSize <= 3  and ( hand = K 9  or hand = Q 9  or hand = J 9  or hand = J 8 ) call force  
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 27  and StackSize <= 36  and  raises = 1 and  BetSize  = 2  and ( hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) call force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 27  and StackSize <= 36  and  raises = 0 and  ( hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = Q 9  or hand = J 9  or hand = J 8) raise 3 force
+When In SmallBlind  and BigBlindSize = 30  and StackSize >= 27  and StackSize <= 36  and  raises = 0 and  ( hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5 or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) raisemin
+When In SmallBlind  and BigBlindSize = 30  and StackSize <= 26  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 8 5  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+
+
+//Instructions for Play from Big Blind - Blinds 15/30
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 77  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = A Q  or hand = A J  or hand = A T  ) raisemax force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 77  and raises = 1  and BetSize <= 3  and ( hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  and hand = K Q  or hand = K J  or hand = Q J) and random < 50 raisepot force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 77  and raises = 1  and BetSize <= 4  and ( hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  and hand = K Q  or hand = K J  or hand = Q J) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 77  and raises = 1  and BetSize <= 3  and ( hand = K T  or hand = Q T  or hand = J T ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 77  and raises = 1  and BetSize  = 2  and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 61  and Stacksize <= 76  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = A Q  or hand = A J  or hand = A T suited ) raisemax force
+when In BigBlind  and BigBlindSize = 30  and StackSize >= 61  and Stacksize <= 76  and raises = 1  and BetSize <= 3  and ( hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = K Q  or hand = K J or hand = Q J ) and random < 50 raisepot force
+when In BigBlind  and BigBlindSize = 30  and StackSize >= 61  and Stacksize <= 76  and raises = 1  and BetSize <= 4  and ( hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = K Q  or hand = K J or hand = Q J ) call force
+when In BigBlind  and BigBlindSize = 30  and StackSize >= 61  and Stacksize <= 76  and raises = 1  and BetSize <= 3  and ( hand = K T  or hand = Q T  or hand = J T ) call force  
+when In BigBlind  and BigBlindSize = 30  and StackSize >= 61  and Stacksize <= 76  and raises = 1  and BetSize  = 2  and ( hand = K 9  or hand = K 8  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 40  and Stacksize <= 60  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = A Q  or hand = A J suited ) RaiseMax force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 40  and Stacksize <= 60  and raises = 1  and BetSize <=3  and ( hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A J  or hand = A T or hand = K Q  or hand = K J  or hand = Q J  ) and random < 50 raisepot force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 40  and Stacksize <= 60  and raises = 1  and BetSize <=4  and ( hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A J  or hand = A T  or hand = K Q  or hand = K J  or hand = Q J  ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 40  and Stacksize <= 60  and raises = 1  and BetSize <=3  and ( hand = K T  or hand = Q T  or hand = J T ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 40  and Stacksize <= 60  and raises = 1  and BetSize = 2  and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8 suited  or hand = Q 9  or hand = Q 8 suited  or hand = J 9  or hand = J 8 suited  or hand = T 9  or hand = T 8  or hand = T 7 suited  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand =  7 5  or hand = 6 5 ) Call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 27  and Stacksize <= 39  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = A Q  or hand = A J  or hand = A T suited ) raisemax force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 27  and Stacksize <= 39  and raises = 1  and BetSize <= 3 and ( hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2 or hand = A T  or hand = K Q  or hand = K J  or hand = Q J ) and random < 50 raisepot force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 27  and Stacksize <= 39  and raises = 1  and BetSize <= 4 and ( hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2 or hand = A T  or hand = K Q  or hand = K J  or hand = Q J ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 27  and Stacksize <= 39  and raises = 1  and BetSize <= 3 and ( hand = K T  or hand = Q T  or hand = J T ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 27  and Stacksize <= 39  and raises = 1  and BetSize  = 2 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 17  and Stacksize <= 26  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = A Q  or hand = A J  or hand = A T ) raisemax force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 17  and Stacksize <= 26  and raises = 1  and BetSize <= 3  and ( hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = K Q  or hand = K J  or hand = Q J ) and random < 50 raisepot force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 17  and Stacksize <= 26  and raises = 1  and BetSize <= 4  and ( hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = K Q  or hand = K J  or hand = Q J ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 17  and Stacksize <= 26  and raises = 1  and BetSize <= 3  and ( hand = K T  or hand = Q T  or hand = J T ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 17  and Stacksize <= 26  and raises = 1  and BetSize  = 2  and (hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 10  and Stacksize <= 16  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8 suited ) raisemax force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 10  and Stacksize <= 16  and raises = 1  and BetSize <= 3  and ( hand = 3 3  or hand = 2 2  or hand = K Q  or hand = K J  or hand = Q J ) and random < 50 raisepot force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 10  and Stacksize <= 16  and raises = 1  and BetSize <= 4  and ( hand = 3 3  or hand = 2 2  or hand = K Q  or hand = K J  or hand = Q J ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 10  and Stacksize <= 16  and raises = 1  and BetSize <= 3  and ( hand = K T  or hand = Q T  or hand = J T ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize >= 10  and Stacksize <= 16  and raises = 1  and BetSize  = 2  and (hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) call force
+When In BigBlind  and BigBlindSize = 30  and StackSize <= 9  and ( PairInHand  or hand = A  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = K 7  or hand = K 6  or hand = K 5  or hand = K 4 suited  or hand = K 3 suited  or hand = K 2 suited or hand = Q J  or hand = Q T  or hand = Q 9  or hand = Q 8  or hand = Q 7  or hand = Q 6  or hand = Q 5 suited  or hand = Q 4 suited  or hand = Q 3 suited  or hand = Q 2 suited  or hand = J T  or hand = J 9  or hand = J 8  or hand = J 7 suited  or hand = J 6 suited  or hand = J 5 suited  or hand = J 4 suited  or hand = J 3 suited  or hand = J 2 suited  or hand = T 9  or hand = T 8  or hand = T 7  or  hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5 or hand = 6 5 ) call force
+
+//Instructions for Play from Small Blind - Blinds 20/40
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 55  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 8 5  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 48  and StackSize <= 54  and (  PairInHand  or hand = A  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = K 7  suited  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = Q 8 suited  or hand = J T  or hand = J 9  or hand = J 8  suited or hand = T 9  or hand = T 8  or hand = 9 8  or hand = 8 7 ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 48  and StackSize <= 54  and raises = 1  and BetSize = 2  and ( hand = J 8  or hand = J 7  or hand = T 7  or hand = 9 7  or hand = 9 6 or hand = 8 6  or hand = 7 6  or hand = 7 5 or hand = 6 5  ) call force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 48  and StackSize <= 54  and raises = 0 and ( hand = J 8  or hand = J 7  or hand = T 7  or hand = 9 7  or hand = 9 6 or hand = 8 6  or hand = 7 6  or hand = 7 5 or hand = 6 5  ) raisemin force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 35  and StackSize <= 47  and ( Pairinhand or hand = A Q  or hand = A J  or hand =  A T  or hand = A 9  or hand = A 8 suited  or hand = A 7 suited  or hand = K Q  or hand = K J or hand = K T suited or hand = Q J or hand = Q T  or hand = Q 9 suited or hand = J T  or hand = J 9 suited or hand = T 9 ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 35  and StackSize <= 47  and raises = 1  and BetSize <= 3  and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = Q 9 ) call force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 35  and StackSize <= 47  and raises = 1  and BetSize = 2   and ( hand = Q 8  or hand = J 8  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 6  or hand = 7 6  or hand = 6 5 ) call force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 35  and StackSize <= 47  and raises = 0 and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = Q 9  ) raise 3 force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 35  and StackSize <= 47  and raises = 0 and ( hand = Q 8  or hand = J 8  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 6  or hand = 7 6  or hand = 6 5 ) raisemin force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 28  and StackSize <= 34  and ( Pairinhand or hand = A Q  or hand = A J  or hand =  A T  or hand = A 9 or hand = A 8 or hand = A 7 or hand = A 6 suited or hand = A 5 suited  or hand = A 4 suited or hand = A 3 suited or hand = A 2 suitedor hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8 suited  or hand = Q J or hand = Q T or hand = Q 9 suited or hand = Q 8 suited  or hand = J T or hand = T 9  or hand = T 8 suited) RaiseMax force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 28  and StackSize <= 34  and raises = 1 and BetSize <= 3  and ( hand = K 8  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8 ) call force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 28  and StackSize <= 34  and raises = 1 and BetSize  = 2  and ( hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 6  or hand = 8 5  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) call force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 28  and StackSize <= 34  and raises = 0 and ( hand = K 8  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  ) raise 3 force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 28  and StackSize <= 34  and raises = 0 and ( hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 6  or hand = 8 5  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) raisemin force
+When In SmallBlind  and BigBlindSize = 40  and StackSize >= 20  and StackSize <= 27  and ( PairInHand  or hand = A   or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = K 7  or hand = K 6  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = Q 8  or hand = Q 7  or hand = J T  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 40  and StackSize <= 19  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 8 5  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+
+
+//Instructions for Play from Big Blind - Blinds 20/40
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 70  and ( PairInHand  or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 63  and StackSize <= 69  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = K Q  ) RaiseMax force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 63  and StackSize <= 69  and  raises = 1  and BetSize = 4 and ( hand = 4 4  or hand = 3 3 or hand = 2 2 ) Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 63  and StackSize <= 69  and  raises = 1  and BetSize = 3 and ( hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 63  and StackSize <= 69  and  raises = 1  and BetSize = 2 and ( hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 63  and StackSize <= 69  and  raises = 1  and BetSize = 2 and ( hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random >= 51 Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 50  and StackSize <= 62  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = A Q  or hand = A J  or hand = K Q  ) RaiseMax force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 50  and StackSize <= 62  and  raises = 1  and BetSize = 4 and ( hand = 5 5  or hand = 4 4  or hand = 3 3 or hand = 2 2  or hand = A T  or hand = K J  or hand = Q J ) Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 50  and StackSize <= 62  and  raises = 1  and BetSize = 3 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 50  and StackSize <= 62  and  raises = 1  and BetSize = 2 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 50  and StackSize <= 62  and  raises = 1  and BetSize = 2 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random >= 51 Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 40  and Stacksize <= 49  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = A Q  or hand = A J  ) RaiseMax force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 40  and Stacksize <= 49  and  raises = 1  and BetSize = 4 and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A T  or hand = K Q  or hand = K J  or hand = Q J  ) Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 40  and Stacksize <= 49  and  raises = 1  and BetSize = 3 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 40  and Stacksize <= 49  and  raises = 1  and BetSize = 2 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 40  and Stacksize <= 49  and  raises = 1  and BetSize = 2 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random >= 51 Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 25  and Stacksize <= 39  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = A Q  or hand = A J  or hand = A T  or hand = K Q  ) RaiseMax force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 25  and Stacksize <= 39  and  raises = 1  and BetSize = 4 and ( hand = 4 4  or hand = 3 3  or hand = 2 2  ) Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 25  and Stacksize <= 39  and  raises = 1  and BetSize = 3 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K J or hand = K T  or hand = K 9  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 25  and Stacksize <= 39  and  raises = 1  and BetSize = 2 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K J or hand = K T  or hand = K 9  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 25  and Stacksize <= 39  and  raises = 1  and BetSize = 2 and ( hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K J or hand = K T  or hand = K 9  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random >= 51 Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 18  and Stacksize <= 24  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = A K  or hand = A Q  or hand = A J or  hand = A T  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5 suited  or hand = K Q  or hand = K J  or hand = K T  or hand = Q J  or hand = J T  or hand = T 9 ) RaiseMax force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 18  and Stacksize <= 24  and  raises = 1  and BetSize = 4  and ( hand = 3 3  or hand = 2 2 ) Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 18  and Stacksize <= 24  and  raises = 1  and BetSize = 3  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = Q T  or hand = Q 9  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 18  and Stacksize <= 24  and  raises = 1  and BetSize = 2  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = Q T  or hand = Q 9  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 18  and Stacksize <= 24  and  raises = 1  and BetSize = 2  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = Q T  or hand = Q 9  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random >= 51 Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 11  and Stacksize <= 17  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = K Q  or hand = K J  or hand = K T  or hand = Q J ) RaiseMax force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 11  and Stacksize <= 17  and  raises = 1  and BetSize = 4  and ( hand = 3 3  or hand = 2 2 ) Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 11  and Stacksize <= 17  and  raises = 1  and BetSize = 3  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 11  and Stacksize <= 17  and  raises = 1  and BetSize = 2  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random >= 51 Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize >= 11  and Stacksize <= 17  and  raises = 1  and BetSize = 2  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) Call force
+When In BigBlind  and BigBlindSize = 40  and StackSize <= 10  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T 9  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) RaiseMax force
+
+//Instructions for Play from Small Blind - Blinds 25/50
+When In SmallBlind  and BigBlindSize = 50  and StackSize >= 38  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 50  and StackSize >= 34  and StackSize <= 37  and ( PairInHand  or hand = A  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = Q 8 or hand = J T  or hand = J 9  or hand = J 8  or hand = J 7 suitedor hand = T 9  or hand = T 8  or hand = 9 8  or hand = 8 7 or hand = 7 6  or hand = 6 5 ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 50  and StackSize >= 34  and StackSize <= 37  and  raises = 1  and BetSize = 2  and ( hand = K 7 suited or hand = K 6 suited  or hand = Q 7 suited  or hand = J 6 suited  or hand = T 7 suited  or hand = 9 7  or hand = 8 6  or hand = 8 5  or hand = 7 5 ) call force
+When In SmallBlind  and BigBlindSize = 50  and StackSize >= 34  and StackSize <= 37  and  raises = 0 and ( hand = K 7 suited  or hand = K 6 suited  or hand = Q 7 suited  or hand = J 6 suited  or hand = T 7 suited  or hand = 9 7  or hand = 8 6  or hand = 8 5  or hand = 7 5  ) raisemin force
+When In SmallBlind  and BigBlindSize = 50  and StackSize >= 28  and StackSize <= 33  and  (PairInHand  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6 suited  or hand = A 5 suited  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9 suited or hand = K 8 suited  or hand = Q J  or hand = Q T  or hand = Q 9 suited  or hand = Q 8 suitedor hand = J T  or hand = J 9  or hand = T 9  or hand = T 8 suited ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 50  and StackSize >= 28  and StackSize <= 33  and  raises = 1 and BetSize <= 3  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q 9  or hand = Q 8  ) call force
+When In SmallBlind  and BigBlindSize = 50  and StackSize >= 28  and StackSize <= 33  and  raises = 1 and BetSize  = 2  and ( hand = K 8  or hand = J 8 suited  or hand = J 7 suited  or hand = T 8  or hand = T 7 suited  or hand = Q 8  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6   or hand = 7 6  or hand = 7 5  or hand = 6 5 ) call force
+When In SmallBlind  and BigBlindSize = 50  and StackSize >= 28  and StackSize <= 33  and  raises = 0 and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q 9  or hand = Q 8  ) raise 3 force
+When In SmallBlind  and BigBlindSize = 50  and StackSize >= 28  and StackSize <= 33  and  raises = 0 and ( hand = K 8  or hand = J 8 suited  or hand = J 7 suited  or hand = T 8  or hand = T 7 suited  or hand = Q 8  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6   or hand = 7 6  or hand = 7 5  or hand = 6 5 ) raisemin force
+When In SmallBlind  and BigBlindSize = 50  and StackSize >= 22  and StackSize <= 27  and ( PairInHand  or hand = A  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = Q 8 or hand = J T  or hand = J 9  or hand = J 8  or hand = J 7 suitedor hand = T 9  or hand = T 8  or hand = 9 8  or hand = 8 7 or hand = 7 6  or hand = 6 5 ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 50  and StackSize >= 22  and StackSize <= 27  and  raises = 1  and BetSize = 2  and ( hand = K 7 suited or hand = K 6 suited  or hand = Q 7 suited  or hand = J 6 suited  or hand = T 7 suited  or hand = 9 7  or hand = 8 6  or hand = 8 5  or hand = 7 5 ) call force
+When In SmallBlind  and BigBlindSize = 50  and StackSize >= 22  and StackSize <= 27  and  raises = 0 and ( hand = K 7 suited  or hand = K 6 suited  or hand = Q 7 suited  or hand = J 6 suited  or hand = T 7 suited  or hand = 9 7  or hand = 8 6  or hand = 8 5  or hand = 7 5  ) raisemin force
+When In SmallBlind  and BigBlindSize = 50  and StackSize <= 21  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 8 5  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+
+//Instructions for Play from Big Blind - Blinds 25/50
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 50  and ( PairInHand  or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 46  and Stacksize <= 49  and ( PairInHand  or hand = A  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = T 9 ) RaiseMax force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 46  and Stacksize <= 49  and raises = 1  and BetSize = 2  and ( hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 46  and Stacksize <= 49  and raises = 1  and BetSize = 2  and ( hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) and random >= 51 Call force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 46  and Stacksize <= 49  and raises = 1  and BetSize <= 4  and ( hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) Call force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 38  and Stacksize <= 45  and ( hand = T T  or hand = 9 9 or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = A K  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = K Q  or hand = K J  or hand = K T  or hand = Q J  or hand = J T ) RaiseMax force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 38  and Stacksize <= 45  and raises = 1  and BetSize = 4  and ( hand = 3 3  or hand = 2 2 ) Call force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 38  and Stacksize <= 45  and raises = 1  and BetSize = 3  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) Call force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 38  and Stacksize <= 45  and raises = 1  and BetSize = 2  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 38  and Stacksize <= 45  and raises = 1  and BetSize = 2  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) and random >= 51 call force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 25  and Stacksize <= 37  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = A K  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8  or hand = K Q  or hand = K J  or hand = Q J ) RaiseMax force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 25  and Stacksize <= 37  and raises = 1  and BetSize = 4  and ( hand = 5 5  or hand = 4 4  or hand = 3 3  or hand = 2 2 ) Call force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 25  and Stacksize <= 37  and raises = 1  and BetSize = 3  and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) Call force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 25  and Stacksize <= 37  and raises = 1  and BetSize = 2  and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 25  and Stacksize <= 37  and raises = 1  and BetSize = 2  and ( hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) and random >= 51 call force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 16  and Stacksize <= 24  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = 4 4  or hand = A K  or hand = A Q  or hand = A J or  hand = A T  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = K Q  or hand = K J  or hand = K T  or hand = Q J  or hand = J T ) RaiseMax force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 16  and Stacksize <= 24  and raises = 1  and BetSize = 4  and ( hand = 3 3  or hand = 2 2 ) Call force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 16  and Stacksize <= 24  and raises = 1  and BetSize = 3  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) Call force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 16  and Stacksize <= 24  and raises = 1  and BetSize = 2  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 50  and StackSize >= 16  and Stacksize <= 24  and raises = 1  and BetSize = 2  and ( hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) and random >= 51 Call force
+When In BigBlind  and BigBlindSize = 50  and StackSize <= 15  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+
+//Instructions for Play from Small Blind - Blinds 30/60
+When In SmallBlind  and BigBlindSize = 60  and StackSize >= 30  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 60  and StackSize >= 23  and StackSize <= 29  and ( PairInHand  or hand = A  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = K 7 suited  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = Q 8  or hand = Q 7 suited  or hand = J T  or hand = J 9  or hand = J 8 suited  or hand = J 7 suited  or hand = T 9  or hand = T 8  or hand = T 7 suited  or hand = 9 8  or hand = 8 7  or hand = 7 6  or hand = 6 5 ) RaiseMax force
+When In SmallBlind  and BigBlindSize = 60  and StackSize >= 23  and StackSize <= 29  and  raises = 1  and BetSize = 2 and ( hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 6  or hand = 8 5  or  hand = 7 5 ) Fold force
+When In SmallBlind  and BigBlindSize = 60  and StackSize >= 23  and StackSize <= 29  and  raises = 0  and ( hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 6  or hand = 8 5  or  hand = 7 5 ) raisemin force
+When In SmallBlind  and BigBlindSize = 60  and StackSize <= 22  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 8 5  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+
+//Instructions for Play from Big Blind - Blinds 30/60
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 45  and  ( PairInHand  or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 40  and StackSize <= 44  and ( hand = TT or hand = 99 or hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 ) raisemax force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 40  and StackSize <= 44  and ( hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8 or hand = A 7  or hand = A 6  or hand = A 5 suited  or hand = A4 suited or hand = A3 suited  or hand = A2 suited or hand = K Q or hand = K J  or hand = K T  or hand = K 9  or hand = K 8 or hand = Q J  or hand = Q T  or hand = J T  or hand = J 9 or hand = T 9 ) RaiseMax force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 40  and StackSize <= 44  and raises = 1 and Betsize = 2 and (hand = 22 or hand = A5 or hand = A4 or hand = A2 or hand = Q9 or hand = Q8 or hand = J8  or hand = J8  or hand = T8 or hand = T7 or hand = 98 or hand = 97 or hand = 87 or hand = 76 ) and random <= 50 call force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 40  and StackSize <= 44  and raises = 1 and Betsize = 2 and (hand = 22 or hand = A5 or hand = A4 or hand = A2 or hand = Q9 or hand = Q8 or hand = J8  or hand = J8  or hand = T8 or hand = T7 or hand = 98 or hand = 97 or hand = 87 or hand = 76 ) and random >= 51 raisepot force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 40  and StackSize <= 44  and raises = 1 and Betsize = 3 and (hand = 22 or hand = A5 or hand = A4 or hand = A2 or hand = Q9 or hand = Q8 or hand = J8  or hand = J8  or hand = T8 or hand = T7 or hand = 98 or hand = 97 or hand = 87 or hand = 76 ) and random >= 51 raisepot force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 32  and StackSize <= 39  and ( hand = TT or hand = 99 or hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8 suited ) raisemax force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 32  and StackSize <= 39  and raises = 1 and Betsize = 2 and ( hand = A8  or hand = A7 or hand = A5 or hand = A4  or hand = A3  or hand = A2  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 32  and StackSize <= 39  and raises = 1 and Betsize = 2 and ( hand = A8  or hand = A7 or hand = A5 or hand = A4  or hand = A3  or hand = A2  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) and random >= 51 Call force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 32  and StackSize <= 39  and raises = 1 and Betsize = 3 and ( hand = A8  or hand = A7 or hand = A5 or hand = A4  or hand = A3  or hand = A2  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) call force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 17  and Stacksize <= 31  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5 or hand = A Q  or hand = A J  or hand = A T ) RaiseMax force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 17  and Stacksize <= 31  and raises = 1  and BetSize = 2  and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 17  and Stacksize <= 31  and raises = 1  and BetSize = 2  and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) and random >= 51 Call force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 17  and Stacksize <= 31  and raises = 1  and BetSize = 3  and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K Q  or hand = K J  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q J  or hand = Q T  or hand = Q 9  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) Call force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 12  and Stacksize <= 16  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6 or hand = 5 5 or hand = 4 4  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = K Q  or hand = K J  or hand = Q J ) RaiseMax force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 12  and Stacksize <= 16  and raises = 1  and BetSize = 2  and ( hand = 3 3  or hand = 2 2  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = Q 8  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 12  and Stacksize <= 16  and raises = 1  and BetSize = 2  and ( hand = 3 3  or hand = 2 2  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = Q 8  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) and random >= 51 Call force
+When In BigBlind  and BigBlindSize = 60  and StackSize >= 12  and Stacksize <= 16  and raises = 1  and BetSize = 3  and ( hand = 3 3  or hand = 2 2  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = Q 8  or hand = J T  or hand = J 9  or hand = J 8  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) Call force
+When In BigBlind  and BigBlindSize = 60  and StackSize <= 11  and  ( PairInHand  or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T   or hand = 9 8  or hand = 9 7 or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) RaiseMax force
+
+//Instructions for Play from Small Blind - Blinds 40/80
+When In SmallBlind  and BigBlindSize = 80  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 8 5  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+
+//Instructions for Play from Big Blind - Blinds 40/80
+When In BigBlind  and BigBlindSize = 80  and StackSize >= 31  and ( PairInHand  or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+When In BigBlind  and BigBlindSize = 80  and StackSize >= 25  and Stacksize <= 30  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = A K  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8  or hand = A 7  or hand = A 6  or hand = A 5 suited  or hand = K Q  or hand = K J  or hand = Q J  or hand = J T ) RaiseMax force
+When In BigBlind  and BigBlindSize = 80  and StackSize >= 25  and Stacksize <= 30  and raises = 1  and BetSize = 2  and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 5  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 80  and StackSize >= 25  and Stacksize <= 30  and raises = 1  and BetSize = 2  and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 5  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) and random >= 51 Call force
+When In BigBlind  and BigBlindSize = 80  and StackSize >= 25  and Stacksize <= 30  and raises = 1  and BetSize <= 3  and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 5  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) Call force
+When In BigBlind  and BigBlindSize = 80  and StackSize >= 15  and Stacksize <= 24  and ( hand = T T  or hand = 9 9  or hand = 8 8  or hand = 7 7  or hand = 6 6  or hand = 5 5  or hand = A K  or hand = A Q  or hand = A J  or hand = A T  or hand = A 9  or hand = A 8 suited  or hand = K Q  or hand = K J  or hand = Q J  or hand = J T ) RaiseMax force
+When In BigBlind  and BigBlindSize = 80  and StackSize >= 15  and Stacksize <= 24  and raises = 1  and BetSize = 2  and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) and random <= 50 raisepot force
+When In BigBlind  and BigBlindSize = 80  and StackSize >= 15  and Stacksize <= 24  and raises = 1  and BetSize = 2  and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) and random >= 51 call force
+When In BigBlind  and BigBlindSize = 80  and StackSize >= 15  and Stacksize <= 24  and raises = 1  and BetSize <= 3  and ( hand = 4 4  or hand = 3 3  or hand = 2 2  or hand = A 7  or hand = A 6  or hand = A 5  or hand = A 4  or hand = A 3  or hand = A 2  or hand = K T  or hand = K 9  or hand = K 8  or hand = Q T  or hand = Q 9  or hand = Q 8  or hand = J 9  or hand = J 8  or hand = J 7  or hand = T 9  or hand = T 8  or hand = T 7  or hand = 9 8  or hand = 9 7  or hand = 8 7  or hand = 8 6  or hand = 7 6  or hand = 7 5  or hand = 6 5  ) Call force
+
+
+When In BigBlind  and BigBlindSize = 80  and StackSize <= 14  and ( PairInHand  or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T   or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 8 5  or hand = 7 6 or hand = 7 5  or hand = 6 5 ) RaiseMax force
+
+//Instructions for Play from Small Blind - Blinds 50/100 and up
+When In SmallBlind  and BigBlindSize >= 100  and ( PairInHand or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 8 5  or hand = 7 6  or hand = 7 5  or hand = 6 5 ) RaiseMax force
+
+//Instructions for Play from Big Blind - Blinds 50/100 and up
+When In BigBlind  and BigBlindSize >= 100 and ( PairInHand  or hand = A  or hand = K  or hand = Q  or hand = J  or hand = T  or hand = 9 8  or hand = 9 7  or hand = 9 6  or hand = 9 5  or hand = 8 7  or hand = 8 6  or hand = 8 5  or hand = 7 6 or hand = 7 5  or hand = 6 5 ) RaiseMax force
+
+When Others
+When Others fold force
+
+
+flop
+
+when havestraightflush and bets = 0 and raises = 0 bet 50 % force
+when havestraightflush and (bets = 1 or raises = 1) raisepot force
+when havestraightflush and raises > 1 raisemax force
+when haveQuads and bets = 0 and raises = 0 bet 50 % force
+when haveQuads and (bets = 1 or raises = 1) raisepot force
+when haveQuads and raises > 1 raisemax force
+when HaveFullHouse and not Tripsonboard and bets = 0 and raises = 0 bet 50 % force
+when HaveFullHouse and not Tripsonboard and (bets = 1 or raises = 1) raisepot force
+when HaveFullHouse and not Tripsonboard and raises > 1 raisemax force
+when HaveFullHouse and Tripsonboard and (hand = 22 or hand = 33 or hand = 44 or hand = 55 or hand = 66 or hand = 77 or hand = 88) and bets = 0 and raises = 0 betpot force
+when HaveFullHouse and Tripsonboard and (hand = 22 or hand = 33 or hand = 44 or hand = 55 or hand = 66 or hand = 77 or hand = 88) and (bets = 1 or raises = 1) and not Opponentisallin and amounttocall <=50% potsize raisepot force
+when HaveFullHouse and Tripsonboard and (hand = 22 or hand = 33 or hand = 44 or hand = 55 or hand = 66 or hand = 77 or hand = 88) and raises > 1 and totalinvested > 100% stacksize call force
+when havenutflush and bets = 0 and raises = 0  bet 50% force
+when havenutflush and (bets = 1 or raises = 1) raisepot force
+when havenutflush and raises > 1 raisemax force
+when haveflush and not onecardflushpossible and bets = 0 and raises = 0 betpot force
+when haveflush and not onecardflushpossible and (bets = 1 or raises = 1) and amounttocall <=50% potsize raisepot force
+when haveflush and not onecardflushpossible and raises > 1 and totalinvested > 100% stacksize call force
+when haveflush and onecardflushpossible and not havenutflushcard and bets = 0 and raises = 0 bet 50% force
+when haveflush and onecardflushpossible and not havenutflushcard and (bets = 1 or raises = 1) fold force
+when havenutstraight and not flushpossible and bets = 0 and raises = 0 bet 50% force
+when havenutstraight and not flushpossible and (bets = 1 or raises = 1) raisepot force
+when havenutstraight and not flushpossible and raises > 1 raisemax force  
+when havestraight and flushpossible and bets = 0 and raises = 0 betpot force
+when havestraight and flushpossible and (bets = 1 or raises = 1) and amounttocall <=50% potsize raisepot force
+when havestraight and flushpossible and raises > 1 and totalinvested > 100 % stacksize call force
+when (havetrips or haveset) and not (flushpossible or straightpossible) and bets = 0 and raises = 0 betpot force
+when (havetrips or haveset) and not (flushpossible or straightpossible) and (bets = 1 or raises = 1) raisepot force
+when (havetrips or haveset) and not (flushpossible or straightpossible) and raises > 1 raisemax force
+when (havetrips or haveset) and (flushpossible or straightpossible) and bets = 0 and raises = 0 bet 50% force
+when (havetrips or haveset) and (flushpossible or straightpossible) and (bets = 1 or raises = 1) and amounttocall <=50% potsize raisepot force
+when (havetrips or haveset) and (flushpossible or straightpossible) and raises > 1 and totalinvested > 100% stacksize call force
+when HaveTopTwoPair and not (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 betpot force
+when HaveTopTwoPair and not (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) raisemax force
+when HaveTopTwoPair and not (flushpossible or straightpossible or paironboard) and raises > 1 raisemax force
+when HaveTopTwopair and (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 betpot force
+when HaveTopTwopair and (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=52% potsize raisepot force
+when HaveTopTwopair and (flushpossible or straightpossible or paironboard) and raises = 1 and totalinvested > 100% stacksize call force
+when HaveTopTwopair and (flushpossible or straightpossible or paironboard) and raises > 1 fold force
+when HaveTwopair and HaveTopPair and not (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 raisepot force
+when HaveTwopair and HaveTopPair and not (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) raisemax force
+when HaveTwopair and HaveTopPair and (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 betpot force
+when HaveTwopair and HaveTopPair and (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=52% potsize raisepot force
+when HaveTwopair and HaveTopPair and (flushpossible or straightpossible or paironboard) and raises > 1 and totalinvested > 100% stacksize call force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (haveBestkicker or have2ndBestkicker or have3rdbestkicker) and not (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 raisepot force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (haveBestkicker or have2ndBestkicker or have3rdbestkicker) and not (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=52% potsize raisepot force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (haveBestkicker or have2ndBestkicker or have3rdbestkicker) and not (flushpossible or straightpossible or paironboard)  and raises = 1 and totalinvested > 100% stacksize call force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (haveBestkicker or have2ndBestkicker or have3rdbestkicker) and (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 betpot force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (haveBestkicker or have2ndBestkicker or have3rdbestkicker) and (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=52% potsize call force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (haveBestkicker or have2ndBestkicker or have3rdbestkicker) and (flushpossible or straightpossible or paironboard) and raises > 1 fold force 
+when havebottompair and bets = 0 and raises = 0 bet 50% force 
+when havebottompair and (bets = 1 or raises = 1) and amounttocall <=2 call force
+when havepair and (haveflushdraw or havestraightdraw) and bets = 0 and raises = 0 betpot force
+when havepair and (haveflushdraw or havestraightdraw) and (bets = 1 or raises = 1) and ( amounttocall <=50% potsize or totalinvested > 100 % stacksize ) call force
+when havepair and not (hand= A or hand = K or hand = Q or hand = J) and bets = 0 and raises = 0 bet 70% force
+when havepair and not (hand= A or hand = K or hand = Q or hand = J) and (bets = 1 or raises = 1) and amounttocall <=2 call force
+when havenutflushDraw and bets = 0 and raises = 0 raisepot force
+when havenutflushDraw and (bets = 1 or raises = 1) and amounttocall <= 50% potsize call force
+when havenutflushdraw and raises >= 1 and amounttocall > 100 % stacksize call force
+when haveflushDraw and not onecardflushpossible and bets = 0 and raises = 0 raisepot force
+when haveflushDraw and not onecardflushpossible and (bets = 1 or raises = 1) and ( amounttocall <=50% potsize or totalinvested > 100 % stacksize ) call force
+when haveflushDraw and onecardflushpossible and not HaveNutFlushCard and bets = 0 and raises = 0 bet 30 % force
+when haveinsidestraightdraw and not (flushpossible or paironboard) and bets = 0 and raises = 0 raisepot force
+when haveinsidestraightdraw and not (flushpossible or paironboard) and (bets = 1 or raises = 1) and ( amounttocall <=42% potsize or totalinvested > 100% stacksize) call force
+when haveinsidestraightdraw and ( flushpossible or paironboard) and bets = 0 and raises = 0 bet 50 % force
+when haveinsidestraightdraw and ( flushpossible or paironboard) and (bets = 1 or raises = 1) and ( amounttocall <=35% potsize or totalinvested > 100 % stacksize ) call force
+when havestraightdraw and not ( flushpossible or paironboard) and bets = 0 and raises = 0 bet 50% force
+when havestraightdraw and not ( flushpossible or paironboard) and (bets = 1 or raises = 1) and (amounttocall <=52% potsize or totalinvested > 100 % stacksize )call force
+when havestraightdraw and ( flushpossible or paironboard) and bets = 0 and raises = 0 bet 40% force
+when havestraightdraw and ( flushpossible or paironboard) and (bets = 1 or raises = 1) and (amounttocall <=42% potsize or totalinvested > 100 % stacksize ) call force
+when overcards = 1 and (hand = A or hand = K or hand = Q or hand = J) and not (flushpossible or straightpossible or Paironboard) and bets = 0 and raises = 0 bet 50% force
+when overcards = 1 and (hand = A or hand = K or hand = Q or hand = J) and not (flushpossible or straightpossible or Paironboard) and (bets = 1 or raises = 1) and amounttocall <= 2 call force
+when overcards = 1 and (hand = A or hand = K or hand = Q or hand = J ) and (flushpossible or straightpossible or Paironboard) and bets = 0 and raises = 0 bet 50% force
+when overcards = 1 and (hand = A or hand = K or hand = Q or hand = J ) and (flushpossible or straightpossible or Paironboard) and (bets = 1 or raises = 1) and amounttocall <= 2 call force  
+when havenothing and bets = 0 and raises = 0 bet 50% force
+when havenothing and (bets = 1 or raises = 1) and amounttocall <= 30% potsize call force
+ 
+when others
+when others fold force  
+
+turn
+
+When ( HaveNuts  or HaveQuads  or HaveStraightFlush  or NutFullHouseOrFourOfAKind = 2  or NutFullHouseOrFourOfAKind = 1 ) and bets = 0 and raises = 0 and nobettingonflop betpot force
+When ( HaveNuts  or HaveQuads  or HaveStraightFlush  or NutFullHouseOrFourOfAKind = 2  or NutFullHouseOrFourOfAKind = 1 ) and bets = 0 and raises = 0 betpot force
+When ( HaveNuts  or HaveQuads  or HaveStraightFlush  or NutFullHouseOrFourOfAKind = 2  or NutFullHouseOrFourOfAKind = 1 ) and (bets = 1 or raises = 1) raisepot force
+When ( HaveNuts  or HaveQuads  or HaveStraightFlush  or NutFullHouseOrFourOfAKind = 2  or NutFullHouseOrFourOfAKind = 1 ) and raises > 1 raisemax force
+When HaveFullHouse and not (QuadsOnBoard  or TripsOnBoard  or TwoPairOnBoard) and bets = 0 and raises = 0 and nobettingonflop betpot force
+When HaveFullHouse and not (QuadsOnBoard  or TripsOnBoard  or TwoPairOnBoard) and bets = 0 and raises = 0 betpot force
+When HaveFullHouse and not (QuadsOnBoard  or TripsOnBoard  or TwoPairOnBoard) and (bets = 1 or raises = 1) raisepot force
+When HaveFullHouse and not (QuadsOnBoard  or TripsOnBoard  or TwoPairOnBoard) and raises > 1 raisemax force
+When HaveFullHouse and not HaveTopPair and (Tripsonboard or board = A A  or board = K K  or board = Q Q  or board = J J ) and bets = 0 and raises = 0 and nobettingonflop betpot force  
+When HaveFullHouse and not HaveTopPair and (Tripsonboard or board = A A  or board = K K  or board = Q Q  or board = J J ) and bets = 0 and raises = 0 betpot force
+When HaveFullHouse and not HaveTopPair and (Tripsonboard or board = A A  or board = K K  or board = Q Q  or board = J J ) and (bets = 1 or raises = 1) and amounttocall <= 50% potsize raisemax force
+When HaveFullHouse and not HaveTopPair and (Tripsonboard or board = A A  or board = K K  or board = Q Q  or board = J J ) and raises > 1 and totalinvested > 100% stacksize call force
+When HaveNutFlush and not TwoPairOnBoard and nobettingonflop and bets = 0 and raises = 0 betpot force
+When HaveNutFlush and not TwoPairOnBoard and bets = 0 and raises = 0 betpot force
+When HaveNutFlush and not TwoPairOnBoard and (bets = 1 or raises = 1) raisepot force
+When HaveNutFlush and not TwoPairOnBoard and raises > 1 raisemax force
+When HaveNutFlush and TwoPairOnBoard and nobettingonflop and bets = 0 and raises = 0 betpot force
+When HaveNutFlush and TwoPairOnBoard and bets = 0 and raises = 0 betpot force
+When HaveNutFlush and TwoPairOnBoard and (bets = 1 or raises = 1) and amounttocall <= 50% potsize raisepot force
+When HaveNutFlush and TwoPairOnBoard and raises = 1 and Totalinvested > 100% stacksize call force
+When haveflush and (not HaveNutFlush or OneCardFlushPossible or TwoPairOnBoard) and nobettingonflop and raises = 0 betpot force  
+When haveflush and (not HaveNutFlush or OneCardFlushPossible or TwoPairOnBoard) and bets = 0 and raises = 0 betpot force
+When haveflush and (not HaveNutFlush or OneCardFlushPossible or TwoPairOnBoard) and (bets = 1 or raises = 1) and amounttocall <= 50% potsize raisepot force
+When haveflush and (not HaveNutFlush or OneCardFlushPossible or TwoPairOnBoard) and raises > 1 and Totalinvested > 100% stacksize call force 
+When HaveNutStraight and not FlushPossible and nobettingonflop and bets = 0 and raises = 0 betpot force
+When HaveNutStraight and not FlushPossible and bets = 0 and raises = 0 betpot force
+When HaveNutStraight and not FlushPossible and (bets = 1 or raises = 1) raisepot force
+When HaveNutStraight and not FlushPossible and raises > 1 raisemax force
+When HaveNutStraight and FlushPossible and nobettingonflop and bets = 0 and raises = 0 betpot force
+When HaveNutStraight and FlushPossible and bets = 0 and raises = 0 betpot force
+When HaveNutStraight and FlushPossible and (bets = 1 or raises = 1) and amounttocall <=50 % potsize raisemax force
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678) and not flushpossible and nobettingonflop and bets = 0 and raises = 0 raisepot force
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678) and not flushpossible and bets = 0 and raises = 0 raisepot force
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678) and not flushpossible and (bets = 1 or raises = 1) and amounttocall <=40% potsize call force
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678 or flushpossible) and nobettingonflop and bets = 0 and raises = 0 raisepot force
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678 or flushpossible) and bets = 0 and raises = 0 betpot force
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678 or flushpossible) and (bets = 1 or raises = 1) and amounttocall <=40% potsize raisepot force
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678 or flushpossible) and raises > 1 and totalinvested > 100% stacksize call force
+When HaveStraight and not FlushPossible and nobettingonflop and bets = 0 and raises = 0 betpot force
+When HaveStraight and not FlushPossible and bets = 0 and raises = 0 betpot force
+When HaveStraight and not FlushPossible and (bets = 1 or raises = 1) raisepot force
+When HaveStraight and not FlushPossible and raises > 1 raisemax force
+When HaveStraight and not FlushPossible and nobettingonflop and bets = 0 and raises = 0 betpot force
+When HaveStraight and not FlushPossible and bets = 0 and raises = 0 betpot force
+When HaveStraight and not FlushPossible and (bets = 1 or raises = 1) and amounttocall <=50% potsize raisemax force
+when ( havetrips or haveset) and not (flushpossible or straightpossible) and nobettingonflop and bets = 0 and raises = 0 raisepot force
+when ( havetrips or haveset) and not (flushpossible or straightpossible) and bets = 0 and raises = 0 raisepot force
+when ( havetrips or haveset) and not (flushpossible or straightpossible) and (bets = 1 or raises = 1) raisemax force
+when ( havetrips or haveset) and (flushpossible or straightpossible) and nobettingonflop and bets = 0 and raises = 0 raisepot force
+when ( havetrips or haveset) and (flushpossible or straightpossible) and bets = 0 and raises = 0 raisepot force
+when ( havetrips or haveset) and (flushpossible or straightpossible) and (bets = 1 or raises = 1) and amounttocall <=50% potsize raisepot force
+when ( havetrips or haveset) and (flushpossible or straightpossible) and raises > 1 and totalinvested > 100% stacksize call force
+when HaveTopTwoPair and not (flushpossible or straightpossible or paironboard) and nobettingonflop and bets = 0 and raises = 0 raisepot force
+when HaveTopTwoPair and not (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 raisepot force
+when HaveTopTwoPair and not (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) raisemax force
+when HaveTopTwopair and (flushpossible or straightpossible or paironboard) and nobettingonflop and bets = 0 and raises = 0 raisepot force
+when HaveTopTwopair and (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 raisepot force
+when HaveTopTwopair and (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=52% potsize raisepot force
+when HaveTopTwopair and (flushpossible or straightpossible or paironboard) and raises > 1 and totalinvested > 100% stacksize call force
+when HaveTwopair and HaveTopPair and not (flushpossible or straightpossible or paironboard) and nobettingonflop and raises = 0 raisepot force
+when HaveTwopair and HaveTopPair and not (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 raisepot force
+when HaveTwopair and HaveTopPair and not (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) raisemax force
+when HaveTwopair and HaveTopPair and (flushpossible or straightpossible or paironboard) and nobettingonflop and raises = 0 raisepot force
+when HaveTwopair and HaveTopPair and (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 raisepot force
+when HaveTwopair and HaveTopPair and (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=52% potsize raisemax force
+when HaveTwopair and HaveTopPair and (flushpossible or straightpossible or paironboard) and raises > 1 and totalinvested > 100% stacksize call force
+when HaveTwopair and not (flushpossible or straightpossible or paironboard) and nobettingonflop and raises = 0 raisepot force
+when HaveTwopair and not (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 raisemax force
+when HaveTwopair and not (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=52% potsize raisemax force
+when HaveTwopair and not (flushpossible or straightpossible or paironboard) and raises > 1 and totalinvested > 100% stacksize call force
+when HaveTwopair and (flushpossible or straightpossible or paironboard) and nobettingonflop and raises = 0 raisepot force
+when HaveTwopair and (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 raisepot force
+when HaveTwopair and (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=52% potsize raisepot force
+when HaveTwopair and (flushpossible or straightpossible or paironboard) and raises > 1 and totalinvested > 100% stacksize call force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (havenutflushdraw or havenutstraightdraw or haveinsidestraightdraw) and not paironboard and nobettingonflop and bets = 0 and raises = 0 raisepot force  
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (havenutflushdraw or havenutstraightdraw or haveinsidestraightdraw) and not paironboard and bets = 0 and raises = 0 raisepot force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (havenutflushdraw or havenutstraightdraw or haveinsidestraightdraw) and not paironboard and (bets = 1 or raises = 1) and amounttocall <=50% potsize raisemax force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (havenutflushdraw or havenutstraightdraw or haveinsidestraightdraw) and not paironboard and raises > 1 and totalinvested > 100% stacksize call force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and not (flushpossible or straightpossible or paironboard) and nobettingonflop and bets = 0 and raises = 0 raisepot force  
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and not (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 raisepot force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and not (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <= 40% potsize raisepot force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and not (flushpossible or straightpossible or paironboard) and raises > 1 and totalinvested > 100% stacksize call force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (flushpossible or straightpossible or paironboard) and nobettingonflop and bets = 0 and raises = 0 bet 50% force  
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 raisepot force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <= 40% potsize raisepot force
+when haveToppair and (hand = A  or hand = K  or hand = Q  or hand = J) and (flushpossible or straightpossible or paironboard) and raises > 1 and totalinvested > 100% stacksize call force
+when haveToppair and (haveflushdraw or havestraightdraw or haveinsidestraightdraw) and nobettingonflop and bets= 0 and raises = 0 raisepot force  
+when haveToppair and (haveflushdraw or havestraightdraw or haveinsidestraightdraw) and bets = 0 and raises = 0 raisepot force
+when haveToppair and (haveflushdraw or havestraightdraw or haveinsidestraightdraw) and (bets = 1 or raises = 1) and amounttocall <= 40% potsize raisepot force
+when haveToppair and (haveflushdraw or havestraightdraw or haveinsidestraightdraw) and raises > 1 and totalinvested > 100% stacksize call force
+when haveToppair and not (flushpossible or straightpossible or paironboard) and nobettingonflop and raises = 0 raisepot force  
+when haveToppair and not (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 raisepot force
+when haveToppair and not (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <= 40% potsize raisepot force
+when haveToppair and not (flushpossible or straightpossible or paironboard) and raises > 1 and totalinvested > 100% stacksize call force
+when haveToppair and (flushpossible or straightpossible or paironboard) and nobettingonflop and raises = 0 betpot force  
+when haveToppair and (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 betpot force
+when haveToppair and (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=40% potsize raisepot force
+when haveToppair and (flushpossible or straightpossible or paironboard) and raises > 1 and totalinvested > 100% stacksize call force
+when havebottompair and (haveflushdraw or havestraightdraw or haveinsidestraightdraw) and nobettingonflop and raises = 0 betpot force
+when havebottompair and (haveflushdraw or havestraightdraw or haveinsidestraightdraw) and bets = 0 and raises = 0 betpot force
+when havebottompair and (haveflushdraw or havestraightdraw or haveinsidestraightdraw) and (bets = 1 or raises = 1) and amounttocall <=30% potsize raisepot force
+when havebottompair and nobettingonflop and bets = 0 and raises = 0 bet 30% force
+when havebottompair and bets = 0 and raises = 0 bet 30% force
+when havebottompair and (bets = 1 or raises = 1) and amounttocall <=25% potsize call force
+when havepair and (haveflushdraw or havestraightdraw or haveinsidestraightdraw) and nobettingonflop and raises = 0 raisepot force
+when havepair and (haveflushdraw or havestraightdraw or haveinsidestraightdraw) and bets = 0 and raises = 0 raisepot force
+when havepair and (haveflushdraw or havestraightdraw or haveinsidestraightdraw) and (bets = 1 or raises = 1) and amounttocall <=40% potsize raisepot force
+when havepair and (haveflushdraw or havestraightdraw or haveinsidestraightdraw) and raises > 1 and totalinvested > 100% stacksize call force
+when havepair and not (flushpossible or straightpossible or paironboard) and nobettingonflop and raises = 0 betpot force
+when havepair and not (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 betpot force
+when havepair and not (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=35 % potsize raisepot force
+when havepair and not (flushpossible or straightpossible or paironboard) and raises > 1 and totalinvested > 100% stacksize call force
+when havepair and (flushpossible or straightpossible or paironboard) and nobettingonflop and raises = 0 bet 50% force
+when havepair and (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 bet 50% force
+when havepair and (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=35% potsize raisepot force
+when havenutflushDraw and nobettingonflop and bets = 0 and raises = 0 bet 50% force
+when havenutflushDraw and Botslastaction = raise and bets = 0 and raises = 0 bet 40% force
+when havenutflushDraw and (bets = 1 or raises = 1) and (amounttocall <= 50% potsize or totalinvested > 100% stacksize ) call force 
+when haveflushDraw and not (onecardflushpossible or paironboard) and nobettingonflop and bets = 0 and raises = 0 bet 50 % force
+when haveflushDraw and not (onecardflushpossible or paironboard) and Botslastaction = raise and bets = 0 and raises = 0 bet 40% force
+when haveflushDraw and not (onecardflushpossible or paironboard) and (bets = 1 or raises = 1) and (amounttocall <=35% potsize or totalinvested > 100% stacksize) call force
+when haveflushDraw and (onecardflushpossible or paironboard) and not HaveNutFlushCard and bets = 0 and raises = 0 bet 35 % force
+when haveflushDraw and (onecardflushpossible or paironboard) and not HaveNutFlushCard and raises = 1 fold force
+when haveinsidestraightdraw and not (flushpossible or paironboard) and nobettingonflop and raises = 0 bet 35% force
+when haveinsidestraightdraw and not (flushpossible or paironboard) and Botslastaction = raise call force
+when haveinsidestraightdraw and not (flushpossible or paironboard) and (bets = 1 or raises = 1) and ( amounttocall <=30% potsize and totalinvested > 100% stacksize ) call force
+when haveinsidestraightdraw and ( flushpossible or paironboard) and nobettingonflop and raises = 0 bet 30 % force
+when haveinsidestraightdraw and ( flushpossible or paironboard) and Botslastaction = raise call force
+when haveinsidestraightdraw and ( flushpossible or paironboard) and (bets = 1 or raises = 1) and ( amounttocall <=30% potsize or totalinvested > 100% stacksize) call force
+when havestraightdraw and not ( flushpossible or paironboard) and nobettingonflop and bets = 0 and raises = 0 bet 40% force
+when havestraightdraw and not ( flushpossible or paironboard) and Botslastaction = raise call force
+when havestraightdraw and not ( flushpossible or paironboard) and (bets = 1 or raises = 1) and (amounttocall <=42% potsize or totalinvested > 100% stacksize ) call force
+when havestraightdraw and ( flushpossible or paironboard) and nobettingonflop and bets = 0 and raises = 0 bet 35% force
+when havestraightdraw and ( flushpossible or paironboard) and Botslastaction = raise call force
+when havestraightdraw and ( flushpossible or paironboard) and (bets = 1 or raises = 1) and (amounttocall <=35% potsize or totalinvested > 100% stacksize) call force
+when overcards = 1 and (hand = A or hand = K or hand = Q ) and not (flushpossible or straightpossible or Paironboard) and nobettingonflop and bets =0 and raises = 0 bet 30% force
+when overcards = 1 and (hand = A or hand = K or hand = Q ) and not (flushpossible or straightpossible or Paironboard) and Botslastaction = raise call force
+when overcards = 1 and (hand = A or hand = K or hand = Q ) and not (flushpossible or straightpossible or Paironboard) and (bets = 1 or raises = 1) and (amounttocall <=30% potsize or amounttocall > 100% stacksize) call force
+when overcards = 1 and (hand = A or hand = K or hand = Q ) and (flushpossible or straightpossible or Paironboard) and nobettingonflop and bets = 0 and raises = 0 bet 30% force
+when overcards = 1 and (hand = A or hand = K or hand = Q ) and (flushpossible or straightpossible or Paironboard) and Botslastaction = raise call force
+when overcards = 1 and (hand = A or hand = K or hand = Q ) and (flushpossible or straightpossible or Paironboard) and (bets = 1 or raises = 1) and amounttocall <=2 call force
+when havenothing and not (flushpossible or straightpossible or paironboard) and nobettingonflop and raises = 0 bet 30% force
+when havenothing and not (flushpossible or straightpossible or paironboard) and Botslastaction = raise call force
+when havenothing and not (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=20% potsize call force
+when havenothing and (flushpossible or straightpossible or paironboard) and nobettingonflop and bets = 0 and raises = 0 bet 30% force
+when havenothing and (flushpossible or straightpossible or paironboard) and botslastaction = raise call force
+when havenothing and (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) and amounttocall <=20% potsize call force
+
+
+river
+
+When ( HaveNuts  or HaveQuads  or HaveStraightFlush  or NutFullHouseOrFourOfAKind = 2  or NutFullHouseOrFourOfAKind = 1 ) and nobettingonturn and bets = 0 and raises = 0 betpot force  
+When ( HaveNuts  or HaveQuads  or HaveStraightFlush  or NutFullHouseOrFourOfAKind = 2  or NutFullHouseOrFourOfAKind = 1 ) and bets = 0 and raises = 0 raisepot force
+When ( HaveNuts  or HaveQuads  or HaveStraightFlush  or NutFullHouseOrFourOfAKind = 2  or NutFullHouseOrFourOfAKind = 1 ) and (bets = 1 or raises = 1) raisemax force
+When HaveFullHouse and not (QuadsOnBoard  or TripsOnBoard  or TwoPairOnBoard) and nobettingonturn and raises = 0 raisepot force  
+When HaveFullHouse and not (QuadsOnBoard  or TripsOnBoard  or TwoPairOnBoard) and bets = 0 and raises = 0 raisepot force
+When HaveFullHouse and not (QuadsOnBoard  or TripsOnBoard  or TwoPairOnBoard) and (bets = 1 or raises = 1) raisemax force
+When HaveFullHouse and not HaveTopPair and (Tripsonboard or board = A A  or board = K K  or board = Q Q  or board = J J ) and nobettingonturn and bets = 0 and raises = 0 raisepot force    
+When HaveFullHouse and not HaveTopPair and (Tripsonboard or board = A A  or board = K K  or board = Q Q  or board = J J ) and bets = 0 and raises = 0 raisepot force
+When HaveFullHouse and not HaveTopPair and (Tripsonboard or board = A A  or board = K K  or board = Q Q  or board = J J ) and (bets = 1 or raises = 1) and not Opponentisallin and amounttocall <=50% potsize raisepot force
+When HaveFullHouse and not HaveTopPair and (Tripsonboard or board = A A  or board = K K  or board = Q Q  or board = J J ) and raises > 1 and Opponentisallin fold force
+When HaveNutFlush and not TwoPairOnBoard and nobettingonturn and bets= 0 and raises = 0 raisepot force  
+When HaveNutFlush and not TwoPairOnBoard and bets = 0 and raises = 0 raisepot force
+When HaveNutFlush and not TwoPairOnBoard and (bets = 1 or raises = 1) raisemax force
+When HaveNutFlush and TwoPairOnBoard and nobettingonturn and raises = 0 raisepot force  
+When HaveNutFlush and TwoPairOnBoard and bets = 0 and raises = 0  raisepot force
+When HaveNutFlush and TwoPairOnBoard and (bets = 1 or raises = 1) and not Opponentisallin and amounttocall <= 50% potsize raisepot force
+When HaveNutFlush and TwoPairOnBoard and raises > 1 fold force
+When haveflush and not havenutflushcard and (OneCardFlushPossible or TwoPairOnBoard) and nobettingonturn and bets = 0 and raises = 0 raisepot force  
+When haveflush and not havenutflushcard and (OneCardFlushPossible or TwoPairOnBoard) and bets = 0 and raises = 0 raisepot force
+When haveflush and not havenutflushcard and (OneCardFlushPossible or TwoPairOnBoard) and (bets = 1 or raises = 1) fold force
+When HaveNutStraight and not FlushPossible and nobettingonturn and bets = 0 and raises = 0 raisepot force  
+When HaveNutStraight and not FlushPossible and bets = 0 and raises = 0 raisepot force
+When HaveNutStraight and not FlushPossible and (bets = 1 or raises = 1) raisemax force
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678) and not (flushpossible or twopaironboard) and nobettingonturn and bets = 0 and raises = 0 bet 50% force 
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678) and not (flushpossible or twopaironboard) and bets = 0 and raises = 0 bet 50% force
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678) and not (flushpossible or twopaironboard) and bets = 0 and raises = 0 and (bets = 1 or raises = 1) and amounttocall <= 30% potsize call force
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678) and (flushpossible or twopaironboard) and nobettingonturn and bets = 0 and raises = 0 bet 30% force 
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678) and (flushpossible or twopaironboard) and bets = 0 and raises = 0 bet 30% force
+When haveunderstraight and (board = 2345 or board = 3456 or board = 4567 or board = 5678) and (flushpossible or twopaironboard) and  (bets = 1 or raises = 1) and amounttocall <= 30% potsize call force
+When HaveStraight and not FlushPossible and nobettingonturn and bets = 0 and raises = 0 raisepot force  
+When HaveStraight and not FlushPossible and bets = 0 and raises = 0 raisepot force
+When HaveStraight and not FlushPossible and (bets = 1 or raises = 1) raisemax force
+when ( havetrips or haveset) and not (flushpossible or straightpossible) and nobettingonturn and raises = 0 raisepot force  
+when ( havetrips or haveset) and not (flushpossible or straightpossible) and bets = 0 and raises = 0 raisepot force
+when ( havetrips or haveset) and not (flushpossible or straightpossible) and (bets = 1 or raises = 1) raisemax force
+when ( havetrips or haveset) and (flushpossible or straightpossible) and nobettingonturn and raises = 0 raisepot force  
+when ( havetrips or haveset) and (flushpossible or straightpossible) and bets = 0 and raises = 0 betpot force
+when ( havetrips or haveset) and (flushpossible or straightpossible) and (bets = 1 or raises = 1) and amounttocall <= 52% potsize raisepot force
+when ( havetrips or haveset) and (flushpossible or straightpossible) and (bets = 1 or raises = 1) and raises > 1 and totalinvested > 100% stacksize
+when HaveTopTwoPair and not (flushpossible or straightpossible or paironboard ) and nobettingonturn and bets = 0 and raises = 0 betpot force    
+when HaveTopTwoPair and not (flushpossible or straightpossible or paironboard ) and bets = 0 and raises = 0 betpot force
+when HaveTopTwoPair and not (flushpossible or straightpossible or paironboard ) and (bets = 1 or raises = 1) raisepot force
+when HaveTopTwoPair and not (flushpossible or straightpossible or paironboard ) and raises > 1 raisemax force
+when HaveTopTwopair and (flushpossible or straightpossible or paironboard) and nobettingonturn and raises = 0 bet 50% force  
+when HaveTopTwopair and (flushpossible or straightpossible or paironboard) and bets = 0 and raises = 0 bet 50% force
+when HaveTopTwopair and (flushpossible or straightpossible or paironboard) and (bets = 1 or raises = 1) raisepot force
+when HaveTopTwopair and (flushpossible or straightpossible or paironboard) and raises > 1 and totalinvested > 100% stacksize call force
+when HaveTwopair and HaveTopPair and not (flushpossible or straightpossible or paironboard ) and nobettingonturn  and raises = 0 betpot force    
+when HaveTwopair and HaveTopPair and not (flushpossible or straightpossible or paironboard ) and bets = 0 and raises = 0 betpot force
+when HaveTwopair and HaveTopPair and not (flushpossible or straightpossible or paironboard ) and (bets = 1 or raises = 1) raisepot force
+when HaveTwopair and HaveTopPair and not (flushpossible or straightpossible or paironboard ) and raises > 1 raisemax force
+when HaveTwopair and HaveTopPair and (flushpossible or straightpossible or paironboard ) and nobettingonturn and bets = 0 and raises = 0 bet 50% force   
+when HaveTwopair and HaveTopPair and (flushpossible or straightpossible or paironboard ) and bets = 0 and raises = 0 bet 50% force
+when HaveTwopair and HaveTopPair and (flushpossible or straightpossible or paironboard ) and (bets = 1 or raises = 1) and amounttocall <= 52% potsize call force
+when HaveTwopair and HaveTopPair and (flushpossible or straightpossible or paironboard ) and raises > 1 and totalinvested > 100 % stacksize call force
+When HaveTwoPair and not (flushpossible or straightpossible or paironboard ) and nobettingonturn and raises = 0 betpot force  
+When HaveTwoPair and not (flushpossible or straightpossible or paironboard ) and bets = 0 and raises = 0 betpot force
+When HaveTwoPair and not (flushpossible or straightpossible or paironboard ) and (bets = 1 or raises = 1) and amounttocall <=52% potsize call force
+When HaveTwoPair and not (flushpossible or straightpossible or paironboard ) and raises > 1 and totalinvested > 100% stacksize call force
+When HaveTwoPair and (flushpossible or straightpossible or paironboard ) and nobettingonturn and bets = 0 and raises = 0 bet 50% force  
+When HaveTwoPair and (flushpossible or straightpossible or paironboard ) and bets = 0 and raises = 0 bet 50% force
+When HaveTwoPair and (flushpossible or straightpossible or paironboard ) and (bets = 1 or raises = 1) and amounttocall <=32% potsize call force
+when haveToppair and (hand = A  or hand = K ) and (haveBestkicker or have2ndBestkicker or have3rdbestkicker) and not (flushpossible or straightpossible or paironboard or TwoPaironBoard) and nobettingonturn and bets = 0 and raises = 0 bet 50% force  
+when haveToppair and (hand = A  or hand = K ) and (haveBestkicker or have2ndBestkicker or have3rdbestkicker) and not (flushpossible or straightpossible or paironboard or TwoPaironBoard) and bets = 0 and raises = 0 bet 50% force
+when haveToppair and (hand = A  or hand = K ) and (haveBestkicker or have2ndBestkicker or have3rdbestkicker) and not (flushpossible or straightpossible or paironboard or TwoPaironBoard) and (bets = 1 or raises = 1) and amounttocall <=32% potsize call force
+when haveToppair and (hand = A  or hand = K ) and (haveBestkicker or have2ndBestkicker or have3rdbestkicker) and (flushpossible or straightpossible or paironboard or TwoPaironBoard) and nobettingonturn and bets = 0 and raises = 0 bet 50% force
+when haveToppair and (hand = A  or hand = K ) and (haveBestkicker or have2ndBestkicker or have3rdbestkicker) and (flushpossible or straightpossible or paironboard or TwoPaironBoard) and bets = 0 and raises = 0 bet 50% force
+when haveToppair and (hand = A  or hand = K ) and (haveBestkicker or have2ndBestkicker or have3rdbestkicker) and (flushpossible or straightpossible or paironboard or TwoPaironBoard) and (bets = 1 or raises = 1) and amounttocall <=2 call force
+when havebottompair and nobettingonturn and raises = 0 bet 30% force
+when havebottompair and bets = 0 and raises = 0 bet 30% force
+when havebottompair and (bets= 1 or raises = 1) and amounttocall <=20% potsize call force
+when havepair and not ( overcardsonboard >= 1 or flushpossible or straightpossible or paironboard or TwoPaironBoard) and nobettingonturn and raises = 0 bet 30% force 
+when havepair and not ( overcardsonboard >= 1 or flushpossible or straightpossible or paironboard or TwoPaironBoard) and bets = 0 and raises = 0 bet 50% force
+when havepair and not ( overcardsonboard >= 1 or flushpossible or straightpossible or paironboard or TwoPaironBoard) and (bets = 1 or raises = 1) and amounttocall <=32% potsize call force
+when havepair and ( overcardsonboard >=1 or flushpossible or straightpossible or paironboard or TwoPaironBoard) and nobettingonturn and raises = 0 bet 30% force
+when havepair and ( overcardsonboard >=1 or flushpossible or straightpossible or paironboard or TwoPaironBoard) and bets = 0 and raises = 0 bet 30%  force
+when havepair and ( overcardsonboard >=1 or flushpossible or straightpossible or paironboard or TwoPaironBoard) and (bets = 1 or raises = 1) and amounttocall <=25% potsize call force
+when overcards = 1 and (hand = A or hand = K ) and nobettingonturn and raises = 0 bet 25% force
+when overcards = 1 and (hand = A or hand = K ) and bets = 0 and raises = 0 bet 25% force
+when overcards = 1 and (hand = A or hand = K ) and (bets= 1 or raises = 1) and amounttocall <=25 % potsize call force
+when havenothing and not overcardsonboard >=1 and nobettingonturn and raises = 0 bet 25% force
+when havenothing and not overcardsonboard >=1 and bets = 0 and raises = 0 bet 25% force
+when havenothing and not overcardsonboard >=1 and (bets = 1 or raises = 1) fold force
+ 
+when others
+when others fold force

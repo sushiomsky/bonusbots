@@ -1,0 +1,1947 @@
+MaxSessionHands = 10000
+MaxSessionTime = 1000
+MaxStackSize = 1000
+BathroomBreakAfter = 700
+BathroomBreakTime = 2
+SitOutWhenOpponentsAreLessThan = 1
+
+custom 
+preflop
+
+// Version 1.1 w/ custom betting
+
+// All in or Fold Profile
+
+When StackSize >= 15 
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK) RaiseMax force
+
+When StackSize <= 14
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK) RaiseMax force
+When (hand = TT or hand = 99 or hand = 88 or hand = AQ or hand = AJ suited) RaiseMax force
+
+When StackSize <= 12 and StillToAct <= 3 and raises = 0 and calls = 0
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK) RaiseMax force
+When (hand = TT or hand = 99 or hand = 88 or hand = AQ or hand = AJ suited) RaiseMax force
+When (pairinhand or hand = AT suited or hand = A9 suited) RaiseMax force
+
+When StackSize <= 8
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK) RaiseMax force
+When (hand = TT or hand = 99 or hand = 88 or hand = AQ or hand = AJ suited) RaiseMax force
+When (pairinhand or hand = AT suited or hand = A9 suited) RaiseMax force
+
+When StackSize <= 5
+When (hand = A or hand = K suited or hand = QJ or hand = QT or hand = JT or hand = J9 or hand = T9 or hand = T8 suited or hand = 98 suited or hand = 97 suited or hand = 87 suited or hand = 86 suited or hand = 76 suited) RaiseMax force
+
+When StackSize <= 3 
+When raises >= 0 RaiseMax force
+
+When others
+When others fold force
+
+flop
+
+When BotIsLastRaiser and BotRaisedBeforeFlop and bets = 0 and raises = 0 and Opponents = 1 RaisePot force
+When BotIsLastRaiser and BotRaisedBeforeFlop and bets = 0 and raises = 0 and Opponents = 2 and Position = Last RaisePot force
+When OpponentIsAllIn and BetSize >= 50% StackSize and not ((HaveTopPair and HaveBestKicker) or HaveSet or HaveTrips or HaveFullHouse or HaveStraight or HaveFlush or HaveQuads or HaveTwoPair or HaveOverPair) fold force
+When TotalInvested >= 100% StackSize and (HaveTopPair or HaveSet or HaveTrips or HaveFullHouse or HaveStraight or HaveFlush or HaveQuads or HaveTwoPair or HaveOverPair) call force
+When BotsLastAction = bet and ((HaveTopPair and HaveBestKicker) or HaveSet or HaveTrips or HaveFullHouse or HaveStraight or HaveFlush or HaveQuads or HaveTwoPair or HaveOverPair) RaiseMax force
+
+When opponents = 1 and bets = 0 and raises = 0 and Position = First
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force 
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 RaisePot force
+When HaveFlush call force 
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force 
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force 
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 RaisePot force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When Have2ndTopPair and SuitsOnBoard >= 2 RaisePot force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw call force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When Have2ndOverPair and ((board = A)) call force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard RaisePot force
+When HaveNutFlushDraw call force
+When HaveFlushDraw  and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 call force 
+When OverCards = 2 and not paironboard and not flushpossible call force
+When HaveStraightDraw and HaveFlushDraw call force
+
+When opponents = 1 and bets = 1 and raises = 0 and Position = First
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 3 call force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When Have2ndTopPair and not FlushPossible and not StraightPossible and BigBlindSize <= 300 and not (board = A) and BetSize <= 2 call force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible call force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard call force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 and BetSize <= 50% PotSize call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 RaiseMax force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 1 and bets <= 1 and raises >= 1 and Position = First
+When BotsLastAction = Bet and (HaveSet or HaveTrips or HaveFlush or HaveStraight or HaveFullHouse or HaveQuads or HaveTopTwoPair) RaiseMax force
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaiseMax force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaiseMax force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard fold force
+When HaveTwoPair and SuitsOnBoard = 3 fold force
+When HaveTwoPair and SuitsOnBoard = 2 fold force
+When HaveTwoPair and SuitsOnBoard = 1 fold force 
+When HaveTopPair and HaveNutFlushDraw RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaiseMax force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaiseMax force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible fold force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 and BetSize <= 50% PotSize call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 2 and bets = 0 and raises = 0 and Position = First
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 RaisePot force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 RaisePot force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When Have2ndTopPair and SuitsOnBoard >= 2 RaisePot force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When Have2ndOverPair and ((board = A)) call force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard RaisePot force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 RaisePot force
+When HaveStraightDraw and not FlushPossible call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 call force 
+When OverCards = 2 and not paironboard and not flushpossible call force
+When HaveStraightDraw and HaveFlushDraw call force
+
+when opponents = 2 and bets = 1 and raises = 0 and Position = First
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaisePot force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 3 call force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When Have2ndTopPair and not FlushPossible and not StraightPossible and BigBlindSize <= 300 and not (board = A) and BetSize <= 2 call force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaiseMax force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible call force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 and BetSize <= 50% PotSize call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 2 and bets <= 1 and raises >= 1 and Position = First
+When BotsLastAction = Bet and (HaveSet or HaveTrips or HaveFlush or HaveStraight or HaveFullHouse or HaveQuads or HaveTopTwoPair) RaiseMax force
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaiseMax force
+When HaveStraight and SuitsOnBoard = 1 fold force
+When HaveFlush RaiseMax force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaiseMax force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard fold force
+When HaveTwoPair and SuitsOnBoard = 3 fold force
+When HaveTwoPair and SuitsOnBoard = 2 fold force
+When HaveTwoPair and SuitsOnBoard = 1 fold force
+When HaveTopPair and HaveNutFlushDraw RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw call force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible fold force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) fold force
+When HaveFlushDraw  and Overcards = 2 and BetSize <= 50% PotSize call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 fold force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents > 2 and bets = 0 and raises = 0 and Position = First
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 RaisePot force
+When HaveFlush RaisePot force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) call force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard RaisePot force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) call force
+When HaveStraightDraw and HaveFlushDraw call force
+
+When opponents > 2 and bets = 1 and raises = 0 and Position = First
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaisePot force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush RaisePot force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 RaisePot force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 3 call force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaiseMax force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible call force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 and BetSize <= 50% PotSize call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents > 2 and bets <= 1 and raises >= 1 and Position = First
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaiseMax force
+When HaveStraight and SuitsOnBoard = 1 fold force
+When HaveFlush RaiseMax force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 RaisePot force 
+When HaveSet and SuitsOnBoard = 1 RaiseMax force
+When HaveTrips and SuitsOnBoard = 3 RaisePot force
+When HaveTrips and SuitsOnBoard = 2 RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard fold force
+When HaveTwoPair and SuitsOnBoard = 3 fold force
+When HaveTwoPair and SuitsOnBoard = 2 fold force
+When HaveTwoPair and SuitsOnBoard = 1 fold force
+When HaveTopPair and HaveNutFlushDraw call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible call force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw call force 
+When HaveOverPair and not PairOnBoard and FlushPossible fold force
+When HaveOverPair and PaironBoard and not FlushPossible fold force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible fold force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) fold force
+When HaveFlushDraw  and Overcards = 2 and BetSize <= 50% PotSize call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 fold force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 1 and bets = 0 and raises = 0 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force 
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 RaisePot force
+When HaveFlush call force 
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force 
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force 
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 RaisePot force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When Have2ndTopPair and SuitsOnBoard >= 2 RaisePot force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw call force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When Have2ndOverPair and (board = A) call force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard RaisePot force
+When HaveNutFlushDraw call force
+When HaveFlushDraw  and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 call force 
+When OverCards = 2 and not paironboard and not flushpossible call force
+When HaveStraightDraw and HaveFlushDraw call force
+
+When opponents = 1 and bets = 1 and raises = 0 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 3 call force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When Have2ndTopPair and not FlushPossible and not StraightPossible and BigBlindSize <= 300 and not (board = A) and BetSize <= 2 call force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible call force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard call force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 and BetSize <= 50% PotSize call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 RaiseMax force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 1 and bets <= 1 and raises >= 1 and Position = Middle
+When BotsLastAction = Bet and (HaveSet or HaveTrips or HaveFlush or HaveStraight or HaveFullHouse or HaveQuads or HaveTopTwoPair) RaiseMax force
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaiseMax force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaiseMax force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard fold force
+When HaveTwoPair and SuitsOnBoard = 3 fold force
+When HaveTwoPair and SuitsOnBoard = 2 fold force
+When HaveTwoPair and SuitsOnBoard = 1 fold force 
+When HaveTopPair and HaveNutFlushDraw RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaiseMax force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaiseMax force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible fold force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 and BetSize <= 50% PotSize call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 2 and bets = 0 and raises = 0 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 RaisePot force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 RaisePot force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When Have2ndTopPair and SuitsOnBoard >= 2 RaisePot force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When Have2ndOverPair and (board = A) call force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard RaisePot force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 RaisePot force
+When HaveFlushDraw call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 RaisePot force
+When HaveStraightDraw and not FlushPossible call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 call force 
+When OverCards = 2 and not paironboard and not flushpossible call force
+When HaveStraightDraw and HaveFlushDraw call force
+
+when opponents = 2 and bets = 1 and raises = 0 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaisePot force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 3 call force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When Have2ndTopPair and not FlushPossible and not StraightPossible and BigBlindSize <= 300 and not (board = A) and BetSize <= 2 call force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaiseMax force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible call force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 2 and bets <= 1 and raises >= 1 and Position = Middle
+When BotsLastAction = Bet and (HaveSet or HaveTrips or HaveFlush or HaveStraight or HaveFullHouse or HaveQuads or HaveTopTwoPair) RaiseMax force
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaiseMax force
+When HaveStraight and SuitsOnBoard = 1 fold force
+When HaveFlush RaiseMax force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaiseMax force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard fold force
+When HaveTwoPair and SuitsOnBoard = 3 fold force
+When HaveTwoPair and SuitsOnBoard = 2 fold force
+When HaveTwoPair and SuitsOnBoard = 1 fold force
+When HaveTopPair and HaveNutFlushDraw RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw call force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible fold force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) fold force
+When HaveFlushDraw  and Overcards = 2 fold force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 fold force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents > 2 and bets = 0 and raises = 0 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 RaisePot force
+When HaveFlush RaisePot force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) call force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard RaisePot force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) call force
+
+When opponents > 2 and bets = 1 and raises = 0 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaisePot force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush RaisePot force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 RaisePot force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 3 call force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaiseMax force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible call force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents > 2 and bets <= 1 and raises >= 1 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaiseMax force
+When HaveStraight and SuitsOnBoard = 1 fold force
+When HaveFlush RaiseMax force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 RaisePot force 
+When HaveSet and SuitsOnBoard = 1 RaiseMax force
+When HaveTrips and SuitsOnBoard = 3 RaisePot force
+When HaveTrips and SuitsOnBoard = 2 RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard fold force
+When HaveTwoPair and SuitsOnBoard = 3 fold force
+When HaveTwoPair and SuitsOnBoard = 2 fold force
+When HaveTwoPair and SuitsOnBoard = 1 fold force
+When HaveTopPair and HaveNutFlushDraw call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible call force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw call force 
+When HaveOverPair and not PairOnBoard and FlushPossible fold force
+When HaveOverPair and PaironBoard and not FlushPossible fold force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible fold force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) fold force
+When HaveFlushDraw  and Overcards = 2 fold force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 fold force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 1 and bets = 0 and raises = 0 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force 
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 RaisePot force
+When HaveFlush call force 
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force 
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force 
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 RaisePot force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When Have2ndTopPair and SuitsOnBoard >= 2 RaisePot force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw call force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When Have2ndOverPair and (board = A) call force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard RaisePot force
+When HaveNutFlushDraw call force
+When HaveFlushDraw  and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 RaisePot force
+When HaveFlushDraw call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 call force 
+When OverCards = 2 and not paironboard and not flushpossible call force
+
+When opponents = 1 and bets = 1 and raises = 0 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 3 call force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When Have2ndTopPair and not FlushPossible and not StraightPossible and BigBlindSize <= 300 and not (board = A) and BetSize <= 2 call force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible call force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard call force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 RaiseMax force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 RaiseMax force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 1 and bets <= 1 and raises >= 1 and Position = Middle
+When BotsLastAction = Bet and (HaveSet or HaveTrips or HaveFlush or HaveStraight or HaveFullHouse or HaveQuads or HaveTopTwoPair) RaiseMax force
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaiseMax force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaiseMax force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard fold force
+When HaveTwoPair and SuitsOnBoard = 3 fold force
+When HaveTwoPair and SuitsOnBoard = 2 fold force
+When HaveTwoPair and SuitsOnBoard = 1 fold force 
+When HaveTopPair and HaveNutFlushDraw RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaiseMax force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaiseMax force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible fold force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 2 and bets = 0 and raises = 0 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 RaisePot force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 RaisePot force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When Have2ndTopPair and SuitsOnBoard >= 2 RaisePot force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When Have2ndOverPair and (board = A) call force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard RaisePot force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 RaisePot force
+When HaveFlushDraw call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 RaisePot force
+When HaveStraightDraw and not FlushPossible call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 call force 
+When OverCards = 2 and not paironboard and not flushpossible call force
+
+when opponents = 2 and bets = 1 and raises = 0 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaisePot force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 3 call force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When Have2ndTopPair and not FlushPossible and not StraightPossible and BigBlindSize <= 300 and not (board = A) and BetSize <= 2 call force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaiseMax force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible call force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+
+When opponents = 2 and bets <= 1 and raises >= 1 and Position = Middle
+When BotsLastAction = Bet and (HaveSet or HaveTrips or HaveFlush or HaveStraight or HaveFullHouse or HaveQuads or HaveTopTwoPair) RaiseMax force
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaiseMax force
+When HaveStraight and SuitsOnBoard = 1 fold force
+When HaveFlush RaiseMax force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaiseMax force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard fold force
+When HaveTwoPair and SuitsOnBoard = 3 fold force
+When HaveTwoPair and SuitsOnBoard = 2 fold force
+When HaveTwoPair and SuitsOnBoard = 1 fold force
+When HaveTopPair and HaveNutFlushDraw RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw call force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible fold force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) fold force
+When HaveFlushDraw  and Overcards = 2 fold force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 fold force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents > 2 and bets = 0 and raises = 0 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 RaisePot force
+When HaveFlush RaisePot force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) call force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard RaisePot force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible call force
+When HaveStraightDraw and HaveFlushDraw call force
+
+When opponents > 2 and bets = 1 and raises = 0 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaisePot force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush RaisePot force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 RaisePot force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 3 call force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaiseMax force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible call force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents > 2 and bets <= 1 and raises >= 1 and Position = Middle
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaiseMax force
+When HaveStraight and SuitsOnBoard = 1 fold force
+When HaveFlush RaiseMax force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 RaisePot force 
+When HaveSet and SuitsOnBoard = 1 RaiseMax force
+When HaveTrips and SuitsOnBoard = 3 RaisePot force
+When HaveTrips and SuitsOnBoard = 2 RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard fold force
+When HaveTwoPair and SuitsOnBoard = 3 fold force
+When HaveTwoPair and SuitsOnBoard = 2 fold force
+When HaveTwoPair and SuitsOnBoard = 1 fold force
+When HaveTopPair and HaveNutFlushDraw call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible call force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw call force 
+When HaveOverPair and not PairOnBoard and FlushPossible fold force
+When HaveOverPair and PaironBoard and not FlushPossible fold force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible fold force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) fold force
+When HaveFlushDraw  and Overcards = 2 fold force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 fold force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 1 and bets = 0 and raises = 0 and Position = Last
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force 
+When HaveStraight and SuitsOnBoard = 2 RaisePot force
+When HaveStraight and SuitsOnBoard = 1 RaisePot force
+When HaveFlush RaisePot force 
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 RaisePot force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force 
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 RaisePot force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When Have2ndTopPair and SuitsOnBoard >= 2 RaisePot force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When Have2ndOverPair and (board = A) call force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard RaisePot force
+When HaveNutFlushDraw RaisePot force
+When HaveFlushDraw  and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 RaisePot force
+When HaveFlushDraw RaisePot force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 RaisePot force
+When HaveStraightDraw and not FlushPossible RaisePot force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 RaisePot force 
+When OverCards = 2 and not paironboard and not flushpossible RaisePot force
+When HaveStraightDraw and HaveFlushDraw RaisePot force
+
+When opponents = 1 and bets = 1 and raises = 0 and Position = Last
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 call force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 3 call force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When Have2ndTopPair and not FlushPossible and not StraightPossible and BigBlindSize <= 300 and not (board = A) and BetSize <= 2 call force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible call force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard call force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 RaiseMax force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 RaiseMax force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 1 and bets <= 1 and raises >= 1 and Position = Last
+When BotsLastAction = Bet and (HaveSet or HaveTrips or HaveFlush or HaveStraight or HaveFullHouse or HaveQuads or HaveTopTwoPair) RaiseMax force
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaiseMax force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaiseMax force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard fold force
+When HaveTwoPair and SuitsOnBoard = 3 fold force
+When HaveTwoPair and SuitsOnBoard = 2 fold force
+When HaveTwoPair and SuitsOnBoard = 1 fold force 
+When HaveTopPair and HaveNutFlushDraw RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaiseMax force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaiseMax force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible fold force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 2 and bets = 0 and raises = 0 and Position = Last
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaisePot force
+When HaveStraight and SuitsOnBoard = 1 RaisePot force
+When HaveFlush RaisePot force
+When HaveSet and SuitsOnBoard = 3 RaisePot force
+When HaveSet and SuitsOnBoard = 2 RaisePot force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 RaisePot force
+When HaveTrips and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 RaisePot force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When Have2ndTopPair and SuitsOnBoard >= 2 RaisePot force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When Have2ndOverPair and (board = A) call force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard RaisePot force
+When HaveNutFlushDraw RaisePot force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) RaisePot force
+When HaveFlushDraw  and Overcards = 2 RaisePot force
+When HaveFlushDraw call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 RaisePot force
+When HaveStraightDraw and not FlushPossible call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 call force 
+When OverCards = 2 and not paironboard and not flushpossible RaisePot force
+When HaveStraightDraw and HaveFlushDraw RaisePot force
+
+when opponents = 2 and bets = 1 and raises = 0 and Position = Last
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaisePot force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush call force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 3 call force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When Have2ndTopPair and not FlushPossible and not StraightPossible and BigBlindSize <= 300 and not (board = A) and BetSize <= 2 call force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaiseMax force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible call force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents = 2 and bets <= 1 and raises >= 1 and Position = Last
+When BotsLastAction = Bet and (HaveSet or HaveTrips or HaveFlush or HaveStraight or HaveFullHouse or HaveQuads or HaveTopTwoPair) RaiseMax force
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaiseMax force
+When HaveStraight and SuitsOnBoard = 1 fold force
+When HaveFlush RaiseMax force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 call force 
+When HaveSet and SuitsOnBoard = 1 RaiseMax force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard fold force
+When HaveTwoPair and SuitsOnBoard = 3 fold force
+When HaveTwoPair and SuitsOnBoard = 2 fold force
+When HaveTwoPair and SuitsOnBoard = 1 fold force
+When HaveTopPair and HaveNutFlushDraw RaiseMax force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw call force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible fold force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) fold force
+When HaveFlushDraw  and Overcards = 2 fold force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 fold force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveBackDoorFlushDraw and SuitsOnBoard = 3 and BetSize <= 1 call force 
+When OverCards = 2 and not paironboard and not flushpossible and BetSize <= 2 call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents > 2 and bets = 0 and raises = 0 and Position = Last
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaisePot force
+When HaveStraight and SuitsOnBoard = 1 RaisePot force
+When HaveFlush RaisePot force
+When HaveSet and SuitsOnBoard = 3 RaisePot force
+When HaveSet and SuitsOnBoard = 2 RaisePot force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 RaisePot force
+When HaveTrips and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 RaisePot force
+When HaveTopPair and HaveNutFlushDraw RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible and RaisesBeforeFlop and not BotIsLastRaiser RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard RaisePot force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force 
+When HaveOverPair and not PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and PaironBoard and not FlushPossible RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw RaisePot force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible RaisePot force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When Have2ndOverPair and (board = A) call force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard RaisePot force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 RaisePot force
+When HaveFlushDraw call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 RaisePot force
+When HaveStraightDraw and not FlushPossible call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) RaisePot force
+When HaveStraightDraw and HaveFlushDraw RaisePot force
+
+When opponents > 2 and bets = 1 and raises = 0 and Position = Last
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaisePot force
+When HaveStraight and SuitsOnBoard = 1 call force
+When HaveFlush RaisePot force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 RaisePot force 
+When HaveSet and SuitsOnBoard = 1 RaisePot force
+When HaveTrips and SuitsOnBoard = 3 call force
+When HaveTrips and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard RaisePot force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 3 call force
+When HaveTwoPair and SuitsOnBoard = 2 call force
+When HaveTwoPair and SuitsOnBoard = 1 call force
+When HaveTopPair and HaveNutFlushDraw call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible RaisePot force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible call force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible RaisePot force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw RaiseMax force 
+When HaveOverPair and not PairOnBoard and FlushPossible call force
+When HaveOverPair and PaironBoard and not FlushPossible call force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible call force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) call force
+When HaveFlushDraw  and Overcards = 2 call force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 call force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When opponents > 2 and bets <= 1 and raises >= 1 and Position = Last
+When (HaveQuads or HaveFullHouse or HaveStraightFlush) call force
+When HaveNutFlush call force
+When HaveStraight and SuitsOnBoard = 3 call force
+When HaveStraight and SuitsOnBoard = 2 RaiseMax force
+When HaveStraight and SuitsOnBoard = 1 fold force
+When HaveFlush RaiseMax force
+When HaveSet and SuitsOnBoard = 3 call force
+When HaveSet and SuitsOnBoard = 2 RaisePot force 
+When HaveSet and SuitsOnBoard = 1 RaiseMax force
+When HaveTrips and SuitsOnBoard = 3 RaisePot force
+When HaveTrips and SuitsOnBoard = 2 RaiseMax force
+When HaveTwoPair and SuitsOnBoard = 3 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 2 and not PairOnBoard call force
+When HaveTwoPair and SuitsOnBoard = 1 and not PairOnBoard fold force
+When HaveTwoPair and SuitsOnBoard = 3 fold force
+When HaveTwoPair and SuitsOnBoard = 2 fold force
+When HaveTwoPair and SuitsOnBoard = 1 fold force
+When HaveTopPair and HaveNutFlushDraw call force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and not PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (HaveBestKicker or Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and not PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and PairOnBoard and not FlushPossible fold force
+When HaveTopPair and (not HaveBestKicker or not Have2ndBestKicker) and FlushPossible and not PairOnBoard fold force
+When HaveOverPair and not PairOnBoard and not FlushPossible call force
+When HaveOverPair and not PairOnBoard and FlushPossible and HaveNutFlushDraw call force 
+When HaveOverPair and not PairOnBoard and FlushPossible fold force
+When HaveOverPair and PaironBoard and not FlushPossible fold force
+When HaveOverPair and PairOnBoard and FlushPossible and HaveNutFlushDraw call force
+When HaveOverPair and PairOnBoard and FlushPossible and not HaveFlushDraw fold force
+When HaveOverPair and PairOnBoard and FlushPossible fold force
+When HaveOverPair and (HaveFlushDraw or HaveStraightDraw) call force
+When Have2ndOverPair and (board = A) fold force
+When Have2ndOverPair and not FlushPossible and not PairOnBoard fold force
+When HaveNutFlushDraw call force
+When HaveFlushDraw and FlushPossible and (Have2ndNutFlushDraw or Have3rdNutFlushDraw) fold force
+When HaveFlushDraw  and Overcards = 2 fold force
+When HaveFlushDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HaveStraightDraw and Overcards = 2 and SuitsOnBoard >= 2 fold force
+When HaveStraightDraw and not FlushPossible and BetSize <= 35% PotSize call force
+When HavePair and (HaveFlushDraw or HaveStraightDraw) and not FlushPossible and BetSize <= 40% PotSize call force
+When HaveStraightDraw and HaveFlushDraw and BetSize <= 50% PotSize call force
+
+When others
+When others fold force
+
+
+turn
+
+When TripsOnBoard  and not ( NutFullHouseOrFourOfAKind = 1  or NutFullHouseOrFourOfAKind = 2  or HaveQuads  or HaveStraightFlush )  and BetSize > 6 fold force
+
+When TwoPairOnBoard  and not ( NutFullHouseOrFourOfAKind = 1  or NutFullHouseOrFourOfAKind = 2  or NutFullHouseOrFourOfAKind = 3  or HaveQuads  or HaveStraightFlush )  and BetSize > 6 fold force
+
+When StackSize <= 10  and ( HaveFlushDraw  or HaveTopPair  or HaveStraightDraw ) and not HaveInsideStraightDraw RaiseMax force
+When ( BotsLastAction = raise  or BotsLastAction = call )  and raises >= 1  and TotalInvested >= 100% StackSize call force
+When OpponentsAtTable = 1  and ( HaveTopPair  or Have2ndTopPair  or HaveStraightDraw  or HaveFlushDraw ) RaiseMax force
+When OpponentsAtTable = 1 and NoBettingOnFlop and Position = Last and bets = 0 and raises = 0 RaisePot force
+When BotRaisedBeforeFlop  and NoBettingOnFlop  and Position = Last  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and bets = 0  and raises = 0 RaisePot force
+When not BotRaisedBeforeFlop and BotIsLastRaiser and opponents <= 2  and Position = Last  and bets = 0  and raises = 0  and not FlushPossible  and not PairOnBoard  and StackSize > 10 RaisePot force
+When HaveTopPair and HaveFlushDraw and not flushpossible and bets = 0 and raises = 0 RaisePot force
+When HaveTopPair and HaveFlushDraw and not flushpossible and (bets = 1 or raises = 1) call force
+When ( Position = First  or Position = Middle ) 
+When ( BotsLastAction = raise  or BotsLastAction = call or BotsLastAction = Bet )  and raises >= 1  and TotalInvested >= 100% StackSize call force
+When ( BotsLastAction = raise  or BotsLastAction = call or BotsLastAction = Bet )  and HaveOverPair  and ( PairOnBoard  or FlushPossible )  and BetSize >= 70% PotSize fold force
+When ( HaveQuads  or HaveStraightFlush ) call force
+When ( HaveNutStraight  or HaveNutFlush  or HaveFullHouse ) RaisePot force
+When ( HaveStraight  or HaveFlush )  and not OneCardStraightPossible  and not OneCardFlushPossible  and not TwoPairOnBoard RaisePot force
+When ( HaveSet  or HaveTrips )  and ( OneCardStraightPossible  or FlushPossible )  and bets = 0  and raises = 0 RaisePot force
+When ( HaveSet  or HaveTrips )  and ( OneCardStraightPossible  or FlushPossible )  and ( bets = 1  or raises = 1 )  and BetSize <= 15% StackSize RaisePot force
+When ( HaveSet  or HaveTrips )  and ( OneCardStraightPossible  or FlushPossible )  and ( bets = 1  or raises = 1 )  and BetSize > 15% StackSize fold force
+When ( HaveSet  or HaveTrips )  and not FlushPossible  and not OneCardStraightPossible RaisePot force
+When HaveTopTwoPair  and SuitsOnBoard = 3  and not OneCardStraightPossible  and not PairOnBoard RaisePot force
+When HaveTopTwoPair  and SuitsOnBoard <= 2  and not OneCardStraightPossible  and not PairOnBoard RaisePot force
+When HaveTwoPair and not paironboard and SuitsOnBoard = 1  and BetSize <= 20% StackSize call force
+When HaveTwoPair and not paironboard and SuitsOnBoard = 1  and BetSize > 20% StackSize fold force
+When HaveTwoPair and not paironboard and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and not paironboard and SuitsOnBoard = 3 RaisePot force
+When HaveTopPair  and HaveNutFlushDraw  and not OneCardStraightPossible RaisePot force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and bets = 0  and raises = 0 RaisePot force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and ( bets = 1  or raises = 1 ) call force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and raises >= 2 fold force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and ( FlushPossible  or OneCardStraightPossible )  and not PairOnBoard  and bets = 0  and raises = 0 call force
+When HaveTopPair  and ( not HaveBestKicker  or not Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and bets = 0  and raises = 0  and AcePresentOnFlop call force
+When HaveTopPair  and ( not HaveBestKicker  or not Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and bets = 0  and raises = 0  and not AcePresentOnFlop RaisePot force
+When HaveTopPair  and ( not HaveBestKicker  or not Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and ( bets = 1  or raises = 1 )  and (BetSize <= 20% StackSize or BotsLastAction = raise or BotsLastAction = Bet ) call force
+When HaveTopPair  and ( not HaveBestKicker  or not Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and ( bets = 1  or raises = 1 )  and BetSize > 20% StackSize fold force
+When HaveTopPair  and ( not HaveBestKicker  or not Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and raises >= 2 fold force
+When Have2ndTopPair  and not FlushPossible  and not OneCardStraightPossible  and BetSize <= 2 and not (board = A) and BigBlindSize <= 300 call force
+When HaveOverPair  and not ( hand = A  or hand = K )  and ( (board = A)  or board = K )  and ( bets = 1  or raises >= 1 )  and BetSize <= 2 call force
+When HaveOverPair  and not ( hand = A  or hand = K )  and ( (board = A)  or board = K )  and ( bets = 1  or raises >= 1 )  and BetSize > 2 fold force
+When HaveOverPair  and PairOnBoard  and not FlushPossible  and not OneCardStraightPossible  and bets = 0  and raises = 0 call force
+When HaveOverPair  and PairOnBoard  and not FlushPossible  and not OneCardStraightPossible  and ( bets = 1  and raises >= 1 )  and BetSize <= 3 call force
+When HaveOverPair  and PairOnBoard  and not FlushPossible  and not OneCardStraightPossible  and ( bets = 1  and raises >= 1 )  and BetSize > 3 fold force
+When HaveOverPair  and FlushPossible  and HaveNutFlushDraw call force
+When HaveOverPair  and FlushPossible  and not OneCardFlushPossible  and not OneCardStraightPossible  and bets = 0  and raises = 0 RaisePot force
+When HaveOverPair  and FlushPossible  and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 )  and (BetSize <= 20% StackSize or BotsLastAction = raise or BotsLastAction = Bet ) call force
+When HaveOverPair  and FlushPossible  and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 )  and BetSize > 20% StackSize fold force
+When HaveOverPair  and not FlushPossible  and not OneCardStraightPossible  and bets = 0  and raises = 0 RaisePot force
+When HaveOverPair  and not FlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) RaisePot force
+When HaveOverPair  and ( HaveFlushDraw  or HaveStraightDraw )  and bets = 0  and raises = 0 RaisePot force
+When HaveOverPair  and ( HaveFlushDraw  or HaveStraightDraw )  and ( bets = 1  or raises >= 1 ) call force
+When Have2ndOverPair  and PairOnBoard  and bets = 0  and raises = 0  and not AcePresentOnFlop RaisePot force
+When Have2ndOverPair  and PairOnBoard  and bets = 0  and raises = 0  and AcePresentOnFlop call force
+When Have2ndOverPair  and PairOnBoard  and ( bets = 1  or raises >= 1 )  and BetSize <= 20% StackSize call force
+When Have2ndOverPair  and not FlushPossible  and bets = 0  and raises = 0 call force
+When Have2ndOverPair  and not FlushPossible  and ( bets = 1  or raises >= 1 )  and not (board = A)  and BetSize <= 2 RaisePot force
+When Have2ndOverPair  and not FlushPossible  and ( bets = 1  or raises >= 1 )  and not (board = A)  and (BetSize <= 4 or TotalInvested >= 50% PotSize) call force
+When HaveNutFlushDraw  and FlushPossible  and bets = 0  and raises = 0 call force
+When HaveNutFlushDraw  and FlushPossible  and ( bets = 1  or raises >= 1 )  and BetSize <= 20% StackSize call force
+When HaveFlushDraw  and FlushPossible  and bets = 0  and raises = 0 call force
+When HaveFlushDraw  and FlushPossible and (HaveNutFlushDraw or Have2ndNutFlushDraw) and ( bets = 1  or raises >= 1 )  and BetSize <= 15% StackSize call force
+When HaveFlushDraw  and Overcards = 2  and bets = 0  and raises = 0 RaisePot force
+When HaveFlushDraw  and Overcards = 2  and ( bets = 1  or raises >= 1 ) and BetSize <= 40% PotSize call force
+When HaveFlushDraw  and BetSize <= 35% PotSize call force
+When HaveStraightDraw  and Overcards = 2  and not FlushPossible  and bets = 0  and raises = 0 RaisePot force
+When HaveStraightDraw  and Overcards = 2  and not FlushPossible  and ( bets = 1  or raises >= 1 ) call force
+When HaveStraightDraw  and not FlushPossible  and BetSize <= 3 call force
+When HavePair  and SuitsOnBoard = 2  and ( HaveFlushDraw  or HaveStraightDraw )  and bets = 0  and raises = 0 call force
+When HavePair  and SuitsOnBoard = 2  and ( HaveFlushDraw  or HaveStraightDraw )  and ( bets = 1  or raises = 1 )  and BetSize <= 10% StackSize RaisePot force
+When HavePair  and SuitsOnBoard = 2  and ( HaveFlushDraw  or HaveStraightDraw )  and ( bets = 1  or raises = 1 )  and (BetSize <= 25% StackSize or BotsLastAction = raise) call force
+When HavePair  and SuitsOnBoard = 2  and ( HaveFlushDraw  or HaveStraightDraw )  and ( bets = 1  or raises = 1 )  and BetSize > 25% StackSize fold force
+When HavePair  and ( HaveFlushDraw  or HaveInsideStraightDraw )  and ( bets = 1  or raises >= 1 )  and BetSize <= 15% StackSize call force
+When Position = Last 
+When ( BotsLastAction = raise  or BotsLastAction = call or BotsLastAction = Bet )  and raises >= 1  and TotalInvested >= 100% StackSize call force
+When ( BotsLastAction = raise  or BotsLastAction = call or BotsLastAction = Bet )  and HaveOverPair  and ( PairOnBoard  or FlushPossible )  and BetSize >= 70% PotSize fold force
+When HaveQuads call force
+When ( HaveNutStraight  or HaveNutFlush  or HaveStraightFlush  or HaveFullHouse ) RaisePot force
+When ( HaveStraight  or HaveFlush )  and not OneCardStraightPossible  and not OneCardFlushPossible  and not TwoPairOnBoard RaisePot force
+When ( HaveSet  or HaveTrips )  and ( OneCardStraightPossible  or OneCardFlushPossible )  and bets = 0  and raises = 0 RaisePot force
+When ( HaveSet  or HaveTrips )  and ( OneCardStraightPossible  or FlushPossible )  and ( bets = 1  or raises = 1 )  and (BetSize <= 20% StackSize or BotsLastAction = raise or BotsLastAction = Bet ) call force
+When ( HaveSet  or HaveTrips )  and ( OneCardStraightPossible  or FlushPossible )  and ( bets = 1  or raises = 1 )  and BetSize > 20% StackSize fold force
+When ( HaveSet  or HaveTrips )  and not FlushPossible  and not OneCardStraightPossible RaisePot force
+When HaveTopTwoPair  and SuitsOnBoard = 3  and not PairOnBoard RaisePot force
+When HaveTopTwoPair  and SuitsOnBoard <= 2  and not PairOnBoard RaisePot force
+When HaveTwoPair and not paironboard and SuitsOnBoard = 1  and BetSize <= 20% StackSize call force
+When HaveTwoPair and not paironboard and SuitsOnBoard = 1  and BetSize > 20% StackSize fold force
+When HaveTwoPair and not paironboard and SuitsOnBoard = 2 RaisePot force
+When HaveTwoPair and not paironboard and SuitsOnBoard = 3 RaiseMax force
+When HaveTopPair  and HaveNutFlushDraw RaisePot force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not PairOnBoard  and bets = 0  and raises = 0 RaisePot force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not PairOnBoard  and ( bets = 1  or raises = 1 ) call force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not PairOnBoard  and raises >= 2 fold force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and ( FlushPossible  or OneCardStraightPossible )  and not PairOnBoard  and bets = 0  and raises = 0 call force
+When HaveTopPair  and ( not HaveBestKicker  or not Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and bets = 0  and raises = 0  and AcePresentOnFlop call force
+When HaveTopPair  and ( not HaveBestKicker  or not Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and bets = 0  and raises = 0  and not AcePresentOnFlop RaisePot force
+When HaveTopPair  and ( not HaveBestKicker  or not Have2ndBestKicker )  and not FlushPossible  and not PairOnBoard  and ( bets = 1  or raises = 1 )  and (BetSize <= 20% StackSize or BotsLastAction = raise or BotsLastAction = Bet ) call force
+When HaveTopPair  and ( not HaveBestKicker  or not Have2ndBestKicker )  and not FlushPossible  and not PairOnBoard  and ( bets = 1  or raises = 1 )  and BetSize > 20% StackSize fold force
+When HaveTopPair  and ( not HaveBestKicker  or not Have2ndBestKicker )  and not FlushPossible  and not PairOnBoard  and raises >= 2 fold force
+When Have2ndTopPair  and not FlushPossible  and not StraightPossible  and BetSize <= 2 and not (board = A) and BigBlindSize <= 300 call force
+When HaveOverPair  and not ( hand = A  or hand = K )  and ( (board = A)  or board = K )  and bets = 0  and raises = 0 RaisePot force
+When HaveOverPair  and not ( hand = A  or hand = K )  and ( (board = A)  or board = K )  and ( bets = 1  or raises >= 1 )  and BetSize <= 2 call force
+When HaveOverPair  and not ( hand = A  or hand = K )  and ( (board = A)  or board = K )  and ( bets = 1  or raises >= 1 )  and BetSize > 2 fold force
+When HaveOverPair  and PairOnBoard  and not FlushPossible  and bets = 0  and raises = 0 RaisePot force
+When HaveOverPair  and PairOnBoard  and not FlushPossible  and ( bets = 1  and raises >= 1 )  and BetSize <= 3 call force
+When HaveOverPair  and PairOnBoard  and not FlushPossible  and ( bets = 1  and raises >= 1 )  and BetSize > 3 fold force
+When HaveOverPair  and FlushPossible  and HaveNutFlushDraw  and BetSize <= 15% StackSize RaisePot force
+When HaveOverPair  and FlushPossible  and HaveNutFlushDraw  and BetSize > 15% StackSize RaisePot force
+When HaveOverPair  and ( FlushPossible  or OneCardStraightPossible )  and bets = 0  and raises = 0 RaisePot force
+When HaveOverPair  and ( FlushPossible  or OneCardStraightPossible )  and ( bets = 1  or raises >= 1 )  and BetSize <= 10% StackSize call force
+When HaveOverPair  and not FlushPossible  and bets = 0  and raises = 0 RaisePot force
+When HaveOverPair  and not FlushPossible  and ( bets = 1  or raises >= 1 )  and BetSize <= 50% StackSize call force
+When HaveOverPair  and ( HaveFlushDraw  or HaveStraightDraw )  and bets = 0  and raises = 0 RaisePot force
+When HaveOverPair  and ( HaveFlushDraw  or HaveStraightDraw )  and ( bets = 1  or raises >= 1 ) call force
+When Have2ndOverPair  and PairOnBoard  and bets = 0  and raises = 0 RaisePot force
+When Have2ndOverPair  and PairOnBoard  and ( bets = 1  or raises >= 1 )  and BetSize <= 20% StackSize call force
+When Have2ndOverPair  and not FlushPossible  and bets = 0  and raises = 0 RaisePot force
+When Have2ndOverPair  and not FlushPossible  and ( bets = 1  or raises >= 1 )  and not (board = A)  and BetSize <= 2 RaisePot force
+When Have2ndOverPair  and not FlushPossible  and ( bets = 1  or raises >= 1 )  and not (board = A)  and (BetSize <= 4 or TotalInvested >= 50% PotSize) call force
+When HaveNutFlushDraw  and bets = 0  and raises = 0 RaisePot force
+When HaveNutFlushDraw  and ( bets = 1  or raises >= 1 )  and BetSize <= 20% StackSize call force
+When HaveFlushDraw  and FlushPossible  and bets = 0  and raises = 0 call force
+When HaveFlushDraw  and FlushPossible and (HaveNutFlushDraw or Have2ndNutFlushDraw) and ( bets = 1  or raises >= 1 )  and BetSize <= 15% StackSize call force
+When HaveFlushDraw  and bets = 0  and raises = 0  and opponents <= 2 call force
+When HaveFlushDraw  and Overcards = 2  and bets = 0  and raises = 0 call force
+When HaveFlushDraw  and Overcards = 2  and ( bets = 1  or raises >= 1 )  and BetSize <= 15% StackSize call force
+When HaveFlushDraw  and BetSize <= 15% StackSize call force
+When HaveStraightDraw  and not FlushPossible  and bets = 0  and raises = 0  and opponents <= 2 call force
+When HaveStraightDraw  and Overcards = 2  and not FlushPossible  and bets = 0  and raises = 0 call force
+When HaveStraightDraw  and Overcards = 2  and not FlushPossible  and ( bets = 1  or raises >= 1 )  and BetSize <= 15% StackSize call force
+When HaveStraightDraw  and not FlushPossible  and BetSize <= 15% StackSize call force
+When HavePair  and SuitsOnBoard = 2  and ( HaveFlushDraw  or HaveStraightDraw )  and bets = 0  and raises = 0 call force
+When HavePair  and SuitsOnBoard = 2  and ( HaveFlushDraw  or HaveStraightDraw )  and ( bets = 1  or raises = 1 )  and (BetSize <= 25% StackSize or BotsLastAction = raise or BotsLastAction = Bet ) call force
+When HavePair  and SuitsOnBoard = 2  and ( HaveFlushDraw  or HaveStraightDraw )  and ( bets = 1  or raises = 1 )  and BetSize > 25% StackSize fold force
+When HavePair  and ( HaveFlushDraw  or HaveInsideStraightDraw )  and ( bets = 1  or raises >= 1 )  and BetSize <= 15% StackSize call force
+
+When others
+When others fold force
+
+river
+
+When TripsOnBoard  and not ( NutFullHouseOrFourOfAKind = 1  or NutFullHouseOrFourOfAKind = 2  or HaveQuads  or HaveStraightFlush )  and BetSize > 6 fold force
+
+When TwoPairOnBoard  and not ( NutFullHouseOrFourOfAKind = 1  or NutFullHouseOrFourOfAKind = 2  or NutFullHouseOrFourOfAKind = 3  or HaveQuads  or HaveStraightFlush )  and BetSize > 6 fold force
+When TotalInvested >= 50% PotSize call force
+When ( BotsLastAction = raise  or BotsLastAction = call or BotsLastAction = Bet )  and raises >= 1  and TotalInvested >= 100% StackSize call force
+When Position = First 
+When ( HaveQuads or HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse )  and bets = 0  and raises = 0 RaisePot force
+When ( HaveQuads or HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse )  and ( bets = 1  or raises >= 1 ) RaiseMax force
+When ( HaveStraight  or HaveFlush )  and not OneCardStraightPossible  and not OneCardFlushPossible  and not TwoPairOnBoard RaisePot force
+When HaveNutFlush and (OneCardFlushPossible or OneCardStraightPossible) RaisePot force 
+When HaveStraight and OneCardStraightPossible and Have2ndNutStraight call force
+When HaveStraight  and OneCardStraightPossible  and not Have2ndNutStraight and BetSize <= 8 call force
+When HaveFlush  and OneCardFlushPossible  and ( not HaveNutFlush  or not Have2ndNutFlush )  and BetSize <= 8 call force
+When HaveTrips  and not OneCardFlushPossible  and not OneCardStraightPossible  and bets = 0  and raises = 0 RaisePot force
+When HaveTrips and FlushPossible and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) call force
+When HaveTrips  and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) RaiseMax force
+When HaveSet  and not OneCardFlushPossible  and not OneCardStraightPossible  and bets = 0  and raises = 0 RaisePot force
+When HaveSet and FlushPossible and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) call force
+When HaveSet  and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) RaiseMax force
+When HaveSet  and OneCardFlushPossible  and not OneCardFlushPossible  and BetSize <= 7 call force
+When HaveTwoPair  and not OneCardFlushPossible  and not PairOnBoard  and bets = 0  and raises = 0 RaisePot force
+When HaveTwoPair  and not OneCardFlushPossible  and not PairOnBoard  and ( bets = 1  or raises >= 1 ) RaisePot force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and bets = 0  and raises = 0 RaisePot force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and ( bets = 1  or raises = 1 ) call force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and raises >= 2 fold force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and BetSize <= 30% StackSize call force
+When HaveOverPair  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard RaisePot force
+When OpponentsAtTable = 1 and HavePair and BetSize <= 3 call force
+When HaveBestKickerOrBetter  and not OneCardFlushPossible  and not OneCardStraightPossible  and raises <= 1  and BetSize <= 1 call force
+When Position = Middle 
+When ( HaveQuads or HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse )  and bets = 0  and raises = 0 RaisePot force
+When ( HaveQuads or HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse )  and ( bets = 1  or raises >= 1 ) RaiseMax force
+When ( HaveStraight  or HaveFlush )  and not OneCardStraightPossible  and not OneCardFlushPossible  and not TwoPairOnBoard RaisePot force
+When HaveNutFlush and (OneCardStraightPossible or OneCardStraightPossible) RaisePot force 
+When HaveStraight and OneCardStraightPossible and Have2ndNutStraight call force
+When HaveStraight  and OneCardStraightPossible  and not Have2ndNutStraight and BetSize <= 8 call force
+When HaveFlush  and OneCardFlushPossible  and ( not HaveNutFlush  or not Have2ndNutFlush )  and BetSize <= 8 call force
+When HaveTrips  and not OneCardFlushPossible  and not OneCardStraightPossible  and bets = 0  and raises = 0 RaisePot force
+When HaveTrips and FlushPossible and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) call force
+When HaveTrips  and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) RaiseMax force
+When HaveSet  and not OneCardFlushPossible  and not OneCardStraightPossible  and bets = 0  and raises = 0 RaisePot force
+When HaveSet and FlushPossible and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) call force
+When HaveSet  and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) RaiseMax force
+When HaveSet  and OneCardFlushPossible  and not OneCardFlushPossible  and BetSize <= 7 call force
+When HaveTwoPair  and not OneCardFlushPossible and not OneCardStraightPossible and not PairOnBoard  and bets = 0  and raises = 0 RaisePot force
+When HaveTwoPair  and not OneCardFlushPossible and not OneCardStraightPossible and not PairOnBoard  and ( bets = 1  or raises >= 1 ) RaisePot force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and bets = 0  and raises = 0 RaisePot force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and ( bets = 1  or raises = 1 ) call force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and raises >= 2 fold force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and BetSize <= 20% StackSize call force
+When HaveOverPair  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard RaisePot force
+When OpponentsAtTable = 1 and HavePair and BetSize <= 3 call force
+When HaveBestKickerOrBetter  and not OneCardFlushPossible  and not OneCardStraightPossible  and raises <= 1  and BetSize <= 1 call force
+When Position = Last 
+When ( HaveQuads or HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse )  and bets = 0  and raises = 0 RaisePot force
+When ( HaveQuads or HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse )  and ( bets = 1  or raises >= 1 ) RaiseMax force
+When ( HaveStraight  or HaveFlush )  and not OneCardStraightPossible  and not OneCardFlushPossible  and not TwoPairOnBoard RaisePot force
+When HaveNutFlush and (OneCardFlushPossible or OneCardStraightPossible) RaisePot force 
+When HaveStraight and OneCardStraightPossible and Have2ndNutStraight call force
+When HaveStraight  and OneCardStraightPossible  and not Have2ndNutStraight and BetSize <= 8 call force
+When HaveFlush  and OneCardFlushPossible  and ( not HaveNutFlush  or not Have2ndNutFlush )  and BetSize <= 8 call force
+When HaveTrips  and not OneCardFlushPossible  and not OneCardStraightPossible  and bets = 0  and raises = 0 RaisePot force
+When HaveTrips and FlushPossible and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) call force
+When HaveTrips  and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) RaiseMax force
+When HaveSet  and not OneCardFlushPossible  and not OneCardStraightPossible  and bets = 0  and raises = 0 RaisePot force
+When HaveSet and FlushPossible and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) call force
+When HaveSet  and not OneCardFlushPossible  and not OneCardStraightPossible  and ( bets = 1  or raises >= 1 ) RaiseMax force
+When HaveSet  and OneCardFlushPossible  and not OneCardFlushPossible  and BetSize <= 7 call force
+When HaveTwoPair  and not OneCardFlushPossible and not OneCardStraightPossible and not PairOnBoard  and bets = 0  and raises = 0 RaisePot force
+When HaveTwoPair  and not OneCardFlushPossible and not OneCardStraightPossible and not PairOnBoard  and ( bets = 1  or raises >= 1 ) RaisePot force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and bets = 0  and raises = 0 RaisePot force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and ( bets = 1  or raises = 1 ) call force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard  and raises >= 2 fold force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and BetSize <= 20% StackSize call force
+When HaveOverPair  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard RaisePot force
+When OpponentsAtTable = 1 and HavePair and BetSize <= 3 call force
+When HaveBestKickerOrBetter  and not OneCardFlushPossible  and not OneCardStraightPossible  and raises <= 1  and BetSize <= 1 call force
+When Position = Last  and NoBettingOnFlop  and NoBettingOnTurn  and bets = 0  and raises = 0 and Opponents <= 2 RaisePot force
+
+When others
+When others fold force

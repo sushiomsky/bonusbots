@@ -1,0 +1,246 @@
+custom
+Preflop
+When hand = AA beep force
+When hand = KK beep force
+When hand = QQ beep force
+When hand = JJ beep force
+
+When hand = AA RaiseMax force 
+When hand = KK RaiseMax force 
+When hand = QQ RaiseMax force 
+When hand = JJ RaiseMax force
+When hand = TT RaiseMax force
+When hand = 99 RaiseMax force
+When hand = AK RaiseMax force 
+When hand = AQ suited RaiseMax force
+
+TotalInvested > 100 % StackSize
+
+when (opponent = egor or opponent = Mad_Scientist) fold force
+when opponents = 1 and raises = 1 and (opponent = philivey or opponent = MikeSexton or opponent = uni-bomber3 or opponent = 1982_ozzy or opponent = durrrrr or opponent = mad-as-hell) raisepot force
+when opponents = 1 and (opponent = pilotbatch or opponent = Dman or opponent = Chevy25 or opponent = OurManinLondon or opponent = pingu or opponent = ShankyBot_26 or opponent = Bonus-Bots-rock) Usershark
+
+
+turn
+when bets = 0 and raises = 0 and Usershark bet 75% force
+
+
+
+
+*****Example***** When (User_44_Or_Better or User_A2s_Or_Better or User_K2s_Or_Better or User_Q5s_Or_Better or User_J7s_Or_Better or User_98s or User_A7o_Or_Better or User_A5o_Or_Better or User_K9o_Or_Better or User_Q9o_Or_Better or User_JTo) Whatever action Force
+
+
+//Sklansky Hand Groups
+When (Hand = AA or Hand = AK Suited or Hand = KK  or Hand = QQ or Hand = JJ) User_HandGroup_1
+When (Hand = AK or Hand = AQ Suited  or Hand = AJ  Suited or Hand = KQ  Suited or Hand = TT) User_HandGroup_2
+When (Hand = AQ or Hand = AT Suited  or Hand = KJ  Suited or Hand = QJ  Suited or Hand = TJ  Suited or Hand = 99) User_HandGroup_3
+When (Hand = AJ or Hand = KQ or Hand = KT Suited or Hand = QT Suited or Hand = J9 Suited or Hand = T9 Suited or Hand = 98 Suited or Hand = 88) User_HandGroup_4
+When (Hand = A Suited or Hand = KJ or Hand = QJ or Hand = JT or Hand = Q9  Suited or Hand = T8 Suited or Hand = 97 Suited or Hand = 87 Suited or Hand = 77 or Hand = 76 Suited or Hand = 66) User_HandGroup_5
+When (Hand = AT or Hand = KT or Hand = QT or Hand = J8 Suited or Hand = 86 Suited or Hand = 75 Suited or Hand = 65 Suited or Hand = 55 or Hand = 54 Suited) User_HandGroup_6
+When (Hand = K Suited or Hand = J9 or Hand = T9 or Hand = 98 or Hand = 64 Suited or Hand = 53 Suited or Hand = 44 or Hand = 43 Suited or Hand = 33 or Hand = 22) User_HandGroup_7
+When (Hand = A9 or Hand = K9 or Hand = Q9 or Hand = J8 or Hand = J7 Suited or Hand = T8 or Hand = 96 Suited or Hand = 87 or Hand = 85 Suited or Hand = 76 or Hand = 74 Suited or Hand = 65 or Hand = 54 or Hand = 42 Suited or Hand = 32 Suited) User_HandGroup_8
+When not(User_HandGroup_1 or User_HandGroup_2 or User_HandGroup_3 or User_HandGroup_4 or User_HandGroup_5 or User_HandGroup_6 or User_HandGroup_7 or User_HandGroup_8) User_HandGroup_9
+
+//Hand Ranges 22 - AA
+When (Hand = AA or Hand = KK or Hand = QQ  or Hand = JJ or Hand = TT or Hand = 99 or Hand = 88 or Hand = 77 or Hand = 66 or Hand = 55 or Hand = 44 or Hand = 33 or Hand = 22) User_PairinHand
+When (Hand = AA or Hand = KK or Hand = QQ  or Hand = JJ or Hand = TT or Hand = 99 or Hand = 88 or Hand = 77 or Hand = 66 or Hand = 55 or Hand = 44 or Hand = 33) User_33_Or_Better
+When (Hand = AA or Hand = KK or Hand = QQ  or Hand = JJ or Hand = TT or Hand = 99 or Hand = 88 or Hand = 77 or Hand = 66 or Hand = 55 or Hand = 44) User_44_Or_Better
+When (Hand = AA or Hand = KK or Hand = QQ  or Hand = JJ or Hand = TT or Hand = 99 or Hand = 88 or Hand = 77 or Hand = 66 or Hand = 55) User_55_Or_Better
+When (Hand = AA or Hand = KK or Hand = QQ  or Hand = JJ or Hand = TT or Hand = 99 or Hand = 88 or Hand = 77 or Hand = 66) User_66_Or_Better
+When (Hand = AA or Hand = KK or Hand = QQ  or Hand = JJ or Hand = TT or Hand = 99 or Hand = 88 or Hand = 77) User_77_Or_Better
+When (Hand = AA or Hand = KK or Hand = QQ  or Hand = JJ or Hand = TT or Hand = 99 or Hand = 88) User_88_Or_Better
+When (Hand = AA or Hand = KK or Hand = QQ  or Hand = JJ or Hand = TT or Hand = 99) User_99_Or_Better
+When (Hand = AA or Hand = KK or Hand = QQ  or Hand = JJ or Hand = TT) User_TT_Or_Better
+When (Hand = AA or Hand = KK or Hand = QQ  or Hand = JJ) User_JJ_Or_Better
+When (Hand = AA or Hand = KK or Hand = QQ) User_QQ_Or_Better
+When (Hand = AA or Hand = KK) User_KK_Or_Better
+When (Hand = AA) User_AA_Or_Better
+
+
+
+//Hand Range with Ax
+When (Hand = AK) User_AKo
+When (Hand = AK Suited) User_AKs
+When (Hand = AK or Hand = AQ) User_AQo_Or_Better
+When (Hand = AK Suited or Hand = AQ Suited) User_AQs_Or_Better
+When (Hand = AK or Hand = AQ  or Hand = AJ) User_AJo_Or_Better
+When (Hand = AK Suited or Hand = AQ Suited or Hand = AJ Suited) User_AJs_Or_Better
+When (Hand = AK or Hand = AQ  or Hand = AJ  or Hand = AT) User_ATo_Or_Better
+When (Hand = AK Suited or Hand = AQ Suited or Hand = AJ Suited or Hand = AT Suited) User_ATs_Or_Better
+When (Hand = AK or Hand = AQ  or Hand = AJ  or Hand = AT  or Hand = A9) User_A9o_Or_Better
+When (Hand = AK Suited or Hand = AQ Suited or Hand = AJ Suited or Hand = AT Suited or Hand = A9 Suited) User_A9s_Or_Better
+When (Hand = AK or Hand = AQ  or Hand = AJ  or Hand = AT  or Hand = A9  or Hand = A8) User_A8o_Or_Better
+When (Hand = AK Suited or Hand = AQ Suited or Hand = AJ Suited or Hand = AT Suited or Hand = A9 Suited or Hand = A8 Suited) User_A8s_Or_Better
+When (Hand = AK or Hand = AQ  or Hand = AJ  or Hand = AT  or Hand = A9  or Hand = A8  or Hand = A7) User_A7o_Or_Better
+When (Hand = AK Suited or Hand = AQ Suited or Hand = AJ Suited or Hand = AT Suited or Hand = A9 Suited or Hand = A8 Suited or Hand = A7 Suited) User_A7s_Or_Better
+When (Hand = AK or Hand = AQ  or Hand = AJ  or Hand = AT  or Hand = A9  or Hand = A8  or Hand = A7  or Hand = A6) User_A6o_Or_Better
+When (Hand = AK Suited or Hand = AQ Suited or Hand = AJ Suited or Hand = AT Suited or Hand = A9 Suited or Hand = A8 Suited or Hand = A7 Suited or Hand = A6 Suited) User_A6s_Or_Better
+When (Hand = AK or Hand = AQ  or Hand = AJ  or Hand = AT  or Hand = A9  or Hand = A8  or Hand = A7  or Hand = A6  or Hand = A5) User_A5o_Or_Better
+When (Hand = AK Suited or Hand = AQ Suited or Hand = AJ Suited or Hand = AT Suited or Hand = A9 Suited or Hand = A8 Suited or Hand = A7 Suited or Hand = A6 Suited or Hand = A5 Suited) User_A5s_Or_Better
+When (Hand = AK or Hand = AQ  or Hand = AJ  or Hand = AT  or Hand = A9  or Hand = A8  or Hand = A7  or Hand = A6  or Hand = A5  or Hand = A4) User_A4o_Or_Better
+When (Hand = AK Suited  or Hand = AQ Suited or Hand = AJ Suited or Hand = AT Suited or Hand = A9 Suited or Hand = A8 Suited or Hand = A7 Suited or Hand = A6 Suited or Hand = A5 Suited or Hand = A4) User_A4s_Or_Better
+When (Hand = AK or Hand = AQ  or Hand = AJ  or Hand = AT  or Hand = A9  or Hand = A8  or Hand = A7  or Hand = A6  or Hand = A5  or Hand = A4  or Hand = A3) User_A3o_Or_Better
+When (Hand = AK Suited or Hand = AQ Suited or Hand = AJ Suited or Hand = AT Suited or Hand = A9 Suited or Hand = A8 Suited or Hand = A7 Suited or Hand = A6 Suited or Hand = A5 Suited or Hand = A4 Suited or Hand = A3 Suited) User_A3s_Or_Better
+When (Hand = AK or Hand = AQ  or Hand = AJ  or Hand = AT  or Hand = A9  or Hand = A8  or Hand = A7  or Hand = A6  or Hand = A5  or Hand = A4  or Hand = A3  or Hand = A2 ) User_A2o_Or_Better
+When (Hand = AK Suited or Hand = AQ Suited or Hand = AJ Suited or Hand = AT Suited or Hand = A9 Suited or Hand = A8 Suited or Hand = A7 Suited or Hand = A6 Suited or Hand = A5 Suited or Hand = A4 Suited or Hand = A3 Suited or Hand = A2 Suited) User_A2s_Or_Better
+
+//Hand Range with Kx
+When (Hand = KQ) User_KQo
+When (Hand = KQ Suited) User_KQs
+When (Hand = KQ  or Hand = KJ) User_KJo_Or_Better
+When (Hand = KQ Suited or Hand = KJ Suited) User_KJs_Or_Better
+When (Hand = KQ  or Hand = KJ  or Hand = KT) User_KTo_Or_Better
+When (Hand = KQ Suited or Hand = KJ Suited or Hand = KT Suited) User_KTs_Or_Better
+When (Hand = KQ  or Hand = KJ  or Hand = KT  or Hand = K9) User_K9o_Or_Better
+When (Hand = KQ Suited or Hand = KJ Suited or Hand = KT Suited or Hand = K9 Suited) User_K9s_Or_Better
+When (Hand = KQ  or Hand = KJ  or Hand = KT  or Hand = K9  or Hand = K8) User_K8o_Or_Better
+When (Hand = KQ Suited or Hand = KJ Suited or Hand = KT Suited or Hand = K9 Suited or Hand = K8 Suited) User_K8s_Or_Better
+When (Hand = KQ  or Hand = KJ  or Hand = KT  or Hand = K9  or Hand = K8  or Hand = K7) User_K7o_Or_Better
+When (Hand = KQ Suited or Hand = KJ Suited or Hand = KT Suited or Hand = K9 Suited or Hand = K8 Suited or Hand = K7 Suited) User_K7s_Or_Better
+When (Hand = KQ  or Hand = KJ  or Hand = KT  or Hand = K9  or Hand = K8  or Hand = K7  or Hand = K6) User_K6o_Or_Better
+When (Hand = KQ Suited or Hand = KJ Suited or Hand = KT Suited or Hand = K9 Suited or Hand = K8 Suited or Hand = K7 Suited or Hand = K6 Suited) User_K6s_Or_Better
+When (Hand = KQ  or Hand = KJ  or Hand = KT  or Hand = K9  or Hand = K8  or Hand = K7  or Hand = K6  or Hand = K5) User_K5o_Or_Better
+When (Hand = KQ Suited or Hand = KJ Suited or Hand = KT Suited or Hand = K9 Suited or Hand = K8 Suited or Hand = K7 Suited or Hand = K6 Suited or Hand = K5 Suited) User_K5s_Or_Better
+When (Hand = KQ  or Hand = KJ  or Hand = KT  or Hand = K9  or Hand = K8  or Hand = K7  or Hand = K6  or Hand = K5  or Hand = K4) User_K4o_Or_Better
+When (Hand = KQ Suited or Hand = KJ Suited or Hand = KT Suited or Hand = K9 Suited or Hand = K8 Suited or Hand = K7 Suited or Hand = K6 Suited or Hand = K5 Suited or Hand = K4 Suited) User_K4s_Or_Better
+When (Hand = KQ  or Hand = KJ  or Hand = KT  or Hand = K9  or Hand = K8  or Hand = K7  or Hand = K6  or Hand = K5  or Hand = K4  or Hand = K3) User_K3o_Or_Better
+When (Hand = KQ Suited or Hand = KJ Suited or Hand = KT Suited or Hand = K9 Suited or Hand = K8 Suited or Hand = K7 Suited or Hand = K6 Suited or Hand = K5 Suited or Hand = K4 Suited or Hand = K3 Suited) User_K3s_Or_Better
+When (Hand = KQ  or Hand = KJ  or Hand = KT  or Hand = K9  or Hand = K8  or Hand = K7  or Hand = K6  or Hand = K5  or Hand = K4  or Hand = K3  or Hand = K2 ) User_K2o_Or_Better
+When (Hand = KQ Suited or Hand = KJ Suited or Hand = KT Suited or Hand = K9 Suited or Hand = K8 Suited or Hand = K7 Suited or Hand = K6 Suited or Hand = K5 Suited or Hand = K4 Suited or Hand = K3 Suited or Hand = K2 Suited) User_K2s_Or_Better
+
+//Hand Range with Qx
+When (Hand = QJ) User_QJo
+When (Hand = QJ Suited) User_QJs
+When (Hand = QJ  or Hand = QT) User_QTo_Or_Better
+When (Hand = QJ Suited or Hand = QT Suited) User_QTs_Or_Better
+When (Hand = QJ  or Hand = QT  or Hand = Q9) User_Q9o_Or_Better
+When (Hand = QJ Suited or Hand = QT Suited or Hand = Q9 Suited) User_Q9s_Or_Better
+When (Hand = QJ  or Hand = QT  or Hand = Q9  or Hand = Q8) User_Q8o_Or_Better
+When (Hand = QJ Suited or Hand = QT Suited or Hand = Q9 Suited or Hand = Q8 Suited) User_Q8s_Or_Better
+When (Hand = QJ  or Hand = QT  or Hand = Q9  or Hand = Q8  or Hand = Q7) User_Q7o_Or_Better
+When (Hand = QJ Suited or Hand = QT Suited or Hand = Q9 Suited or Hand = Q8 Suited or Hand = Q7 Suited) User_Q7s_Or_Better
+When (Hand = QJ  or Hand = QT  or Hand = Q9  or Hand = Q8  or Hand = Q7  or Hand = Q6) User_Q6o_Or_Better
+When (Hand = QJ Suited or Hand = QT Suited or Hand = Q9 Suited or Hand = Q8 Suited or Hand = Q7 Suited or Hand = Q6 Suited) User_Q6s_Or_Better
+When (Hand = QJ  or Hand = QT  or Hand = Q9  or Hand = Q8  or Hand = Q7  or Hand = Q6  or Hand = Q5) User_Q5o_Or_Better
+When (Hand = QJ Suited or Hand = QT Suited or Hand = Q9 Suited or Hand = Q8 Suited or Hand = Q7 Suited or Hand = Q6 Suited or Hand = Q5 Suited) User_Q5s_Or_Better
+When (Hand = QJ  or Hand = QT  or Hand = Q9  or Hand = Q8  or Hand = Q7  or Hand = Q6  or Hand = Q5  or Hand = Q4) User_Q4o_Or_Better
+When (Hand = QJ Suited or Hand = QT Suited or Hand = Q9 Suited or Hand = Q8 Suited or Hand = Q7 Suited or Hand = Q6 Suited or Hand = Q5 Suited or Hand = Q4 Suited) User_Q4s_Or_Better
+When (Hand = QJ  or Hand = QT  or Hand = Q9  or Hand = Q8  or Hand = Q7  or Hand = Q6  or Hand = Q5  or Hand = Q4  or Hand = Q3) User_Q3o_Or_Better
+When (Hand = QJ Suited or Hand = QT Suited or Hand = Q9 Suited or Hand = Q8 Suited or Hand = Q7 Suited or Hand = Q6 Suited or Hand = Q5 Suited or Hand = Q4 Suited or Hand = Q3 Suited) User_Q3s_Or_Better
+When (Hand = QJ  or Hand = QT  or Hand = Q9  or Hand = Q8  or Hand = Q7  or Hand = Q6  or Hand = Q5  or Hand = Q4  or Hand = Q3  or Hand = Q2 ) User_Q2o_Or_Better
+When (Hand = QJ Suited or Hand = QT Suited or Hand = Q9 Suited or Hand = Q8 Suited or Hand = Q7 Suited or Hand = Q6 Suited or Hand = Q5 Suited or Hand = Q4 Suited or Hand = Q3 Suited or Hand = Q2 Suited) User_Q2s_Or_Better
+
+//Hand Range with Jx
+When (Hand = JT) User_JTo
+When (Hand = JT Suited) User_JTs
+When (Hand = JT  or Hand = J9) User_J9o_Or_Better
+When (Hand = JT Suited or Hand = J9 Suited) User_J9s_Or_Better
+When (Hand = JT  or Hand = J9  or Hand = J8) User_J8o_Or_Better
+When (Hand = JT Suited or Hand = J9 Suited or Hand = J8 Suited) User_J8s_Or_Better
+When (Hand = JT  or Hand = J9  or Hand = J8  or Hand = J7) User_J7o_Or_Better
+When (Hand = JT Suited or Hand = J9 Suited or Hand = J8 Suited or Hand = J7 Suited) User_J7s_Or_Better
+When (Hand = JT  or Hand = J9  or Hand = J8  or Hand = J7  or Hand = J6) User_J6o_Or_Better
+When (Hand = JT Suited or Hand = J9 Suited or Hand = J8 Suited or Hand = J7 Suited or Hand = J6 Suited) User_J6s_Or_Better
+When (Hand = JT  or Hand = J9  or Hand = J8  or Hand = J7  or Hand = J6  or Hand = J5) User_J5o_Or_Better
+When (Hand = JT Suited or Hand = J9 Suited or Hand = J8 Suited or Hand = J7 Suited or Hand = J6 Suited or Hand = J5 Suited) User_J5s_Or_Better
+When (Hand = JT  or Hand = J9  or Hand = J8  or Hand = J7  or Hand = J6  or Hand = J5  or Hand = J4) User_J4o_Or_Better
+When (Hand = JT Suited or Hand = J9 Suited or Hand = J8 Suited or Hand = J7 Suited or Hand = J6 Suited or Hand = J5 Suited or Hand = J4 Suited) User_J4s_Or_Better
+When (Hand = JT  or Hand = J9  or Hand = J8  or Hand = J7  or Hand = J6  or Hand = J5  or Hand = J4  or Hand = J3) User_J3o_Or_Better
+When (Hand = JT Suited or Hand = J9 Suited or Hand = J8 Suited or Hand = J7 Suited or Hand = J6 Suited or Hand = J5 Suited or Hand = J4 Suited or Hand = J3 Suited) User_J3s_Or_Better
+When (Hand = JT  or Hand = J9  or Hand = J8  or Hand = J7  or Hand = J6  or Hand = J5  or Hand = J4  or Hand = J3  or Hand = J2 ) User_J2o_Or_Better
+When (Hand = JT Suited or Hand = J9 Suited or Hand = J8 Suited or Hand = J7 Suited or Hand = J6 Suited or Hand = J5 Suited or Hand = J4 Suited or Hand = J3 Suited or Hand = J2 Suited) User_J2s_Or_Better
+
+//Hand Range with Tx
+When (Hand = T9) User_T9o
+When (Hand = T9 Suited) User_T9s
+When (Hand = T9  or Hand = T8) User_T8o_Or_Better
+When (Hand = T9 Suited or Hand = T8 Suited) User_T8s_Or_Better
+When (Hand = T9  or Hand = T8  or Hand = T7) User_T7o_Or_Better
+When (Hand = T9 Suited or Hand = T8 Suited or Hand = T7 Suited) User_T7s_Or_Better
+When (Hand = T9  or Hand = T8  or Hand = T7  or Hand = T6) User_T6o_Or_Better
+When (Hand = T9 Suited or Hand = T8 Suited or Hand = T7 Suited or Hand = T6 Suited) User_T6s_Or_Better
+When (Hand = T9  or Hand = T8  or Hand = T7  or Hand = T6  or Hand = T5) User_T5o_Or_Better
+When (Hand = T9 Suited or Hand = T8 Suited or Hand = T7 Suited or Hand = T6 Suited or Hand = T5 Suited) User_T5s_Or_Better
+When (Hand = T9  or Hand = T8  or Hand = T7  or Hand = T6  or Hand = T5  or Hand = T4) User_T4o_Or_Better
+When (Hand = T9 Suited or Hand = T8 Suited or Hand = T7 Suited or Hand = T6 Suited or Hand = T5 Suited or Hand = T4 Suited) User_T4s_Or_Better
+When (Hand = T9  or Hand = T8  or Hand = T7  or Hand = T6  or Hand = T5  or Hand = T4  or Hand = T3) User_T3o_Or_Better
+When (Hand = T9 Suited or Hand = T8 Suited or Hand = T7 Suited or Hand = T6 Suited or Hand = T5 Suited or Hand = T4 Suited or Hand = T3 Suited) User_T3s_Or_Better
+When (Hand = T9  or Hand = T8  or Hand = T7  or Hand = T6  or Hand = T5  or Hand = T4  or Hand = T3  or Hand = T2 ) User_T2o_Or_Better
+When (Hand = T9 Suited or Hand = T8 Suited or Hand = T7 Suited or Hand = T6 Suited or Hand = T5 Suited or Hand = T4 Suited or Hand = T3 Suited or Hand = T2 Suited) User_T2s_Or_Better
+
+//Hand Range with 9x
+When (Hand = 98) User_98o
+When (Hand = 98 Suited) User_98s
+When (Hand = 98  or Hand = 97) User_97o_Or_Better
+When (Hand = 98 Suited or Hand = 97 Suited) User_97s_Or_Better
+When (Hand = 98  or Hand = 97  or Hand = 96) User_96o_Or_Better
+When (Hand = 98 Suited or Hand = 97 Suited or Hand = 96 Suited) User_96s_Or_Better
+When (Hand = 98  or Hand = 97  or Hand = 96  or Hand = 95) User_95o_Or_Better
+When (Hand = 98 Suited or Hand = 97 Suited or Hand = 96 Suited or Hand = 95 Suited) User_95s_Or_Better
+When (Hand = 98  or Hand = 97  or Hand = 96  or Hand = 95  or Hand = 94) User_94o_Or_Better
+When (Hand = 98 Suited or Hand = 97 Suited or Hand = 96 Suited or Hand = 95 Suited or Hand = 94 Suited) User_94s_Or_Better
+When (Hand = 98  or Hand = 97  or Hand = 96  or Hand = 95  or Hand = 94  or Hand = 93) User_93o_Or_Better
+When (Hand = 98 Suited or Hand = 97 Suited or Hand = 96 Suited or Hand = 95 Suited or Hand = 94 Suited or Hand = 93 Suited) User_93s_Or_Better
+When (Hand = 98  or Hand = 97  or Hand = 96  or Hand = 95  or Hand = 94  or Hand = 93  or Hand = 92 ) User_92o_Or_Better
+When (Hand = 98 Suited or Hand = 97 Suited or Hand = 96 Suited or Hand = 95 Suited or Hand = 94 Suited or Hand = 93 Suited or Hand = 92 Suited) User_92s_Or_Better
+
+//Hand Range with 8x
+When (Hand = 87) User_87o
+When (Hand = 87 Suited) User_87s
+When (Hand = 87  or Hand = 86) User_86o_Or_Better
+When (Hand = 87 Suited or Hand = 86 Suited) User_86s_Or_Better
+When (Hand = 87  or Hand = 86  or Hand = 85) User_85o_Or_Better
+When (Hand = 87 Suited or Hand = 86 Suited or Hand = 85 Suited) User_85s_Or_Better
+When (Hand = 87  or Hand = 86  or Hand = 85  or Hand = 84) User_84o_Or_Better
+When (Hand = 87 Suited or Hand = 86 Suited or Hand = 85 Suited or Hand = 84 Suited) User_84s_Or_Better
+When (Hand = 87  or Hand = 86  or Hand = 85  or Hand = 84  or Hand = 83) User_83o_Or_Better
+When (Hand = 87 Suited or Hand = 86 Suited or Hand = 85 Suited or Hand = 84 Suited or Hand = 83 Suited) User_83s_Or_Better
+When (Hand = 87  or Hand = 86  or Hand = 85  or Hand = 84  or Hand = 83  or Hand = 82 ) User_82o_Or_Better
+When (Hand = 87 Suited or Hand = 86 Suited or Hand = 85 Suited or Hand = 84 Suited or Hand = 83 Suited or Hand = 82 Suited) User_82s_Or_Better
+
+//Hand Range with 7x
+When (Hand = 76) User_76o
+When (Hand = 76 Suited) User_76s
+When (Hand = 76  or Hand = 75) User_75o_Or_Better
+When (Hand = 76 Suited or Hand = 75 Suited) User_75s_Or_Better
+When (Hand = 76  or Hand = 75  or Hand = 74) User_74o_Or_Better
+When (Hand = 76 Suited or Hand = 75 Suited or Hand = 74 Suited) User_74s_Or_Better
+When (Hand = 76  or Hand = 75  or Hand = 74  or Hand = 73) User_73o_Or_Better
+When (Hand = 76 Suited or Hand = 75 Suited or Hand = 74 Suited or Hand = 73 Suited) User_73s_Or_Better
+When (Hand = 76  or Hand = 75  or Hand = 74  or Hand = 73  or Hand = 72 ) User_72o_Or_Better
+When (Hand = 76 Suited or Hand = 75 Suited or Hand = 74 Suited or Hand = 73 Suited or Hand = 72 Suited) User_72s_Or_Better
+
+//Hand Range with 6x
+When (Hand = 65) User_65o
+When (Hand = 65 Suited) User_65s
+When (Hand = 65  or Hand = 64) User_64o_Or_Better
+When (Hand = 65 Suited or Hand = 64 Suited) User_64s_Or_Better 
+When (Hand = 65  or Hand = 64  or Hand = 63) User_63o_Or_Better
+When (Hand = 65 Suited or Hand = 64 Suited or Hand = 63 Suited) User_63s_Or_Better
+When (Hand = 65  or Hand = 64  or Hand = 63  or Hand = 62 ) User_62o_Or_Better
+When (Hand = 65 Suited or Hand = 64 Suited or Hand = 63 Suited or Hand = 62 Suited) User_62s_Or_Better
+
+//Hand Range with 5x
+When (Hand = 54) User_54o
+When (Hand = 54 suited) User_54s
+When (Hand = 54  or Hand = 53) User_53o_Or_Better
+When (Hand = 54 Suited or Hand = 53 Suited) User_53s_Or_Better
+When (Hand = 54  or Hand = 53  or Hand = 52 ) User_52o_Or_Better
+When (Hand = 54 Suited or Hand = 53 Suited or Hand = 52 Suited) User_52s_Or_Better
+
+//Hand Range with 4x
+When (Hand = 43) User_43o
+When (Hand = 43 Suited) User_43s
+When (Hand = 43  or Hand = 42 ) User_42o_Or_Better
+When (Hand = 43 Suited or Hand = 42 Suited) User_42s_Or_Better
+
+//Hand Range with 3x
+When (Hand = 32) User_32o
+When (Hand = 32 Suited) User_32s
+
+//Hand Range for any Two Cards
+When (Hand = A or Hand = K or Hand = Q or Hand = J or Hand = T or Hand = 9 or Hand = 8 or Hand = 7 or Hand = 6 or Hand = 5 or Hand = 4 or Hand = 3 or Hand = 2) User_Any_Two 
+
+//Suited Connectors one Gap
+When (User_32s or User_43s or User_54s or User_65s or User_76s or User_87s  or User_98s or User_T9s or User_JTs or User_QJs or User_KQs or User_AKs) User_Suited_Connectors
+

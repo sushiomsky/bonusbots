@@ -1,0 +1,775 @@
+MaxSessionHands = 1000000
+MaxSessionTime = 1000000
+MaxStackSize = 1000000
+BathroomBreakAfter = 1000000
+BathroomBreakTime = 3
+MakePotSizedPreFlopRaisesWhen = 5
+FoldToPre-FlopRaisesForAQAJsKQ = ON
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = ON
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 4
+FoldToPost-FlopRaisesWithPairedBoardsFor = 4
+NeverBetTurnOrRiverWithHandBelow = 1
+NeverBetFlopWithHandBelowMiddlePairWhen = 3
+NeverCallPairedBoardsWithHandBelow = 5
+NeverCallFlushPossibleBoardsWithHandBelow = 5
+FoldToPre-FlopRaiseWith55Or66When = 1
+FoldToPre-FlopRaiseWith77Or88When = 3
+FoldToPre-FlopRaiseWith99OrTTWhen = 3
+FoldToPre-FlopRaiseWithJJOrQQWhen = 3
+FoldToPre-FlopRaiseWithAKWhen = 3
+FoldToPre-FlopRaiseWithAQsWhen = 3
+FoldToPre-FlopRaiseWithAKsWhen = 3
+FoldToPre-FlopRaiseWithKQsWhen = 2
+SuperTightPlay = ON
+SemiSuperTightPlay = OFF
+NoLimp = 15
+AggressivePreFlop = 7
+AggressivePostFlop = 1
+AggressivePreFlopStackSize = 1000000
+AggressivePostFlopStackSize = 25
+MiningForSets = 5
+PostFlopinBlindsOverride = 3
+PreFlopReRaiseOverride = OFF
+MinBetOverride = 6
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000
+AlwaysCallWhenOpponentsRaiseIsLessThan = 2
+Verbose = ON
+AutoPlay = ON
+AutoRebuyAtUB = OFF
+ 
+custom
+ 
+//      
+//             ____              _ ____  _                          
+//            / ___|__ _ _ __ __| / ___|| |__   __ _ _ __ _ __  ___  
+//           | |   / _` | '__/ _` \___ \| '_ \ / _` | '__| '_ \/ __|
+//           | |___ (_| | | | (_| |___) | | | | (_| | |  | |_) \__ \
+//            \____\__,_|_|  \__,_|____/|_| |_|\__,_|_|  | .__/|___/
+//                                                       |_|    
+//
+//                       _  ___ _ _ ____  _     _ _  
+//                      | |/ (_) | |  _ \| |__ (_) |
+//                      | ' /| | | | |_) | '_ \| | |
+//                      | . \| | | |  __/| | | | | |
+//                      |_|\_\_|_|_|_|   |_| |_|_|_|
+//          
+ 
+//                UPDATED on 06/24/09 by lucky1
+ 
+ 
+ 
+//  HAND GROUPS
+ 
+// G1    (hand=AA or hand=KK)
+// G2    (hand=QQ or hand=AK)
+// G3    (hand=JJ or hand=TT or hand=99)
+// G4    (hand=AQsuited or hand=88 or hand=77 or hand=66)
+// G5    (hand=AQ or hand=AJsuited or hand=ATsuited)
+// G6    (hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited)
+// G7    (hand=AJ or hand=AT or hand=KQ)
+// G8    (hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited)
+// G9    (hand=QTsuited or hand=J9suited or hand=T8suited or hand=97suited or hand=86suited or hand=75suited or hand=64suited or hand=A6 or hand=A5 or hand=A4 or hand=A3 or hand=A2)
+// G10  (hand=KT or hand=K9 or hand=K8suited or hand=K7suited or hand=Q8suited or hand=QJ or hand=QT or hand=JT OR hand=Q9suited or hand=J8suited or hand=T7suited or hand=96suited or hand=85suited or hand=74suited or hand=63suited)
+ 
+ 
+preflop
+ 
+/////////  7-9 Handed
+/////////  round 1-9
+/////////  1.5*BB
+ 
+/////////  CSI HUGE
+/////////  unraised
+ 
+// -EP/MP G-1,2
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=15 and raises =0 and (stilltoact =5 or stilltoact =6 or stilltoact =7 or stilltoact =8) and (hand =AA or hand =KK or hand =QQ or hand =AK) RaiseMax Force
+ 
+// -LP G-1,2,3
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=15 and raises =0 and (stilltoact =2 or stilltoact =3 or stilltoact =4) and (hand =AA or hand =KK or hand =QQ or hand =AK or hand =JJ or hand =TT or hand =99) RaiseMax Force
+ 
+// -Blinds G-1,2,3,4,5
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=15 and raises =0 and (stilltoact =0 or stilltoact =1) and (hand =AA or hand =KK or hand =QQ or hand =AK or hand =JJ or hand =TT or hand =99 or hand =AQ suited or hand =88 or hand =77 or hand =66 or hand =AQ or hand =AJ suited or hand =AT suited) RaiseMax Force
+ 
+ 
+///// CSI HUGE
+///// raised
+ 
+// -facing EP/MP RAISE G-1,2
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=15 and raises >0 and (lastraiserposition =5 or lastraiserposition =6 or lastraiserposition =7 or lastraiserposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK) RaiseMax Force
+ 
+// -facing LP RAISE G-1,2,3
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=15 and raises >0 and (lastraiserposition =2 or lastraiserposition =3 or lastraiserposition =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// -facing SB RAISE G-1,2,3,4,5
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=15 and raises >0 and (lastraiserposition =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66) RaiseMax Force
+ 
+ 
+///// CSI MED
+///// unraised
+ 
+// -EP G-1,2,3,4,5
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=6 and stacksize <=14 and raises =0 and (stilltoact =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+// -MP  G-1,2,3,4,5,6,7
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=6 and stacksize <=14 and raises =0 and (stilltoact =5 or stilltoact =6 or stilltoact =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) RaiseMax Force
+ 
+// -LP G-1,2,3,4,5,6,7,8
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=6 and stacksize <=14 and raises =0 and (stilltoact =2 or stilltoact =3 or stilltoact =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// -Blinds G-1,2,3,4,5,6,7,8
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=6 and stacksize <=14 and raises =0 and (stilltoact =0 or stilltoact =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+ 
+///// CSI MED
+///// raised
+ 
+// -facing EP RAISE G-1,2,3
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=6 and stacksize <=14 and raises >0 and (lastraiserposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// -facing MP RAISE G-1,2,3,4,5,7
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=6 and stacksize <=14 and raises >0 and (lastraiserposition =5 or lastraiserposition =6 or lastraiserposition =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// -facing LP RAISE G-1,2,3,4,5,7
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=6 and stacksize <=14 and raises >0 and (lastraiserposition =2 or lastraiserposition =3 or lastraiserposition =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// -facing SB RAISE G-1,2,3,4,5,7
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize >=6 and stacksize <=14 and raises >0 and (lastraiserposition =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+ 
+///// CSI SMALL
+///// unraised
+ 
+// -EP G-1,2,3,4,5,6,7
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize <=5 and raises =0 and (stilltoact =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) RaiseMax Force
+ 
+// -MP  G-1,2,3,4,5,6,7,8
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize <=5 and raises =0 and (stilltoact =5 or stilltoact =6 or stilltoact =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// -LP/Blinds G-1,2,3,4,5,6,7,8,9,10
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize <=5 and raises =0 and (stilltoact =0 or stilltoact =1 or stilltoact =2 or stilltoact =3 or stilltoact =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KT or hand=QTsuited or hand=J9suited or hand=T8suited or hand=97suited or hand=86suited or hand=75suited or hand=64suited or hand=A6 or hand=A5 or hand=A4 or hand=A3 or hand=A2 or hand=K9 or hand=K8suited or hand=K7suited or hand=Q8suited or hand=QJ or hand=QT or hand=JT OR hand=Q9suited or hand=J8suited or hand=T7suited or hand=96suited or hand=85suited or hand=74suited or hand=63suited) RaiseMax Force
+ 
+ 
+///// CSI SMALL
+///// raised
+ 
+// -facing EP RAISE G-1,2,3,4,5
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize <=5 and raises >0 and (lastraiserposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+// -facing MP RAISE G-1,2,3,4,5,7
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize <=5 and raises >0 and (lastraiserposition =4 or lastraiserposition =5 or lastraiserposition =6 or lastraiserposition =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// -facing LP RAISE G-1,2,3,4,5,7,8
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize <=5 and raises >0 and  (lastraiserposition =2 or lastraiserposition =3 or lastraiserposition =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// -facing SB RAISE G-1,2,3,4,5,7,8
+When OpponentsAtTable >=6 and BigBlindSize <=200 and stacksize <=5 and raises >0 and (lastraiserposition =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+ 
+/////////  9 Handed
+/////////  Round 10+
+/////////  2.6*BB
+ 
+///// CSI HUGE
+///// unraised
+ 
+// -EP/MP G-1,2
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=26 and raises =0 and (stilltoact =5 or stilltoact =6 or stilltoact =7 or stilltoact =8) and (hand=AA or hand=KK or hand=QQ or hand=AK) RaiseMax Force
+ 
+// -LP G-1,2,3
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=26 and raises =0 and (stilltoact =2 or stilltoact =3 or stilltoact =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// -Blinds G-1,2,3,4,5
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=26 and raises =0 and (stilltoact =0 or stilltoact =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+ 
+///// CSI HUGE
+///// raised
+ 
+// -facing EP/MP RAISE G-1,2
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=26 and raises >0 and (lastraiserposition =5 or lastraiserposition =6 or lastraiserposition =7 or lastraiserposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK) RaiseMax Force
+ 
+// -facing LP RAISE G-1,2,3
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=26 and raises >0 and (lastraiserposition =2 or lastraiserposition =3 or lastraiserposition =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// -facing SB RAISE G-1,2,3,4,5
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=26 and raises >0 and (lastraiserposition =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66) RaiseMax Force
+ 
+ 
+///// CSI MED
+///// unraised
+ 
+// -EP G-1,2,3,4,5
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=11 and stacksize <=25 and raises =0 and (stilltoact =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+// -MP  G-1,2,3,4,5,6,7
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=11 and stacksize <=25 and raises =0 and (stilltoact =5 or stilltoact =6 or stilltoact =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) RaiseMax Force
+ 
+// -LP G-1,2,3,4,5,6,7,8
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=11 and stacksize <=25 and raises =0 and (stilltoact =2 or stilltoact =3 or stilltoact =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// -Blinds G-1,2,3,4,5,6,7,8
+When OpponentsAtTable = 8 and BigBlindSize >=240 and stacksize >=11 and stacksize <=25  and raises =0 and (stilltoact =0 or stilltoact =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+ 
+///// CSI MED
+///// raised
+ 
+// -facing EP RAISE G-1,2,3
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=11 and stacksize <=25  and raises >0 and (lastraiserposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// -facing MP RAISE G-1,2,3,4,5,7
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=11 and stacksize <=25 and raises >0 and (lastraiserposition =5 or lastraiserposition =6 or lastraiserposition =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// -facing LP RAISE G-1,2,3,4,5,7
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=11 and stacksize <=25 and raises >0 and (lastraiserposition =2 or lastraiserposition =3 or lastraiserposition =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// -facing SB RAISE G-1,2,3,4,5,7
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize >=11 and stacksize <=25  and raises >0 and (lastraiserposition =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+ 
+///// CSI SMALL
+///// unraised
+ 
+// -EP G-1,2,3,4,5,6,7
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize <=10 and raises =0 and (stilltoact =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) RaiseMax Force
+ 
+// -MP  G-1,2,3,4,5,6,7,8
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize <=10 and raises =0 and (stilltoact =5 or stilltoact =6 or stilltoact =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// -LP/Blinds G-1,2,3,4,5,6,7,8,9,10
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize <=10 and raises =0 and (stilltoact =0 or stilltoact =1 or stilltoact =2 or stilltoact =3 or stilltoact =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KT or hand=QTsuited or hand=J9suited or hand=T8suited or hand=97suited or hand=86suited or hand=75suited or hand=64suited or hand=A6 or hand=A5 or hand=A4 or hand=A3 or hand=A2 or hand=K9 or hand=K8suited or hand=K7suited or hand=Q8suited or hand=QJ or hand=QT or hand=JT OR hand=Q9suited or hand=J8suited or hand=T7suited or hand=96suited or hand=85suited or hand=74suited or hand=63suited) RaiseMax Force
+ 
+ 
+///// CSI SMALL
+///// raised
+ 
+// -facing EP RAISE G-1,2,3,4,5
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize <=10 and raises >0 and (lastraiserposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+// -facing MP RAISE G-1,2,3,4,5,7
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize <=10 and raises >0 and (lastraiserposition =5 or lastraiserposition =6 or lastraiserposition =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// -facing LP RAISE G-1,2,3,4,5,7,8
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize <=10 and raises >0 and (lastraiserposition =2 or lastraiserposition =3 or lastraiserposition =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// -facing SB RAISE G-1,2,3,4,5,7,8
+When OpponentsAtTable =8 and BigBlindSize >=240 and stacksize <=10 and raises >0 and (lastraiserposition =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+ 
+/////////  8 Handed
+/////////  Round 10+
+////////   2.6*BB
+ 
+///// CSI HUGE
+///// unraised
+ 
+// -EP/MP G-1,2
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=25 and raises =0 and (stilltoact =5 or stilltoact =6 or stilltoact =7 or stilltoact =8) and (hand=AA or hand=KK or hand=QQ or hand=AK) RaiseMax Force
+ 
+// -LP G-1,2,3
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=25 and raises =0 and (stilltoact =2 or stilltoact =3 or stilltoact =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// -Blinds G-1,2,3,4,5
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=25 and raises =0 and (stilltoact =0 or stilltoact =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+ 
+///// CSI HUGE
+///// raised
+ 
+// -facing EP/MP RAISE G-1,2
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=25 and raises >0 and (lastraiserposition =5 or lastraiserposition =6 or lastraiserposition =7 or lastraiserposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK) RaiseMax Force
+ 
+// -facing LP RAISE G-1,2,3
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=25 and raises >0 and (lastraiserposition =2 or lastraiserposition =3 or lastraiserposition =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// -facing SB RAISE G-1,2,3,4,5
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=25 and raises >0 and (lastraiserposition =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66) RaiseMax Force
+ 
+ 
+///// CSI MED
+///// unraised
+ 
+// -EP G-1,2,3,4,5
+When OpponentsAtTable =7 and BigBlindSize  >=240 and stacksize >=10 and stacksize <=24 and raises =0 and (stilltoact =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+// -MP  G-1,2,3,4,5,6,7
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=10 and stacksize <=24 and raises =0 and (stilltoact =5 or stilltoact =6 or stilltoact =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) RaiseMax Force
+ 
+// -LP G-1,2,3,4,5,6,7,8
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=10 and stacksize <=24 and raises =0 and (stilltoact =2 or stilltoact =3 or stilltoact =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// -Blinds G-1,2,3,4,5,6,7,8
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=10 and stacksize <=24  and raises =0 and (stilltoact =0 or stilltoact =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+ 
+///// CSI MED
+///// raised
+ 
+// -facing EP RAISE G-1,2,3
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=10 and stacksize <=24  and raises >0 and (lastraiserposition = 8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// -facing MP RAISE G-1,2,3,4,5,7
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=10 and stacksize <=24 and raises >0 and (lastraiserposition =5 or lastraiserposition =6 or lastraiserposition =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// -facing LP RAISE G-1,2,3,4,5,7
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=10 and stacksize <=24 and raises >0 and (lastraiserposition = 2 or lastraiserposition = 3 or lastraiserposition =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// -facing SB RAISE G-1,2,3,4,5,7
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize >=10 and stacksize <=24  and raises >0 and (lastraiserposition = 1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+ 
+///// CSI SMALL
+///// unraised
+ 
+// -EP G-1,2,3,4,5,6,7
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize <=9 and raises =0 and (stilltoact =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) RaiseMax Force
+ 
+// -MP  G-1,2,3,4,5,6,7,8
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize <=9 and raises =0 and (stilltoact =5 or stilltoact =6 or stilltoact =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// -LP/Blinds G-1,2,3,4,5,6,7,8,9,10
+When OpponentsAtTable =7 and BigBlindSize  >=240 and stacksize <=9 and raises =0 and (stilltoact =0 or stilltoact =1 or stilltoact =2 or stilltoact =3 or stilltoact =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KT or hand=QTsuited or hand=J9suited or hand=T8suited or hand=97suited or hand=86suited or hand=75suited or hand=64suited or hand=A6 or hand=A5 or hand=A4 or hand=A3 or hand=A2 or hand=K9 or hand=K8suited or hand=K7suited or hand=Q8suited or hand=QJ or hand=QT or hand=JT OR hand=Q9suited or hand=J8suited or hand=T7suited or hand=96suited or hand=85suited or hand=74suited or hand=63suited) RaiseMax Force
+ 
+ 
+///// CSI SMALL
+///// raised
+ 
+// -facing EP RAISE G-1,2,3,4,5
+When OpponentsAtTable =7 and BigBlindSize  >=240 and stacksize <=9 and raises >0 and (lastraiserposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+// -facing MP RAISE G-1,2,3,4,5,7
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize <=9 and raises >0 and (lastraiserposition =5 or lastraiserposition =6 or lastraiserposition =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// -facing LP RAISE G-1,2,3,4,5,7,8
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize <=9 and raises >0 and (lastraiserposition =2 or lastraiserposition =3 or lastraiserposition =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// -facing SB RAISE G-1,2,3,4,5,7,8
+When OpponentsAtTable =7 and BigBlindSize >=240 and stacksize <=9 and raises >0 and (lastraiserposition =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+ 
+///////// 7 Handed
+///////// Round 10+
+////////  2.6*BB
+ 
+///// CSI HUGE
+///// unraised
+ 
+// -EP/MP G-1,2
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=24 and raises =0 and (stilltoact =5 or stilltoact =6 or stilltoact =7 or stilltoact =8) and (hand=AA or hand=KK or hand=QQ or hand=AK) RaiseMax Force
+ 
+// -LP G-1,2,3
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=24 and raises =0 and (stilltoact =2 or stilltoact =3 or stilltoact =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) raisemax force
+ 
+// -Blinds G-1,2,3,4,5
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=24 and raises =0 and (stilltoact =0 or stilltoact =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) raisemax force
+ 
+ 
+///// CSI HUGE
+///// raised
+ 
+// -facing EP/MP RAISE G-1,2
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=24 and raises >0 and (lastraiserposition =5 or lastraiserposition =6 or lastraiserposition =7 or lastraiserposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK) raisemax force
+ 
+// -facing LP RAISE G-1,2,3
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=24 and raises >0 and (lastraiserposition =2 or lastraiserposition =3 or lastraiserposition =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) raisemax force
+ 
+// -facing SB RAISE G-1,2,3,4,5
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=24 and raises >0 and (lastraiserposition =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66) raisemax force
+ 
+ 
+///// CSI MED
+///// unraised
+ 
+// -EP G-1,2,3,4,5
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=9 and stacksize <=23 and raises =0 and (stilltoact =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) raisemax force
+ 
+// -MP  G-1,2,3,4,5,6,7
+when OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=9 and stacksize <=23 and raises =0 and (stilltoact =5 or stilltoact =6 or stilltoact =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) RaiseMax Force
+ 
+// -LP G-1,2,3,4,5,6,7,8
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=9 and stacksize <=23 and raises =0 and (stilltoact =2 or stilltoact =3 or stilltoact =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// -Blinds G-1,2,3,4,5,6,7,8
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=9 and stacksize <=23  and raises =0 and (stilltoact =0 or stilltoact =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+ 
+///// CSI MED
+///// raised
+ 
+// -facing EP RAISE G-1,2,3
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=9 and stacksize <= 23  and raises >0 and (lastraiserposition = 8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+//-facing MP RAISE G-1,2,3,4,5,7
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=9 and stacksize <= 23 and raises >0 and (lastraiserposition = 5 or lastraiserposition = 6 or lastraiserposition =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// -facing LP RAISE G-1,2,3,4,5,7
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=9 and stacksize <= 23 and raises >0 and (lastraiserposition = 2 or lastraiserposition = 3 or lastraiserposition =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// -facing SB RAISE G-1,2,3,4,5,7
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=9 and stacksize <= 23  and raises >0 and (lastraiserposition = 1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+ 
+///// CSI SMALL
+///// unraised
+ 
+// -EP G-1,2,3,4,5,6,7
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=8 and raises =0 and (stilltoact =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) RaiseMax Force
+ 
+// -MP  G-1,2,3,4,5,6,7,8
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize >=8 and raises =0 and (stilltoact =5 or stilltoact =6 or stilltoact =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// -LP/Blinds G-1,2,3,4,5,6,7,8,9,10
+When OpponentsAtTable = 6 and BigBlindSize >=240 and stacksize >=8 and raises =0 and (stilltoact =0 or stilltoact =1 or stilltoact =2 or stilltoact =3 or stilltoact =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KT or hand=QTsuited or hand=J9suited or hand=T8suited or hand=97suited or hand=86suited or hand=75suited or hand=64suited or hand=A6 or hand=A5 or hand=A4 or hand=A3 or hand=A2 or hand=K9 or hand=K8suited or hand=K7suited or hand=Q8suited or hand=QJ or hand=QT or hand=JT OR hand=Q9suited or hand=J8suited or hand=T7suited or hand=96suited or hand=85suited or hand=74suited or hand=63suited) RaiseMax Force
+ 
+ 
+///// CSI SMALL
+///// raised
+ 
+// -facing EP RAISE G-1,2,3,4,5
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize <=8 and raises >0 and (lastraiserposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+// -facing MP RAISE G-1,2,3,4,5,7
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize <=8 and raises >0 and (lastraiserposition =5 or lastraiserposition =6 or lastraiserposition =7) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// -facing LP RAISE G-1,2,3,4,5,7,8
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize <=8 and raises >0 and (lastraiserposition =2 or lastraiserposition = 3 or lastraiserposition =4) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// -facing SB RAISE G-1,2,3,4,5,7,8
+When OpponentsAtTable =6 and BigBlindSize >=240 and stacksize <=8 and raises >0 and (lastraiserposition =1) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+ 
+///////// 4-6 Handed
+// ROUND 1-9  
+ 
+// CSI Huge 30 or more
+ 
+// un-raised + early limp RAISE G-1,2,3
+When OpponentsAtTable <=5 and OpponentsAtTable >=3 and BigBlindSize <=200 and stacksize >=45 and raises =0 and calls =1 and (lastcallerposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// un-raised + early limper CALL G-4,5,6
+When OpponentsAtTable <=5 and OpponentsAtTable >=3 and BigBlindSize <=200 and stacksize >=45 and raises =0 and calls =1 and (lastcallerposition =8) and (hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) call force
+ 
+// un-raised + no early limper 1,2,3,4,5
+When OpponentsAtTable <=5 and OpponentsAtTable >=3 and BigBlindSize <=200 and stacksize >=45 and raises =0 and calls >=0 and not (lastcallerposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+// raised 1,2,3
+When OpponentsAtTable <=5 and OpponentsAtTable >=3 and BigBlindSize <=200 and stacksize >=45 and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+ 
+// CSI Big 10-29
+ 
+// un-raised + early limper RAISE 1,2,3
+When OpponentsAtTable <=5 and OpponentsAtTable >=3 and BigBlindSize <=200 and stacksize >=15 and stacksize <=44 and raises =0 and calls =1 and (lastcallerposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// un-raised + early limper CALL 4,5,6
+When OpponentsAtTable <=5 and OpponentsAtTable >=3 and BigBlindSize <=200 and stacksize >=15 and stacksize <=44 and raises =0 and calls =1 and (lastcallerposition =8) and (hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) call force
+ 
+// un-raised + no early limper 1,2,3,4,5,6,7
+When OpponentsAtTable <=5 and OpponentsAtTable >=3 and BigBlindSize <=200 and stacksize >=15 and stacksize <=44 and raises =0 and calls >=0 and not (lastcallerposition =8) and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// raised 1,2,3
+When OpponentsAtTable <=5 and OpponentsAtTable >=3 and BigBlindSize <=200 and stacksize >=15 and stacksize <=44 and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+ 
+// CSI Med 4-9
+ 
+// un-raised 1,2,3,4,5,6,7,8
+When OpponentsAtTable <=5 and OpponentsAtTable >=3 and BigBlindSize <=200 and stacksize >=6 and stacksize <=14 and raises =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// raised 1,2,3,4,5
+When OpponentsAtTable <=5 and OpponentsAtTable >=3 and BigBlindSize <=200 and stacksize >=6 and stacksize <=14 and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+ 
+// CSI Small 3 or less
+ 
+// unraised G-1,2,3,4,5,6,7,8,9,10
+When OpponentsAtTable <=5 and OpponentsAtTable >=3 and BigBlindSize <=200 and stacksize <=5 and raises =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited or hand=QTsuited or hand=J9suited or hand=T8suited or hand=97suited or hand=86suited or hand=75suited or hand=64suited or hand=A6 or hand=A5 or hand=A4 or hand=A3 or hand=A2 or hand=K9 or hand=K8suited or hand=K7suited or hand=Q8suited or hand=QJ or hand=QT or hand=JT OR hand=Q9suited or hand=J8suited or hand=T7suited or hand=96suited or hand=85suited or hand=74suited or hand=63suited) RaiseMax Force
+ 
+// raised Pairs / AT+
+When OpponentsAtTable <=5 and OpponentsAtTable >=3 and BigBlindSize <=200 and stacksize <=5 and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT) RaiseMax Force
+ 
+ 
+///// ROUND 10+
+///
+//// 6 Handed
+///
+//// CSI Huge  
+ 
+// un-raised +limp RAISE 1,2,3
+When OpponentsAtTable =5 and BigBlindSize >=240 and stacksize >=69 and raises =0 and calls >=1 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// un-raised +limp CALL 4,5,6
+When OpponentsAtTable =5 and BigBlindSize >=240 and stacksize >=69 and raises =0 and calls >=1 and (hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) CALL Force
+ 
+// un-raised nolimp 1,2,3,4,5
+When OpponentsAtTable =5 and BigBlindSize >=240 and stacksize >=69 and raises =0 and calls =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+// raised 1,2,3
+When OpponentsAtTable =5 and BigBlindSize >=240 and stacksize >=69 and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+ 
+// CSI Big 10-29
+ 
+// un-raised +limp RAISE 1,2,3
+When OpponentsAtTable =5 and BigBlindSize >=240 and stacksize >=23  and stacksize <=68 and raises =0 and calls >=1 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// un-raised +limp CALL 4,5,6
+When OpponentsAtTable =5 and BigBlindSize >=240 and stacksize >=23  and stacksize <=68 and raises =0 and calls >=1 and (hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) CALL Force
+ 
+// un-raised nolimp 1,2,3,4,5,6,7
+When OpponentsAtTable =5 and BigBlindSize >=240 and stacksize >=23  and stacksize <=68 and raises =0 and calls =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// raised 1,2,3
+When OpponentsAtTable =5 and BigBlindSize >=240 and stacksize >=23  and stacksize <=68 and raises >=0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+ 
+// CSI Med 4-9
+ 
+// unraised G-1,2,3,4,5,6,7,8
+When OpponentsAtTable =5 and BigBlindSize >=240 and stacksize >=9  and stacksize <=22 and raises =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// raised G-1,2,3,4,5
+When OpponentsAtTable =5 and BigBlindSize >=240 and stacksize >=9  and stacksize <=22  and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+ 
+// CSI Small 3 or less
+ 
+// unraised G-1,2,3,4,5,6,7,8,9,10
+When OpponentsAtTable =5 and BigBlindSize >=240 and stacksize <=8 and raises =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited or hand=QTsuited or hand=J9suited or hand=T8suited or hand=97suited or hand=86suited or hand=75suited or hand=64suited or hand=A6 or hand=A5 or hand=A4 or hand=A3 or hand=A2 or hand=K9 or hand=K8suited or hand=K7suited or hand=Q8suited or hand=QJ or hand=QT or hand=JT OR hand=Q9suited or hand=J8suited or hand=T7suited or hand=96suited or hand=85suited or hand=74suited or hand=63suited) RaiseMax Force
+ 
+// raised Pairs / AT+
+When OpponentsAtTable =5 and BigBlindSize >=240 and stacksize <=8 and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+ 
+//// 5 Handed
+///
+//// CSI Huge  
+ 
+// un-raised +limp RAISE 1,2,3
+When OpponentsAtTable =4 and BigBlindSize >=240 and stacksize >=65 and raises =0 and calls >=1 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// un-raised +limp CALL 4,5,6
+When OpponentsAtTable =4 and BigBlindSize >=240 and stacksize >=65 and raises =0 and calls >=1 and (hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) CALL Force
+ 
+// un-raised nolimp 1,2,3,4,5
+When OpponentsAtTable =4 and BigBlindSize >=240 and stacksize >=65 and raises =0 and calls =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+// raised 1,2,3
+When OpponentsAtTable =4 and BigBlindSize >=240 and stacksize >=65 and raises >=0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+ 
+// CSI Big 10-29
+ 
+// un-raised +limp RAISE 1,2,3
+When OpponentsAtTable =4 and BigBlindSize >=240 and stacksize >=22 and stacksize <=64 and raises =0 and calls >=1 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// un-raised +limp CALL 4,5,6
+When OpponentsAtTable =4 and BigBlindSize >=240 and stacksize >=22 and stacksize <=64 and raises =0 and calls >=1 and (hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) CALL Force
+ 
+// un-raised nolimp 1,2,3,4,5,6,7
+When OpponentsAtTable =4 and BigBlindSize >=240 and stacksize >=22 and stacksize <=64 and raises =0 and calls =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// raised 1,2,3
+When OpponentsAtTable =4 and BigBlindSize >=240 and stacksize >=22 and stacksize <=64 and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+ 
+// CSI Med 4-9
+ 
+// unraised G-1,2,3,4,5,6,7,8
+When OpponentsAtTable =4 and BigBlindSize >=240 and stacksize >=9 and stacksize <=21 and raises =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// raised G-1,2,3,4,5
+When OpponentsAtTable =4 and BigBlindSize >=240 and stacksize >=9 and stacksize <=21  and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+ 
+// CSI Small 3 or less
+ 
+// unraised G-1,2,3,4,5,6,7,8,9,10
+When OpponentsAtTable =4 and BigBlindSize >=240 and stacksize <=8 and raises =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited or hand=QTsuited or hand=J9suited or hand=T8suited or hand=97suited or hand=86suited or hand=75suited or hand=64suited or hand=A6 or hand=A5 or hand=A4 or hand=A3 or hand=A2 or hand=K9 or hand=K8suited or hand=K7suited or hand=Q8suited or hand=QJ or hand=QT or hand=JT OR hand=Q9suited or hand=J8suited or hand=T7suited or hand=96suited or hand=85suited or hand=74suited or hand=63suited) RaiseMax Force
+ 
+// raised Pairs / AT+
+When OpponentsAtTable =4 and BigBlindSize >=240 and stacksize <=8  and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT) RaiseMax Force
+ 
+ 
+////4 Handed
+///
+//// CSI Huge  
+ 
+// un-raised +limp RAISE 1,2,3
+When OpponentsAtTable =3 and BigBlindSize >=240 and stacksize >=61 and raises =0 and calls >=1 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// un-raised +limp CALL 4,5,6
+When OpponentsAtTable =3 and BigBlindSize >=240 and stacksize >=61 and raises =0 and calls >=1 and (hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) CALL Force
+ 
+// un-raised nolimp 1,2,3,4,5
+When OpponentsAtTable =3 and BigBlindSize >=240 and stacksize >=61 and raises =0 and calls =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+// raised 1,2,3
+When OpponentsAtTable =3 and BigBlindSize >=240 and stacksize >=61 and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+ 
+// CSI Big 10-29
+ 
+// un-raised +limp RAISE 1,2,3
+When OpponentsAtTable =3 and BigBlindSize >=240 and stacksize >=20 and stacksize <=60 and raises =0 and calls >=1 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+// un-raised +limp CALL 4,5,6
+When OpponentsAtTable =3 and BigBlindSize >=240 and stacksize >=20 and stacksize <=60 and raises =0 and calls >=1 and (hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited) CALL Force
+ 
+// un-raised nolimp 1,2,3,4,5,6,7
+When OpponentsAtTable =3 and BigBlindSize >=240 and stacksize >=20 and stacksize <=60 and raises =0 and calls =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+// raised 1,2,3
+When OpponentsAtTable =3 and BigBlindSize >=240 and stacksize >=20 and stacksize <=60 and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99) RaiseMax Force
+ 
+ 
+// CSI Med 4-9
+ 
+// unraised G-1,2,3,4,5,6,7,8
+When OpponentsAtTable =3 and BigBlindSize >=240 and stacksize >=8 and stacksize <=19 and raises =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) RaiseMax Force
+ 
+// raised G-1,2,3,4,5
+When OpponentsAtTable =3 and BigBlindSize >=240 and stacksize >=8 and stacksize <=19  and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited) RaiseMax Force
+ 
+ 
+// CSI Small 3 or less
+ 
+// unraised G-1,2,3,4,5,6,7,8,9,10
+When OpponentsAtTable =3 and BigBlindSize >=240 and stacksize <=7 and raises =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited or hand=QTsuited or hand=J9suited or hand=T8suited or hand=97suited or hand=86suited or hand=75suited or hand=64suited or hand=A6 or hand=A5 or hand=A4 or hand=A3 or hand=A2 or hand=K9 or hand=K8suited or hand=K7suited or hand=Q8suited or hand=QJ or hand=QT or hand=JT OR hand=Q9suited or hand=J8suited or hand=T7suited or hand=96suited or hand=85suited or hand=74suited or hand=63suited) RaiseMax Force
+ 
+// raised Pairs / AT+
+When OpponentsAtTable =3 and BigBlindSize >=240 and stacksize <=7 and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ) RaiseMax Force
+ 
+ 
+///////// 3 Handed
+ 
+// Round 1-9
+// CSI Med+
+ 
+// unraised G-1,2,3,4,5,6,7,8,9,10
+When OpponentsAtTable =2 and BigBlindSize <=200  and stacksize >=6 and raises =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited or hand=QTsuited or hand=J9suited or hand=T8suited or hand=97suited or hand=86suited or hand=75suited or hand=64suited or hand=A6 or hand=A5 or hand=A4 or hand=A3 or hand=A2 or hand=K9 or hand=K8suited or hand=K7suited or hand=Q8suited or hand=QJ or hand=QT or hand=JT OR hand=Q9suited or hand=J8suited or hand=T7suited or hand=96suited or hand=85suited or hand=74suited or hand=63suited) raisemax force
+ 
+// raised G-1,2,3,4,5,6,,7,8
+When OpponentsAtTable =2 and BigBlindSize <=200  and stacksize >=6 and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) raisemax force
+ 
+// CSI Small PLAY ALL HANDS!
+When OpponentsAtTable =2 and BigBlindSize <=200 and stacksize <=5 raisemax force
+ 
+ 
+// Round10+
+// CSI Med+
+ 
+// unraised G-1,2,3,4,5,6,7,8,9,10
+When OpponentsAtTable =2 and BigBlindSize >=240 and stacksize >=8 and raises =0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=KQsuited or hand=QJsuited or hand=JTsuited or hand=T9suited or hand=98suited or hand=87suited or hand=76suited or hand=65suited or hand=54suited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited or hand=QTsuited or hand=J9suited or hand=T8suited or hand=97suited or hand=86suited or hand=75suited or hand=64suited or hand=A6 or hand=A5 or hand=A4 or hand=A3 or hand=A2 or hand=K9 or hand=K8suited or hand=K7suited or hand=Q8suited or hand=QJ or hand=QT or hand=JT OR hand=Q9suited or hand=J8suited or hand=T7suited or hand=96suited or hand=85suited or hand=74suited or hand=63suited) raisemax force
+ 
+// raised G-1,2,3,4,5,KQs,7,8
+When OpponentsAtTable =2 and BigBlindSize >=240 and stacksize >=8 and raises >0 and (hand=AA or hand=KK or hand=QQ or hand=AK or hand=JJ or hand=TT or hand=99 or hand=AQsuited or hand=88 or hand=77 or hand=66 or hand=AQ or hand=AJsuited or hand=ATsuited or hand=AJ or hand=AT or hand=KQ or hand=55 or hand=44 or hand=33 or hand=22 or hand=A9 or hand=A8 or hand=A7 or hand=A6suited or hand=A5suited or hand=A4suited or hand=A3suited or hand=A2suited or hand=KJ or hand=KTsuited) raisemax force
+ 
+// CSI Small PLAY ALL HANDS!
+When OpponentsAtTable =2 and BigBlindSize >=240 and stacksize <=7 raisemax force
+   
+ 
+/////// HEADS UP!!!!!!
+   
+When OpponentsAtTable =1 and raises =1 and (hand=73 or hand=63 or hand=53 or hand=43 or hand=82 or hand=72 or hand=62 or hand=52 or hand=42 or hand=32) fold force
+When OpponentsAtTable =1 and (hand=A or hand=K or hand=Q or hand=J or hand=T or hand=9 or hand=8 or hand=7 or hand=6 or hand=5 or hand=4 or hand=3 or hand=2 or hand=73suited or hand=63suited or hand=53suited or hand=43suited or hand=82 or hand=72suited or hand=62suited or hand=52suited or hand=42suited or hand=32suited) and not (hand=73 or hand=63 or hand=53 or hand=43 or hand=82 or hand=72 or hand=62 or hand=52 or hand=42 or hand=32) raisemax force
+   
+When others
+When others fold force
+ 
+ 
+// Post Flop Code By Lucky1 & CardSharp
+ 
+flop  
+   
+// UnRaised
+// Move in with top pair and best kicker, 2 Pair, 3 of a Kind, Set, Straight,Flush, 4 of a kind or Full house
+when raises =0 and (HaveTopPair and HaveBestKicker) raisepot force
+when raises =0 and (Haveoverpair or HaveTrips or HaveSet or HaveStraight or HaveFlush or HaveQuads or HaveFullHouse) raisepot force    
+ 
+// Raised      
+// Move in with a Set or better
+when bets > 0 and (HaveSet or HaveStraight or HaveFlush or HaveQuads or HaveFullHouse) raisemax force  
+ 
+// Move in with Top 2 Pair, and not Flush possible or Straight possible
+when bets > 0 and HaveTopTwoPair and not (FlushPossible or StraightPossible) raisemax force  
+ 
+// Move in with 3 of a Kind if you have top kicker
+when bets > 0 and HaveTrips and HaveBestKicker or Haveset and havebestkicker raisemax force  
+ 
+// When you have a Straight Draw with 2 overcards and no raises
+when HaveStraightDraw and overcards=2 and raises =0 raisemax force  
+ 
+// When you have a Flush Draw
+// Move in with 2 overcards and no raises
+when HaveFlushDraw and overcards=2 and raises =0 raisemax force  
+ 
+// Move in With a Pair
+when HaveFlushDraw and HavePair and raises =0 raisemax force  
+ 
+// Move in with Nut Flush Draw
+when HaveNutFlushDraw and raises =0 raisemax force
+ 
+When others  
+When others fold force
+ 
+turn  
+   
+// UnRaised
+// Move in with top pair and best kicker, 2 Pair, 3 of a Kind, Set, Straight,Flush, 4 of a kind or Full house
+when raises =0 and (HaveTopPair and HaveBestKicker) raisemax force
+when raises =0 and (HaveTwoPair or HaveTrips or HaveSet or HaveStraight or HaveFlush or HaveQuads or HaveFullHouse) raisemax force    
+ 
+// Raised      
+// Move in with a Set or better
+when bets > 0 and (HaveSet or HaveStraight or HaveFlush or HaveQuads or HaveFullHouse) raisemax force  
+ 
+// Move in with Top 2 Pair, and not Flush possible or Straight possible
+when bets > 0 and HaveTopTwoPair and not (FlushPossible or StraightPossible) raisemax force  
+ 
+// Move in with 3 of a Kind if you have top kicker
+when bets > 0 and HaveTrips and HaveBestKicker or Haveset and havebestkicker raisemax force  
+ 
+// When you have a Straight Draw with 2 overcards and no raises
+when HaveStraightDraw and overcards=2 and raises =0 raisemax force  
+ 
+// When you have a Flush Draw
+// Move in with 2 overcards and no raises
+when HaveFlushDraw and overcards=2 and raises =0 raisemax force  
+ 
+// Move in With a Pair
+when HaveFlushDraw and HavePair and raises =0 raisemax force  
+ 
+// Move in with Nut Flush Draw
+when HaveNutFlushDraw and raises =0 raisemax force
+ 
+When others  
+When others fold force
+     
+river    
+ 
+// Move in with 4 of a kind or Full house
+ When HaveQuads or HaveFullHouse raisemax force
+ 
+// UnRaised
+// Move in with top pair and best kicker, 2 Pair, 3 of a Kind, a Set, a Straight, or a Flush
+when raises =0 and (HaveTopPair and HaveBestKicker) raisemax force
+when raises =0 and (HaveTwoPair or HaveTrips or HaveSet or HaveStraight or HaveFlush) raisemax force    
+ 
+// Raised      
+// Move in with a Set or better
+when bets > 0 and (HaveSet or HaveStraight or HaveFlush or HaveQuads or HaveFullHouse) raisemax force  
+ 
+// Move in with Top 2 Pair, and not Flush possible or Straight possible
+when bets > 0 and HaveTopTwoPair and not (FlushPossible or StraightPossible) raisemax force  
+ 
+// Move in with 3 of a Kind if you have top kicker
+when bets > 0 and HaveTrips and HaveBestKicker raisemax force  
+ 
+When others  
+When others fold force  
+ 

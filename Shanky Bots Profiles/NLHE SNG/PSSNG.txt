@@ -1,0 +1,523 @@
+MaxSessionHands = 10000
+MaxSessionTime = 720
+MaxStackSize = 1000000
+BathroomBreakAfter = 900
+BathroomBreakTime = 2
+SitOutWhenOpponentsAreLessThan = 1
+MakePotSizedPreFlopRaisesWhen = 7
+FoldToPre-FlopRaisesForAQAJsKQ = ON
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = ON
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 1
+FoldToPost-FlopRaisesWithPairedBoardsFor = 3
+NeverBetTurnOrRiverWithHandBelow = 2
+NeverBetFlopWithHandBelowMiddlePairWhen = 4
+NeverBetFlopWithHandBelowMiddlePairStackSize = 4
+NeverCallPairedBoardsWithHandBelow = 5
+NeverCallFlushPossibleBoardsWithHandBelow = 5
+FoldToPre-FlopRaiseWith55Or66When = 3
+FoldToPre-FlopRaiseWith77Or88When = 3
+FoldToPre-FlopRaiseWith99OrTTWhen = 3
+FoldToPre-FlopRaiseWithJJOrQQWhen = 3
+FoldToPre-FlopRaiseWithAKWhen = 3
+FoldToPre-FlopRaiseWithAQsWhen = 2
+FoldToPre-FlopRaiseWithAKsWhen = 3
+FoldToPre-FlopRaiseWithKQsWhen = 2
+SuperTightPlay = OFF
+SemiSuperTightPlay = OFF
+NoLimp = 15
+AggressivePreFlop = 2
+AggressivePostFlop = 1
+AggressivePreFlopStackSize = 40
+AggressivePostFlopStackSize = 50
+MiningForSets = 0
+PostFlopinBlindsOverride = 3
+PreFlopReRaiseOverride = OFF
+MinBetOverride = 1
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 3
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 100
+Verbose = ON
+AutoPlay = ON
+UserDefinedGameType = 0
+AutoRebuyAtUB = OFF
+AlwaysAskForTableName = OFF
+
+custom
+
+preflop
+
+
+//SNG pokerstrategy.com version #7 coded by lucky1 7-31-2009
+
+
+// Special rule #1 ( In early stages and betsize is greater than 6bb only play top 4 hands and go directly all-in)
+when betsize >6 and stacksize >=25 and not (hand = AA or hand = KK or hand = QQ or hand = AK) fold force
+
+// Special rule #2 (in early / middle stages and there is a re-raise behind you, then you only continue with top 4 hands and go directly all-in)
+when BotsLastAction = raise and raises =1 and stacksize >13 and (hand = AA or hand = KK or hand = QQ or hand = AK) raisemax force  
+when BotsLastAction = raise and raises =1 and stacksize >13 and not (hand = AA or hand = KK or hand = QQ or hand = AK) fold force  
+
+
+// early phase (25 bb+)
+
+when (stacksize >=25 and (hand = AA or hand = KK))          
+when raises =1 and betsize <=6 raisepot force
+when raises =1 and betsize >6 raisemax force
+when raises >1 raisemax force  
+
+when (stacksize >=25 and (hand = QQ))          
+when raises =0 raisepot force
+when raises =1 and betsize <=6 raisepot force
+when raises =1 and betsize >6 raisemax force
+when raises >1 fold force
+ 
+when (stacksize >=25 and (hand = AK))          
+when raises =0 raisepot force
+when raises =1 and betsize <=6 raisepot force
+when raises =1 and betsize >6 raisemax force
+when raises >1 fold force
+
+when (stacksize >=25 and (hand = JJ or hand = TT))          
+when stilltoact <=5 and raises =0 raise force
+when stilltoact <=5 and raises =1 fold force
+when stilltoact >5 and raises =1 fold force
+when stilltoact <=9 and raises =0 call force
+when raises >0 fold force
+ 
+when (stacksize >=25 and (hand = 99 or hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22))          
+when raises =0 call force
+when raises >0 fold force
+
+when (stacksize >=25 and (hand = AQ or hand = AJ or hand =KQ))          
+when stilltoact <=3 and raises =0 raisepot force
+when stilltoact <=3 and raises =1 fold force
+when stilltoact >3 fold force  
+when raises >0 fold force
+
+
+// middle phase (14-24 bb)
+
+when (stacksize <=24 and stacksize >=14 and (hand = AA or hand = KK))            
+when raises =0 raisepot force
+when raises =1 and calls =0 and lastraiserposition >=1 raisemax force
+when raises =1 raisemax force
+   
+when (stacksize <=24 and stacksize >=14 and (hand = AK))            
+when raises =0 raisepot force
+when raises =1 and calls =0 and lastraiserposition >=1 raisemax force
+when raises =1 raisemax force
+when raises >1 fold force
+
+when (stacksize <=24 and stacksize >=14 and (hand = QQ or hand = JJ))          
+when raises =0 raisepot force
+when raises =1 and calls =0 and lastraiserposition >=1 raisemax force
+when raises =1 raisemax force
+when raises >1 fold force
+
+when (stacksize <=24 and stacksize >=14 and (hand = AQ))          
+when stilltoact <=5 and raises =0 raisepot force
+when stilltoact <=5 and raises =1 fold force
+when stilltoact >5 fold force
+when raises =1 and calls =0 and lastraiserposition >=1 raisemax force
+when raises >=1 fold force
+
+when (stacksize <=24 and stacksize >=14 and (hand = AJ))          
+when stilltoact <=3 and raises =0 and calls =0 raisepot force
+when stilltoact <=3 and raises >=0 and calls >0 fold force
+when stilltoact >3 fold force
+when raises =1 and calls =0 and lastraiserposition <=3 raisemax force
+when raises >=1 fold force
+
+when (stacksize <=24 and stacksize >=14 and (hand = TT))          
+when stilltoact <=5 and raises =0 raisepot force
+when stilltoact <=5 and raises =1 fold force
+when stilltoact >5 fold force
+when raises =1 and calls =0 and lastraiserposition <=5 raisemax force
+when raises >=1 fold force
+when others fold force
+
+when (stacksize <=24 and stacksize >=14 and (hand = 99 or hand = 88))          
+when stilltoact <=3 and raises =0 and calls =0 raisepot force
+when stilltoact <=3 and raises >=0 and calls >0 fold force
+when stilltoact >3 fold force
+when raises =1 and calls =0 and lastraiserposition =2 or lastraiserposition =3 raisemax force
+when raises >=1 fold force
+
+when (stacksize <=24 and stacksize >=14 and (hand = 77))          
+when stilltoact <=3 and raises =0 and calls =0 raisepot force
+when stilltoact <=3 and raises >=0 and calls >0 fold force
+when stilltoact >3 fold force
+when raises =1 and calls =0 and lastraiserposition =1 raisemax force
+when raises >=1 fold force
+
+when (stacksize <=24 and stacksize >=14 and (hand = 66))          
+when stilltoact <=3 and raises =0 and calls =0 raisepot force
+when stilltoact <=3 and raises >=0 and calls >0 fold force
+when stilltoact >3 fold force
+when raises >=1 fold force  
+
+when (stacksize <=24 and stacksize >=14 and (hand = KQ))          
+when stilltoact <=3 and raises =0 and calls =0 raisepot force
+when stilltoact <=3 and raises >=0 and calls >0 fold force
+when stilltoact >3 fold force
+when raises =1 and calls =0 and lastraiserposition =1 raisemax force
+when raises >=1 fold force
+
+when (stacksize <=24 and stacksize >=14 and (hand = AT or hand = KJ or hand = KT or hand = QJ or hand = 55 or hand = 44 or hand = 33 or hand = 22))          
+when stilltoact <=2 and raises =0 and calls =0 raisepot force
+when stilltoact <=2 and raises >=0 and calls >0 fold force
+when stilltoact >2 fold force
+when raises >=1 fold force
+ 
+when (stacksize <=24 and stacksize >=14 and (hand = A9 or hand = A8 or hand = K9 or hand = QT))          
+when stilltoact =1 and raises =0 and calls =0 raisepot force
+when stilltoact =1 and raises >=0 and calls >0 fold force
+when stilltoact >1 fold force
+when raises >=1 fold force
+
+
+// late phase  (13 bb and under)
+
+
+// when first in  
+
+when (stacksize <=13 and (hand= AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99))      
+when stilltoact <=9 and raises =0 and calls =0 raisemax force
+     
+when (stacksize <=13 and (hand = 88 or hand = 77 or hand = 66))      
+when stacksize <=10 and stilltoact <=9 and raises =0 and calls =0 raisemax force    
+when stacksize <=13 and stilltoact <=5 and raises =0 and calls =0 raisemax force      
+       
+when (stacksize <=13 and (hand = 55 or hand = 44 or hand = 33 or hand = 22))      
+when stacksize <=8 and stilltoact <=9 and raises =0 and calls =0 raisemax force    
+when stacksize <=10 and stilltoact <=5 and raises =0 and calls =0 raisemax force    
+when stacksize <=13 and stilltoact <=3 and raises =0 and calls =0 raisemax force    
+       
+when (stacksize <=13 and (hand = AK or hand = AQ))      
+when stilltoact <=9 and raises =0 and calls =0 raisemax force    
+
+when (stacksize <=13 and (hand = AJ suited or hand = AT suited))    
+when stacksize <=8 and stilltoact <=9 and raises =0 and calls =0 raisemax force    
+when stacksize <=13 and stilltoact <=5 and raises =0 and calls =0 raisemax force      
+ 
+when (stacksize <=13 and (hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited))      
+when stacksize <=5 and stilltoact <=9 and raises =0 and calls =0 raisemax force    
+when stacksize <=7 and stilltoact <=5 and raises =0 and calls =0 raisemax force    
+when stacksize <=10 and stilltoact =3 and raises =0 and calls =0 raisemax force
+when stacksize <=10 and stilltoact =2 and raises =0 and calls =0 raisemax force    
+when stacksize <=13 and stilltoact =1 and raises =0 and calls =0 raisemax force    
+   
+when (stacksize <=13 and (hand = AJ or hand = AT ))            
+when stacksize <=7 and stilltoact <=9 and raises <=0 and calls =0 raisemax force    
+when stacksize <=8 and stilltoact <6 and raises =0 and calls =0 raisemax force    
+when stacksize <=11 and stilltoact =3 and raises =0 and calls =0 raisemax force
+when stacksize <=13 and stilltoact =2 and raises =0 and calls =0 raisemax force    
+when stacksize <=13 and stilltoact =1 and raises =0 and calls =0 raisemax force    
+     
+when (stacksize <=13 and (hand = A9 or hand = A8 or hand = A7  or hand = A6 or hand = A5 or hand = A4 or hand = A3 or hand = A2))      
+when stacksize <=5 and stilltoact <=9 and raises =0 and calls =0 raisemax force    
+when stacksize <=7 and stilltoact =3 and raises =0 and calls =0 raisemax force    
+when stacksize <=9 and stilltoact =2 and raises =0 and calls =0 raisemax force    
+when stacksize <=13 and stilltoact =1 and raises =0 and calls =0 raisemax force    
+     
+when (stacksize <=13 and (hand = KQ suited or hand = KJ suited or hand = KT suited or hand = K9 suited or hand = QJ suited or hand = QT suited or hand = Q9 suited or hand = JT suited or hand = J9 suited or hand = T9 suited))      
+when stacksize <=8 and stilltoact <=9 and raises =0 and calls =0 raisemax force    
+when stacksize <=10 and stilltoact <6 and raises =0 and calls =0 raisemax force    
+when stacksize <=13 and stilltoact =3 and raises =0 and calls =0 raisemax force      
+when stacksize <=13 and stilltoact =2 and raises =0 and calls =0 raisemax force    
+when stacksize <=13 and stilltoact =1 and raises =0 and calls =0 raisemax force
+   
+when (stacksize <=13 and (hand = K8 suited or hand = K7 suited or hand = K6 suited or hand = K5 suited or hand = K4 suited or hand = Q8 suited or hand = J8 suited or hand = T8 suited or hand = 98 suited))      
+when stacksize <=5 and stilltoact <=9 and raises =0 and calls =0 raisemax force    
+when stacksize <=6 and stilltoact <6 and raises =0 and calls =0 raisemax force    
+when stacksize <=8 and stilltoact =3 and raises =0 and calls =0 raisemax force    
+when stacksize <=9 and stilltoact =2 and raises =0 and calls =0 raisemax force    
+when stacksize <=13 and stilltoact =1 and raises =0 and calls =0 raisemax force    
+   
+when (stacksize <=13 and (hand = KQ or hand = KJ or hand = KT or hand = QJ or hand = QT or hand = JT))      
+when stacksize <=5 and stilltoact <=9 and raises =0 and calls =0 raisemax force    
+when stacksize <=8 and stilltoact <6 and raises =0 and calls =0 raisemax force    
+when stacksize <=10 and stilltoact =3 and raises =0 and calls =0 raisemax force
+when stacksize <=10 and stilltoact =2 and raises =0 and calls =0 raisemax force    
+when stacksize <=13 and stilltoact =1 and raises =0 and calls =0 raisemax force    
+ 
+when (stacksize <=13 and (hand = Q7 suited or hand = Q6 suited))      
+when stacksize <=4 and stilltoact <=9 and raises =0 and calls =0 raisemax force    
+when stacksize <=5 and stilltoact <6 and raises =0 and calls =0 raisemax force    
+when stacksize <=6 and stilltoact =3 and raises =0 and calls =0 raisemax force    
+when stacksize <=7 and stilltoact =2 and raises =0 and calls =0 raisemax force    
+when stacksize <=13 and stilltoact =1 and raises =0 and calls =0 raisemax force    
+
+when (stacksize <=13 and (hand = 97 suited or hand = 96 suited or hand = 86 suited or hand = 76 suited or hand = 75 suited or hand = 65 suited))      
+when stacksize <=4 and stilltoact <=9 and raises =0 and calls =0 raisemax force    
+when stacksize <=5 and stilltoact <6 and raises =0 and calls =0 raisemax force    
+when stacksize <=6 and stilltoact =3 and raises =0 and calls =0 raisemax force    
+when stacksize <=7 and stilltoact =2 and raises =0 and calls =0 raisemax force    
+when stacksize <=13 and stilltoact =1 and raises =0 and calls =0 raisemax force    
+
+
+//(rebound) raised before you and not in the blinds
+
+when (stacksize <=13 and (hand= AA or hand = KK or hand = QQ or hand = JJ))      
+when stilltoact >2 and raises =1 and calls >=0 raisemax force    
+
+when (stacksize <=13 and (hand = TT or hand = 99))      
+when stacksize <=8 and stilltoact >5 and raises =1 and calls >=0 raisemax force
+when stacksize <=9 and stilltoact =4 or stilltoact =5 and raises =1 and calls >=0 raisemax force    
+when stacksize <=11 and stilltoact =3 and raises =1 and calls >=0 raisemax force    
+
+when (stacksize <=13 and (hand = 88 or hand = 77))      
+when stacksize <=5 and stilltoact =4 or stilltoact =5 and raises =1 and calls >=0 raisemax force    
+when stacksize <=7 and stilltoact =3 and raises =1 and calls >=0 raisemax force    
+
+when (stacksize <=13 and (hand = AK))      
+when stilltoact >2 and raises =1 and calls >=0 raisemax force    
+
+when (stacksize <=13 and (hand = AQ))    
+when stacksize <=8 and stilltoact >5 and raises =1 and calls >=0 raisemax force  
+when stacksize <=9 and stilltoact =4 or stilltoact =5 and raises =1 and calls >=0 raisemax force    
+when stacksize <=11 and stilltoact =3 and raises =1 and calls >=0 raisemax force
+
+when (stacksize <=13 and (hand = AJ suited or hand = AT suited))    
+when stacksize <=6 and stilltoact =4 or stilltoact =5 and raises =1 and calls >=0 raisemax force    
+when stacksize <=9 and stilltoact =3 and raises =1 and calls >=0 raisemax force
+
+when (stacksize <=13 and (hand = AJ))            
+when stacksize <=5 and stilltoact =4 or stilltoact =5 and raises =1 and calls >=0 raisemax force    
+when stacksize <=7 and stilltoact =3 and raises =1 and calls >=0 raisemax force
+
+when (stacksize <=13 and (hand = AT or hand = A9 suited ))            
+when stacksize <=6 and stilltoact =3 and raises =0 and calls =0 raisemax force
+
+
+//(rebound) raised before you and  in the small blind blinds
+
+when stilltoact =1 and (stacksize <=13 and (hand= AA or hand = KK or hand = QQ or hand = JJ))      
+when raises =1 and calls >=0 raisemax force    
+
+when stilltoact =1 and (stacksize <=13 and (hand= TT or hand = 99))      
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force  
+
+when stilltoact =1 and (stacksize <=13 and (hand= 88 or hand = 77))        
+when stacksize <=7 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force  
+
+when stilltoact =1and (stacksize <=13 and (hand= 66 or hand = 55))        
+when stacksize <=5 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=8 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force
+
+when stilltoact =1 and (stacksize <=13 and (hand = AK))      
+when raises =1 and calls >=0 raisemax force    
+
+when stilltoact =1 and (stacksize <=13 and (hand = AQ))    
+when raises =1 and calls >=0 and not (lastraiserposition >5) raisemax force
+
+when stilltoact =1 and (stacksize <=13 and (hand= AJ suited or hand = AT suited))        
+when stacksize <=7 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force
+
+when stilltoact =1 and (stacksize <=13 and (hand= AJ))        
+when stacksize <=6 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force
+
+when stilltoact =1 and (stacksize <=13 and (hand= AT or hand= A9 suited))        
+when stacksize <=4 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=8 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=10 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force
+
+when stilltoact =1 and (stacksize <=13 and (hand = A8 suited  or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A9 or hand = A8 or hand = A7))      
+when stacksize <=4 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=6 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force
+
+when stilltoact =1 and (stacksize <=13 and (hand= KQ or hand= KJ suited))        
+when stacksize <=4 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=6 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force
+
+
+// (rebound) raised before you and in the big blind blinds
+
+when stilltoact =0 and (stacksize <=13 and (hand= AA or hand = KK or hand = QQ or hand = JJ))      
+when raises =1 and calls >=0 raisemax force    
+
+when stilltoact =0  and (stacksize <=13 and (hand= TT or hand = 99))      
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition <=3) raisemax force
+
+when stilltoact =0 and (stacksize <=13 and (hand= 88 or hand = 77))        
+when stacksize <=8 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition <=3) raisemax force
+
+when stilltoact =0 and (stacksize <=13 and (hand= 66 or hand = 55))        
+when stacksize <=5 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=8 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=10 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =1) raisemax force
+
+when stilltoact =0 and (stacksize <=13 and (hand= 44 or hand = 33))        
+when stacksize <=4 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=5 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=6 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force
+when stacksize <=7 and raises =1 and calls >=0 and (lastraiserposition =1) raisemax force
+
+when stilltoact =0  and (stacksize <=13 and (hand = AK))      
+when raises =1 and calls >=0 raisemax force    
+
+when stilltoact =0  and (stacksize <=13 and (hand = AQ))    
+when raises =1 and calls >=0 and not (lastraiserposition >5) raisemax force
+
+when stilltoact =0 and (stacksize <=13 and (hand= AJ suited or hand = AT suited))        
+when stacksize <=7 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition <=3) raisemax force
+
+when stilltoact =0 and (stacksize <=13 and (hand= AJ))        
+when stacksize <=7 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition <=3) raisemax force
+
+when stilltoact =0 and (stacksize <=13 and (hand= AT or hand= A9 suited))        
+when stacksize <=6 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=10 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition <=2) raisemax force
+
+when stilltoact =0 and (stacksize <=13 and (hand = A8 suited  or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A9 or hand = A8 or hand = A7))      
+when stacksize <=3 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=6 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=8 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =1) raisemax force
+
+when stilltoact =0 and (stacksize <=13 and (hand = A3 suited  or hand = A2 suited or hand = A6 or hand = A5 or hand = A4 or hand = A3 or hand = A2))      
+when stacksize <=2 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=5 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=6 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force
+when stacksize <=8 and raises =1 and calls >=0 and (lastraiserposition =1) raisemax force
+
+when stilltoact =0 and (stacksize <=13 and (hand= KQ or hand= KJ suited))        
+when stacksize <=4 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=5 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=8 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force
+when stacksize <=13 and raises =1 and calls >=0 and (lastraiserposition =1) raisemax force
+
+when stilltoact =0 and (stacksize <=13 and (hand = KT suited or hand = K9 suited or hand = QJ suited or hand = KJ or hand = KT))        
+when stacksize <=3 and raises =1 and calls >=0 and (lastraiserposition =4 or lastraiserposition =5) raisemax force
+when stacksize <=4 and raises =1 and calls >=0 and (lastraiserposition =3) raisemax force
+when stacksize <=6 and raises =1 and calls >=0 and (lastraiserposition =2) raisemax force
+when stacksize <=10 and raises =1 and calls >=0 and (lastraiserposition =1) raisemax force
+
+
+when others  
+when others fold force
+
+
+
+flop
+
+// *You should bet about 2/3 pot-size on the flop.  
+
+// when you have to put more than half your chips in the pot
+when totalinvested >100% stacksize raisemax force
+
+// slowplay monsters
+when position = first  
+when (havefullhouse or havequads) call force  
+
+//play strong with top pair or better
+when botraisedbeforeflop and (havetoppair and havebestkicker) betpot force
+when botraisedbeforeflop and (haveoverpair or havetwopair or haveset or havetrips or havestraight or haveflush or havefullhouse or havequads) betpot force        
+when not botraisedbeforeflop and (havetwopair or haveset or havetrips or havestraight or haveflush or havefullhouse or havequads) call force        
+
+// when to bluff
+When botraisedbeforeflop and not (havetoppair or haveoverpair or havetwopair or haveset or havetrips or havestraight or haveflush or havefullhouse or havequads)
+When opponents >=2 and bets >=0 and raises >=0 fold force
+When opponents =1 and bets =0 and raises =0 BetPot force
+
+When not (botraisedbeforeflop) and not (havetoppair or haveoverpair or havetwopair or haveset or havetrips or havestraight or haveflush or havefullhouse or havequads)
+When opponents >=2 and bets >=0 and raises >=0 fold force
+When opponents =1 and bets =0 and raises =0 and uncoordinatedflop BetPot force
+When opponents =1 and bets =0 and raises =0 and not uncoordinatedflop call force
+When opponents =1 and bets =1 and raises >=0 and not uncoordinatedflop fold force
+
+// continuation bets
+when botislastraiser and opponents >=4    
+when (havefullhouse or havequads) call force    
+when (havestraightflush or havenutflush or havetrips or havenutstraight or haveset) betmin force    
+when opponents =2 and bets = 0 and not flushpossible and not (board = A  and straightpossible) call force    
+when opponents =1 and bets = 0 and not flushpossible call force    
+ 
+when botislastraiser and opponents <=3    
+when (havefullhouse or havestraightflush or havenutflush or havetrips or havenutstraight or haveset) betpot force    
+when opponents =2 and bets = 0 and not flushpossible and not (board = A  and straightpossible) betpot force    
+when opponents =1 and bets = 0 and not flushpossible betpot force    
+ 
+//draws
+when (haveflushdraw or havestraightdraw)  
+when stacksize >13 and bets =1 or raises =1 fold force
+when stacksize <=13 and bets <=1 or raises <=1 call force
+
+
+
+turn  
+
+// when you have to put more than half your chips in the pot
+when totalinvested >100% stacksize raisemax force
+
+when opponents >=2 and position = first and bets = 0  
+when not flushpossible and not paironboard and havenutstraight call force  
+when not paironboard and havenutflush call force  
+when not quadsonboard and not tripsonboard and not twopaironboard and havefullhouse call force  
+when not flushpossible and not paironboard and not straightpossible and haveset call force  
+ 
+when opponents >=2 and position = first and bets >= 1  
+when not flushpossible and not paironboard and havenutstraight raisemax force  
+when not paironboard and havenutflush and not StraightFlushPossibleByOthers raisemax force  
+when not quadsonboard and not tripsonboard and not twopaironboard and havefullhouse raisemax force  
+when not flushpossible and not paironboard and not straightpossible and haveset raisemax force  
+ 
+when opponents =1 and position = first and bets =0 and raises = 0 and nobettingonflop  
+when not onecardflushpossible and not onecardstraightpossible and not havebestkickerorbetter and (hand = 2 or hand = 3 or hand = 4 or hand = 5 or hand = 6 or hand = 7) betpotforce  
+ 
+when opponents =1 and position = first and bets =1 and raises = 0 and betsize <= 7 and nobettingonflop  
+when not onecardflushpossible and not onecardstraightpossible and not paironflop and (hand = 8 or hand = 9) raisepot force  
+when betsize < 30% potsize and HaveBestKickerOrBetter call force  
+ 
+when opponents =1 and position = last and bets =1 and raises = 0 and betsize < 50% potsize and nobettingonflop  
+when not paironboard and not onecardflushpossible and not onecardstraightpossible and haveflushdraw raisemin force    
+when paironflop and not onecardflushpossible and not onecardstraightpossible and not havebestkickerorbetter and (hand = 2 or hand = 3 or hand = 4 or hand = 5 or hand = 6 or hand = 7) raiseminforce  
+
+when opponents = 1 and position = last and bets = 1 and raises = 0  
+when not onecardflushpossible and not onecardstraightpossible and havetrips and overcards = 1 raisemax force  
+when not havepair and not havequads and not haveset and not havetrips and (haveflushdraw or havestraightdraw) and betsize > 50% potsize and overcards <=1 fold force  
+
+
+river
+
+// when you have to put more than half your chips in the pot
+when totalinvested >100% stacksize raisemax force
+
+when tripsonboard and not (nutfullhouseorfourofakind = 1 or nutfullhouseorfourofakind = 2 or havequads or havestraightflush) and betsize > 6 fold force
+
+when twopaironboard and not (nutfullhouseorfourofakind = 1 or nutfullhouseorfourofakind = 2 or nutfullhouseorfourofakind = 3 or havequads or havestraightflush) and betsize > 6 fold force
+
+when quadsonboard and not havebestkicker fold force
+
+when quadsonboard and havebestkicker raisemin force
+
+when paironboard and not (flushpossible or straightpossible or board = A or board = K or board = Q) and havetrips and raises = 1 and betsize > 15 call force
+
+when paironboard and not (flushpossible or straightpossible) and (board = A or board = K or board = Q) and havetrips and havebestkicker and raises = 1 call force  
+
+When opponents = 1 and havepair and not (haveset or havequads or havetrips or havefullhouse or havetwopair or havestraight or haveflush or havetoppair or haveoverpair or paironboard or onecardflushpossible or onecardstraightpossible) and betsize < 60% potsize and betsize < 18% stacksize call force
+
+When opponents = 1 and flushpossible and not (paironboard or onecardflushpossible or onecardstraightpossible)
+when havetoppair and (not havebestkicker) and bets = 0 call force
+when havetoppair and bets = 1 and betsize < 100% potsize and betsize < 15 call force
+
+When opponents = 1 and paironboard and straightpossible and not (flushpossible or onecardstraightpossible)
+when havenutstraight and bets = 1 raisepot force  

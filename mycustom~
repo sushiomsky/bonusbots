@@ -1,0 +1,46 @@
+custom
+
+Preflop
+When StartingStackSize < 130% StackSize user_supertightPlay
+When StartingStackSize > 80% StackSize user_agroPlay
+
+//Sklansky Hand Groups
+When (Hand = AA or Hand = AK Suited or Hand = KK  or Hand = QQ or Hand = JJ) User_HandGroup_1
+When (Hand = AK or Hand = AQ Suited  or Hand = AJ  Suited or Hand = KQ  Suited or Hand = TT) User_HandGroup_2
+When (Hand = AQ or Hand = AT Suited  or Hand = KJ  Suited or Hand = QJ  Suited or Hand = TJ  Suited or Hand = 99) User_HandGroup_3
+When (Hand = AJ or Hand = KQ or Hand = KT Suited or Hand = QT Suited or Hand = J9 Suited or Hand = T9 Suited or Hand = 98 Suited or Hand = 88) User_HandGroup_4
+When (Hand = A Suited or Hand = KJ or Hand = QJ or Hand = JT or Hand = Q9  Suited or Hand = T8 Suited or Hand = 97 Suited or Hand = 87 Suited or Hand = 77 or Hand = 76 Suited or Hand = 66) User_HandGroup_5
+When (Hand = AT or Hand = KT or Hand = QT or Hand = J8 Suited or Hand = 86 Suited or Hand = 75 Suited or Hand = 65 Suited or Hand = 55 or Hand = 54 Suited) User_HandGroup_6
+When (Hand = K Suited or Hand = J9 or Hand = T9 or Hand = 98 or Hand = 64 Suited or Hand = 53 Suited or Hand = 44 or Hand = 43 Suited or Hand = 33 or Hand = 22) User_HandGroup_7
+When (Hand = A9 or Hand = K9 or Hand = Q9 or Hand = J8 or Hand = J7 Suited or Hand = T8 or Hand = 96 Suited or Hand = 87 or Hand = 85 Suited or Hand = 76 or Hand = 74 Suited or Hand = 65 or Hand = 54 or Hand = 42 Suited or Hand = 32 Suited) User_HandGroup_8
+When not(User_HandGroup_1 or User_HandGroup_2 or User_HandGroup_3 or User_HandGroup_4 or User_HandGroup_5 or User_HandGroup_6 or User_HandGroup_7 or User_HandGroup_8) User_HandGroup_9
+
+//////////////////
+///1.handgruppe -> spiel///
+//////////////////
+when User_HandGroup_1 and raises > 1 raisemax force
+when User_HandGroup_1 and insmallblind and raises = 0 and calls = 0 raisemin force
+when User_HandGroup_1 and inbigblind and raises = 0 raisemin force
+when User_HandGroup_1 and inbigblind and raises = 0 and calls = 1 raisemin force
+when User_HandGroup_1 call force
+
+//////////////////
+///2.handgruppe///
+//////////////////
+When User_HandGroup_2 and raises > 1 and AmountToCall > 2 fold force 
+When User_HandGroup_2 and position = first and stacksize < 25 raise 10 force
+When User_HandGroup_2 and position = middle and stacksize < 20 raise 5 force
+When User_HandGroup_2 and position = last and stacksize < 15 raisemax force
+
+
+
+///////////////////
+////When others////
+///////////////////
+When BetSize < 2% StackSize call force
+
+flop
+
+turn
+
+river

@@ -1,0 +1,268 @@
+MaxSessionHands = 10000 
+MaxSessionTime = 720 
+MaxStackSize = 30 
+BathroomBreakAfter = 98 
+BathroomBreakTime = 2 
+SitOutWhenOpponentsAreLessThan = 6 
+MakePotSizedPreFlopRaisesWhen = 6 
+FoldToPre-FlopRaisesForAQAJsKQ = OFF 
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = OFF 
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 2 
+FoldToPost-FlopRaisesWithPairedBoardsFor = 4 
+NeverBetTurnOrRiverWithHandBelow = 4 
+NeverBetFlopWithHandBelowMiddlePairWhen = 4 
+NeverBetFlopWithHandBelowMiddlePairStackSize = 4 
+NeverCallPairedBoardsWithHandBelow = 6 
+NeverCallFlushPossibleBoardsWithHandBelow = 6 
+FoldToPre-FlopRaiseWith55Or66When = 1 
+FoldToPre-FlopRaiseWith77Or88When = 1 
+FoldToPre-FlopRaiseWith99OrTTWhen = 1 
+FoldToPre-FlopRaiseWithJJOrQQWhen = 2 
+FoldToPre-FlopRaiseWithAKWhen = 1 
+FoldToPre-FlopRaiseWithAQsWhen = 1 
+FoldToPre-FlopRaiseWithAKsWhen = 1 
+FoldToPre-FlopRaiseWithKQsWhen = 1 
+SuperTightPlay = OFF 
+SemiSuperTightPlay = OFF 
+NoLimp = 15 
+AggressivePreFlop = 7 
+AggressivePostFlop = 3 
+AggressivePreFlopStackSize = 1000000 
+AggressivePostFlopStackSize = 1000000 
+MiningForSets = 0 
+PostFlopinBlindsOverride = 3 
+PreFlopReRaiseOverride = OFF 
+MinBetOverride = 6 
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5 
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000 
+ApplyFoldOrAllInAfter = 0 
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5 
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000 
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4 
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 90 
+Verbose = ON 
+AutoPlay = ON 
+UserDefinedGameType = 0 
+AutoRebuyAtUB = OFF 
+AlwaysAskForTableName = OFF 
+ 
+custom 
+	
+ 
+preflop    
+	
+ 
+// Short Stack Strategy Script from pokerstrategy.com coded by scout_the version 2.20 (based on lucky1 SSS Script 8-4-2009)
+
+
+//to do list:
+
+//if your bet is more than 75% of your stack Preflop you go directly all in 
+//Advance Play Option Calling on Button with no raisers and callers preflop and when no raise on flop bet halfpot
+//Implementing Custom Betsizing
+
+  
+
+ 
+// when invested more than 75 % of your stack go all-in  
+when totalinvested >=200% stacksize RaiseMax force    
+
+
+
+//handling re-raises 
+when botslastaction = raise and (hand = TT or hand = JJ or hand = QQ or hand = KK or hand = AA or hand = AK) raisemax force
+
+
+
+//ReSteals
+
+When In BigBlind and raises = 1 and calls = 0 and ( LastRaiserPosition = 1  or LastRaiserPosition = 2 )
+when (hand = TT or hand = 99 or hand = 88 or hand = AQ or hand = AJ) raisepot force
+
+When In SmallBlind and raises = 1 and calls = 0 and ( LastRaiserPosition = 2)
+when (hand = TT or hand = 99 or hand = 88 or hand = AQ or hand = AJ) raisepot force
+
+
+
+//Mining for Sets when more than 2 Callers, no Raisers and only in SmallBlind and on Button 
+When In SmallBlind and raises = 0 and calls > 2 
+when (hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+
+When In Button and raises = 0 and calls > 2 
+when (hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+
+
+ 
+// Starting hands to play 
+// When no one raises before you
+when raises =0 and stilltoact <=9 
+when (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK) raisepot force	
+ 
+when raises =0 and stilltoact <=6   
+when (hand = TT or hand = 99 or hand = AQ) raisepot force	
+
+   
+when raises =0 and stilltoact <=3   
+when (hand = 88 or hand = 77 or hand = AJ or hand = KQ) raisepot force	
+  
+
+// Steals
+ 
+when (hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) 
+	when stilltoact <=2 and raises=0 and calls=0 raisepot force
+
+when (hand = A) and not (hand = AA or hand = AK or hand = AQ or hand = AJ)
+	when stilltoact <=2 and raises=0 and calls=0 raisepot force  
+
+when (hand = KJ or hand = KT or hand = QJ or hand = QT or hand = JT) 
+	when stilltoact <=2 and raises=0 and calls=0 raisepot force  
+
+
+ 
+// when someone raises before you 
+// when exactly 1 opponent raises in front of you 
+when (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK)
+when raises =1 raisepot force
+
+  
+// when more than 1 opponent raises in front of you 
+when (hand = AA or hand = KK) 
+when raises >=2 raisemax force
+
+
+
+//Handling Min-Raises
+
+When raises = 1  and BetSize <= 2 
+when stilltoact <=6 and (hand = TT or hand = 99 or hand = AQ) raisepot force
+when stilltoact <=3 and (hand = 88 or hand = 77 or hand = AJ or hand = KQ) raisepot force
+
+
+
+
+// kill bot default programming & fold any other hand 
+when others    
+when others fold force    
+	
+ 
+  
+ 
+flop  
+  
+
+
+// when invested more than 75 % of your stack go all-in  
+when totalinvested >=200% stacksize RaiseMax force  
+
+
+
+ 
+// if you raised before the flop and the pot is greater than twice your chip stacksize at the beggining of betting round you go allin or if your bet is more than 50% of your stack you go directly all in  
+when BotRaisedBeforeFlop and potsize >= 100 and stacksize <= 50 raisemax force 
+when BotRaisedBeforeFlop and potsize >= 50 and stacksize <= 25 raisemax force 
+when BotRaisedBeforeFlop and potsize >= 30 and stacksize <= 15 raisemax force 
+when BotRaisedBeforeFlop and potsize >=20 and stacksize <=10 raisemax force 
+when BotRaisedBeforeFlop and potsize >=10 and stacksize <=5 raisemax force 
+ 
+
+
+
+//continuation bet with made hands
+when BotRaisedBeforeFlop and raises =0 and ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) bethalfpot force    
+when BotRaisedBeforeFlop and raises >0 and ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) raisemax force    
+
+
+ 
+
+//continuation bet with trash hands with only one opponent 
+when BotRaisedBeforeFlop and opponents =1 and bets =0 and raises =0 and not ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) bethalfpot force    
+
+
+
+//Handling Monsters from Freeplay
+when raises =0 and (havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) bethalfpot force    
+when raises >0 and (havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) raisemax force    
+
+
+
+
+
+//check or fold with trash hands with more than one opponent   
+when opponents >1 and not ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) fold force    
+
+
+
+
+//handling open ended straight and flush draws
+  
+when BotRaisedBeforeFlop and (haveflushdraw or havestraightdraw and not (HaveInsideStraightDraw)) and (amounttocall =0) betpot force	
+when BotRaisedBeforeFlop and (haveflushdraw or havestraightdraw and not (HaveInsideStraightDraw)) and (amounttocall >0) raisemax force 
+
+ 
+
+
+// kill bot default programming & fold any other hand 
+when others    
+when others fold force    
+ 
+ 
+ 
+ 
+turn	
+ 
+
+
+// when invested more than 75 % of your stack go all-in  
+when totalinvested >=200% stacksize RaiseMax force  
+ 
+
+
+//try to go all-in with made hands    
+when ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havefullhouse or havequads) and (amounttocall =0) betpot force    
+  
+when ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havefullhouse or havequads) and (amounttocall >0) raisemax force    
+
+
+
+//fold with trash hands   
+when not ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havefullhouse or havequads) fold force   
+
+
+
+//handling open ended straight and flush draws
+  
+when BotRaisedBeforeFlop and (haveflushdraw or havestraightdraw and not (HaveInsideStraightDraw)) and (amounttocall =0) betpot force	
+when BotRaisedBeforeFlop and (haveflushdraw or havestraightdraw and not (HaveInsideStraightDraw)) and (amounttocall >0) raisemax force 
+
+
+
+// kill bot default programming & fold any other hand 
+when others    
+when others fold force    
+ 
+ 
+ 
+ 
+river	
+
+
+// when invested more than 75 % of your stack go all-in  
+when totalinvested >=200% stacksize RaiseMax force 
+
+
+
+//try to go all-in with made hands    
+when ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havefullhouse or havequads) and (amounttocall =0) betpot force    
+  
+when ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havefullhouse or havequads) and (amounttocall >0) raisemax force    
+
+
+
+//fold with trash hands   
+when not ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havefullhouse or havequads) fold force   
+
+
+   
+// kill bot default programming & fold any other hand 
+when others    
+when others fold forc

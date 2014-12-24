@@ -1,0 +1,862 @@
+MaxSessionHands = 100000
+MaxSessionTime = 10000
+MaxStackSize = 150
+BathroomBreakAfter = 107
+BathroomBreakTime = 2
+SitOutWhenOpponentsAreLessThan = 2
+MakePotSizedPreFlopRaisesWhen = 5
+FoldToPre-FlopRaisesForAQAJsKQ = OFF
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = OFF
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 1
+FoldToPost-FlopRaisesWithPairedBoardsFor = 4
+NeverBetTurnOrRiverWithHandBelow = 1
+NeverBetFlopWithHandBelowMiddlePairWhen = 1
+NeverBetFlopWithHandBelowMiddlePairStackSize = 10000000
+NeverCallPairedBoardsWithHandBelow = 5
+NeverCallFlushPossibleBoardsWithHandBelow = 3
+FoldToPre-FlopRaiseWith55Or66When = 1
+FoldToPre-FlopRaiseWith77Or88When = 3
+FoldToPre-FlopRaiseWith99OrTTWhen = 3
+FoldToPre-FlopRaiseWithJJOrQQWhen = 3
+FoldToPre-FlopRaiseWithAKWhen = 3
+FoldToPre-FlopRaiseWithAQsWhen = 3
+FoldToPre-FlopRaiseWithAKsWhen = 3
+FoldToPre-FlopRaiseWithKQsWhen = 2
+SuperTightPlay = OFF
+SemiSuperTightPlay = OFF
+NoLimp = 15
+AggressivePreFlop = 7
+AggressivePostFlop = 2
+AggressivePreFlopStackSize = 1000000
+AggressivePostFlopStackSize = 30
+MiningForSets = 5
+PostFlopinBlindsOverride = 3
+PreFlopReRaiseOverride = OFF
+MinBetOverride = 6
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000
+AlwaysCallWhenOpponentsRaiseIsLessThan = 2
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 75
+Verbose = ON
+AutoPlay = ON
+UserDefinedGameType = 0
+UseOcrAtFullTilt = OFF
+AutoRebuyAtUB = OFF
+AlwaysAskForTableName = OFF
+EnableFoldInTurn = ON
+custom
+preflop
+When OpponentIsAllIn  and ( PairInHand  or hand = A K or hand = AQ suited )  and not ( hand = 2 2  or hand = 3 3  or hand = 4 4  or hand = 5 5  or hand = 6 6) 
+When BotsLastAction = raise  and BetSize < 12 call force
+When BetSize < 8 call force
+When potsize > 20 and betsize < 11 call force
+When potsize > 25 and betsize < 13 call force
+When potsize > 30 and betsize < 16 call force
+When potsize > 35 and betsize < 18 call force
+When potsize > 40 and betsize < 21 call force
+When potsize > 50 and betsize < 26 call force
+When Others fold force
+
+When hand = A A 
+When raises = 0 raise 150% force
+When raises = 1 RaisePot force
+When raises >= 2 RaiseMax force
+When hand = K K 
+When raises = 0 raise 150% force
+When raises = 1 RaisePot force
+When raises >= 2 RaiseMax force
+
+When hand = Q Q 
+When raises = 1  and botslastaction = none and BetSize >= 30 call force  
+When raises = 1  and botslastaction = none and BetSize < 50% potsize and stilltoact <=3 RaisePot force// This is more controlled incase get outdrawn on flop as it acccounts for position and will only reraise when bet is weak ie less than pot (opponents bet is counted in pot hence 50%)....
+When raises > 2 fold force  
+When raises <= 2  and calls >= 0 RaisePot force  
+When BotsLastAction = raise  and BetSize <= 30 call force  
+When BotsLastAction = raise  and BetSize > 30 fold force
+When Others fold force
+
+When hand = J J 
+When raises = 1  and botslastaction = none and BetSize >= 30 call force  
+When raises = 1  and botslastaction = none and BetSize < 50% potsize and stilltoact <=3 RaisePot force// This is more controlled incase get outdrawn on flop as it acccounts for position and will only reraise when bet is weak ie less than pot (opponents bet is counted in pot hence 50%)....
+When raises > 1 fold force  
+When raises = 0  and calls >= 0 RaisePot force  
+When BotsLastAction = raise  and BetSize <= 30 call force  
+When BotsLastAction = raise  and BetSize > 30 fold force
+When Others fold force
+
+When hand = T T  
+When raises = 1  and botslastaction = none and BetSize >= 30 call force  
+When raises = 1  and botslastaction = none and BetSize < 50% potsize and stilltoact <=3 RaisePot force// This is more controlled incase get outdrawn on flop as it acccounts for position and will only reraise when bet is weak ie less than pot (opponents bet is counted in pot hence 50%)....
+When raises > 1 fold force  
+When raises = 0  and calls >= 0 RaisePot force  
+When BotsLastAction = raise  and BetSize <= 30 call force  
+When BotsLastAction = raise  and BetSize > 30 fold force
+When Others fold force
+
+When hand = A K suited 
+When raises = 1  and BetSize >= 30 call force
+When raises = 1  and BetSize < 30 RaisePot force
+When raises > 1 fold force
+When raises = 0  and calls >= 0 RaisePot force
+When BotsLastAction = raise  and BetSize <= 30 call force
+When BotsLastAction = raise  and BetSize > 30 fold force
+When Others fold force
+
+When hand = A K 
+When raises = 1  and BetSize > 10 fold force
+When raises = 1  and BetSize < 10 RaisePot force
+When raises > 1  and BetSize > 15 fold force
+When raises = 0  and calls >= 0 RaisePot force
+When BotsLastAction = raise  and BetSize <= 15 call force
+When BotsLastAction = raise  and BetSize > 15 fold force
+When Others fold force
+
+When hand = A Q suited 
+When raises = 1  and BetSize > 10 fold force
+When raises = 1  and BetSize < 10 RaisePot force
+When raises > 1  and BetSize > 15 fold force
+When raises = 0  and calls >= 0 RaisePot force
+When BotsLastAction = raise  and BetSize <= 15 call force
+When BotsLastAction = raise  and BetSize > 15 fold force
+When Others fold force
+
+When hand = A Q 
+When raises = 1  and BetSize > 10 fold force
+When raises = 1  and BetSize < 10 RaisePot force
+When raises > 1  and BetSize > 15 fold force
+When raises = 0  and calls >= 0 RaisePot force
+When BotsLastAction = raise  and BetSize <= 15 call force
+When BotsLastAction = raise  and BetSize > 15 fold force
+When Others fold force
+
+When hand = 9 9 
+when botslastaction = raise and betsize < 6 call force
+when botslastaction = call and betsize < 4 call force
+when calls = 0 and stilltoact <= 3 and random <= 50 raisepot force
+When raises = 0  and BetSize = 1 raise 120% force
+When raises <= 2  and BetSize >= 1 call force
+When Others fold force
+
+When hand = 8 8 
+when botslastaction = raise and betsize < 6 call force
+when botslastaction = call and betsize < 4 call force
+When raises = 0  and BetSize = 1 raise 120% force
+When raises <= 2  and BetSize >= 1 call force
+When Others fold force
+
+When hand = 7 7 
+when botslastaction = raise and betsize < 6 call force
+when botslastaction = call and betsize < 4 call force
+When raises = 0  and BetSize = 1 raise 120% force
+When raises <= 2  and BetSize >= 1 call force
+When Others fold force
+
+When hand = 6 6 
+when botslastaction = raise and betsize < 4 call force
+when botslastaction = call and betsize < 4 call force
+When raises <= 2  and BetSize >= 1 call force
+When Others fold force
+
+When hand = 5 5 
+When BotsLastAction = raise  and BetSize > 3 call force
+When raises = 0  and BetSize = 1 raise 120% force
+When raises = 2  and BetSize = 1 fold force
+When Others fold force
+
+When hand = 4 4 
+when botslastaction = raise and betsize < 4 call force
+when botslastaction = call and betsize < 4 call force
+When raises = 0  and BetSize = 1 raise 120% force
+When raises <= 2  and BetSize = 1 call force
+When Others fold force
+
+When hand = 3 3 
+when botslastaction = raise and betsize < 4 call force
+when botslastaction = call and betsize < 4 call force
+When raises = 0  and BetSize = 1 raise 120% force
+When raises <= 2  and BetSize = 1 call force
+When Others fold force
+
+When hand = 2 2 
+when botslastaction = raise and betsize < 4 call force
+when botslastaction = call and betsize < 4 call force
+When raises = 0  and BetSize = 1 raise 120% force
+When raises <= 2  and BetSize = 1 call force
+When Others fold force
+
+When hand = A J suited 
+When raises = 1  and BetSize > 10 fold force
+When raises = 1  and BetSize < 10 RaisePot force
+When raises > 1  and BetSize > 15 fold force
+When raises = 0  and calls >= 0 RaisePot force
+When BotsLastAction = raise  and BetSize <= 15 call force
+When BotsLastAction = raise  and BetSize > 15 fold force
+When Others fold force
+
+When hand = A J 
+When raises = 0  and BetSize = 1 RaisePot force
+When raises = 1  and BetSize >= 1 fold force
+When hand = A T suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 call force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 call force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = A T 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = A 9 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = A 8 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = A 7 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = A 6 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = A 5 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = A 4 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = A 3 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = A 2 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = K Q suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 call force
+When StillToAct = 3  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 1  and BetSize = 1 call force
+When StillToAct = 3  and raises = 0  and BetSize = 1 raise 120% force
+When StillToAct = 4  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 call force
+When StillToAct = 4  and raises = 0  and BetSize = 1 raise 120% force
+When StillToAct = 5  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 5  and raises >= 1  and BetSize = 1 call force
+When StillToAct = 5  and raises = 0  and BetSize = 1 raise 120% force
+When Others fold force
+When hand = K Q 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 call force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 call force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 call force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 call force
+When StillToAct = 5  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 5  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = K J suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 5  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 5  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = K J 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 5  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 5  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = K T suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 5  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 5  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = K T 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 call force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 call force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 call force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = K 9 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 call force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 call force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 call force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = Q J suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = Q J 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = Q T suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = Q 9 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 call force
+When In Button  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = T 9 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 raise 120% force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 0  and BetSize = 1 RaisePot force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 0  and BetSize = 1 RaisePot force
+When Others fold force
+When hand = T 8 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = Q 8 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = J T suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 call force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 call force
+When In Button  and raises = 0  and BetSize = 1 call force
+When In SmallBlind  and raises >= 1  and BetSize = 1 fold force
+When In SmallBlind  and raises = 0  and BetSize = 1 call force
+When StillToAct = 3  and raises >= 1  and BetSize = 1 call force
+When StillToAct = 3  and raises = 0  and BetSize = 1 call force
+When StillToAct = 4  and raises >= 1  and BetSize = 1 call force
+When StillToAct = 4  and raises = 0  and BetSize = 1 call force
+When StillToAct = 5  and raises >= 1  and BetSize = 1 call force
+When StillToAct = 5  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = J T 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = J 9 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = J 8 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 fold force
+When In Button  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = T 9 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 call force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 call force
+When In Button  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = T 8 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 call force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 call force
+When In Button  and raises = 0  and BetSize = 1 call force
+When Others fold force
+When hand = 9 8 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 call force
+When In Button  and raises = 0  and BetSize = 1 call force
+When StillToAct = 3  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 1  and BetSize = 1 call force
+When StillToAct = 3  and raises = 0  and BetSize = 1 raise 120% force
+When StillToAct = 4  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 1  and BetSize = 1 call force
+When StillToAct = 4  and raises = 0  and BetSize = 1 raise 120% force
+When StillToAct = 5  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 5  and raises = 1  and BetSize = 1 call force
+When StillToAct = 5  and raises = 0  and BetSize = 1 raise 120% force
+When Others fold force
+When hand = 8 7 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 call force
+When In Button  and raises = 0  and BetSize = 1 call force
+When StillToAct = 3  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 1  and BetSize = 1 call force
+When StillToAct = 3  and raises = 0  and BetSize = 1 raise 120% force
+When StillToAct = 4  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 1  and BetSize = 1 call force
+When StillToAct = 4  and raises = 0  and BetSize = 1 raise 120% force
+When StillToAct = 5  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 5  and raises = 1  and BetSize = 1 call force
+When StillToAct = 5  and raises = 0  and BetSize = 1 raise 120% force
+When Others fold force
+When hand = 7 6 suited 
+When In Button  and raises >= 1  and BetSize = 1 call force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 call force
+When In Button  and raises = 0  and BetSize = 1 call force
+When StillToAct = 3  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 1  and BetSize = 1 call force
+When StillToAct = 3  and raises = 0  and BetSize = 1 raise 120% force
+When StillToAct = 4  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 1  and BetSize = 1 call force
+When StillToAct = 4  and raises = 0  and BetSize = 1 raise 120% force
+When StillToAct = 5  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 5  and raises = 1  and BetSize = 1 call force
+When StillToAct = 5  and raises = 0  and BetSize = 1 raise 120% force
+When Others fold force
+When hand = 6 5 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 call force
+When In Button  and raises = 0  and BetSize = 1 call force
+When StillToAct = 3  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 1  and BetSize = 1 call force
+When StillToAct = 3  and raises = 0  and BetSize = 1 raise 120% force
+When StillToAct = 4  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 1  and BetSize = 1 call force
+When StillToAct = 4  and raises = 0  and BetSize = 1 raise 120% force
+When StillToAct = 5  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 5  and raises = 1  and BetSize = 1 call force
+When StillToAct = 5  and raises = 0  and BetSize = 1 raise 120% force
+When Others fold force
+When hand = 5 4 suited 
+When In BigBlind  and raises >= 1  and BetSize = 1 fold force
+When In BigBlind  and raises = 0  and BetSize = 1 call force
+When In Button  and raises >= 1  and BetSize = 1 call force
+When In Button  and raises = 0  and BetSize = 1 call force
+When StillToAct = 3  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 3  and raises = 1  and BetSize = 1 call force
+When StillToAct = 3  and raises = 0  and BetSize = 1 raise 120% force
+When StillToAct = 4  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 4  and raises = 1  and BetSize = 1 call force
+When StillToAct = 4  and raises = 0  and BetSize = 1 raise 120% force
+When StillToAct = 5  and raises > 1  and BetSize = 1 fold force
+When StillToAct = 5  and raises = 1  and BetSize = 1 call force
+When StillToAct = 5  and raises = 0  and BetSize = 1 raise 120% force
+When Others fold force
+When Others 
+
+flop
+When OpponentIsAllIn  and ( PairInHand  or hand = A K or hand = AQ suited )  and not ( hand = 2 2  or hand = 3 3  or hand = 4 4  or hand = 5 5  or hand = 6 6) 
+When BotsLastAction = raise  and BetSize < 12 call force
+When BetSize < 8 call force
+When potsize > 20 and betsize < 11 call force
+When potsize > 25 and betsize < 13 call force
+When potsize > 30 and betsize < 16 call force
+When potsize > 35 and betsize < 18 call force
+When potsize > 40 and betsize < 21 call force
+When potsize > 50 and betsize < 26 call force
+
+//Bill's Continuation Bets
+When BotRaisedBeforeFlop and BotIsLastRaiser and NotRaisesBeforeFlop and Bets = 0 and Raises = 0 and TotalInvested > 70% StackSize and ( HaveTopPair or HaveTwoPair or HaveTrips or HaveSet or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) RaiseMax Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents = 1 and Bets = 0 and Raises = 0 and Not Board = A and Not ( FlushPossible or Board = K K or Board = Q Q or MoreThanOneStraightPossibleOnFlop or TripsOnBoard ) and StillToAct = 0 and ( FlushPossibleOnTurn and HaveFlushDraw ) Raise 3 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents = 1 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and ( Hand = A K or Hand = A Q ) and Not RaisesBeforeFlop and StackSize > 15 and Not ( FlushPossible or StraightPossible or PairOnBoard ) Raise 5 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents = 1 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and ( HaveTopPair or HaveTwoPair or HaveOverPair ) and Not ( HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and FlushPossible Raise 4 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents = 1 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and Not ( HaveTopPair or HaveTwoPair or HaveOverPair ) and Not ( HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads or FlushPossible ) Raise 4 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents = 1 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and Hand = A and OverCards = 2 and Not ( FlushPossible or Board = K K or Board = Q Q or Board = J J or MoreThanOneStraightPossibleOnFlop or TripsOnBoard ) Raise 4 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents = 1 and Bets = 1 and Raises = 0 and Not OpponentIsAllIn and Hand = A and OverCards = 2 and Not ( FlushPossible or Board = K K or Board = Q Q or Board = J J or MoreThanOneStraightPossibleOnFlop or TripsOnBoard ) and BetSize <20% PotSize and StackSize > 50 Raise 4 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents = 1 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and Hand = A and OverCards = 2 and Not ( HavePair or HaveTwoPair or HaveSet or HaveTrips or HaveSet or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and Not ( FlushPossible or Board = K K or Board = Q Q or Board = J J or MoreThanOneStraightPossibleOnFlop or TripsOnBoard ) Raise 2 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents > 1 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and Not ( HaveTopPair or HaveTwoPair or HaveOverPair ) and Not ( HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads or FlushPossible ) and StillToAct = 0 Raise 4 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents > 1 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and Not ( HaveTopPair or HaveTwoPair or HaveOverPair ) and Not ( HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads or FlushPossible ) and StillToAct > 0 Call Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents > 1 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and Hand = A and OverCards = 2 and Not ( FlushPossible or Board = K K or Board = Q Q or Board = J J or MoreThanOneStraightPossibleOnFlop or TripsOnBoard ) and StillToAct = 0 Bet 4 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents = 1 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and Hand = A and OverCards = 2 and Not ( HavePair or HaveTwoPair or HaveSet or HaveTrips or HaveSet or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and Not ( FlushPossible or Board = K K or Board = Q Q or Board = J J or MoreThanOneStraightPossibleOnFlop or TripsOnBoard ) Raise 2 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents = 2 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and Hand = A and OverCards = 2 and Not ( HavePair or HaveTwoPair or HaveSet or HaveTrips or HaveSet or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and Not ( FlushPossible or Board = K K or Board = Q Q or Board = J J or MoreThanOneStraightPossibleOnFlop or TripsOnBoard ) Raise 50% Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents = 3 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and Hand = A and OverCards = 2 and Not ( HavePair or HaveTwoPair or HaveSet or HaveTrips or HaveSet or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and Not ( FlushPossible or Board = K K or Board = Q Q or Board = J J or MoreThanOneStraightPossibleOnFlop or TripsOnBoard ) Raise 40% Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents = 2 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and ( Hand = A K or Hand = A Q ) and Not RaisesBeforeFlop and StackSize > 20 and Not ( FlushPossible or StraightPossible or PairOnBoard ) and StackSize > 15 Raise 6 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents = 2 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and ( HaveTopPair or HaveTwoPair or HaveOverPair ) and Not ( HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and FlushPossible and StillToAct = 0 Raise 5 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents < 3 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not HaveUnderPair and Not RaisesBeforeFlop and Not ( HaveTopPair or HaveOverPair or HaveTwoPair or HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and Not ( FlushPossible or TripsOnBoard or Board = A or Board = K Q or TripsOnBoard or Board = K J or Board = Q J ) Raise 4 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents < 3 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and ( Have2ndTopPair or HaveBottomPair ) and Not RaisesBeforeFlop and Not ( HaveTopPair or HaveOverPair or HaveTwoPair or HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and Not ( FlushPossible or TripsOnBoard ) and ( Board = A or Board = K Q or Board = K J or Board = Q J ) Raise 3 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents < 3 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and Not ( HaveTopPair or HaveOverPair or HaveTwoPair or HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and StackSize > 11 and Board = A Raise 3 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents > 2 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and ( Hand = A K or Hand = A Q ) and Not RaisesBeforeFlop and StackSize > 20 and Not ( FlushPossible or StraightPossible or PairOnBoard ) and StackSize > 15 and StillToAct > 0 and Not ( HaveTopPair or HaveTwoPair or HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) Call Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents > 2 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and ( Hand = A K or Hand = A Q ) and Not RaisesBeforeFlop and StackSize > 20 and Not ( FlushPossible or StraightPossible or PairOnBoard ) and StillToAct > 0 and ( HaveTopPair or HaveTwoPair or HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) RaisePot Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents > 2 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and ( HaveTopPair or HaveTwoPair or HaveOverPair ) and Not ( HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and FlushPossible and HaveFlush RaisePot Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents > 2 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and ( HaveTopPair or HaveTwoPair or HaveOverPair ) and Not ( HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and FlushPossible and Not ( HaveFlush or HaveTwoPair ) Call Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents > 2 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and ( Have2ndTopPair or HaveBottomPair ) and Not RaisesBeforeFlop and Not ( HaveTopPair or HaveOverPair or HaveTwoPair or HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and Not ( FlushPossible or TripsOnBoard ) and ( Board = A or Board = K Q or Board = K J or Board = Q J ) and StillToAct = 0 Raise 2 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents > 3 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and Hand = A and OverCards = 2 and Not ( HavePair or HaveTwoPair or HaveSet or HaveTrips or HaveSet or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and Not ( FlushPossible or Board = K K or Board = Q Q or Board = J J or MoreThanOneStraightPossibleOnFlop or TripsOnBoard ) Call Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents > 3 and ( Bets = 1 or StillToAct > 1 ) and Raises = 0 and Not OpponentIsAllIn and Hand = A and OverCards = 2 and Not ( HavePair or HaveTwoPair or HaveSet or HaveTrips or HaveSet or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and Not ( FlushPossible or Board = K K or Board = Q Q or Board = J J or MoreThanOneStraightPossibleOnFlop or TripsOnBoard ) Fold Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Opponents > 2 and Opponents < 6 and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and Not ( HaveTopPair or HaveOverPair or HaveTwoPair or HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveFullHouse or HaveQuads ) and StackSize > 11 and Board = A and StillToAct = 0 Raise 4 Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Bets = 0 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and ( HaveTopPair or HaveOverPair or HaveTwoPair or HaveStraight or HaveSet or HaveFullHouse ) RaisePot Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Bets = 1 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and ( HaveTopPair or HaveOverPair or HaveTwoPair or HaveStraight or HaveSet or HaveFullHouse ) and AmountToCall <= 33% PotSize and StackSize > 50 Raise 50% Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Bets = 1 and Raises = 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and ( HaveTopPair or HaveOverPair or HaveTwoPair or HaveStraight or HaveSet or HaveFullHouse ) and AmountToCall > 33% PotSize and AmountToCall < 100% PotSize Call Force
+When BotRaisedBeforeFlop and BotIsLastRaiser and Bets >= 0 and Raises >= 0 and Not OpponentIsAllIn and PairInHand and Not RaisesBeforeFlop and ( HaveNutFlush or HaveQuads or HaveStraightFlush ) Call Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 0 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and ( HaveTopPair or HaveOverPair or HaveTwoPair or HaveStraight or HaveTrips ) RaisePot Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 0 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and ( HaveSet or HaveFullHouse ) Raise 6 Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 0 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and FlushPossible and Not HaveFlush Raise 3 Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 0 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and MoreThanOneStraightPossibleOnFlop and ( Board = A or Board = K or Board = Q or Board = J ) Raise 3 Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 0 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and ( HaveNutFlush or HaveQuads or HaveStraightFlush ) Call Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 1 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and ( HaveTopPair or HaveOverPair or HaveTwoPair or HaveStraight or HaveTrips ) and Not ( PairOnBoard or FlushPossible or StraightPossible ) and AmountToCall <= 40% PotSize RaisePot Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 1 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and ( HaveTopPair or HaveOverPair or HaveTwoPair or HaveStraight or HaveTrips ) and AmountToCall > 40% PotSize and AmountToCall < 100% StackSize and BetSize < 50% PotSize Call Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 1 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and ( HaveSet or HaveFullHouse ) Raise 6 Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 1 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and MoreThanOneStraightPossibleOnFlop and ( Board = A or Board = K or Board = Q or Board = J ) Raise 2 Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 1 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and HavePair and Not ( HaveTopPair or HaveOverPair ) and AmountToCall <= 29% PotSize Raise 5 Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 1 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and HavePair and Not ( HaveTopPair or HaveOverPair ) and AmountToCall > 29% PotSize and StackSize <=3 RaiseMax Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 1 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and HavePair and Not ( HaveTopPair ) and AmountToCall > 29% PotSize and StackSize >3 Fold Force
+When BotRaisedBeforeFlop and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 1 and raises = 0 and Not OpponentIsAllIn and Not ( HaveNutFlush or HaveQuads or HaveStraightFlush ) and ( HaveNutFlush or HaveQuads or HaveStraightFlush ) Call Force
+When BotRaisedBeforeFlop and Not OpponentIsAllIn and Not RaisesBeforeFlop and StackSize > 6 and Opponents <= 2 and bets = 1 and raises = 1 and Not ( HaveSet or HaveTrips or HaveStraight or HaveFlush or HaveNutFlush or HaveQuads or HaveStraightFlush ) Fold Force 
+
+When BotIsLastRaiser 
+When ( Position = First  or Position = Middle )  and ( HaveFlush  or HaveStraight  or HaveFullHouse  or HaveSet  or HaveTrips  or HaveTwoPair ) call force
+When ( Position = First  or Position = Middle )  and HaveTopPair raise 72% force
+When ( Position = First  or Position = Middle )  and not ( HavePair  or HaveFlush  or HaveStraight  or HaveFullHouse  or HaveSet  or HaveTrips ) fold force
+When Position = Last  and opponents = 1  and bets = 0  and not PairOnBoard raise 72% force
+When Position = First 
+When BotsLastAction = raise  and HaveTopPair  and not ( HaveBestKicker )  and not ( HaveTwoPair  or HaveFlush  or HaveStraight  or HaveFullHouse  or HaveSet  or HaveTrips )  and BetSize <= 5 call force
+When ( HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse ) call force
+When ( HaveStraight  or HaveFlush ) raise 72% force
+When HaveTrips  and SuitsOnBoard <= 2 raise 72% force
+When HaveTrips  and SuitsOnBoard = 3 call force
+When HaveSet  and SuitsOnBoard <= 2 raise 72% force
+When HaveSet  and SuitsOnBoard = 3 raise 72% force
+When HaveTopTwoPair  and not FlushPossible  and not PairOnBoard raise 72% force
+When HaveTwoPair  and not FlushPossible  and not PairOnBoard raise 72% force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and raises = 0 raise 72% force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and raises = 1 raise 72% force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and bets = 0 raise 72% force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and bets = 1 call force
+When HaveOverPair  and BotIsLastRaiser  and not FlushPossible raise 72% force
+When HaveOverPair  and not FlushPossible raise 72% force
+When HaveFlushDraw  and HaveStraightDraw call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and Overcards = 2  and bets = 0 call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and Overcards = 2  and bets = 1 call force
+When HaveNutFlushDraw  and ( PairOnBoard )  and BetSize <= 4 call force
+When HaveNutFlushDraw  and not ( PairOnBoard )  and BetSize <= 6 call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and BetSize <= 3 call force
+When HaveFlushDraw  and HavePair  and BetSize <= 5 call force
+When ( HavePair  or HaveInsideStraightDraw )  and bets <= 1  and BetSize <= 1 call force
+When bets >= 1  and not ( HavePair  or HaveFlush  or HaveStraight  or HaveFullHouse  or HaveSet  or HaveTrips ) fold force
+When Position = Middle 
+When BotsLastAction = raise  and HaveTopPair  and not ( HaveBestKicker )  and not ( HaveTwoPair  or HaveFlush  or HaveStraight  or HaveFullHouse  or HaveSet  or HaveTrips )  and BetSize <= 5 call force
+When ( HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse ) call force
+When ( HaveStraight  or HaveFlush ) raise 72% force
+When HaveTrips raise 72% force
+When HaveSet  and not FlushPossible raise 72% force
+When HaveTopTwoPair  and not FlushPossible  and not PairOnBoard raise 72% force
+When HaveTwoPair  and not FlushPossible  and not PairOnBoard raise 72% force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and raises = 0 raise 72% force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and raises = 1 raise 72% force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible raise 72% force
+When HaveOverPair  and BotIsLastRaiser  and not FlushPossible raise 72% force
+When HaveOverPair  and not FlushPossible raise 72% force
+When HaveFlushDraw  and HaveStraightDraw call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and Overcards = 2  and bets = 0 call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and Overcards = 2  and bets = 1 call force
+When HaveNutFlushDraw  and ( PairOnBoard )  and BetSize <= 4 call force
+When HaveNutFlushDraw  and not ( PairOnBoard )  and BetSize <= 6 call force
+When HaveFlushDraw  and HavePair  and BetSize <= 5 call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and BetSize <= 3 call force
+When HavePair  and bets <= 1  and BetSize <= 1 call force
+When bets >= 1  and not ( HavePair  or HaveFlush  or HaveStraight  or HaveFullHouse  or HaveSet  or HaveTrips ) fold force
+When Position = Last 
+When BotsLastAction = raise  and HaveTopPair  and not ( HaveBestKicker )  and not ( HaveTwoPair  or HaveFlush  or HaveStraight  or HaveFullHouse  or HaveSet  or HaveTrips )  and BetSize <= 5 call force
+When BotsLastAction = raise  and HaveTwoPair  and FlushPossible  and BetSize <= 8 call force
+When ( HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse ) call force
+When ( HaveStraight  or HaveFlush ) raise 72% force
+When HaveTrips  and not FlushPossible raise 72% force
+When HaveSet  and not FlushPossible raise 72% force
+When HaveTopTwoPair  and not FlushPossible  and not PairOnBoard raise 72% force
+When HaveTwoPair  and not FlushPossible  and not PairOnBoard raise 72% force
+When HaveTwoPair  and ( FlushPossible  or PairOnBoard )  and bets = 0 raise 72% force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and raises = 0 raise 72% force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and raises = 1 raise 72% force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible raise 72% force
+When HaveOverPair  and BotIsLastRaiser  and not FlushPossible raise 72% force
+When HaveOverPair  and not FlushPossible raise 72% force
+When HaveFlushDraw  and HaveStraightDraw call force
+When ( HaveFlushDraw  or HaveInsideStraightDraw )  and Overcards = 2  and bets = 0 raise 72% force
+When ( HaveFlushDraw  or HaveStraightDraw )  and Overcards = 2  and bets = 1 call force
+When HaveNutFlushDraw  and ( PairOnBoard )  and BetSize <= 4 call force
+When HaveNutFlushDraw  and not ( PairOnBoard )  and BetSize <= 6 call force
+When HaveFlushDraw  and HavePair  and BetSize <= 5 call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and BetSize <= 3 call force
+When HavePair  and bets <= 1  and BetSize <= 1 call force
+When bets >= 1  and not ( HavePair  or HaveFlush  or HaveStraight  or HaveFullHouse  or HaveSet  or HaveTrips ) fold force
+When Others 
+When Others fold force
+
+turn
+When OpponentIsAllIn  and ( PairInHand  or hand = A K or hand = AQ suited )  and not ( hand = 2 2  or hand = 3 3  or hand = 4 4  or hand = 5 5  or hand = 6 6) 
+When BotsLastAction = raise  and BetSize < 12 call force
+When BetSize < 8 call force
+When potsize > 20 and betsize < 11 call force
+When potsize > 25 and betsize < 13 call force
+When potsize > 30 and betsize < 16 call force
+When potsize > 35 and betsize < 18 call force
+When potsize > 40 and betsize < 21 call force
+When potsize > 50 and betsize < 26 call force
+When BotIsLastRaiser 
+When ( Position = First  or Position = Middle )  and ( HavePair  or HaveFlush  or HaveStraight  or HaveFullHouse  or HaveSet  or HaveTrips )  and NoBettingOnFlop RaisePot force
+When Position = Last  and NoBettingOnFlop  and bets = 0 RaisePot force
+When Position = First 
+When ( HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse ) call force
+When ( HaveStraight  or HaveFlush )  and not OneCardStraightPossible  and not OneCardFlushPossible RaisePot force
+When HaveStraight  and OneCardStraightPossible  and ( not HaveNutStraight  or not Have2ndNutStraight )  and BetSize <= 8 call force
+When HaveFlush  and OneCardFlushPossible  and ( not HaveNutFlush  or not Have2ndNutFlush )  and BetSize <= 4 call force
+When HaveTrips  and not FlushPossible  and not OneCardStraightPossible raise 80% force
+When HaveSet  and not FlushPossible  and not OneCardStraightPossible raise 80% force
+When HaveTwoPair  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard RaisePot force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not FlushPossible  and not OneCardStraightPossible  and not PairOnBoard RaisePot force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not ( FlushPossible  or OneCardStraightPossible )  and NoBettingOnFlop  and bets = 0 raise 80% force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not ( FlushPossible  or OneCardStraightPossible )  and bets = 1  and BetSize <= 7 call force
+When HaveOverPair  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) raise 200% force
+When HaveFlushDraw  and HaveStraightDraw  and BetSize <= 50% PotSize call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and Overcards = 2  and BetSize <= 50% PotSize call force
+When HaveNutFlushDraw  and ( PairOnBoard )  and BetSize <= 50% PotSize call force
+When HaveNutFlushDraw  and not ( PairOnBoard )  and BetSize <= 50% PotSize call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and BetSize <= 3 call force
+When HaveBestKickerOrBetter  and not FlushPossible  and not OneCardStraightPossible  and NoBettingOnFlop  and bets <= 1  and BetSize <= 1 raise 80% force
+When HavePair  and not FlushPossible  and not OneCardStraightPossible  and bets <= 1  and BetSize <= 1 call force
+When bets >= 1  and not ( HavePair  or HaveFlush  or HaveStraight  or HaveFullHouse  or HaveSet  or HaveTrips ) fold force
+When Position = Middle 
+When ( HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse ) call force
+When ( HaveStraight  or HaveFlush )  and not OneCardStraightPossible  and not OneCardFlushPossible raise 80% force
+When HaveStraight  and OneCardStraightPossible  and ( not HaveNutStraight  or not Have2ndNutStraight )  and BetSize <= 8 call force
+When HaveFlush  and OneCardFlushPossible  and ( not HaveNutFlush  or not Have2ndNutFlush )  and BetSize <= 4 call force
+When HaveTrips  and not FlushPossible  and not OneCardStraightPossible raise 80% force
+When HaveSet  and not FlushPossible  and not OneCardStraightPossible raise 80% force
+When HaveTwoPair  and not FlushPossible  and not PairOnBoard raise 80% force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) raise 80% force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not ( FlushPossible  or OneCardStraightPossible )  and BetSize <= 7 call force
+When HaveOverPair  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) raise 80% force
+When HaveFlushDraw  and HaveStraightDraw  and BetSize <= 50% PotSize call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and Overcards = 2  and BetSize <= 50% PotSize call force
+When HaveNutFlushDraw  and ( PairOnBoard )  and BetSize <= 50% PotSize call force
+When HaveNutFlushDraw  and not ( PairOnBoard )  and BetSize <= 50% PotSize call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and BetSize <= 3 call force
+When Have2ndTopPair  and NoBettingOnFlop  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) BetMin force
+When HaveBestKickerOrBetter  and not ( FlushPossible  or OneCardStraightPossible )  and NoBettingOnFlop  and bets <= 1  and BetSize <= 1 raise 80% force
+When HavePair  and not ( FlushPossible  or OneCardStraightPossible )  and bets <= 1  and BetSize <= 1 call force
+When bets >= 1  and not ( HavePair  or HaveFlush  or HaveStraight  or HaveFullHouse  or HaveSet  or HaveTrips ) fold force
+When Position = Last 
+When ( HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse ) call force
+When ( HaveStraight  or HaveFlush )  and not ( OneCardStraightPossible  or OneCardFlushPossible ) raise 80% force
+When HaveStraight  and OneCardStraightPossible  and ( not HaveNutStraight  or Have2ndNutStraight )  and BetSize <= 8 call force
+When HaveFlush  and OneCardFlushPossible  and ( not HaveNutFlush  or Have2ndNutFlush )  and BetSize <= 4 call force
+When HaveTrips  and not ( FlushPossible  or OneCardStraightPossible ) raise 80% force
+When HaveSet  and not ( FlushPossible  or OneCardStraightPossible ) RaisePot force
+When HaveTwoPair  and not ( FlushPossible ) raise 80% force
+When HaveTwoPair  and not ( FlushPossible  or PairOnBoard ) raise 80% force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) raise 80% force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not ( FlushPossible  or OneCardStraightPossible )  and BetSize <= 7 call force
+When HaveOverPair  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) raise 80% force
+When HaveFlushDraw  and HaveStraightDraw  and BetSize <= 50% PotSize call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and Overcards = 2  and BetSize <= 50% PotSize call force
+When HaveNutFlushDraw  and ( PairOnBoard )  and BetSize <= 50% PotSize call force
+When HaveNutFlushDraw  and not ( PairOnBoard )  and BetSize <= 50% PotSize call force
+When ( HaveFlushDraw  or HaveStraightDraw )  and BetSize <= 3 call force
+When Have2ndTopPair  and NoBettingOnFlop  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) BetMin force
+When HaveBestKickerOrBetter  and not ( FlushPossible  or OneCardStraightPossible )  and NoBettingOnFlop  and bets <= 1  and BetSize <= 1 raise 80% force
+When HavePair  and not ( FlushPossible  or OneCardStraightPossible )  and bets <= 1  and BetSize <= 1 call force
+When bets >= 1  and not ( HavePair  or HaveFlush  or HaveStraight  or HaveFullHouse  or HaveSet  or HaveTrips ) fold force
+When Others 
+When Others fold force
+
+river
+When Position = First 
+When ( HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse ) raise 86% force
+When ( HaveStraight  or HaveFlush )  and not OneCardStraightPossible  and not OneCardFlushPossible raise 86% force
+When HaveStraight  and OneCardStraightPossible  and ( not HaveNutStraight  or not Have2ndNutStraight )  and BetSize <= 8 call force
+When HaveFlush  and OneCardFlushPossible  and ( not HaveNutFlush  or not Have2ndNutFlush )  and BetSize <= 8 call force
+When HaveTrips  and not ( FlushPossible  or OneCardStraightPossible ) raise 86% force
+When HaveSet  and not ( FlushPossible  or OneCardStraightPossible ) raise 86% force
+When HaveSet  and FlushPossible  and not ( OneCardFlushPossible )  and BetSize <= 7 call force
+When HaveTwoPair  and not FlushPossible raise 86% force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) raise 86% force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not ( FlushPossible  or OneCardStraightPossible )  and BetSize <= 10 call force
+When HaveOverPair  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) raise 86% force
+When HaveBestKickerOrBetter  and not FlushPossible  and not OneCardStraightPossible  and bets <= 1  and BetSize <= 2 call force
+When Position = Middle 
+When ( HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse ) raise 86% force
+When ( HaveStraight  or HaveFlush )  and not OneCardStraightPossible  and not OneCardFlushPossible raise 86% force
+When HaveStraight  and OneCardStraightPossible  and ( not HaveNutStraight  or not Have2ndNutStraight )  and BetSize <= 8 call force
+When HaveFlush  and OneCardFlushPossible  and ( not HaveNutFlush  or not Have2ndNutFlush )  and BetSize <= 8 call force
+When HaveTrips  and not ( FlushPossible  or OneCardStraightPossible ) raise 86% force
+When HaveSet  and not ( FlushPossible  or OneCardStraightPossible ) raise 86% force
+When HaveSet  and FlushPossible  and not ( OneCardFlushPossible )  and BetSize <= 7 call force
+When HaveTwoPair  and not FlushPossible raise 86% force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) raise 86% force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not ( FlushPossible  or OneCardStraightPossible )  and BetSize <= 10 call force
+When HaveOverPair  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) raise 86% force
+When HaveBestKickerOrBetter  and not FlushPossible  and not OneCardStraightPossible  and bets <= 1  and BetSize <= 2 call force
+When Position = Last 
+When ( HaveNutFlush  or HaveNutStraight  or HaveStraightFlush  or HaveFullHouse ) raise 86% force
+When ( HaveStraight  or HaveFlush )  and not OneCardStraightPossible  and not OneCardFlushPossible raise 86% force
+When HaveStraight  and OneCardStraightPossible  and ( not HaveNutStraight  or not Have2ndNutStraight )  and BetSize <= 8 call force
+When HaveFlush  and OneCardFlushPossible  and ( not HaveNutFlush  or not Have2ndNutFlush )  and BetSize <= 8 call force
+When HaveTrips  and not ( FlushPossible  or OneCardStraightPossible ) raise 86% force
+When HaveSet  and not ( FlushPossible  or OneCardStraightPossible ) raise 86% force
+When HaveSet  and FlushPossible  and not ( OneCardFlushPossible )  and BetSize <= 7 call force
+When HaveTwoPair  and not FlushPossible raise 86% force
+When HaveTopPair  and ( HaveBestKicker  or Have2ndBestKicker )  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) raise 86% force
+When HaveTopPair  and not ( HaveBestKicker  or Have2ndBestKicker )  and not ( FlushPossible  or OneCardStraightPossible )  and BetSize <= 10 call force
+When HaveOverPair  and not ( FlushPossible  or OneCardStraightPossible  or PairOnBoard ) raise 86% force
+When HaveBestKickerOrBetter  and not FlushPossible  and not OneCardStraightPossible  and bets <= 1  and BetSize <= 2 call force
+When NoBettingOnFlop  and NoBettingOnTurn  and bets = 0  and raises = 0 raise 86% force
+When Others 
+When Others fold force

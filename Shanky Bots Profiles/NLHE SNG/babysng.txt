@@ -1,0 +1,120 @@
+MaxSessionHands = 10000
+MaxSessionTime = 1000
+MaxStackSize = 1000000
+BathroomBreakAfter = 54
+BathroomBreakTime = 3
+SitOutWhenOpponentsAreLessThan = 1
+MakePotSizedPreFlopRaisesWhen = 7
+FoldToPre-FlopRaisesForAQAJsKQ = OFF
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = ON
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 1
+FoldToPost-FlopRaisesWithPairedBoardsFor = 3
+NeverBetTurnOrRiverWithHandBelow = 2
+NeverBetFlopWithHandBelowMiddlePairWhen = 1
+NeverBetFlopWithHandBelowMiddlePairStackSize = 100000
+NeverCallPairedBoardsWithHandBelow = 5
+NeverCallFlushPossibleBoardsWithHandBelow = 6
+FoldToPre-FlopRaiseWith55Or66When = 1
+FoldToPre-FlopRaiseWith77Or88When = 1
+FoldToPre-FlopRaiseWith99OrTTWhen = 1
+FoldToPre-FlopRaiseWithJJOrQQWhen = 2
+FoldToPre-FlopRaiseWithAKWhen = 3
+FoldToPre-FlopRaiseWithAQsWhen = 2
+FoldToPre-FlopRaiseWithAKsWhen = 3
+FoldToPre-FlopRaiseWithKQsWhen = 2
+SuperTightPlay = OFF
+SemiSuperTightPlay = OFF
+NoLimp = 15
+AggressivePreFlop = 7
+AggressivePostFlop = 3
+AggressivePreFlopStackSize = 1000000
+AggressivePostFlopStackSize = 1000000
+MiningForSets = 4
+PostFlopinBlindsOverride = 3
+PreFlopReRaiseOverride = OFF
+MinBetOverride = 6
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 100
+AutoPlay = ON
+UserDefinedGameType = 0
+EnableFoldInTurn = ON
+
+custom
+preflop
+
+when Raises >= 2 Fold Force
+
+when (Hand = AA or Hand = KK or Hand = QQ or Hand = JJ)
+  when Raises = 0 RaiseMax Force
+  when AmountToCall <= 15% StackSize RaisePot Force
+  when AmountToCall <= 25% StackSize RaiseMin Force
+  when AmountToCall <= 35% StackSize Call Force
+  when AmountToCall >= 35% StackSize Fold Force
+
+when (Hand = AK suited or Hand = AQ suited or Hand = AK or Hand = AQ or Hand = AJ suited or Hand = AJ or Hand = AT suited or Hand = AT)
+  when Raises = 0 RaisePot Force
+  when AmountToCall <= 15% StackSize RaiseMin Force
+  when AmountToCall <= 25% StackSize Call Force
+  when AmountToCall >= 25% StackSize Fold Force
+
+when (Hand = A9 or Hand = KQ suited or Hand = A8 or Hand = KJ suited or Hand = KT suited or Hand = A9 suited or Hand = KQ or Hand = A7 suited or Hand = KJ)
+  when Bets = 0 and Raises = 0 RaiseMin Force
+  when AmountToCall <= 15% StackSize Call Force
+  when AmountToCall >= 15% StackSize Fold Force
+
+when (Hand = K9 suited or Hand = QJ or Hand = A8 suited or Hand = A6 suited or Hand = A5 suited or
+      Hand = KT or Hand = A7 or Hand = A4 suited or Hand = QJ suited or Hand = 99 or Hand = TT)
+  when Raises = 0 Call Force
+  when AmountToCall >= 1% StackSize Fold Force
+
+when (Hand = A6 or Hand = A5 or Hand = A4 or Hand = A3 suited or Hand = A3 or Hand = A2 suited or Hand = A2 or Hand = K9 or Hand = QT suited or Hand = QT or
+      Hand = Q9 suited or Hand = Q9 or Hand = Q8 suited or Hand = Q8 or Hand = JT suited or Hand = JT or Hand = J9 suited or Hand = J9 or Hand = J8 suited or
+      Hand = J8 or Hand = 88 or Hand = 77 or Hand = 66 or Hand = 55 or Hand = 44 or Hand = 33 or Hand = 22)
+  when OpponentsAtTable > 3 Fold Force
+
+when (Hand = AA or Hand = KK or Hand = QQ or Hand = JJ)
+  when OpponentsAtTable < 3 RaiseMax Force
+
+when (Hand = AK suited or Hand = AQ suited or Hand = AK or Hand = AQ or Hand = AJ suited or Hand = AJ or Hand = AT suited or Hand = AT)
+  when OpponentsAtTable < 3 RaisePot Force
+
+when (Hand = A9 or Hand = KQ suited or Hand = A8 or Hand = KJ suited or Hand = KT suited or Hand = A9 suited or Hand = KQ or Hand = A7 suited or Hand = KJ)
+  when OpponentsAtTable < 3 RaiseMin Force
+
+when (Hand = K9 suited or Hand = QJ or Hand = A8 suited or Hand = A6 suited or Hand = A5 suited or Hand = KT or
+      Hand = A7 or Hand = A4 suited or Hand = QJ suited or Hand = 99 or Hand = TT)
+  when OpponentsAtTable < 3 Call Force
+
+when (Hand = A6 or Hand = A5 or Hand = A4 or Hand = A3 suited or Hand = A3 or Hand = A2 suited or Hand = A2 or Hand = K9 or Hand = QT suited or Hand = QT or
+      Hand = Q9 suited or Hand = Q9 or Hand = Q8 suited or Hand = Q8 or Hand = JT suited or Hand = JT or Hand = J9 suited or Hand = J9 or Hand = J8 suited or
+      Hand = J8 or Hand = 88 or Hand = 77 or Hand = 66 or Hand = 55 or Hand = 44 or Hand = 33 or Hand = 22)
+  when OpponentsAtTable < 3 and Raises = 0 Call Force
+  when OpponentsAtTable < 3 and AmountToCall >= 35% StackSize Fold Force 
+  
+
+flop
+
+when (HaveNutFlush or Have2ndNutFlush)
+  when (Bets = 0 or Raises = 0) RaisePot Force
+  when (Bets = 1 or Raises >= 1) RaiseMax Force
+
+when HaveStraight and not FlushPossible
+  when (Bets = 0 or Raises = 0) RaisePot Force
+  when (Bets = 1 or Raises >= 1) RaiseMax Force
+
+when HaveFullHouse
+  when (Bets = 0 or Raises = 0) RaisePot Force
+  when (Bets = 1 or Raises >= 1) RaiseMax Force
+
+when HaveTrips and (HaveBestKicker or Have2ndBestKicker)
+  when (Bets = 0 or Raises = 0) RaisePot Force
+  when (Bets = 1 or Raises >= 1) RaiseMax Force
+
+when (HaveSet or HaveTopTwoPair) and not (PairOnBoard or FlushPossible or MoreThanOneStraightPossibleOnFlop)
+  when (Bets = 0 or Raises = 0) RaisePot Force
+  when (Bets = 1 or Raises >= 1) RaiseMax Force

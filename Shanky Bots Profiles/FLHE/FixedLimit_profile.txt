@@ -1,0 +1,304 @@
+custom
+preflop
+
+// Fixed Limit script (PokerStrategy)
+// 9 max limits up to $0.25
+
+When BotsLastAction = raise and raises >= 1 and (hand = AA or hand = KK or hand = QQ or hand = AK) Raise force
+When (BotsLastAction = raise or BotsLastAction = call) and raises = 1 call force
+When (BotsLastAction = raise or BotsLastAction = call) and raises > 1 and (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) call force
+
+When raises >= 0 and (hand = AA or hand = KK or hand = QQ or hand = AK) Raise force
+
+When StillToAct >= 7 and raises = 0 and calls >= 0
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+
+When StillToAct >= 7 and raises = 1 and calls >= 1
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) call force 
+
+When StillToAct >= 7 and raises = 0 and calls >= 2
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+When (hand = KJ suited or hand = KT suited or hand = QJ suited or hand = QT suited or hand = JT suited or hand = T9 suited) call force
+
+When StillToAct >= 7 and raises = 1 and calls >= 1
+When (hand = KQ suited) call force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+When (hand = KJ suited or hand = KT suited or hand = QJ suited or hand = QT suited or hand = JT suited or hand = T9 suited) call force
+
+When (StillToAct = 6 or StillToAct = 5 or StillToAct = 4) and raises = 0 and calls = 0
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+When (hand = AJ or hand = AT or hand = KQ) Raise force
+
+When (StillToAct = 6 or StillToAct = 5 or StillToAct = 4) and raises = 0 and calls = 1
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+When (hand = AJ or hand = AT or hand = KQ) Raise force
+
+When (StillToAct = 6 or StillToAct = 5 or StillToAct = 4) and raises = 0 and calls >= 2
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+When (hand = AJ or hand = AT or hand = KQ) Raise force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+When (hand = KJ suited or hand = KT suited or hand = QJ suited or hand = QT suited or hand = JT suited or hand = T9 suited) call force
+
+When (StillToAct = 6 or StillToAct = 5 or StillToAct = 4) and raises = 1 and calls = 0
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+When (hand = AJ or hand = AT or hand = KQ) Raise force
+
+When (StillToAct = 6 or StillToAct = 5 or StillToAct = 4) and raises = 1 and calls >= 1
+When (hand = KQ suited) call force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+When (hand = KJ suited or hand = KT suited or hand = QJ suited or hand = QT suited or hand = JT suited or hand = T9 suited) call force
+ 
+When (StillToAct = 3 or In Button) and raises = 0 and calls = 0
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+When (hand = AJ or hand = AT or hand = KQ) Raise force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) Raise force
+When (hand = KJ or hand = KT or hand = QJ or hand = QT or hand = JT or hand = T9 suited) Raise force 
+When (hand = A suited or hand = 98 suited or hand = 87 suited) Raise force
+
+When (StillToAct = 3 or In Button) and raises = 0 and calls = 1
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+When (hand = AJ or hand = AT or hand = KQ) Raise force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+When (hand = KJ suited or hand = KT suited or hand = QJ suited or hand = QT suited or hand = JT suited or hand = T9 suited) call force 
+
+When (StillToAct = 3 or In Button) and raises = 0 and calls >= 2
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+When (hand = AJ or hand = AT or hand = KQ) Raise force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+When (hand = KJ or hand = KT or hand = QJ or hand = QT or hand = JT or hand = T9 suited) call force 
+When (hand = A suited or hand = 98 suited or hand = 87 suited) call force
+
+When (StillToAct = 3 or In Button) and raises = 1 and calls = 0
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+
+When (StillToAct = 3 or In Button) and raises = 1 and calls >= 1
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force 
+When (hand = KQ suited) call force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+When (hand = KJ suited or hand = KT suited or hand = QJ suited or hand = QT suited or hand = JT suited or hand = T9 suited) call force
+
+When In SmallBlind and raises = 0 and calls = 0
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+When (hand = AJ or hand = AT or hand = KQ) Raise force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) Raise force
+When (hand = KJ or hand = KT or hand = QJ or hand = QT or hand = JT or hand = T9 suited) Raise force 
+When (hand = A suited or hand = 98 suited or hand = 87 suited) Raise force
+
+When In SmallBlind and raises = 0 and calls = 1
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+When (hand = AJ or hand = AT or hand = KQ) Raise force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+When (hand = KJ or hand = KT or hand = QJ or hand = QT or hand = JT or hand = T9 suited) call force 
+When (hand = A suited or hand = 98 suited or hand = 87 suited) call force
+
+When In SmallBlind and raises = 0 and calls >= 2
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+When (hand = AJ or hand = AT or hand = KQ) Raise force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+When (hand = KJ or hand = KT or hand = QJ or hand = QT or hand = JT or hand = T9 suited) call force 
+When (hand = A suited or hand = 98 suited or hand = 87 suited) call force
+
+When In SmallBlind and raises = 1 and calls = 0
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+
+When In SmallBlind and raises = 1 and calls >= 1
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) call force
+When (hand = KQ suited) call force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+When (hand = KJ suited or hand = KT suited or hand = QJ suited or hand = QT suited or hand = JT suited or hand = T9 suited) call force
+
+When In BigBlind and raises = 0 and calls >= 1
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+When (hand = AJ or hand = AT or hand = KQ) Raise force
+
+When In BigBlind and raises = 1 and calls = 0
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) Raise force
+When (hand = AJ or hand = AT or hand = KQ) call force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+When (hand = KJ suited or hand = KT suited or hand = QJ suited or hand = QT suited or hand = JT suited or hand = T9 suited) call force
+
+When In BigBlind and raises = 1 and calls >= 1
+When (hand = JJ or hand = TT or hand = 99 or hand = AQ or hand = AJ suited) call force
+When (hand = AJ or hand = AT or hand = KQ) call force
+When (hand = 88 or hand = 77 or hand = 66 or hand = 55 or hand = 44 or hand = 33 or hand = 22) call force
+When (hand = KJ suited or hand = KT suited or hand = QJ suited or hand = QT suited or hand = JT suited or hand = T9 suited) call force
+
+When others
+When others fold force
+
+flop
+When (HaveSet or HaveTrips or HaveFlush or HaveStraight or HaveFullHouse or HaveTwoPair or HaveQuads) Raise force
+When (BotsLastAction = bet or BotsLastAction = raise) and (HaveOverPair or HaveTopPair) and (bets = 1 or raises >= 1) call force
+When (HaveOverPair or HaveTopPair) and bets <= 1 and raises = 0 Raise force
+When (not HavePair or HaveBottomPair or Have2ndTopPair or Have2ndOverPair or HaveUnderPair) and BotRaisedBeforeFlop and BotIsLastRaiser and not FlushPossible and Opponents <= 2 and bets = 0 and raises = 0 Raise force
+When HaveFlushDraw and not FlushPossible and HaveStraightDraw Raise force
+When (BotsLastAction = bet or BotsLastAction = raise) and HaveFlushDraw and (bets = 1 or raises >= 1) call force 
+When HaveNutFlushDraw Raise force
+When HaveFlushDraw and not FlushPossible and bets <= 1 and raises = 0 Raise force
+When (BotsLastAction = bet or BotsLastAction = raise) and HaveStraightDraw and (bets = 1 or raises >= 1) call force 
+When HaveStraightDraw and not FlushPossible and bets <= 1 and raises = 0 Raise force
+When (HaveInsideStraightDraw or OverCards = 2) and not FlushPossible and not HaveFlushDraw and BotRaisedBeforeFlop and BotIsLastRaiser and Opponents <= 2 and bets = 0 and raises = 0 Raise force
+When (HaveInsideStraightDraw or OverCards = 2) and not FlushPossible and not HaveFlushDraw and (bets = 1 or raises = 1) and AmountToCall <= 10% PotSize call force
+When (BotsLastAction = bet or BotsLastAction = raise) and HaveInsideStraightDraw and OverCards = 2 and (bets = 1 or raises >= 1) call force
+When HaveInsideStraightDraw and OverCards = 2 and not FlushPossible and not HaveFlushDraw and bets <= 1 and raises = 0 Raise force
+
+When others
+When others fold force
+
+turn
+When (BotsLastAction = Bet or BotsLastAction = check) and bets = 0 and raises = 1
+When (HaveFullHouse or HaveQuads) Raise force
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+When (HaveNutStraight or Have2ndNutStraight) and not OneCardFlushPossible Raise force
+When HaveStraight and not OneCardFlushPossible and not OneCardStraightPossible Raise force
+When HaveStraight call force
+When (HaveNutFlush or Have2ndNutFlush or Have3rdNutFlush) Raise force
+When HaveFlush call force
+When (HaveTopPair or HaveOverPair) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush call force
+When (HaveNutFlushDraw or Have2ndNutFlushDraw) and OneCardFlushPossible call force
+When HaveFlushDraw and not OneCardFlushPossible call force
+When HaveNutStraightDraw and OneCardStraightPossible call force
+When HaveStraightDraw and not OneCardStraightPossible call force
+When OverCards = 2 and HaveStraightDraw and not OneCardStraightPossible call force
+When OverCards = 2 and HaveFlushDraw and not OneCardFlushPossible call force
+When HaveInsideStraightDraw and not OneCardStraightPossible and AmountToCall <= 10% PotSize call force
+
+When (BotsLastAction = Bet or BotsLastAction = check) and bets = 1 and raises = 1
+When (HaveFullHouse or HaveQuads) Raise force
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+When (HaveNutStraight or Have2ndNutStraight) and not OneCardFlushPossible Raise force
+When HaveStraight and not OneCardFlushPossible and not OneCardStraightPossible Raise force
+When HaveStraight call force
+When (HaveNutFlush or Have2ndNutFlush or Have3rdNutFlush) Raise force
+When HaveFlush call force
+When (HaveTopPair or HaveOverPair) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush call force
+When (HaveNutFlushDraw or Have2ndNutFlushDraw) and OneCardFlushPossible call force
+When HaveFlushDraw and not OneCardFlushPossible call force
+When HaveNutStraightDraw and OneCardStraightPossible call force
+When HaveStraightDraw and not OneCardStraightPossible call force
+When OverCards = 2 and HaveStraightDraw and not OneCardStraightPossible call force
+When OverCards = 2 and HaveFlushDraw and not OneCardFlushPossible call force
+When HaveInsideStraightDraw and not OneCardStraightPossible and AmountToCall <= 10% PotSize call force
+
+When (BotsLastAction = Bet or BotsLastAction = check or BotsLastAction = raise) and bets = 1 and raises > 1
+When (HaveFullHouse or HaveQuads) Raise force
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+When HaveStraight and not OneCardFlushPossible and not OneCardStraightPossible Raise force
+When HaveStraight call force
+When (HaveNutFlush or Have2ndNutFlush or Have3rdNutFlush) Raise force
+When HaveFlush call force
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFullHouse or HaveQuads or HaveFlush) call force 
+When (HaveNutFlushDraw or Have2ndNutFlushDraw) and OneCardFlushPossible call force
+When HaveFlushDraw and not OneCardFlushPossible call force
+When HaveNutStraightDraw and OneCardStraightPossible call force
+When HaveStraightDraw and not OneCardStraightPossible call force
+When OverCards = 2 and HaveStraightDraw and not OneCardStraightPossible call force
+When OverCards = 2 and HaveFlushDraw and not OneCardFlushPossible call force
+
+When not (nobettingonflop and calledonflop) and bets = 0 and raises = 0
+When (HaveFullHouse or HaveQuads) Raise force
+When (HaveTopPair or HaveOverPair or HaveTwoPair or HaveSet or HaveTrips or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+When (HaveNutFlush or Have2ndNutFlush or Have3rdNutFlush) Raise force
+When HaveFlush call force
+When (HaveNutStraight or Have2ndNutStraight) and not OneCardFlushPossible Raise force
+When HaveStraight and not OneCardFlushPossible and not OneCardStraightPossible Raise force
+When HaveStraight call force
+When (HaveNutFlushDraw or Have2ndNutFlushDraw) and OneCardFlushPossible and Opponents <= 2 Raise force
+When HaveFlushDraw and not OneCardFlushPossible and Opponents <= 2 Raise force
+When HaveNutStraightDraw and OneCardStraightPossible Raise force
+When HaveStraightDraw and not OneCardStraightPossible and Opponents <= 2 Raise force
+
+When not nobettingonflop and calledonflop and bets = 0 and raises = 0
+When (HaveFullHouse or HaveQuads) Raise force
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+
+When bets = 1 and raises = 0
+When (HaveFullHouse or HaveQuads) Raise force
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+When (HaveNutStraight or Have2ndNutStraight) and not OneCardFlushPossible Raise force
+When HaveStraight and not OneCardFlushPossible and not OneCardStraightPossible Raise force
+When HaveStraight call force
+When (HaveNutFlush or Have2ndNutFlush or Have3rdNutFlush) Raise force
+When HaveFlush call force
+When (HaveTopPair or HaveOverPair) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush call force
+When (HaveNutFlushDraw or Have2ndNutFlushDraw) and OneCardFlushPossible call force
+When HaveFlushDraw and not OneCardFlushPossible call force
+When HaveNutStraightDraw and OneCardStraightPossible call force
+When HaveStraightDraw and not OneCardStraightPossible call force
+When OverCards = 2 and HaveStraightDraw and not OneCardStraightPossible call force
+When OverCards = 2 and HaveFlushDraw and not OneCardFlushPossible call force
+When HaveInsideStraightDraw and not OneCardStraightPossible and AmountToCall <= 10% PotSize call force
+
+When bets = 1 and raises >= 1
+When (HaveFullHouse or HaveQuads) Raise force
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+When (HaveNutStraight or Have2ndNutStraight) and not OneCardFlushPossible Raise force
+When HaveStraight and not OneCardFlushPossible and not OneCardStraightPossible Raise force
+When HaveStraight call force
+When (HaveNutFlush or Have2ndNutFlush or Have3rdNutFlush) Raise force
+When HaveFlush call force
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFullHouse or HaveQuads or HaveFlush) call force
+
+When others
+When others fold force
+
+river
+When Opponents = 1 and bets = 1 
+When HavePair and not (HaveTopPair or HaveTwoPair or HaveSet or HaveTrips or HaveFullHouse or HaveQuads or HaveFlush or HaveStraight) call force 
+
+When (BotsLastAction = Bet or BotsLastAction = check) and bets = 0 and raises = 1
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFullHouse or HaveQuads or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+When (HaveNutStraight or Have2ndNutStraight) and not OneCardFlushPossible Raise force
+When HaveStraight and not OneCardFlushPossible and not OneCardStraightPossible Raise force
+When HaveStraight call force
+When (HaveNutFlush or Have2ndNutFlush or Have3rdNutFlush) Raise force
+When HaveFlush call force
+When (HaveTopPair or HaveOverPair) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush call force
+
+When (BotsLastAction = Bet or BotsLastAction = check) and bets = 1 and raises = 1
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFullHouse or HaveQuads or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+When (HaveNutStraight or Have2ndNutStraight) and not OneCardFlushPossible Raise force
+When HaveStraight and not OneCardFlushPossible and not OneCardStraightPossible Raise force
+When HaveStraight call force
+When (HaveNutFlush or Have2ndNutFlush or Have3rdNutFlush) Raise force
+When HaveFlush call force
+When (HaveTopPair or HaveOverPair) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush call force
+
+When not (nobettingonturn and calledonturn) and bets = 0 and raises = 0
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFullHouse or HaveQuads or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+When (HaveNutStraight or Have2ndNutStraight) and not OneCardFlushPossible Raise force
+When HaveStraight and not OneCardFlushPossible and not OneCardStraightPossible Raise force
+When HaveStraight call force
+When (HaveNutFlush or Have2ndNutFlush or Have3rdNutFlush) Raise force
+When HaveFlush call force
+When (HaveTopPair or HaveOverPair) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush call force
+
+When not (nobettingonturn and calledonturn) and bets = 1 and raises = 0
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFullHouse or HaveQuads or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+When (HaveNutStraight or Have2ndNutStraight) and not OneCardFlushPossible Raise force
+When HaveStraight and not OneCardFlushPossible and not OneCardStraightPossible Raise force
+When HaveStraight call force
+When (HaveNutFlush or Have2ndNutFlush or Have3rdNutFlush) Raise force
+When HaveFlush call force
+When (HaveTopPair or HaveOverPair) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush call force
+
+When not nobettingonturn and calledonturn and bets = 0 and raises = 0
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFullHouse or HaveQuads or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+When (HaveNutStraight or Have2ndNutStraight) and not OneCardFlushPossible Raise force
+When HaveStraight and not OneCardFlushPossible and not OneCardStraightPossible Raise force
+When HaveStraight call force
+When (HaveNutFlush or Have2ndNutFlush or Have3rdNutFlush) Raise force
+When HaveFlush call force
+When (HaveTopPair or HaveOverPair) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush call force
+
+When not nobettingonturn and calledonturn and bets = 1 and raises = 0
+When (HaveTwoPair or HaveSet or HaveTrips or HaveFullHouse or HaveQuads or HaveFlush) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush Raise force
+When (HaveNutStraight or Have2ndNutStraight) and not OneCardFlushPossible Raise force
+When HaveStraight and not OneCardFlushPossible and not OneCardStraightPossible Raise force
+When HaveStraight call force
+When (HaveNutFlush or Have2ndNutFlush or Have3rdNutFlush) Raise force
+When HaveFlush call force
+When (HaveTopPair or HaveOverPair) and not OneCardStraightPossible and not OneCardFlushPossible and not HaveNutFlush call force
+
+When others
+When others fold force

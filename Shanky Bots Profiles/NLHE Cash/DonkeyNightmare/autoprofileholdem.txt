@@ -1,0 +1,103 @@
+
+MaxSessionHands = 10000
+
+MaxSessionTime = 99999
+9
+MaxStackSize = 9999
+
+BathroomBreakAfter = 999999
+
+BathroomBreakTime = 2
+
+SitOutWhenOpponentsAreLessThan = 5
+
+MakePotSizedPreFlopRaisesWhen = 6
+
+FoldToPre-FlopRaisesForAQAJsKQ = OFF
+
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = OFF
+
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 2
+
+FoldToPost-FlopRaisesWithPairedBoardsFor = 4
+
+NeverBetTurnOrRiverWithHandBelow = 3
+
+NeverBetFlopWithHandBelowMiddlePairWhen = 1
+
+NeverBetFlopWithHandBelowMiddlePairStackSize = 100000
+
+NeverCallPairedBoardsWithHandBelow = 5
+
+NeverCallFlushPossibleBoardsWithHandBelow = 6
+
+FoldToPre-FlopRaiseWith55Or66When = 3
+
+FoldToPre-FlopRaiseWith77Or88When = 3
+
+FoldToPre-FlopRaiseWith99OrTTWhen = 3
+
+FoldToPre-FlopRaiseWithJJOrQQWhen = 2
+
+FoldToPre-FlopRaiseWithAKWhen = 3
+
+FoldToPre-FlopRaiseWithAQsWhen = 2
+
+FoldToPre-FlopRaiseWithAKsWhen = 3
+
+FoldToPre-FlopRaiseWithKQsWhen = 2
+
+SuperTightPlay = OFF
+
+SemiSuperTightPlay = OFF
+
+NoLimp = 15
+
+AggressivePreFlop = 7
+
+AggressivePostFlop = 3
+
+AggressivePreFlopStackSize = 1000000
+
+AggressivePostFlopStackSize = 1000000
+
+MiningForSets = 5
+
+PostFlopinBlindsOverride = 3
+
+PreFlopReRaiseOverride = OFF
+
+MinBetOverride = 5
+
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000
+
+ApplyFoldOrAllInAfter = 0
+
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5
+
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000
+
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4
+
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 9
+0
+Verbose = ON
+
+AutoPlay = ON
+
+UserDefinedGameType = 3
+UseOcrAtFullTilt = OFF
+
+AutoRebuyAtUB = ON
+
+AlwaysAskForTableName = OFF
+
+EnableFoldInTurn = ON
+
+DefaultBetSizeFlop = 66
+
+DefaultBetSizeTurn = 66
+
+DefaultBetSizeRiver = 50

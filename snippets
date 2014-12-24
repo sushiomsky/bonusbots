@@ -41,6 +41,21 @@ When (Hand = K Suited or Hand = J9 or Hand = T9 or Hand = 98 or Hand = 64 Suited
 When (Hand = A9 or Hand = K9 or Hand = Q9 or Hand = J8 or Hand = J7 Suited or Hand = T8 or Hand = 96 Suited or Hand = 87 or Hand = 85 Suited or Hand = 76 or Hand = 74 Suited or Hand = 65 or Hand = 54 or Hand = 42 Suited or Hand = 32 Suited) User_HandGroup_8
 When not(User_HandGroup_1 or User_HandGroup_2 or User_HandGroup_3 or User_HandGroup_4 or User_HandGroup_5 or User_HandGroup_6 or User_HandGroup_7 or User_HandGroup_8) User_HandGroup_9
 
+
+//1. handgruppe -> spiel
+
+//////////////////
+///2.handgruppe///
+//////////////////
+When User_HandGroup_2 and position = first and stacksize < 25 raise 10 force
+When User_HandGroup_2 and position = middle and stacksize < 20 raise 5 force
+When User_HandGroup_2 and position = last and stacksize < 15 raisemax force
+//wenn middle and stacksize < 10 and User_HandGroup_2
+
+
+
+
+
 //Hand Ranges 22 - AA
 When (Hand = AA or Hand = KK or Hand = QQ  or Hand = JJ or Hand = TT or Hand = 99 or Hand = 88 or Hand = 77 or Hand = 66 or Hand = 55 or Hand = 44 or Hand = 33 or Hand = 22) User_PairinHand
 When (Hand = AA or Hand = KK or Hand = QQ  or Hand = JJ or Hand = TT or Hand = 99 or Hand = 88 or Hand = 77 or Hand = 66 or Hand = 55 or Hand = 44 or Hand = 33) User_33_Or_Better

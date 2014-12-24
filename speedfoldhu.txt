@@ -1,0 +1,44 @@
+custom
+
+When stacksize >= 300% startingstacksize sitout force
+
+Preflop
+//
+//Variable definitions
+//
+When OpponentsAtTable > 6 User_Full_Ring
+When OpponentsAtTable < 7 User_6_Max
+
+when stilltoact = 8 UserUTG
+when stilltoact = 7 UserUTG1
+when stilltoact = 6 UserMid1
+when stilltoact = 5 UserMid2
+when stilltoact = 4 UserMid3
+when stilltoact = 3 UserCutoff
+
+When (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = 99 or hand = AK or hand = AQ suited) User_BombenBlatt
+when (hand = 22 or hand = 33 or hand = 44 or hand = 55) UserBabies
+when (hand = 5d6d or hand = 67 suited or hand = 78 suited or hand = 89 suited) UserSCons
+
+when raises = 0 and calls = 0 UserBtnSteal
+
+//////////////////////
+//////actions/////////
+//////////////////////
+
+//raise conditions
+when UserBtnSteal and raises = 0 raise 2 force
+
+when UserBtnSteal and raises = 1 raise 4 force
+When position = first raise 4 force
+When AmountToCall < 3 raise 6 force
+
+
+//call conditions
+When User_BombenBlatt call force
+
+flop
+
+turn
+
+river

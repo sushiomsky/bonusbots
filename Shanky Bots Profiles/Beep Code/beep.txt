@@ -1,0 +1,88 @@
+MaxSessionHands = 100000
+MaxSessionTime = 100000
+MaxStackSize = 1000000
+BathroomBreakAfter = 100000
+BathroomBreakTime = 3
+SitOutWhenOpponentsAreLessThan = 1
+MakePotSizedPreFlopRaisesWhen = 1
+FoldToPre-FlopRaisesForAQAJsKQ = OFF
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = OFF
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 2
+FoldToPost-FlopRaisesWithPairedBoardsFor = 5
+NeverBetTurnOrRiverWithHandBelow = 4
+NeverBetFlopWithHandBelowMiddlePairWhen = 4
+NeverBetFlopWithHandBelowMiddlePairStackSize = 4
+NeverCallPairedBoardsWithHandBelow = 6
+NeverCallFlushPossibleBoardsWithHandBelow = 6
+FoldToPre-FlopRaiseWith55Or66When = 3
+FoldToPre-FlopRaiseWith77Or88When = 3
+FoldToPre-FlopRaiseWith99OrTTWhen = 3
+FoldToPre-FlopRaiseWithJJOrQQWhen = 3
+FoldToPre-FlopRaiseWithAKWhen = 3
+FoldToPre-FlopRaiseWithAQsWhen = 3
+FoldToPre-FlopRaiseWithAKsWhen = 3
+FoldToPre-FlopRaiseWithKQsWhen = 3
+SuperTightPlay = OFF
+SemiSuperTightPlay = OFF
+NoLimp = 15
+AggressivePreFlop = 7
+AggressivePostFlop = 3
+AggressivePreFlopStackSize = 1000000
+AggressivePostFlopStackSize = 1000000
+MiningForSets = 0
+PostFlopinBlindsOverride = 3
+PreFlopReRaiseOverride = OFF
+MinBetOverride = 6
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 90
+Verbose = ON
+AutoPlay = ON
+UserDefinedGameType = 0
+AutoRebuyAtUB = OFF
+AlwaysAskForTableName = OFF
+
+custom
+Preflop
+ 
+When hand = AA beep force
+when hand = KK beep force
+when hand = QQ beep force
+When hand = JJ beep force
+When hand = TT beep force
+When hand = 99 beep force
+When hand = 88 beep force
+When hand = 77 beep force
+When hand = 66 beep force
+When hand = 55 beep force
+When hand = 44 beep force
+When hand = 33 beep force
+When hand = 22 beep force
+When hand = A suited beep force
+When hand = AK beep force
+When hand = AQ beep force
+when hand = AJ beep force
+when hand = AT beep force
+When hand = KQ beep force
+When hand = KJ beep force
+when hand = KT beep force
+when hand = QJ beep force
+when hand = QT beep force
+when hand = JT beep force
+when hand = T9 suited beep force
+when hand = 98 suited beep force  
+when hand = 87 suited beep force
+when hand = 76 suited beep force
+when hand = 65 suited beep force
+When others
+When others fold force
+Flop
+When (BotsLastAction = beep or BotsLastAction = check) beep force
+Turn
+When BotsLastAction = beep beep force
+River
+When BotsLastAction = beep beep force 

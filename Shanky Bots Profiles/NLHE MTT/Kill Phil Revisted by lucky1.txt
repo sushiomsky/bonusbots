@@ -1,0 +1,1005 @@
+﻿MaxSessionHands = 999
+MaxSessionTime = 999
+MaxStackSize = 1000000
+BathroomBreakAfter = 999
+BathroomBreakTime = 3
+SitOutWhenOpponentsAreLessThan = 1
+MakePotSizedPreFlopRaisesWhen = 5
+FoldToPre-FlopRaisesForAQAJsKQ = ON
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = ON
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 2
+FoldToPost-FlopRaisesWithPairedBoardsFor = 3
+NeverBetTurnOrRiverWithHandBelow = 1
+NeverBetFlopWithHandBelowMiddlePairWhen = 4
+NeverBetFlopWithHandBelowMiddlePairStackSize = 100000
+NeverCallPairedBoardsWithHandBelow = 5
+NeverCallFlushPossibleBoardsWithHandBelow = 5
+FoldToPre-FlopRaiseWith55Or66When = 1
+FoldToPre-FlopRaiseWith77Or88When = 3
+FoldToPre-FlopRaiseWith99OrTTWhen = 3
+FoldToPre-FlopRaiseWithJJOrQQWhen = 3
+FoldToPre-FlopRaiseWithAKWhen = 3
+FoldToPre-FlopRaiseWithAQsWhen = 3
+FoldToPre-FlopRaiseWithAKsWhen = 3
+FoldToPre-FlopRaiseWithKQsWhen = 2
+SuperTightPlay = ON
+SemiSuperTightPlay = OFF
+NoLimp = 15
+AggressivePreFlop = 6
+AggressivePostFlop = 2
+AggressivePreFlopStackSize = 18
+AggressivePostFlopStackSize = 25
+MiningForSets = 5
+PostFlopinBlindsOverride = 3
+PreFlopReRaiseOverride = OFF
+MinBetOverride = 1
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 90
+Verbose = ON
+AutoPlay = ON
+UserDefinedGameType = 0
+UseOcrAtFullTilt = OFF
+AutoRebuyAtUB = ON
+AlwaysAskForTableName = OFF
+EnableFoldInTurn = ON
+DefaultBetSizeFlop = 100
+DefaultBetSizeTurn = 75
+DefaultBetSizeRiver = 60
+MoveMouseBe(I am an idiot)AtFT = OFF
+WindowLeft = 6
+WindowRight = 806
+WindowBottom = 737
+WindowTop = 577
+
+	  
+custom
+preflop
+
+
+// kill phil profile for ultimate bet mtt's only coded by lucky1 11-13-2010    
+
+
+
+// 4-6 Handed
+// CSI
+// Huge
+// >30x
+// CPR
+// un-raised + early limper Move allin with G-1,2,3
+when OpponentsAtTable = 3 and bigblindsize < 200 and stacksize > 45 and raises = 0 and calls >= 1 and firstcallerposition = 3
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper Move allin with G-1,2,3
+when OpponentsAtTable = 4 and bigblindsize < 200 and stacksize > 45 and raises = 0 and calls >= 1 and firstcallerposition = 4
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper Move allin with G-1,2,3
+when OpponentsAtTable = 5 and bigblindsize < 200 and stacksize > 45 and raises = 0 and calls >= 1 and firstcallerposition = 5
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper call with G-4,5,6
+when OpponentsAtTable = 3 and bigblindsize < 200 and stacksize > 45 and raises = 0 and calls >= 1 and firstcallerposition = 3
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) call force
+when (hand = AQ or hand = AJ suited or hand = AT suited) call force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) call force
+
+// un-raised + early limper call with G-4,5,6
+when OpponentsAtTable = 4 and bigblindsize < 200 and stacksize > 45 and raises = 0 and calls >= 1 and firstcallerposition = 4
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) call force
+when (hand = AQ or hand = AJ suited or hand = AT suited) call force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) call force
+
+// un-raised + early limper call with G-4,5,6
+when OpponentsAtTable = 5 and bigblindsize < 200 and stacksize > 45 and raises = 0 and calls >= 1 and firstcallerposition = 5
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) call force
+when (hand = AQ or hand = AJ suited or hand = AT suited) call force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) call force
+
+// un-raised + no early limper Move allin with G1,2,3,4,5
+when OpponentsAtTable = 3 and bigblindsize < 200 and stacksize > 45 and raises = 0 and calls >= 0 and (not firstcallerposition = 3)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+// un-raised + no early limper Move allin with G1,2,3,4,5
+when OpponentsAtTable = 4 and bigblindsize < 200 and stacksize > 45 and raises = 0 and calls >= 0 and (not firstcallerposition = 4)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+// un-raised + no early limper Move allin with G1,2,3,4,5
+when OpponentsAtTable = 5 and bigblindsize < 200 and stacksize > 45 and raises = 0 and calls >= 0 and (not firstcallerposition = 5)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+// raised from any position Move allin with G1,2,3
+when OpponentsAtTable >= 3 and bigblindsize < 200 and OpponentsAtTable <= 5 and stacksize > 45 and raises >= 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper Move allin with G-1,2,3
+when OpponentsAtTable = 3 and bigblindsize >= 200 and stacksize > 48 and raises = 0 and calls >= 1 and firstcallerposition = 3
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper Move allin with G-1,2,3
+when OpponentsAtTable = 4 and bigblindsize >= 200 and stacksize > 48 and raises = 0 and calls >= 1 and firstcallerposition = 4
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper Move allin with G-1,2,3
+when OpponentsAtTable = 5 and bigblindsize >= 200 and stacksize > 48 and raises = 0 and calls >= 1 and firstcallerposition = 5
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper call with G-4,5,6
+when OpponentsAtTable = 3 and bigblindsize >= 200 and stacksize > 48 and raises = 0 and calls >= 1 and firstcallerposition = 3
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) call force
+when (hand = AQ or hand = AJ suited or hand = AT suited) call force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) call force
+
+// un-raised + early limper call with G-4,5,6
+when OpponentsAtTable = 4 and bigblindsize >= 200 and stacksize > 48 and raises = 0 and calls >= 1 and firstcallerposition = 4
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) call force
+when (hand = AQ or hand = AJ suited or hand = AT suited) call force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) call force
+
+// un-raised + early limper call with G-4,5,6
+when OpponentsAtTable = 5 and bigblindsize >= 200 and stacksize > 48 and raises = 0 and calls >= 1 and firstcallerposition = 5
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) call force
+when (hand = AQ or hand = AJ suited or hand = AT suited) call force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) call force
+
+// un-raised + no early limper Move allin with G1,2,3,4,5
+when OpponentsAtTable = 3 and bigblindsize >= 200 and stacksize > 48 and raises = 0 and calls >= 0 and (not firstcallerposition = 3)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+// un-raised + no early limper Move allin with G1,2,3,4,5
+when OpponentsAtTable = 4 and bigblindsize >= 200 and stacksize > 48 and raises = 0 and calls >= 0 and (not firstcallerposition = 4)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+// un-raised + no early limper Move allin with G1,2,3,4,5
+when OpponentsAtTable = 5 and bigblindsize >= 200 and stacksize > 48 and raises = 0 and calls >= 0 and (not firstcallerposition = 5)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+// raised from any position Move allin with G1,2,3
+when OpponentsAtTable >= 3 and OpponentsAtTable <= 5 and bigblindsize >= 200 and stacksize > 48 and raises >= 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+
+
+// CSI
+// Big
+// >10x
+// CPR
+// un-raised + early limper Move allin with G1,2,3
+when OpponentsAtTable = 3 and bigblindsize < 200 and stacksize > 15 and raises = 0 and calls >= 1 and firstcallerposition = 3
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper Move allin with G1,2,3
+when OpponentsAtTable = 4 and bigblindsize < 200 and stacksize > 15 and raises = 0 and calls >= 1 and firstcallerposition = 4
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper Move allin with G1,2,3
+when OpponentsAtTable = 5 and bigblindsize < 200 and stacksize > 15 and raises = 0 and calls >= 1 and firstcallerposition = 5
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper Optional to Call with Groups 4-6
+when OpponentsAtTable = 3 and bigblindsize < 200 and stacksize > 15 and raises = 0 and calls >= 1 and firstcallerposition = 3
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) and random < 51 call force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) fold force
+when (hand = AQ or hand = AJ suited or hand = AT suited) and random < 51 call force
+when (hand = AQ or hand = AJ suited or hand = AT suited) fold force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) and random < 51 call force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) fold force
+
+// un-raised + early limper Optional to Call with Groups 4-6
+when OpponentsAtTable = 4 and bigblindsize < 200 and stacksize > 15 and raises = 0 and calls >= 1 and firstcallerposition = 4
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) and random < 51 call force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) fold force
+when (hand = AQ or hand = AJ suited or hand = AT suited) and random < 51 call force
+when (hand = AQ or hand = AJ suited or hand = AT suited) fold force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) and random < 51 call force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) fold force
+
+// un-raised + early limper Optional to Call with Groups 4-6
+when OpponentsAtTable = 5 and bigblindsize < 200 and stacksize > 15 and raises = 0 and calls >= 1 and firstcallerposition = 5
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) and random < 51 call force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) fold force
+when (hand = AQ or hand = AJ suited or hand = AT suited) and random < 51 call force
+when (hand = AQ or hand = AJ suited or hand = AT suited) fold force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) and random < 51 call force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) fold force
+
+// un-raised + no early limper Move allin with G1,2,3,4,5,6,7
+when OpponentsAtTable = 3 and bigblindsize < 200 and stacksize > 15 and raises = 0 and calls >= 0 and (not firstcallerposition = 3)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// un-raised + no early limper Move allin with G1,2,3,4,5,6,7
+when OpponentsAtTable = 4 and bigblindsize < 200 and stacksize > 15 and raises = 0 and calls >= 0 and (not firstcallerposition = 4)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// un-raised + no early limper Move allin with G1,2,3,4,5,6,7
+when OpponentsAtTable = 5 and bigblindsize < 200 and stacksize > 15 and raises = 0 and calls >= 0 and (not firstcallerposition = 5)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// raised from any position Move allin with G1,2,3,4
+when OpponentsAtTable >= 3 and OpponentsAtTable <= 5 and bigblindsize < 200 and stacksize > 15 and raises >= 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+
+// un-raised + early limper Move allin with G1,2,3
+when OpponentsAtTable = 3 and bigblindsize >= 200 and stacksize > 16 and raises = 0 and calls >= 1 and firstcallerposition = 3
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper Move allin with G1,2,3
+when OpponentsAtTable = 4 and bigblindsize >= 200 and stacksize > 16 and raises = 0 and calls >= 1 and firstcallerposition = 4
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper Move allin with G1,2,3
+when OpponentsAtTable = 5 and bigblindsize >= 200 and stacksize > 16 and raises = 0 and calls >= 1 and firstcallerposition = 5
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// un-raised + early limper Optional to Call with Groups 4-6
+when OpponentsAtTable = 3 and bigblindsize >= 200 and stacksize > 16 and raises = 0 and calls >= 1 and firstcallerposition = 3
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) and random < 51 call force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) fold force
+when (hand = AQ or hand = AJ suited or hand = AT suited) and random < 51 call force
+when (hand = AQ or hand = AJ suited or hand = AT suited) fold force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) and random < 51 call force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) fold force
+
+// un-raised + early limper Optional to Call with Groups 4-6
+when OpponentsAtTable = 4 and bigblindsize >= 200 and stacksize > 16 and raises = 0 and calls >= 1 and firstcallerposition = 4
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) and random < 51 call force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) fold force
+when (hand = AQ or hand = AJ suited or hand = AT suited) and random < 51 call force
+when (hand = AQ or hand = AJ suited or hand = AT suited) fold force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) and random < 51 call force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) fold force
+
+// un-raised + early limper Optional to Call with Groups 4-6
+when OpponentsAtTable = 5 and bigblindsize >= 200 and stacksize > 16 and raises = 0 and calls >= 1 and firstcallerposition = 5
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) and random < 51 call force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) fold force
+when (hand = AQ or hand = AJ suited or hand = AT suited) and random < 51 call force
+when (hand = AQ or hand = AJ suited or hand = AT suited) fold force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) and random < 51 call force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) fold force
+
+// un-raised + no early limper Move allin with G1,2,3,4,5,6,7
+when OpponentsAtTable = 3 and bigblindsize >= 200 and stacksize > 16 and raises = 0 and calls >= 0 and (not firstcallerposition = 3)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// un-raised + no early limper Move allin with G1,2,3,4,5,6,7
+when OpponentsAtTable = 4 and bigblindsize >= 200 and stacksize > 16 and raises = 0 and calls >= 0 and (not firstcallerposition = 4)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// un-raised + no early limper Move allin with G1,2,3,4,5,6,7
+when OpponentsAtTable = 5 and bigblindsize >= 200 and stacksize > 16 and raises = 0 and calls >= 0 and (not firstcallerposition = 5)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// raised from any position Move allin with G1,2,3,4
+when OpponentsAtTable >= 3 and OpponentsAtTable <= 5 and bigblindsize >= 200 and stacksize > 16 and raises >= 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+
+
+
+// CSI
+// Med
+// >4x
+// CPR
+// un-raised from any position Move allin with G1,2,3,4,5,6,7,8
+when OpponentsAtTable >= 3 and OpponentsAtTable <= 5 and bigblindsize < 200 and stacksize >= 6 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+// raised from any position Move allin with G1,2,3,4,5
+when OpponentsAtTable >= 3 and OpponentsAtTable <= 5 and bigblindsize < 200 and stacksize >= 6 and stacksize <= 16 and raises >= 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+// un-raised from any position Move allin with G1,2,3,4,5,6,7,8
+when OpponentsAtTable >= 3 and OpponentsAtTable <= 5 and bigblindsize >= 200 and stacksize > 6 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+// raised from any position Move allin with G1,2,3,4,5
+when OpponentsAtTable >= 3 and OpponentsAtTable <= 5 and bigblindsize >= 200 and stacksize > 6 and raises >= 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+
+
+// CSI
+// Small
+// <4x
+// CPR
+// unraised from any position Move allin with G-1,2,3,4,5,6,7,8,9,10
+when OpponentsAtTable >= 3 and OpponentsAtTable <= 5 and bigblindsize < 200 and stacksize < 6 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+when (hand = QT suited or hand = J9 suited or hand = T8 suited or hand = 97 suited or hand = 86 suited or hand = 75 suited or hand = 64 suited or hand = A6 or hand = A5 or hand = A4 or hand = A3 or hand = A2) raisemax force
+when (hand = Q9 suited or hand = J8 suited or hand = T7 suited or hand = 96 suited or hand = 85 suited or hand = 74 suited or hand = 63 suited or hand = K9 suited or hand = K8 suited or hand = K7 suited or hand = Q8 suited or hand = KT or hand = QT or hand = JT or hand = K9 or hand = QJ) raisemax force
+
+// raised from any position Move allin with Pairs / AT+
+when OpponentsAtTable >= 3 and OpponentsAtTable <= 5 and bigblindsize < 200 and stacksize < 6 and raises >= 1
+when (pairinhand or hand = AK or hand = AQ or hand = AJ or hand = AT or hand = AT) RaiseMax Force
+
+// unraised from any position Move allin with G-1,2,3,4,5,6,7,8,9,10
+when OpponentsAtTable >= 3 and OpponentsAtTable <= 5 and bigblindsize >= 200 and stacksize <= 6 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+when (hand = QT suited or hand = J9 suited or hand = T8 suited or hand = 97 suited or hand = 86 suited or hand = 75 suited or hand = 64 suited or hand = A6 or hand = A5 or hand = A4 or hand = A3 or hand = A2) raisemax force
+when (hand = Q9 suited or hand = J8 suited or hand = T7 suited or hand = 96 suited or hand = 85 suited or hand = 74 suited or hand = 63 suited or hand = K9 suited or hand = K8 suited or hand = K7 suited or hand = Q8 suited or hand = KT or hand = QT or hand = JT or hand = K9 or hand = QJ) raisemax force
+
+// raised from any position Move allin with Pairs / AT+
+when OpponentsAtTable >= 3 and OpponentsAtTable <= 5 and bigblindsize >= 200 and stacksize <= 6 and raises >= 1
+when (pairinhand or hand = AK or hand = AQ or hand = AJ or hand = AT or hand = AT) RaiseMax Force
+
+
+
+// 3 Handed
+// CSI Med+
+// unraised from any position Move allin with G-1,2,3,4,5,6,7,8,9,10
+when OpponentsAtTable = 2 and bigblindsize < 200 and stacksize >= 6 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+when (hand = QT suited or hand = J9 suited or hand = T8 suited or hand = 97 suited or hand = 86 suited or hand = 75 suited or hand = 64 suited or hand = A6 or hand = A5 or hand = A4 or hand = A3 or hand = A2) raisemax force
+when (hand = Q9 suited or hand = J8 suited or hand = T7 suited or hand = 96 suited or hand = 85 suited or hand = 74 suited or hand = 63 suited or hand = K9 suited or hand = K8 suited or hand = K7 suited or hand = Q8 suited or hand = KT or hand = QT or hand = JT or hand = K9 or hand = QJ) raisemax force
+
+// raised from any position Move allin with G-1,2,3,4,5,KQ suited,7,8
+when OpponentsAtTable = 2 and bigblindsize < 200 and stacksize >= 6 and raises >= 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+// unraised from any position Move allin with G-1,2,3,4,5,6,7,8,9,10
+when OpponentsAtTable = 2 and bigblindsize >= 200 and stacksize > 6 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+when (hand = QT suited or hand = J9 suited or hand = T8 suited or hand = 97 suited or hand = 86 suited or hand = 75 suited or hand = 64 suited or hand = A6 or hand = A5 or hand = A4 or hand = A3 or hand = A2) raisemax force
+when (hand = Q9 suited or hand = J8 suited or hand = T7 suited or hand = 96 suited or hand = 85 suited or hand = 74 suited or hand = 63 suited or hand = K9 suited or hand = K8 suited or hand = K7 suited or hand = Q8 suited or hand = KT or hand = QT or hand = JT or hand = K9 or hand = QJ) raisemax force
+
+// raised from any position Move allin with G-1,2,3,4,5,KQ suited,7,8
+when OpponentsAtTable = 2 and bigblindsize >= 200 and stacksize > 6 and raises >= 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+
+
+// CSI Small play all hands
+when OpponentsAtTable = 2 and bigblindsize >= 200 
+when stacksize <= 6 RaiseMax Force
+
+when OpponentsAtTable = 2 and bigblindsize < 200 
+when stacksize < 6 RaiseMax Force
+
+
+
+// HEADS UP
+// Check/Fold 73o, 63o, 53o, 43o, 82o, 72o, 62o, 42o, and 32o, otherwise move in.
+when opponentsattable = 1
+when (hand = 73 suited or hand = 63 suited or hand = 53 suited or hand = 43 suited or hand = 82 suited or hand = 72 suited or hand = 62 suited or hand = 42 suited or hand = 32 suited) raisemax force
+when (hand = 73 or hand = 63 or hand = 53 or hand = 43 or hand = 82 or hand = 72 or hand = 62 or hand = 42 or hand = 32) fold force
+when others raisemax force
+
+
+
+// 7-9 Handed
+// CSI
+// Huge/
+// Big
+// >10x
+// CPR
+// unraised
+// -EP/MP Move allin with Groups 1,2
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize > 15 and stilltoact >= 3 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+
+// -LP Move allin with Groups 1,2,3
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize > 15 and stilltoact = 2 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// -Blinds Move allin with Groups 1,2,3,4,5
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize > 15 and stilltoact <= 1 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+
+// raised
+// -EP/MP Move allin with G-1,2
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize > 15 and raises >= 1 and Firstraiserposition >= 4
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+
+// -LP Move allin with G-1,2,3
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize > 15 and raises >= 1 and (Firstraiserposition = 2 or Firstraiserposition = 3) 
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// -SB Move allin with G-1,2,3,4
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize > 15 and raises = 1 and Firstraiserposition = 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+
+
+
+// CSI
+// Med
+// >=4x
+// CPR
+// unraised
+// -EP Move allin with G-1,2,3,4,5
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize >= 6 and stilltoact >= 7 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+// -MP Move allin with G-1,2,3,4,5,6,7
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize >= 6 and stilltoact >= 4 and raises = 0  
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// -LP Move allin with G-1,2,3,4,5,6,7,8
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize >= 6 and (stilltoact = 2 or stilltoact = 3) and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+// -Blinds Move allin with G-1,2,3,4,5,6,7,8
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize >= 6 and stilltoact <= 1 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+// -EP Move allin with G-1,2,3,4,5
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize > 6 and stilltoact >= 7 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+// -MP Move allin with G-1,2,3,4,5,6,7
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize > 6 and stilltoact >= 4 and raises = 0  
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// -LP Move allin with G-1,2,3,4,5,6,7,8
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize > 6 and (stilltoact = 2 or stilltoact = 3) and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+// -Blinds Move allin with G-1,2,3,4,5,6,7,8
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize > 6 and stilltoact <= 1 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+//  raised
+// -EP Move allin with G-1,2,3
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize >= 6 and raises >= 1 and Firstraiserposition >= 7
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// -MP Move allin with G-1,2,3,4,5,KQsuited,7
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize >= 6 and raises >= 1 and Firstraiserposition >= 3
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// -LP Move allin with G-1,2,3,4,5,KQsuited,7
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize >= 6 and raises >= 1 and (Firstraiserposition = 2 or Firstraiserposition = 3)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// -SB Move allin with G-1,2,3,4,5,KQsuited,7
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize >= 6 and raises = 1 and Firstraiserposition = 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// -EP Move allin with G-1,2,3
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize > 6 and raises >= 1 and Firstraiserposition >= 7
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+
+// -MP Move allin with G-1,2,3,4,5,KQsuited,7
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize > 6 and raises >= 1 and Firstraiserposition >= 4
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// -LP Move allin with G-1,2,3,4,5,KQsuited,7
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize > 6 and raises >= 1 and (Firstraiserposition = 2 or Firstraiserposition = 3)  
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// -SB Move allin with G-1,2,3,4,5,KQsuited,7
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize > 6 and raises = 1 and Firstraiserposition = 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+
+
+// CSI
+// Small
+// <4x
+// CPR
+// unraised
+// -EP Move allin with G-1,2,3,4,5,6,7
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize < 6 and stilltoact >= 7 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// -MP Move allin with G-1,2,3,4,5,6,7,8
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize < 6 and stilltoact >= 4 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+// -LP/Blinds Move allin with G-1,2,3,4,5,6,7,8,9,10
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize < 6 and stilltoact <= 3 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+when (hand = QT suited or hand = J9 suited or hand = T8 suited or hand = 97 suited or hand = 86 suited or hand = 75 suited or hand = 64 suited or hand = A6 or hand = A5 or hand = A4 or hand = A3 or hand = A2) raisemax force
+when (hand = Q9 suited or hand = J8 suited or hand = T7 suited or hand = 96 suited or hand = 85 suited or hand = 74 suited or hand = 63 suited or hand = K9 suited or hand = K8 suited or hand = K7 suited or hand = Q8 suited or hand = KT or hand = QT or hand = JT or hand = K9 or hand = QJ) raisemax force
+
+// -EP Move allin with G-1,2,3,4,5,6,7
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize <= 6 and stilltoact >= 7 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// -MP Move allin with G-1,2,3,4,5,6,7,8
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize <= 6 and stilltoact >= 4 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+// -LP/Blinds Move allin with G-1,2,3,4,5,6,7,8,9,10
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize <= 6 and stilltoact <= 3 and raises = 0
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when (hand = KQ suited or hand = QJ suited or hand = JT suited or hand = T9 suited or hand = 98 suited or hand = 87 suited or hand = 76 suited or hand = 65 suited or hand = 54 suited) raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+when (hand = QT suited or hand = J9 suited or hand = T8 suited or hand = 97 suited or hand = 86 suited or hand = 75 suited or hand = 64 suited or hand = A6 or hand = A5 or hand = A4 or hand = A3 or hand = A2) raisemax force
+when (hand = Q9 suited or hand = J8 suited or hand = T7 suited or hand = 96 suited or hand = 85 suited or hand = 74 suited or hand = 63 suited or hand = K9 suited or hand = K8 suited or hand = K7 suited or hand = Q8 suited or hand = KT or hand = QT or hand = JT or hand = K9 or hand = QJ) raisemax force
+
+// raised
+// -EP Move allin with G-1,2,3,4,5
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize < 6 and raises >= 1 and Firstraiserposition >= 7
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+// -MP Move allin with G-1,2,3,4,5,KQsuited,7
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize < 6 and raises >= 1 and Firstraiserposition >= 4
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// -LP Move allin with G-1,2,3,4,5,KQsuited,7,8
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize < 6 and raises >= 1 and (Firstraiserposition = 2 or Firstraiserposition = 3)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+// -SB Move allin with G-1,2,3,4,5,KQsuited,7,8
+when OpponentsAtTable >= 6 and bigblindsize < 200 and stacksize < 6 and raises = 1 and Firstraiserposition = 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+// -EP Move allin with G-1,2,3,4,5
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize <= 6 and raises >= 1 and Firstraiserposition >= 7
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+
+// -MP Move allin with G-1,2,3,4,5,KQsuited,7
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize <= 6 and raises >= 1 and Firstraiserposition >= 4 
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+
+// -LP Move allin with G-1,2,3,4,5,KQsuited,7,8
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize <= 6 and raises >= 1 and (Firstraiserposition = 2 or Firstraiserposition = 3)
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+// -SB Move allin with G-1,2,3,4,5,KQsuited,7,8
+when OpponentsAtTable >= 6 and bigblindsize >= 200 and stacksize <= 6 and raises = 1 and Firstraiserposition = 1
+when (hand = AA or hand = KK) raisemax force
+when (hand = QQ or hand = AK suited or hand = AK) raisemax force
+when (hand = JJ or hand = TT or hand = 99) raisemax force
+when (hand = AQ suited or hand = 88 or hand = 77 or hand = 66) raisemax force
+when (hand = AQ or hand = AJ suited or hand = AT suited) raisemax force
+when hand = KQ suited raisemax force
+when (hand = AJ or hand = AT or hand = KQ) raisemax force
+when (hand = 55 or hand = 44 or hand = 33 or hand = 22 or hand = A9 suited or hand = A8 suited or hand = A7 suited or hand = A6 suited or hand = A5 suited or hand = A4 suited or hand = A3 suited or hand = A2 suited or hand = A9 or hand = A8 or hand = A7 or hand = KJ or hand = KT suited) raisemax force
+
+
+
+// kill all default
+when others
+when others fold force
+  
+  
+
+
+
+flop  
+
+// Post Flop Play  
+// If you flop 2-pair, 3-of-a-kind, a set, a straight, a flush, a full house, 4-of-a-kind, or a straight flush, move all-in when it’s your turn to act; otherwise check, and fold if there’s a bet. The one caveat is that the 2-pair must use two cards from your hand that match two cards on the board. A hand such as 9-7 with a flop of 9-7-2 qualifies; a hand such as T-T with a flop of 9-9-2 doesn’t. If everyone checks on the flop, you get a free look at the turn card.
+
+
+// If you flop top pair and best kicker, 2 Pair, 3 of a Kind, Set, Straight, or flush bet or raise allin
+when bets <= 1
+when ((HaveTopPair and HaveBestKicker) or (HaveOverPair and not paironboard) or (HaveTwoPair and not pairinhand) or HaveTrips or HaveSet or HaveStraight or havefullhouse or HaveFlush or HaveQuads or HaveStraightFlush) raisemax force  
+
+// If there's a bet and a raise before it gets to you…
+// * Move in with a set or better.
+// * Move in with top 2-pair if the flop doesn't contain three consecutive cards or three cards of the same suit.
+// * Move in with 3-of-a-kind if you have top kicker in your hand.
+when bets = 1 and raises >= 1 and botslastaction = none
+when (HaveSet or HaveStraight or HaveFlush or havefullhouse or HaveQuads or HaveStraightFlush) raisemax force  // move in with set or better
+when HaveTopTwoPair and not (FlushPossible or StraightPossible) raisemax force  // move in with top 2-pair if the flop doesn't contain three consecutive cards or three cards of the same suit.
+when HaveTrips and HaveBestKicker raisemax force  // move in withh 3 of a kind (trips) when you have best kicker
+
+// If you flop an open-ended straight or a flush draw using both your hole cards and there's been no action when it gets to you…
+// *Move in with two overcards to the board.
+// *Move in with the nut flush draw.
+// *Move in with a pair in addition to your flush draw.
+// *Otherwise, check your draw, fold if your opponent bets.
+// *If he checks, move in on the turn if you make the straight or flush.
+when (HaveStraightDraw and (not haveinsidestraightdraw)) and bets = 0 and raises = 0 and botslastaction = none
+when overcards = 2 raisemax force  // move in with 2 overcards to the board
+when HavenutFlushDraw raisemax force  // move in with nutFlushDraw					  
+when others  and bets = 1 fold force  // otherwise, check your draw, fold if your opponent bets.
+
+when haveflushdraw and suitsinhand = 1 and bets = 0 and raises = 0 and botslastaction = none
+when overcards = 2 raisemax force  // move in with 2 overcards to the board
+when HavenutFlushDraw raisemax force  // move in with nutFlushDraw
+when HavePair raisemax force  // move in with pair in addition to your FlushDraw
+when others and bets = 1 fold force  // otherwise, check your draw, fold if your opponent bets.
+
+
+
+turn
+
+// The same parameters apply. Move in if you’ve now made 2-pair or better; otherwise check and fold if someone bets. There’s a caveat here, too: If the board shows 4 cards to either a straight or a flush and you don’t have the top card that makes the straight or flush, check and fold to any bet. Also, if you’ve made a straight, but there’s a 4-flush on board, check and fold if someone bets. If no one bets, you’ll get to see the river card.
+
+// If the board shows 4 cards to either a straight or a flush and you don’t have the top card that makes the straight or flush, check and fold to any bet
+when Onecardflushpossible and (not havebestkicker) and haveflush and bets = 1 fold force
+when Onecardstraightpossible and (not havebestkicker) and havestraight and bets = 1 fold force
+
+// if you’ve made a straight, but there’s a 4-flush on board, check and fold if someone bets. If no one bets, you’ll get to see the river card. (added from kp rookie strategy)
+when HaveStraight and Onecardflushpossible and bets = 1 fold force  
+
+// if he checked the flop, move in on the turn if you make the straighht or flush
+when (HaveStraight or HaveFlush) and nobettingonflop raisemax force   // If he checks, move in on the turn if you make the straight or flush.
+
+// If you flop top pair and best kicker, 2 Pair, 3 of a Kind, Set, Straight, or flush bet or raise allin
+when bets <= 1
+when ((HaveTopPair and HaveBestKicker) or (HaveOverPair and not paironboard) or (HaveTwoPair and not pairinhand) or HaveTrips or HaveSet or HaveStraight or havefullhouse or HaveFlush or HaveQuads or HaveStraightFlush) raisemax force  
+
+// If there's a bet and a raise before it gets to you…
+// * Move in with a set or better.
+// * Move in with top 2-pair if the flop doesn't contain three consecutive cards or three cards of the same suit.
+// * Move in with 3-of-a-kind if you have top kicker in your hand.
+when bets = 1 and raises >= 1 and botslastaction = none
+when (HaveSet or HaveStraight or HaveFlush or havefullhouse or HaveQuads or HaveStraightFlush) raisemax force  // move in with set or better
+when HaveTopTwoPair and not (FlushPossible or StraightPossible) raisemax force	// move in with top 2-pair if the flop doesn't contain three consecutive cards or three cards of the same suit.
+when HaveTrips and HaveBestKicker raisemax force  // move in withh 3 of a kind (trips) when you have best kicker
+
+// If you flop an open-ended straight or a flush draw using both your hole cards and there's been no action when it gets to you…
+// *Move in with two overcards to the board.
+// *Move in with the nut flush draw.
+// *Move in with a pair in addition to your flush draw.
+// *Otherwise, check your draw, fold if your opponent bets.
+// *If he checks, move in on the turn if you make the straight or flush.
+when (HaveStraightDraw and (not haveinsidestraightdraw)) and bets = 0 and raises = 0 and botslastaction = none
+when overcards = 2 raisemax force  // move in with 2 overcards to the board
+when HavenutFlushDraw raisemax force // move in with nutFlushDraw					  
+when others and bets = 1 fold force  // Otherwise, check your draw, fold if your opponent bets..
+
+when haveflushdraw and suitsinhand = 1 and bets = 0 and raises = 0 and botslastaction = none
+when overcards = 2 raisemax force // move in with 2 overcards to the board
+when HavenutFlushDraw raisemax force  // move in with nutFlushDraw
+when HavePair raisemax force  // move in with pair in addition to your FlushDraw
+when others and bets = 1 fold force  // Otherwise, check your draw, fold if your opponent bets.
+
+
+river
+
+// The same precepts that guided you on the turn apply to the river—move in with 2-pair or better, unless there’s either a 4-card straight or flush on the board. If there is, follow the same guidelines as above.
+
+// If the board shows 4 cards to either a straight or a flush and you don’t have the top card that makes the straight or flush, check and fold to any bet (added from kp rookie strategy)
+when Onecardflushpossible and (not havebestkicker) and haveflush and bets = 1 fold force
+when Onecardstraightpossible and (not havebestkicker) and havestraight  and bets = 1 fold force
+
+// If you flop top pair and best kicker, 2 Pair, 3 of a Kind, Set, Straight, or flush bet or raise allin
+when bets <= 1
+when ((HaveTopPair and HaveBestKicker) or (HaveOverPair and not paironboard) or (HaveTwoPair and not pairinhand) or HaveTrips or HaveSet or HaveStraight or havefullhouse or HaveFlush or HaveQuads or HaveStraightFlush) raisemax force  
+
+// If there's a bet and a raise before it gets to you…
+// * Move in with a set or better.
+// * Move in with top 2-pair if the flop doesn't contain three consecutive cards or three cards of the same suit.
+// * Move in with 3-of-a-kind if you have top kicker in your hand.
+when bets = 1 and raises >= 1 and botslastaction = none
+when (HaveSet or HaveStraight or HaveFlush or havefullhouse or HaveQuads or HaveStraightFlush) raisemax force  // move in with set or better
+when HaveTopTwoPair and not (FlushPossible or StraightPossible) raisemax force	// move in with top 2-pair if the flop doesn't contain three consecutive cards or three cards of the same suit.
+when HaveTrips and HaveBestKicker raisemax force  // move in withh 3 of a kind (trips) when you have best kicker

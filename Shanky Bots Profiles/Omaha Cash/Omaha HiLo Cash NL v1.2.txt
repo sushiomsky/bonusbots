@@ -1,0 +1,659 @@
+﻿MaxSessionHands = 10000
+MaxSessionTime = 540
+MaxStackSize = 125
+BathroomBreakAfter = 64
+BathroomBreakTime = 2
+SitOutWhenOpponentsAreLessThan = 4
+MinBetOverride = 6
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 100
+Verbose = ON
+AutoPlay = ON
+AutoRebuyAtUB = ON
+AggressiveTournamentSetting = off
+FoldNonNut = 25
+UseOcrAtFullTilt = Off
+EnableFoldInTurn = OFF
+AlwaysAskForTableName=Off
+
+custom
+
+preflop
+
+when tripsInHand Fold Force
+
+when (Hand = AA2 or Hand = AA3 or Hand = AA4 or Hand = AA5) and Raises = 0 and Bets = 0 RaiseMax Force
+when (Hand = AA2 or Hand = AA3 or Hand = AA4 or Hand = AA5) and (Raises = 1 or Bets = 1) RaiseMax Force
+
+when ((Hand = 78 or Hand = 79 or Hand = 89) and not Hand = A suited2 and not Hand = AA and not In SmallBlind) Fold Force
+
+when (Hand = A23 or Hand = AK24or Hand = AK25 or Hand = AK34 or Hand = AQ24 or Hand = AJ24 or Hand = A245 or Hand = A345 or Hand = AA23 or
+          Hand = AA24 or Hand = AA25 or Hand = AA34 or Hand = AA35 or Hand = AA45)
+
+  when Raises = 0 and StillToAct < 5 and not In SmallBlind and not In BigBlind Raise 3 Force
+  when Raises = 0 and (StillToAct >= 5 or In SmallBlind or In BigBlind) Call Force
+  when Raises = 0 and Bets = 0 and StillToAct <= 3 and LowCardsInHand >= 3 Raise 3 Force
+  when Raises > 0 and (Hand = A suitedA23 or Hand = A suitedA24 or Hand = A suitedA25 or Hand = A suitedA34 or Hand = A suitedA35 or Hand = A suitedA45) RaiseMax Force
+  when Raises > 0 and (Hand = AA23 or Hand = AA24 or Hand = AA25 or Hand = AA34 or Hand = AA35 or Hand = AA45) RaiseMax Force
+  when (Raises = 1 or Bets = 1) and BetSize < 10 Call Force
+
+when (Hand = A2KQ or Hand = A2KJ or Hand = A2KT or Hand = A2QJ or Hand = A2QT or Hand = A2JT or
+          (Hand = A2 and PairInHand) or Hand = A24 or Hand = A25 or Hand = A26 or Hand = A34 or Hand = A356 or
+          Hand = A357 or Hand = A358 or Hand = A367 or Hand = A368 or Hand = 2345 or Hand = 2346 or
+          Hand = 2356 or Hand = 3456 or Hand = AKQJ or Hand = AKQT or Hand = AKJT or Hand = AQJT or Hand = KQJT or
+          Hand = AAKK or Hand = KKQQ or Hand = KKJJ or Hand = AA2 or Hand = AA3 or Hand = AA4 or Hand = A suited2)
+
+  when Raises = 0 and Calls >= 2 and (Hand = A suitedA2 or Hand = A suitedA3) RaisePot Force
+  when Raises = 0 and Bets = 0 Call Force
+  when Raises < 2 and StackSize < 20 and LowCardsInHand >= 2 RaiseMax Force
+  when Raises > 0 and BetSize < 6 Call Force
+  when Raises >= 1 and (Hand = AA2 or Hand = AA3 or Hand = AA4) Call Force
+
+when (((Hand = KK suited or Hand = QQ suited or Hand = JJ suited or Hand = TT suited) and LowCardsInHand = 0 and not Hand = 9) or Hand = K suited234 or
+          Hand = KQ23 or (not Hand = A2 and not Hand = A3 and not Hand = 23 and not Hand = 7 and not Hand = 8 and LowCardsInHand = 4) or Hand = AA or Hand = A2 or Hand = A suited3)
+
+  when Raises = 0 and StillToAct < 6 Call Force
+  when Raises = 1 and BetSize < 5 Call Force
+
+when ((Hand = A suited and (Hand = 22 or Hand = 33 or Hand = 44 or Hand = 55 or Hand = 66) and not Hand = 9 and not Hand = 8 and not Hand = 7))
+
+  when Raises = 0 and StillToAct < 4 Call Force
+  when Raises = 1 and BetSize = 2 and BotsLastAction = Call call Force
+
+when (Hand = AA or Hand = A2)
+  when Raises < 2 and BetSize < 3 Call Force
+
+when ((Hand = A and not Hand = 9 and LowCardsInHand = 1) or Hand = 9TJQ or (Hand = A suited3 and not Hand = 9 and LowCardsInHand = 2 and not PairInHand) or (LowCardsInHand = 0 and not Hand = 9))
+  when Raises < 2 and BetSize < 4 Call Force
+
+when (Hand = A suited2KQ or Hand = A suited2KJ or Hand = A suited2KT or Hand = A suited2KQ or Hand = A suited2JQ or Hand = A suited2TQ or
+          Hand = A suited2JT or Hand = A suited3KQ or Hand = A suited3KJ or Hand = A suited3KT or Hand = A suited3KQ or Hand = A suited3JQ or Hand = A suited3TQ or
+          Hand = A suited3JT or Hand = A suited4KQ or Hand = A suited4KJ or Hand = A suited4KT or Hand = A suited4KQ or Hand = A suited4QJ or Hand = A suited4TQ or
+          Hand = A suited4JT or Hand = A suited5KQ or Hand = A suited5KJ or Hand = A suited5KT or Hand = A suited5KQ or Hand = A suited5JQ or Hand = A suited5TQ or
+          Hand = A suited5JT or Hand = A suitedKK2 or Hand = A suitedKK3 or Hand = A suitedKK4 or Hand = A suitedKK5 or Hand = A suitedQQ2 or Hand = A suitedQQ3 or
+          Hand = A suitedQQ4 or Hand = A suitedQQ5) and not suitsinHand = 4
+
+  when Raises = 0 and Bets = 0 Call Force
+  when Raises < 2 and BetSize < 6 Call Force
+
+when (Hand = 2345 or Hand = 2346 or Hand = 2356 or Hand = 2456 or Hand = K suited234 or Hand = K suited235 or Hand = K suited245 or
+          Hand = K suitedK23 or Hand = K suitedK24 or Hand = K suitedK34 or Hand = Q suitedQ23 or Hand = Q suitedQ24 or Hand = Q suitedQ34 or Hand = A765 or Hand = A654 or (LowCardsInHand >= 3 and Hand = A suited))
+          and not suitsinHand = 4 and not suitsinhand = 1
+
+  when Raises = 0 and Bets = 0 and StillToAct < 4 Call Force
+  when Raises < 2 and BetSize < 4 Call Force
+
+// Ace double suited
+
+when suitsInHand = 2 and not PairInHand and
+          (Hand = A suited K suited) and ((Hand = A d and (not Hand = 2 d and not Hand = 3 d and not Hand = 4 d and not Hand = 5 d and not Hand = 6 d and not Hand = 7 d and not
+          Hand = 8 d and not Hand = 9 d and not Hand = T d and not Hand = J d and not Hand = Q d)) or
+          (Hand = A s and (not Hand = 2 s and not Hand = 3 s and not Hand = 4 s and not Hand = 5 s and not Hand = 6 s and not Hand = 7 s and not
+          Hand = 8 s and not Hand = 9 s and not Hand = T s and not Hand = J s and not Hand = Q s)) or
+          (Hand = A c and (not Hand = 2 c and not Hand = 3 c and not Hand = 4 c and not Hand = 5 c and not Hand = 6 c and not Hand = 7 c and not
+          Hand = 8 c and not Hand = 9 c and not Hand = T c and not Hand = J c and not Hand = Q c)) or
+          (Hand = A h and (not Hand = 2 h and not Hand = 3 h and not Hand = 4 h and not Hand = 5 h and not Hand = 6 h and not Hand = 7 h and not
+          Hand = 8 h and not Hand = 9 h and not Hand = T h and not Hand = J h and not Hand = Q h)))
+  when Raises = 0 Call Force
+  when Raises = 1 and BetSize <= 3 Call Force
+when Others Fold
+
+when suitsInHand = 2 and not PairInHand and
+          (Hand = A suited Q suited) and ((Hand = A d and (not Hand = 2 d and not Hand = 3 d and not Hand = 4 d and not Hand = 5 d and not Hand = 6 d and not Hand = 7 d and not
+          Hand = 8 d and not Hand = 9 d and not Hand = T d and not Hand = J d and not Hand = K d)) or
+          (Hand = A s and (not Hand = 2 s and not Hand = 3 s and not Hand = 4 s and not Hand = 5 s and not Hand = 6 s and not Hand = 7 s and not
+          Hand = 8 s and not Hand = 9 s and not Hand = T s and not Hand = J s and not Hand = K s)) or
+          (Hand = A c and (not Hand = 2 c and not Hand = 3 c and not Hand = 4 c and not Hand = 5 c and not Hand = 6 c and not Hand = 7 c and not
+          Hand = 8 c and not Hand = 9 c and not Hand = T c and not Hand = J c and not Hand = K c)) or
+          (Hand = A h and (not Hand = 2 h and not Hand = 3 h and not Hand = 4 h and not Hand = 5 h and not Hand = 6 h and not Hand = 7 h and not
+          Hand = 8 h and not Hand = 9 h and not Hand = T h and not Hand = J h and not Hand = K h)))
+  when Raises = 0 Call Force
+  when Raises = 1 and BetSize <= 3 Call Force
+when Others Fold
+
+when suitsInHand = 2 and not PairInHand and
+          (Hand = A suited J suited) and ((Hand = A d and (not Hand = 2 d and not Hand = 3 d and not Hand = 4 d and not Hand = 5 d and not Hand = 6 d and not Hand = 7 d and not
+          Hand = 8 d and not Hand = 9 d and not Hand = T d and not Hand = K d and not Hand = Q d)) or
+          (Hand = A s and (not Hand = 2 s and not Hand = 3 s and not Hand = 4 s and not Hand = 5 s and not Hand = 6 s and not Hand = 7 s and not
+          Hand = 8 s and not Hand = 9 s and not Hand = T s and not Hand = K s and not Hand = Q s)) or
+          (Hand = A c and (not Hand = 2 c and not Hand = 3 c and not Hand = 4 c and not Hand = 5 c and not Hand = 6 c and not Hand = 7 c and not
+          Hand = 8 c and not Hand = 9 c and not Hand = T c and not Hand = K c and not Hand = Q c)) or
+          (Hand = A h and (not Hand = 2 h and not Hand = 3 h and not Hand = 4 h and not Hand = 5 h and not Hand = 6 h and not Hand = 7 h and not
+          Hand = 8 h and not Hand = 9 h and not Hand = T h and not Hand = K h and not Hand = Q h)))
+  when Raises = 0 Call Force
+  when Raises = 1 and BetSize <= 3 Call Force
+when Others Fold
+
+when suitsInHand = 2 and not PairInHand and
+          (Hand = A suited T suited) and ((Hand = A d and (not Hand = 2 d and not Hand = 3 d and not Hand = 4 d and not Hand = 5 d and not Hand = 6 d and not Hand = 7 d and not
+          Hand = 8 d and not Hand = 9 d and not Hand = K d and not Hand = J d and not Hand = Q d)) or
+          (Hand = A s and (not Hand = 2 s and not Hand = 3 s and not Hand = 4 s and not Hand = 5 s and not Hand = 6 s and not Hand = 7 s and not
+          Hand = 8 s and not Hand = 9 s and not Hand = K s and not Hand = J s and not Hand = Q s)) or
+          (Hand = A c and (not Hand = 2 c and not Hand = 3 c and not Hand = 4 c and not Hand = 5 c and not Hand = 6 c and not Hand = 7 c and not
+          Hand = 8 c and not Hand = 9 c and not Hand = K c and not Hand = J c and not Hand = Q c)) or
+          (Hand = A h and (not Hand = 2 h and not Hand = 3 h and not Hand = 4 h and not Hand = 5 h and not Hand = 6 h and not Hand = 7 h and not
+          Hand = 8 h and not Hand = 9 h and not Hand = K h and not Hand = J h and not Hand = Q h)))
+  when Raises = 0 Call Force
+  when Raises = 1 and BetSize <= 3 Call Force
+when Others Fold
+
+when suitsInHand = 2 and not PairInHand and
+          (Hand = A suited 9 suited) and ((Hand = A d and (not Hand = 2 d and not Hand = 3 d and not Hand = 4 d and not Hand = 5 d and not Hand = 6 d and not Hand = 7 d and not
+          Hand = 8 d and not Hand = K d and not Hand = T d and not Hand = J d and not Hand = Q d)) or
+          (Hand = A s and (not Hand = 2 s and not Hand = 3 s and not Hand = 4 s and not Hand = 5 s and not Hand = 6 s and not Hand = 7 s and not
+          Hand = 8 s and not Hand = K s and not Hand = T s and not Hand = J s and not Hand = Q s)) or
+          (Hand = A c and (not Hand = 2 c and not Hand = 3 c and not Hand = 4 c and not Hand = 5 c and not Hand = 6 c and not Hand = 7 c and not
+          Hand = 8 c and not Hand = K c and not Hand = T c and not Hand = J c and not Hand = Q c)) or
+          (Hand = A h and (not Hand = 2 h and not Hand = 3 h and not Hand = 4 h and not Hand = 5 h and not Hand = 6 h and not Hand = 7 h and not
+          Hand = 8 h and not Hand = K h and not Hand = T h and not Hand = J h and not Hand = Q h)))
+  when Raises = 0 Call Force
+  when Raises = 1 and BetSize <= 3 Call Force
+when Others Fold
+
+when suitsInHand = 2 and not PairInHand and
+          (Hand = A suited 8 suited) and ((Hand = A d and (not Hand = 2 d and not Hand = 3 d and not Hand = 4 d and not Hand = 5 d and not Hand = 6 d and not Hand = 7 d and not
+          Hand = K d and not Hand = 9 d and not Hand = T d and not Hand = J d and not Hand = Q d)) or
+          (Hand = A s and (not Hand = 2 s and not Hand = 3 s and not Hand = 4 s and not Hand = 5 s and not Hand = 6 s and not Hand = 7 s and not
+          Hand = K s and not Hand = 9 s and not Hand = T s and not Hand = J s and not Hand = Q s)) or
+          (Hand = A c and (not Hand = 2 c and not Hand = 3 c and not Hand = 4 c and not Hand = 5 c and not Hand = 6 c and not Hand = 7 c and not
+          Hand = K c and not Hand = 9 c and not Hand = T c and not Hand = J c and not Hand = Q c)) or
+          (Hand = A h and (not Hand = 2 h and not Hand = 3 h and not Hand = 4 h and not Hand = 5 h and not Hand = 6 h and not Hand = 7 h and not
+          Hand = K h and not Hand = 9 h and not Hand = T h and not Hand = J h and not Hand = Q h)))
+  when Raises = 0 Call Force
+  when Raises = 1 and BetSize <= 3 Call Force
+when Others Fold
+
+when suitsInHand = 2 and not PairInHand and
+          (Hand = A suited 7 suited) and ((Hand = A d and (not Hand = 2 d and not Hand = 3 d and not Hand = 4 d and not Hand = 5 d and not Hand = 6 d and not Hand = K d and not
+          Hand = 8 d and not Hand = 9 d and not Hand = T d and not Hand = J d and not Hand = Q d)) or
+          (Hand = A s and (not Hand = 2 s and not Hand = 3 s and not Hand = 4 s and not Hand = 5 s and not Hand = 6 s and not Hand = K s and not
+          Hand = 8 s and not Hand = 9 s and not Hand = T s and not Hand = J s and not Hand = Q s)) or
+          (Hand = A c and (not Hand = 2 c and not Hand = 3 c and not Hand = 4 c and not Hand = 5 c and not Hand = 6 c and not Hand = K c and not
+          Hand = 8 c and not Hand = 9 c and not Hand = T c and not Hand = J c and not Hand = Q c)) or
+          (Hand = A h and (not Hand = 2 h and not Hand = 3 h and not Hand = 4 h and not Hand = 5 h and not Hand = 6 h and not Hand = K h and not
+          Hand = 8 h and not Hand = 9 h and not Hand = T h and not Hand = J h and not Hand = Q h)))
+  when Raises = 0 Call Force
+  when Raises = 1 and BetSize <= 3 Call Force
+when Others Fold
+
+when suitsInHand = 2 and not PairInHand and
+          (Hand = A suited 6 suited) and ((Hand = A d and (not Hand = 2 d and not Hand = 3 d and not Hand = 4 d and not Hand = 5 d and not Hand = K d and not Hand = 7 d and not
+          Hand = 8 d and not Hand = 9 d and not Hand = T d and not Hand = J d and not Hand = Q d)) or
+          (Hand = A s and (not Hand = 2 s and not Hand = 3 s and not Hand = 4 s and not Hand = 5 s and not Hand = K s and not Hand = 7 s and not
+          Hand = 8 s and not Hand = 9 s and not Hand = T s and not Hand = J s and not Hand = Q s)) or
+          (Hand = A c and (not Hand = 2 c and not Hand = 3 c and not Hand = 4 c and not Hand = 5 c and not Hand = K c and not Hand = 7 c and not
+          Hand = 8 c and not Hand = 9 c and not Hand = T c and not Hand = J c and not Hand = Q c)) or
+          (Hand = A h and (not Hand = 2 h and not Hand = 3 h and not Hand = 4 h and not Hand = 5 h and not Hand = K h and not Hand = 7 h and not
+          Hand = 8 h and not Hand = 9 h and not Hand = T h and not Hand = J h and not Hand = Q h)))
+  when Raises = 0 Call Force
+  when Raises = 1 and BetSize <= 3 Call Force
+when Others Fold
+
+when suitsInHand = 2 and not PairInHand and
+          (Hand = A suited 5 suited) and ((Hand = A d and (not Hand = 2 d and not Hand = 3 d and not Hand = 4 d and not Hand = K d and not Hand = 6 d and not Hand = 7 d and not
+          Hand = 8 d and not Hand = 9 d and not Hand = T d and not Hand = J d and not Hand = Q d)) or
+          (Hand = A s and (not Hand = 2 s and not Hand = 3 s and not Hand = 4 s and not Hand = K s and not Hand = 6 s and not Hand = 7 s and not
+          Hand = 8 s and not Hand = 9 s and not Hand = T s and not Hand = J s and not Hand = Q s)) or
+          (Hand = A c and (not Hand = 2 c and not Hand = 3 c and not Hand = 4 c and not Hand = K c and not Hand = 6 c and not Hand = 7 c and not
+          Hand = 8 c and not Hand = 9 c and not Hand = T c and not Hand = J c and not Hand = Q c)) or
+          (Hand = A h and (not Hand = 2 h and not Hand = 3 h and not Hand = 4 h and not Hand = K h and not Hand = 6 h and not Hand = 7 h and not
+          Hand = 8 h and not Hand = 9 h and not Hand = T h and not Hand = J h and not Hand = Q h)))
+  when Raises = 0 Call Force
+  when Raises = 1 and BetSize <= 3 Call Force
+when Others Fold
+
+when suitsInHand = 2 and not PairInHand and
+          (Hand = A suited 4 suited) and ((Hand = A d and (not Hand = 2 d and not Hand = 3 d and not Hand = K d and not Hand = 5 d and not Hand = 6 d and not Hand = 7 d and not
+          Hand = 8 d and not Hand = 9 d and not Hand = T d and not Hand = J d and not Hand = Q d)) or
+          (Hand = A s and (not Hand = 2 s and not Hand = 3 s and not Hand = K s and not Hand = 5 s and not Hand = 6 s and not Hand = 7 s and not
+          Hand = 8 s and not Hand = 9 s and not Hand = T s and not Hand = J s and not Hand = Q s)) or
+          (Hand = A c and (not Hand = 2 c and not Hand = 3 c and not Hand = K c and not Hand = 5 c and not Hand = 6 c and not Hand = 7 c and not
+          Hand = 8 c and not Hand = 9 c and not Hand = T c and not Hand = J c and not Hand = Q c)) or
+          (Hand = A h and (not Hand = 2 h and not Hand = 3 h and not Hand = K h and not Hand = 5 h and not Hand = 6 h and not Hand = 7 h and not
+          Hand = 8 h and not Hand = 9 h and not Hand = T h and not Hand = J h and not Hand = Q h)))
+  when Raises = 0 Call Force
+  when Raises = 1 and BetSize <= 3 Call Force
+when Others Fold
+
+when suitsInHand = 2 and not PairInHand and
+          (Hand = A suited 3 suited) and ((Hand = A d and (not Hand = 2 d and not Hand = K d and not Hand = 4 d and not Hand = 5 d and not Hand = 6 d and not Hand = 7 d and not
+          Hand = 8 d and not Hand = 9 d and not Hand = T d and not Hand = J d and not Hand = Q d)) or
+          (Hand = A s and (not Hand = 2 s and not Hand = K s and not Hand = 4 s and not Hand = 5 s and not Hand = 6 s and not Hand = 7 s and not
+          Hand = 8 s and not Hand = 9 s and not Hand = T s and not Hand = J s and not Hand = Q s)) or
+          (Hand = A c and (not Hand = 2 c and not Hand = K c and not Hand = 4 c and not Hand = 5 c and not Hand = 6 c and not Hand = 7 c and not
+          Hand = 8 c and not Hand = 9 c and not Hand = T c and not Hand = J c and not Hand = Q c)) or
+          (Hand = A h and (not Hand = 2 h and not Hand = K h and not Hand = 4 h and not Hand = 5 h and not Hand = 6 h and not Hand = 7 h and not
+          Hand = 8 h and not Hand = 9 h and not Hand = T h and not Hand = J h and not Hand = Q h)))
+  when Raises = 0 Call Force
+  when Raises = 1 and BetSize <= 3 Call Force
+when Others Fold
+
+when suitsInHand = 2 and not PairInHand and
+          (Hand = A suited 2 suited) and ((Hand = A d and (not Hand = K d and not Hand = 3 d and not Hand = 4 d and not Hand = 5 d and not Hand = 6 d and not Hand = 7 d and not
+          Hand = 8 d and not Hand = 9 d and not Hand = T d and not Hand = J d and not Hand = Q d)) or
+          (Hand = A s and (not Hand = K s and not Hand = 3 s and not Hand = 4 s and not Hand = 5 s and not Hand = 6 s and not Hand = 7 s and not
+          Hand = 8 s and not Hand = 9 s and not Hand = T s and not Hand = J s and not Hand = Q s)) or
+          (Hand = A c and (not Hand = K c and not Hand = 3 c and not Hand = 4 c and not Hand = 5 c and not Hand = 6 c and not Hand = 7 c and not
+          Hand = 8 c and not Hand = 9 c and not Hand = T c and not Hand = J c and not Hand = Q c)) or
+          (Hand = A h and (not Hand = K h and not Hand = 3 h and not Hand = 4 h and not Hand = 5 h and not Hand = 6 h and not Hand = 7 h and not
+          Hand = 8 h and not Hand = 9 h and not Hand = T h and not Hand = J h and not Hand = Q h)))
+  when Raises = 0 Call Force
+  when Raises = 1 and BetSize <= 3 Call Force
+when Others Fold
+
+when LowCardsInHand = 4
+  when Raises = 0 and Bets = 0 and StillToAct <= 5 Call Force
+  when (Raises = 1 or Bets = 1) and BetSize < 3 Call Force
+
+when In SmallBlind
+  when Raises = 0 and Bets = 0 and Calls > 2 Call Force
+
+when In BigBlind
+  when (Raises = 1 or Bets = 1) and BetSize <= 2 and Opponents > 1 Call Force
+
+when BotsLastAction = Raise
+  when (Raises = 1 or Bets = 1) Call Force
+
+when Others
+when Others Fold
+
+flop
+
+when TotalInvested > 130% StackSize RaiseMax Force
+
+// **************
+when HaveQuads Call Force
+when HaveTrips and HaveBestKicker and not FlushPossible and not StraightPossible and Raises = 0 and Bets = 0 and SuitsOnBoard = 3 and not Position = First and LowCardsOnBoard < 2 RaiseMax Force
+when HaveTrips and HaveBestKicker and not FlushPossible and not StraightPossible and Raises = 1 Call Force
+
+when havenutlowdraw and HaveNutFlushDraw and (not PairOnBoard) RaisePot Force
+
+when have2ndnutlowdraw and HaveNutFlushDraw and Opponents = 1 and (not PairOnBoard) RaiseHalfPot Force
+
+when (not lowpossible) and (not FlushPossible) and (not StraightPossible) and HaveNutFlushDraw and HaveStraightDraw RaisePot Force
+when BotsLastAction = Raise
+  when Opponents = 1 and LowCardsOnBoard <= 1 and Hand = AA and not FlushPossible and not StraightPossible and Raises = 0 and Bets = 0 and Position = Last RaisePot Force
+  when Opponents = 1 and (Raises = 1 or Bets = 1) Call Force
+
+when TripsOnBoard
+  when HaveQuads Call Force
+  when not HaveQuads and not Hand = AA and not Hand = KK Fold Force
+  when (NutFullHouseOrFourOfAKind > 3 or NutFullHouseOrFourOfAKind = 0) Fold Force
+
+when BetSize > 10
+  when PairOnBoard and not (HaveFullHouse or havenutlowdraw) and not BotsLastAction = Raise Fold Force
+  when (not PairOnBoard) and FlushPossible and not (HaveNutFlush or havenutlow or havenutlowdraw) Fold Force
+  when (not PairOnBoard) and (not FlushPossible) and StraightPossible and not (HaveNutStraight or havenutlow or havenutlowdraw or HaveNutFlushDraw) Fold Force
+  when (not PairOnBoard) and (not FlushPossible) and (not StraightPossible) and not (HaveSet or havenutlow or havenutlowdraw or HaveNutFlushDraw or HaveNutStraightDraw or have12outstraightdraw or have16outstraightdraw) Fold Force
+  when Position = Last and BotsLastAction = Raise and Opponents = 1 and Raises = 1 RaisePot Force
+
+when Opponents = 1
+  when Position = Last and Raises = 0 and Bets = 0 and SuitsOnBoard = 3 and not StraightPossible and not PairOnBoard and (HaveSet or HaveTwoPair or HaveTopPair or Have2ndTopPair) and HaveNutLowBackdoorDraw RaisePot Force
+  when Position = First and PairOnBoard and not HaveTrips and not HaveFullHouse and HaveFlushDraw and LowCardsOnBoard < 2 and Raises = 0 and Bets = 0 Call Force
+  when Position = First and BotRaisedBeforeFlop and PairOnBoard and not HaveFullHouse and not HaveTrips and not havenutlow and not havenutlowdraw and not Hand = AA and not Hand = KK and Raises = 0 and Bets = 0 Call Force
+  when (not PairOnBoard) and Have2ndNutFlush RaisePot Force
+  when PairOnBoard and (HaveTrips and Overcards >= 2) Call Force
+  when PairOnBoard and (HaveTrips and Hand = A) and (not Board = AA) RaisePot Force
+  when Raises >= 1 and havenutlow and not (HaveFlush or HaveStraight or HaveSet or HaveTwoPair or HaveFullHouse or HaveStraightDraw or HaveFlushDraw or HaveTopPair) Call Force
+
+when HaveFlush
+  when HaveNutFlush and not PairOnBoard RaisePot Force
+  when PairOnBoard and (Raises = 0 and Bets = 0) Call Force
+  when (HaveNutFlush or Have2ndNutFlush) and PairOnBoard and (Raises = 1 or Bets = 1) and BetSize > 50% PotSize Fold Force
+  when (HaveNutFlush or Have2ndNutFlush) and PairOnBoard and (Raises = 1 or Bets = 1) and BetSize <= 50% PotSize Call Force
+
+when HaveNutLow and not HavePair and not HaveTwoPair and not HaveStraight and not HaveFlush and not HaveTrips and not HaveSet and not HaveFullHouse and not HaveQuads and not HaveStraightFlush and not HaveNutFlushDraw and not HaveNutStraightDraw
+  when Opponents = 1 and Position = First Call Force
+  when Position = Last and Raises = 0 and Bets = 0 and Opponents < 3 RaisePot Force
+  when Position = Last and (Raises = 1 or Bets = 1) Call Force
+  when not Position = Last and (Raises = 1 or Bets = 1) Call Force
+
+when HaveNutStraight and FlushPossible and not HaveFlush
+  when Raises = 0 and Bets = 0 Call Force
+  when Opponents > 1 Fold Force
+  when Opponents = 1 and BetSize <= 3 Call Force
+
+when HaveNutStraight and not FlushPossible and Opponents > 2
+  when Raises = 1 and SuitsOnBoard < 3 and lowpossible and BetSize >= 50% PotSize Fold Force
+  when Raises = 1 and SuitsOnBoard < 3 Call Force
+  when Raises > 1 and SuitsOnBoard < 3 Fold Force
+  when Raises = 0 and Bets = 0 and Position = Last RaisePot Force
+
+when HaveNutStraight and Opponents > 1 and lowPossible
+  when SuitsOnBoard = 3 RaisePot Force
+  when not haveNutLow and Position = First Call Force
+
+when HaveStraight and not PairOnBoard and not FlushPossible and not havenutlow
+  when HaveUnderStraight and Opponents > 2 Fold Force
+  when HaveUnderStraight and Opponents <= 2 and BetSize <= 50% PotSize and BetSize < 6 Call Force
+
+when HaveNutStraightDraw and not PairOnBoard and not FlushPossible and not haveNutLow and not HaveNutLowDraw and not HaveStraight
+  when Raises = 0 and Bets = 0 Call Force
+  when (Raises = 1 or Bets = 1) and BetSize < 4 Call Force
+
+when HaveStraightDraw and not PairOnBoard and not FlushPossible and not HaveStraight
+  when have16outstraightdraw or have12outstraightdraw Call Force
+
+when HaveTrips and not HaveQuads and not HaveBestKicker and not Have2ndBestKicker and not StraightPossible and not FlushPossible
+  when Opponents = 1 Call Force
+  when Opponents > 2 and TotalInvested >= 100% StackSize RaiseMax Force
+  when Opponents > 1 and BetSize > 40% PotSize Fold Force
+  when Opponents < 3 and BetSize <= 40% PotSize Call Force
+
+when HaveSet and not HaveFullHouse
+  when not FlushPossible and not StraightPossible RaisePot Force
+  when HaveNutFlushDraw RaisePot Force
+  when not StraightPossible and not FlushPossible and HaveBottomSet Call Force
+
+when HaveTopTwoPair and not HaveSet and not HaveTrips
+  when not FlushPossible and not StraightPossible and SuitsOnBoard = 2 and Raises = 0 and Bets = 0 Call Force
+  when not (havenutlowdraw or have2ndnutlowdraw) and LowCardsOnBoard > 1 and Opponents > 2 and BetSize > 1 Fold Force
+
+when HaveTwoPair and not HaveTopTwoPair and not HaveStraight and not HaveFlush and not HaveSet and not HaveTrips and not haveNutlow and not HaveNutFlushDraw and not Have2ndNutFlushDraw and not Have3rdNutFlushDraw and not havenutlowdraw
+  when Opponents > 1 Fold Force
+
+when HaveOverPair and Hand = AA and not (HaveNutFlushDraw or Have2ndNutFlushDraw or HaveNutStraightDraw or HaveSet or HaveTrips or haveNutLow or haveNutLowDraw)
+  when Raises = 0 and Bets = 0 and not Position = Last Call Force
+
+when LowCardsOnBoard < 2 and Opponents > 1 and not HaveFullHouse and not HaveQuads and not HaveStraightFlush
+  when (Have12OutStraightDraw or Have16OutStraightDraw) and (HaveNutStraightDraw) and not PairOnBoard and not FlushPossible and not HaveStraight Call Force
+  when FlushPossible and not (HaveNutFlush or Have2ndNutFlush) Fold Force
+  when StraightPossible and not HaveNutStraight and not HaveNutFlushDraw Fold Force
+  when HaveNutStraightDraw and not HaveInsideStraightDraw and SuitsOnBoard < 3 and Raises < 2 and BetSize >= 6 Fold Force
+  when HaveNutStraightDraw and not HaveInsideStraightDraw and SuitsOnBoard < 3 and Raises < 2 and BetSize < 6 Call Force
+
+when have2ndNutLow
+  when (Raises = 1 or Bets = 1) and Opponents > 1 and not HaveStraightFlush and not HaveQuads and not HaveFullHouse and not HaveFlush and not HaveStraight and not HaveSet and not HaveTrips and not HaveTopTwoPair and not HaveNutFlushDraw Fold Force
+  when Raises = 0 and Bets = 0 Call Force
+  when (Raises = 1 or Bets = 1) and BetSize <= 3 Call Force
+
+when HaveNutLowDrawWithBackup
+  when Opponents > 0 and Raises = 0 Call Force
+  when Opponents > 0 and Raises = 1 Call Force
+
+when haveNutLowDraw
+  when BotsLastAction = Raise and (Raises = 1 or Bets = 1) and Opponents = 1 Call Force
+  when Opponents = 1 and Position = Last and BetSize <= 50% PotSize Call Force
+  when not HaveStraightFlush and not HaveQuads and not HaveFullHouse and not HaveFlush and not HaveStraight and not HaveSet and not HaveTrips and not HaveTwoPair and not Hand = AA and not HaveFlushDraw and not HaveStraightDraw and not (Have2ndTopPair and (HaveBestKicker or Have2ndBestKicker)) and not HaveTopPair and BetSize >= 50% PotSize Fold Force
+  when Opponents > 1 and Raises = 0 and Bets = 0 and Position = Last and HaveOverPair and Hand = AA and LowCardsInHand > 2 RaisePot Force
+  when Opponents > 1 and Raises < 2 Call Force
+
+when HaveNutFlushDraw and not PairOnBoard
+  when Raises = 0 and Bets = 0 and Position = Last and Opponents = 1 Bet 75% Force
+  when Raises = 0 Call Force
+  when (Raises = 1 or Bets = 1) and Opponents = 1 and BetSize <= 55% PotSize and BetSize < 8 Call Force
+  when (Raises = 1 or Bets = 1) and Opponents > 1 and BetSize < 10 Call Force
+
+when HaveFlushDraw
+  when Have2ndNutFlushDraw and not (havenutlow or havenutlowdraw or (HaveStraightDraw and not HaveInsideStraightDraw) or HaveStraight or HaveTrips or HaveSet) and not PairOnBoard and BetSize <= 50% PotSize Call Force
+
+when HaveTopTwoPair
+  when not Position = Last and LowCardsOnBoard >= 2 and Calls = 0 and Raises = 0 Call Force
+
+when HaveOverPair
+  when Hand = AA and havenutlowdraw and PairOnBoard and Opponents < 3 RaisePot Force
+  when not HaveStraightFlush and not HaveQuads and not HaveFullHouse and not HaveFlush and not HaveStraight and not HaveSet and not HaveTrips and not HaveTopTwoPair and not HaveNutFlushDraw and not Have2ndNutFlushDraw and LowCardsOnBoard > 1 and Raises = 0 and Bets = 0 Call Force
+  when not HaveStraightFlush and not HaveQuads and not HaveFullHouse and not HaveFlush and not HaveStraight and not HaveSet and not HaveTrips and not HaveTopTwoPair and not HaveNutFlushDraw and not Have2ndNutFlushDraw and LowCardsOnBoard > 1 and (Raises = 1 or Bets = 1) Fold Force
+
+when have2ndNutLowDraw
+  when Raises = 0 and Bets = 0 Call Force
+  when Raises = 1 and BetSize <= 50% PotSize and BetSize <= 7 and Opponents = 1 Call Force
+  when HaveTopTwoPair and not FlushPossible and BetSize <= 50% PotSize Call Force
+when Others Fold
+
+when BotRaisedBeforeFlop
+  when Opponents = 1 and BotsLastAction = Raise and BotRaisedOnFlop and Raises = 1 and LowCardsOnBoard < 2 RaisePot Force
+
+when RaisesBeforeFlop and Opponents = 1
+  when HaveTopSet and HaveFlushDraw and not HaveFlush RaisePot Force
+  when LowCardsOnBoard > 1 and HaveFlushDraw and not HaveNutFlushDraw and not Have2ndNutFlushDraw and not HaveFlush and nothaveset Fold Force
+
+when not HaveStraightFlush and not HaveQuads and not HaveFullHouse and not HaveFlush and not HaveStraight and not HaveTwoPair and not HaveTopPair and not HaveNutFlushDraw and not Have2ndNutFlushDraw and not haveNutLow
+  when HaveInsideStraightDraw and not Have10OutStraightDraw and not Have12OutStraightDraw and not Have16OutStraightDraw and BetSize > 1 Fold Force
+
+  when not (HaveStraightFlush or HaveQuads or HaveFullHouse or HaveFlush or HaveSet or HaveTrips or HaveTopPair or HaveFlushDraw or HaveStraightDraw) and LowCardsOnBoard < 2 Fold Force
+  when Opponents > 1 and not (haveNutLow or haveNutLowdraw or have2ndnutlow or (HaveStraightDraw and not HaveInsideStraightDraw) or HaveNutFlushDraw or Have2ndNutFlushDraw) and HaveTwoPair and Raises = 0 and Bets = 0 Call Force
+
+when BotRaisedBeforeFlop and Position = Last and Opponents = 1
+  when Raises = 0 and Bets = 0 and (havelow or havenutlowdraw or Have2ndNutLowDraw or Have3rdNutLowDraw or Have4thNutLowDraw) RaisePot Force
+
+turn
+
+when TotalInvested > 130% StackSize RaiseMax Force
+
+when HaveQuads or HaveStraightFlush Call Force
+
+when HaveTrips and HaveBestKicker and not FlushPossible and not StraightPossible and Raises = 0 and BotsLastAction = Call call Force
+when HaveTrips and HaveBestKicker and not FlushPossible and not StraightPossible and Raises = 0 RaisePot Force
+when HaveTrips and HaveBestKicker and not FlushPossible and not StraightPossible and Raises = 1 Call Force
+
+when (not lowpossible) and (not FlushPossible) and (not StraightPossible) and HaveNutFlushDraw and HaveStraightDraw and havenutlowdraw RaisePot Force
+
+when (not lowpossible) and (not FlushPossible) and (not StraightPossible) and HaveNutFlushDraw and HaveStraightDraw and BetSize < 50% StackSize Call Force
+
+when TwoPairOnBoard and (not havenutlowdraw) and (NutFullHouseOrFourOfAKind > 3 or NutFullHouseOrFourOfAKind = 0) and not HaveTrips Fold Force
+
+when TripsOnBoard and (not havenutlowdraw) and (NutFullHouseOrFourOfAKind > 3 or NutFullHouseOrFourOfAKind = 0) Fold Force
+
+when TripsOnBoard and not HaveQuads and not Hand = AA and not Hand = KK Fold Force
+
+when QuadsOnBoard and not (Hand = AA or Hand = KK) Fold Force
+
+when BotsLastAction = Raise
+  when Opponents = 1 and (Raises = 1 or Bets = 1) Call Force
+
+when BetSize > 15
+  when PairOnBoard and not (HaveFullHouse or havenutlow) and not BotsLastAction = Raise Fold Force
+  when (not PairOnBoard) and FlushPossible and not (HaveNutFlush or Have2ndNutFlush or havenutlow) Fold Force
+  when (not PairOnBoard) and (not FlushPossible) and StraightPossible and not (HaveNutStraight or havenutlow) and not (HaveNutFlushDraw and HaveTwoPair and HaveTopPair) Fold Force
+
+when (not PairOnBoard) and (not FlushPossible) and (not StraightPossible)
+when HaveTwoPair and havenutlowdraw and Bets = 0 betpotforce
+  when HaveTwoPair and havenutlowdraw and Bets = 1 Call Force
+  when BetSize > 8 and not (HaveSet or havenutlow or HaveNutFlushDraw or have12outstraightdraw or HaveTopTwoPair) Fold Force
+
+when Opponents = 1
+  when Position = First and PairOnBoard and not HaveTrips and not HaveFullHouse and HaveFlushDraw and LowCardsOnBoard < 2 and Raises = 0 and Bets = 0 Call Force
+  when Position = First and BotRaisedBeforeFlop and PairOnBoard and not HaveFullHouse and not HaveTrips and not havenutlow and not havenutlowdraw and not Hand = AA and not Hand = KK and Raises = 0 and Bets = 0 Call Force
+  when (not PairOnBoard) and Have2ndNutFlush RaisePot Force
+  when PairOnBoard and (HaveTrips and Overcards >= 2) Call Force
+  when Raises >= 1 and havenutlow and not (HaveFlush or HaveStraight or HaveSet or HaveTwoPair or HaveFullHouse or HaveStraightDraw or HaveFlushDraw or HaveTopPair) Call Force
+
+when lowpossible and Opponents = 1 and not (PairOnBoard or FlushPossible or StraightPossible or NoBettingOnFlop)
+  when HaveTopTwoPair RaisePot Force
+
+when PairOnBoard and NoBettingOnFlop
+  when not (havenutlow or have2ndnutlow or HaveStraight or HaveFlush or HaveTrips or HaveFullHouse or HaveQuads or haveNutLowDraw) Fold Force
+
+when (not PairOnBoard) and NoBettingOnFlop
+  when not (havenutlow or have2ndnutlow or HaveStraight or HaveFlush or HaveTrips or HaveFullHouse or HaveQuads or HaveSet or HaveTwoPair or HaveTopPair or haveNutLowDraw or have16outstraightdraw or have12outstraightdraw) Fold Force
+
+when HaveNutLow
+  when not HavePair and not HaveTwoPair and not HaveStraight and not HaveFlush and not HaveTrips and not HaveSet and not HaveFullHouse and not HaveQuads and not HaveStraightFlush Call Force
+when (HaveFlush or HaveStraight or HaveSet or HaveTrips or HaveQuads or HaveFullHouse or HaveTwoPair) raisepotforce
+  when Opponents = 1 and Position = First Call Force
+when Opponents > 3 and Position = Last and Bets = 0 and Raises = 0 raisehalfpotforce
+  when haveNutLowWithBackup and not Position = First RaiseHalfPot Force
+
+when HaveFlush
+  when HaveNutFlush and not PairOnBoard RaisePot Force
+  when PairOnBoard and (Raises = 0 and Bets = 0) Call Force
+  when (HaveNutFlush or Have2ndNutFlush) and PairOnBoard and (Raises = 1 or Bets = 1) and BetSize > 50% PotSize Fold Force
+  when (HaveNutFlush or Have2ndNutFlush) and PairOnBoard and (Raises = 1 or Bets = 1) and BetSize <= 50% PotSize Call Force
+
+when HaveNutStraight and FlushPossible and not HaveFlush
+  when Raises = 0 and Bets = 0 Call Force
+  when Opponents > 1 Fold Force
+  when Opponents = 1 and BetSize <= 3 Call Force
+
+when HaveStraight and not HaveFullHouse and not HaveFlush
+  when HaveNutStraight and not FlushPossible and not PairOnBoard RaisePot Force
+  when PairOnBoard and Raises = 0 and Bets = 0 Call Force
+  when PairOnBoard and (Raises = 1 or Bets = 1) and BetSize > 3 Fold Force
+  when PairOnBoard and (Raises = 1 or Bets = 1) and BetSize <= 3 Call Force
+
+when HaveNutStraight and Opponents > 2 and LowCardsOnBoard < 2
+  when not NoBettingOnFlop and not FlushPossible and not PairOnBoard and (HaveNutFlushDraw or Have2ndNutFlushDraw) RaiseMax Force
+  when Position = First and not FlushPossible Call Force
+  when Raises > 1 and SuitsOnBoard < 3 Fold Force
+
+when HaveNutStraight and Opponents > 1 and lowPossible
+  when not haveNutLow and Position = First and not FlushPossible and not PairOnBoard Call Force
+  when not haveNutLow and Raises > 1 Fold Force
+  when not haveNutLow and Raises < 2 and Calls > 0 and SuitsOnBoard < 3 Fold Force
+
+when HaveStraight and not PairOnBoard and not FlushPossible and not havenutlow
+  when HaveUnderStraight and Opponents > 2 Fold Force
+  when HaveUnderStraight and Opponents <= 2 and BetSize <= 50% PotSize and BetSize < 6 Call Force
+
+when HaveStraight and not HaveNutStraight and not FlushPossible and not PairOnBoard and not havenutlow
+  when Opponents = 1 and Position = First and Raises = 0 and Bets = 0 Call Force
+  when Opponents = 1 and Position = Last and BetSize <= 50% PotSize Call Force
+
+when HaveStraightDraw and not HaveInsideStraightDraw and not haveNutLow and not HaveNutLowDraw and not FlushPossible and not PairOnBoard and not HaveStraight
+  when Raises = 0 and Bets = 0 Call Force
+  when (Raises = 1 or Bets = 1) and BetSize < 4 Call Force
+
+when HaveStraightDraw and not PairOnBoard and not FlushPossible and not HaveStraight
+  when have16outstraightdraw or have12outstraightdraw Call Force
+
+when LowCardsOnBoard < 2 and Opponents > 1 and not HaveFullHouse and not HaveQuads and not HaveStraightFlush
+  when (Have12OutStraightDraw or Have16OutStraightDraw) and (HaveNutStraightDraw) and not HaveStraight and not PairOnBoard and not FlushPossible Call Force
+  when FlushPossible and not (HaveNutFlush or Have2ndNutFlush) and not HaveSet Fold Force
+  when StraightPossible and not HaveNutStraight Fold Force
+  when HaveNutStraightDraw and not HaveInsideStraightDraw and SuitsOnBoard < 3 and Raises < 2 and BetSize >= 6 Fold Force
+  when HaveNutStraightDraw and not HaveInsideStraightDraw and SuitsOnBoard < 3 and Raises < 2 and BetSize < 6 Call Force
+
+when HaveTwoPair and not HaveTopTwoPair and not HaveStraight and not HaveFlush and not HaveSet and not HaveTrips and not haveNutLow and not haveNutLowDraw
+  when HaveFlushDraw and not HaveNutFlushDraw and not Have2ndNutFlushDraw and Raises = 0 and Bets = 0 Call Force
+  when Opponents > 1 Fold Force
+  when Opponents = 1 and BetSize > 7 Fold Force
+
+when HaveSet
+  when not FlushPossible and not StraightPossible and not HaveNutFlushDraw and Opponents > 1 and SuitsOnBoard = 2 and Raises = 0 and Bets = 0 Call Force
+  when (HaveTopSet or Have2ndTopSet) and not PairOnBoard and not StraightPossible and not FlushPossible and StackSize < 20 RaiseMax Force
+  when HaveNutFlushDraw RaisePot Force
+  when not StraightPossible and not FlushPossible and HaveBottomSet Call Force
+
+when HaveOverPair and Hand = AA and not (HaveNutFlushDraw or Have2ndNutFlushDraw or HaveNutStraightDraw or HaveSet or HaveTrips or haveNutLow or haveNutLowDraw)
+  when Raises = 0 and Bets = 0 and not Position = Last Call Force
+
+when have2ndNutLow and not havenutlow
+  when (Raises = 1 or Bets = 1) and Opponents > 1 and not HaveStraightFlush and not HaveQuads and not HaveFullHouse and not HaveFlush and not HaveStraight and not HaveSet and not HaveTrips and not HaveTopTwoPair and not HaveNutFlushDraw Fold Force
+  when Raises = 0 and Bets = 0 Call Force
+  when (Raises = 1 or Bets = 1) and BetSize <= 3 Call Force
+
+when haveNutLowDraw
+  when not HaveStraightFlush and not HaveQuads and not HaveFullHouse and not HaveFlush and not HaveStraight and not HaveSet and not HaveTrips and not HaveTwoPair and not Hand = AA and BetSize > 50% PotSize Fold Force
+  when Opponents = 1 and BetSize <= 50% PotSize Call Force
+  when Opponents > 1 and Raises < 2 and Bets < 2 and BetSize <= 6 Call Force
+
+when have2ndnutlowdraw
+  when not RaisesBeforeFlop and not RaisesOnFlop and not BotRaisedBeforeFlop and not BotRaisedOnFlop and BetSize < 3 Call Force
+
+when FlushPossible and not HaveFlush and not HaveFullHouse and not HaveQuads and HaveTrips
+  when BetSize > 33% PotSize Fold Force
+
+when HaveTwoPair and not PairOnBoard and not HaveStraight and (HaveNutFlushDraw or Have2ndNutFlushDraw)
+  when BetSize <= 2 Call Force
+
+when HaveTwoPair and HaveTopPair and not PairOnBoard
+  when HaveFlushDraw and (havenutlowdraw or have2ndnutlowdraw) and not RaisesOnFlop and not RaisesBeforeFlop and Raises = 0 and Bets = 0 RaisePot Force
+
+when HaveFlushDraw
+  when Have2ndNutFlushDraw and not (havenutlow or havenutlowdraw or (HaveStraightDraw and not HaveInsideStraightDraw) or HaveStraight or HaveTrips or HaveSet) and BetSize <= 50% PotSize Call Force
+
+river
+
+when TotalInvested > 130% StackSize RaiseMax Force
+
+when (HaveQuads or HaveStraightFlush) Bet 70% Force
+
+when HaveTrips and HaveBestKicker and not FlushPossible and not StraightPossible and Raises = 0 and BotsLastAction = Call call Force
+when HaveTrips and HaveBestKicker and not FlushPossible and not StraightPossible and Raises = 0 RaisePot Force
+when HaveTrips and HaveBestKicker and not FlushPossible and not StraightPossible and Raises = 1 Call Force
+
+when TwoPairOnBoard and not (havenutlow or have2ndnutlow) and (NutFullHouseOrFourOfAKind > 3 or NutFullHouseOrFourOfAKind = 0) and not (HaveTrips and HaveBestKicker) Fold Force
+
+when TripsOnBoard and not (havenutlow or have2ndnutlow) and (NutFullHouseOrFourOfAKind > 3 or NutFullHouseOrFourOfAKind = 0) Fold Force
+
+when TripsOnBoard and not HaveQuads and not Hand = AA and not Hand = KK Fold Force
+
+when QuadsOnBoard and not (Hand = AA or Hand = KK) Fold Force
+
+when HaveFullHouse and NutFullHouseOrFourOfAKind > 4 and not havenutlow and not have2ndnutlow and Raises = 0 and Bets = 0 Call Force
+when HaveFullHouse and NutFullHouseOrFourOfAKind > 4 and not havenutlow and not have2ndnutlow and BetSize > 50% PotSize Fold Force
+
+when havenutlow
+  when HaveStraight and not FlushPossible Bet 65% Force
+  when Raises = 0 and Bets = 0 and Position = Last RaisePot Force
+  when Opponents = 1 Call Force
+
+  when not (HaveFlush or HaveStraight or HaveSet or HaveTrips or HaveQuads or HaveFullHouse or HaveTwoPair or HaveStraightFlush) and Position = First Call Force
+  when not (HaveFlush or HaveStraight or HaveSet or HaveTrips or HaveQuads or HaveFullHouse or HaveTwoPair or HaveStraightFlush) and Position = Last and Raises = 0 and Bets = 0 Bet 60% Force
+  when (HaveFlush or HaveStraight or HaveSet or HaveTrips or HaveQuads or HaveFullHouse) Bet 70% Force
+
+when BotsLastAction = Raise
+  when Opponents = 1 and (Raises = 1 or Bets = 1) Call Force
+
+when HaveFlush
+  when HaveNutFlush and not PairOnBoard RaisePot Force
+  when not HaveNutFlush and not Have2ndNutFlush and Raises = 0 and Bets = 0 Call Force
+  when PairOnBoard and (Raises = 0 and Bets = 0) Call Force
+  when (HaveNutFlush or Have2ndNutFlush) and PairOnBoard and (Raises = 1 or Bets = 1) and BetSize > 50% PotSize Fold Force
+  when (HaveNutFlush or Have2ndNutFlush) and PairOnBoard and (Raises = 1 or Bets = 1) and BetSize <= 50% PotSize and BetSize < 8 and Opponents < 2 Call Force
+
+when HaveNutStraight and FlushPossible and not HaveFlush
+  when Raises = 0 and Bets = 0 Call Force
+  when Opponents > 1 Fold Force
+  when Opponents = 1 and BetSize <= 3 Call Force
+
+when HaveStraight and not HaveFullHouse and not HaveFlush
+  when HaveNutStraight and not FlushPossible and not PairOnBoard RaisePot Force
+  when PairOnBoard and Raises = 0 and Bets = 0 Call Force
+  when PairOnBoard and (Raises = 1 or Bets = 1) and BetSize > 3 Fold Force
+  when PairOnBoard and (Raises = 1 or Bets = 1) and BetSize <= 3 Call Force
+
+when HaveStraight and not HaveNutStraight and not FlushPossible and not PairOnBoard and not havenutlow
+  when Opponents = 1 and Position = First and Raises = 0 and Bets = 0 and NoBettingOnTurn RaiseHalfPot Force
+  when Opponents = 1 and Position = First and Raises = 0 and Bets = 0 Call Force
+  when Opponents = 1 and Position = Last and BetSize <= 50% PotSize Call Force
+
+when HaveSet
+  when not StraightPossible and not FlushPossible and HaveBottomSet Call Force
+
+when have2ndNutLow and not havenutlow
+  when (Raises = 1 or Bets = 1) and Opponents > 1 and not HaveStraightFlush and not HaveQuads and not HaveFullHouse and not HaveFlush and not HaveStraight and not HaveSet and not HaveTrips and not HaveTopTwoPair Fold Force
+  when Raises = 0 and Bets = 0 Call Force
+  when (Raises = 1 or Bets = 1) and BetSize <= 3 Call Force
+  when NoBettingOnFlop and NoBettingOnTurn and BetSize <= 2 Call Force
+
+when Opponents = 1 and (not PairOnBoard)
+  when Have2ndNutFlush RaisePot Force
+  when Raises >= 1 and havenutlow and not (HaveFlush or HaveStraight or HaveSet or HaveTwoPair or HavePair) Call Force
+
+when Opponents = 1 and PairOnBoard
+  when not FlushPossible and lowPossible and HaveNutStraight and BotsLastAction = Raise and Raises < 2 and BetSize <= 50% PotSize Call Force
+
+when OpponentsAtTable = 1 and not (havenutlow or have2ndnutlow or HaveSet or HaveTopTwoPair or StraightPossible or FlushPossible or PairOnBoard)
+  when HavePair and havelow and Bets = 0 Bet Force
+  when HaveTwoPair Call Force
+  when HavePair and havelow Call Force
+
+when Opponents = 2 and (not PairOnBoard)
+  when (not FlushPossible) and (HaveTwoPair and HaveTopPair) and not StraightPossible and havelow and Raises = 0 Call Force
+  when (not FlushPossible) and (HaveSet or HaveStraight) and havelow and Raises = 0 Call Force
+  when HaveFlush and not HaveNutFlush and havelow and Raises = 0 Call Force
+
+when lowPossible and ((StraightPossible and not OneCardStraightPossible) or FlushPossible)
+  when not haveNutLow and not Have2ndNutLow and ((HaveSet or HaveTrips) and not HaveFullHouse) and BetSize <= 33% PotSize and BetSize < 8 Call Force
+
+when (HaveNutStraight or Have2ndNutStraight)
+  when not FlushPossible and PairOnBoard and Raises <= 1 and BetSize <= 50% PotSize and BetSize <= 7 Call Force
+
+

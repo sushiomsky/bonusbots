@@ -1,0 +1,203 @@
+MaxSessionHands = 10000 
+MaxSessionTime = 720 
+MaxStackSize = 40 
+BathroomBreakAfter = 63 
+BathroomBreakTime = 2 
+SitOutWhenOpponentsAreLessThan = 6 
+MakePotSizedPreFlopRaisesWhen = 6 
+FoldToPre-FlopRaisesForAQAJsKQ = OFF 
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = OFF 
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 2 
+FoldToPost-FlopRaisesWithPairedBoardsFor = 4 
+NeverBetTurnOrRiverWithHandBelow = 4 
+NeverBetFlopWithHandBelowMiddlePairWhen = 4 
+NeverBetFlopWithHandBelowMiddlePairStackSize = 4 
+NeverCallPairedBoardsWithHandBelow = 6 
+NeverCallFlushPossibleBoardsWithHandBelow = 6 
+FoldToPre-FlopRaiseWith55Or66When = 1 
+FoldToPre-FlopRaiseWith77Or88When = 1 
+FoldToPre-FlopRaiseWith99OrTTWhen = 1 
+FoldToPre-FlopRaiseWithJJOrQQWhen = 2 
+FoldToPre-FlopRaiseWithAKWhen = 1 
+FoldToPre-FlopRaiseWithAQsWhen = 1 
+FoldToPre-FlopRaiseWithAKsWhen = 1 
+FoldToPre-FlopRaiseWithKQsWhen = 1 
+SuperTightPlay = OFF 
+SemiSuperTightPlay = OFF 
+NoLimp = 15 
+AggressivePreFlop = 7 
+AggressivePostFlop = 3 
+AggressivePreFlopStackSize = 1000000 
+AggressivePostFlopStackSize = 1000000 
+MiningForSets = 0 
+PostFlopinBlindsOverride = 3 
+PreFlopReRaiseOverride = OFF 
+MinBetOverride = 6 
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5 
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000 
+ApplyFoldOrAllInAfter = 0 
+FoldOrGoAllInWhenOpponentsAtTableLessThan = 5 
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000 
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4 
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 90 
+Verbose = ON 
+AutoPlay = ON 
+UserDefinedGameType = 0 
+AutoRebuyAtUB = OFF 
+AlwaysAskForTableName = OFF 
+ 
+custom 
+	
+ 
+preflop    
+	
+ 
+// Short Stack Strategy Script from pokerstategy.com coded by lucky1 8-11-2009    
+  
+ 
+// As per strategy you will move up a limit only when you have 30 buyins for that limit and move down a limit when you only have 30 buyins left tottal in your bankroll. You will NEVER post the big blinds out of turn and you will allways sit down at table with 20 bb and fill back up with 15 bb or less and leave the table when you are over 25 bb.you will never call a bet on the flop,when ou play you raise 4 bb + 1 per caller when nobody has raised in front of you. Go all-in with only the hands on the chart when an opponent raises before or after you.(Another note *when there is less than 7 opponents, or more than 2 shortstacks at table then you find a different table) 
+ 
+ 
+// Starting hands to play 
+// When no one raises before you by position (ep,mp,lp or blinds) 
+when raises =0 and stilltoact <=9 
+when (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK) raisepot force	
+ 
+when raises =0 and stilltoact <=6 and Opponentsattable =8  
+when (hand = tt or hand = 99 or hand = AQ) raisepot force	
+when stilltoact >6 fold force 
+   
+when raises =0 and stilltoact <=3   
+when (hand = 88 or hand = 77 or hand = AJ or hand = KQ) raisepot force	
+when stilltoact >3 fold force   
+ 
+ 
+// when someone raises before or after you 
+// when exactly 1 opponent raises in front of you 
+when raises =1 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = AK) 
+ when stilltoact =0 and (lastraiserposition >=1) raisemax force  
+ when stilltoact =1 and (lastraiserposition >=2) raisemax force  
+ when stilltoact =2 and (lastraiserposition >=3) raisemax force  
+ when stilltoact =3 and (lastraiserposition >=4) raisemax force  
+ when stilltoact =4 and (lastraiserposition >=5) raisemax force  
+ when stilltoact =5 and (lastraiserposition >=6) raisemax force  
+ when stilltoact =6 and (lastraiserposition >=7) raisemax force  
+ when stilltoact =7 and (lastraiserposition >=8) raisemax force  
+ when stilltoact =8 and (lastraiserposition >=9) raisemax force  
+ when stilltoact =9 and (lastraiserposition >=10) raisemax force  
+  
+// when more than 1 opponent raises in front of you 
+when raises >=2 and (hand = AA or hand = KK)  
+ when stilltoact =0 and (lastraiserposition >=1) raisemax force  
+ when stilltoact =1 and (lastraiserposition >=2) raisemax force  
+ when stilltoact =2 and (lastraiserposition >=3) raisemax force  
+ when stilltoact =3 and (lastraiserposition >=4) raisemax force  
+ when stilltoact =4 and (lastraiserposition >=5) raisemax force  
+ when stilltoact =5 and (lastraiserposition >=6) raisemax force  
+ when stilltoact =6 and (lastraiserposition >=7) raisemax force  
+ when stilltoact =7 and (lastraiserposition >=8) raisemax force  
+ when stilltoact =8 and (lastraiserposition >=9) raisemax force  
+ when stilltoact =9 and (lastraiserposition >=10) raisemax force  
+ 
+ 
+// when an opponent raises behind you 
+when raises =1 and (hand = AA or hand = KK or hand = QQ or hand = JJ or hand = TT or hand = AK) 
+ when stilltoact =1 and (lastraiserposition =0) raisemax force 
+ when stilltoact =1 and (lastraiserposition =0) raisemax force  
+ when stilltoact =2 and (lastraiserposition <=1) raisemax force  
+ when stilltoact =3 and (lastraiserposition <=2) raisemax force  
+ when stilltoact =4 and (lastraiserposition <=3) raisemax force  
+ when stilltoact =5 and (lastraiserposition <=4) raisemax force  
+ when stilltoact =6 and (lastraiserposition <=5) raisemax force  
+ when stilltoact =7 and (lastraiserposition <=6) raisemax force  
+ when stilltoact =8 and (lastraiserposition <=7) raisemax force  
+ when stilltoact =9 and (lastraiserposition <=8) raisemax force  
+ 
+ 
+// kill bot default programming & fold any other hand 
+when others    
+when others fold force    
+	
+ 
+  
+ 
+flop  
+ 
+ 
+// Strategy suggests your bets be around 66% of the Pot & if this will be more than half your chip stack then you go allin 
+  
+ 
+// if you raised before the flop and the pot is greater than twice your chip stacksize at the beggining of betting round you go allin or if your bet is more than 50% of your stack you go directly all in  
+when totalinvested >100% stacksize RaiseMax force    
+
+when BotRaisedBeforeFlop and potsize >= 100 and stacksize <= 50 raisemax force 
+when BotRaisedBeforeFlop and potsize >= 50 and stacksize <= 25 raisemax force 
+when BotRaisedBeforeFlop and potsize >= 30 and stacksize <= 15 raisemax force 
+when BotRaisedBeforeFlop and potsize >=20 and stacksize <=10 raisemax force 
+when BotRaisedBeforeFlop and potsize >=10 and stacksize <=5 raisemax force  
+
+  
+// bet,raise,& try to go all in with top pair (jacks or better),overpair,three of a kind & better ,oesd , & flushdraws 
+when raises =0 and ((havetoppair and have3rdbestkickerorbetter) or haveflushdraw or havestraightdraw and (botraisedbeforeflop) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) raisepot force    
+when raises >0 and ((havetoppair and have3rdbestkickerorbetter) or haveflushdraw or havestraightdraw and (botraisedbeforeflop) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) raisemax force    
+   
+when opponents <=1 and BotRaisedBeforeFlop and bets =0 and raises =0 and not ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or haveflushdraw or havestraightdraw or havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) betpot force    
+when raises =1 fold force 
+   
+when opponents >=2 and not ((havetoppair and have3rdbestkickerorbetter) or haveflushdraw or havestraightdraw and (botraisedbeforeflop) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) fold force    
+  
+
+when (haveflushdraw or havestraightdraw) and not BotRaisedBeforeFlop fold force 
+
+// gutshotstraightdraw is not a playable hand in short stack strategy 
+when BotRaisedBeforeFlop and havestraightdraw and not (HaveInsideStraightDraw) call force
+
+ 
+// kill bot default programming & fold any other hand 
+when others    
+when others fold force    
+ 
+ 
+ 
+turn	
+ 
+ 
+// if you raised before the flop and the pot is greater than twice your chip stacksize at the beggining of betting round you go allin or if your bet is more than 50% of your stack you go directly all in  
+when totalinvested >100% stacksize RaiseMax force	
+	
+when opponents =1 and OpponentCalledOnFlop and ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or haveflushdraw or havestraightdraw or havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) raisemax force    
+ 
+when opponents =1 and OpponentCalledOnFlop and not((havetoppair and have3rdbestkickerorbetter) or haveoverpair or haveflushdraw or havestraightdraw or havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) fold force    
+	 
+when ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) and (bets =0 and raises =0 and calls >=0) raisepot force    
+  
+when ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havestraightflush or havequads or havefullhouse) and (bets >0 and raises >=0 and calls >=0) raisemax force    
+ 
+// gutshotstraightdraw is not a playable hand in short stack strategy 
+when BotRaisedBeforeFlop and havestraightdraw and not (HaveInsideStraightDraw) call force
+
+when (haveflushdraw and havestraightdraw and not (BotRaisedBeforeFlop)) and bets >0 or raises >0 fold force  
+when BotRaisedBeforeFlop and (haveflushdraw or havestraightdraw and not (HaveInsideStraightDraw)) and (bets =0 and raises =0 and calls >=0) raisepot force	
+when BotRaisedBeforeFlop and (haveflushdraw or havestraightdraw and not (HaveInsideStraightDraw)) and (bets >0 and raises >0 and calls >=0) raisemax force 
+  
+// kill bot default programming & fold any other hand 
+when others    
+when others fold force    
+ 
+  
+ 
+river	
+	
+ 
+// if you raised before the flop and the pot is greater than twice your chip stacksize at the beggining of betting round you go allin or if your bet is more than 50% of your stack you go directly all in  
+when totalinvested >100% stacksize RaiseMax force  
+	
+when ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havefullhouse or havequads) and (bets =0 and raises =0 and calls >=0) raisepot force    
+  
+when ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havefullhouse or havequads) and (bets >0 and raises >0 and calls >=0) raisemax force    
+   
+when not ((havetoppair and have3rdbestkickerorbetter) or haveoverpair or havetwopair or haveset or havetrips or haveflush or havestraight or havefullhouse or havequads) fold force   
+   
+// kill bot default programming & fold any other hand 
+when others    
+when others fold force    
