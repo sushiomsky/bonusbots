@@ -1,3 +1,54 @@
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 custom
 
 Preflop
@@ -22,17 +73,28 @@ When not(User_HandGroup_1 or User_HandGroup_2 or User_HandGroup_3 or User_HandGr
 //////////////////////////////////////////////////////////////////////////////
 ////////////////1.handgruppe -> spiel/////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-//when User_HandGroup_1 raisemax force
-	
+when User_HandGroup_1
+	when Calls = 0 and Raises = 0 Raise 10 Force
+	when Calls > 0 and Raises = 0 Raise 10 Force
+	when Raises > 0 and AmountToCall < 6 Raise 15 Force
+	when AmountToCall > 6 call force
 
+
+//////////////////////////////////////////////////////////////////////////////
+////////////////HavePair/////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+When User_HandGroup_2 and position = first raise 4 force 
+	When stacksize < startingstacksize
+	When position = middle and stacksize < 20 raisemax force
+	When position = last and stacksize < 15 raisemax force
 	
 	
 //////////////////////////////////////////////////////////////////////////////
 ////////////////other have to (call,raise,fold) situations////////////////////
 //////////////////////////////////////////////////////////////////////////////
-when insmallblind and raises = 0 and calls = 0 raise 2 force
+when insmallblind and raises = 0 and calls = 0 raise 5 force
 	
-//When AmountToCall < 2% StackSize call force
+When AmountToCall < 2% StackSize call force
 // Smash Strategy for NL micros ($25 NL and lower) coded by lucky1 4-14-2011
 
 

@@ -83,9 +83,9 @@ when startingstacksize >= 300% stacksize sitout force
 
 
 //when (hand = AA or hand = KK) and StackSize < StartingStacksize raisemax force
-when (hand = AA or hand = KK) and StackSize < 50 raisemax force
-when (hand = AA or hand = KK) and StackSize > 50 raise 25 force
+when (hand = AA or hand = KK) and StackSize <= 50 raisemax force
+when (hand = AA or hand = KK) and StackSize >= 50 raise 25 force
 
-When (Hand = AK Suited or Hand = AK or Hand = AQ Suited  or Hand = AJ  Suited or Hand = KQ  Suited) and AmountToCall < 5 call force
 when pairinhand and AmountToCall < 7 call force
+When (Hand = AK Suited or Hand = AK or Hand = AQ Suited  or Hand = AJ  Suited or Hand = KQ  Suited) and AmountToCall < 3 call force
 

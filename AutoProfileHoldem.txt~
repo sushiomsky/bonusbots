@@ -1,0 +1,631 @@
+MaxSessionHands = 10000
+MaxSessionTime = 7200
+MaxStackSize = 1000000
+BathroomBreakAfter = 999
+BathroomBreakTime = 2
+SitOutWhenOpponentsAreLessThan = 1
+MakePotSizedPreFlopRaisesWhen = 7
+FoldToPre-FlopRaisesForAQAJsKQ = OFF
+FoldPost-FlopBelowTopPairToAnyBetOrRaise = OFF
+FoldToPost-FlopRaisesWithUnpairedBoardsFor = 2
+FoldToPost-FlopRaisesWithPairedBoardsFor = 4
+NeverBetTurnOrRiverWithHandBelow = 2
+NeverBetFlopWithHandBelowMiddlePairWhen = 1
+NeverBetFlopWithHandBelowMiddlePairStackSize = 100000
+NeverCallPairedBoardsWithHandBelow = 5
+NeverCallFlushPossibleBoardsWithHandBelow = 6
+FoldToPre-FlopRaiseWith55Or66When = 3
+FoldToPre-FlopRaiseWith77Or88When = 3
+FoldToPre-FlopRaiseWith99OrTTWhen = 3
+FoldToPre-FlopRaiseWithJJOrQQWhen = 2
+FoldToPre-FlopRaiseWithAKWhen = 3
+FoldToPre-FlopRaiseWithAQsWhen = 2
+FoldToPre-FlopRaiseWithAKsWhen = 3
+FoldToPre-FlopRaiseWithKQsWhen = 2
+SuperTightPlay = OFF
+SemiSuperTightPlay = OFF
+NoLimp = 15
+AggressivePreFlop = 7
+AggressivePostFlop = 3
+AggressivePreFlopStackSize = 1000000
+AggressivePostFlopStackSize = 1000000
+MiningForSets = 5
+PostFlopinBlindsOverride = 3
+PreFlopReRaiseOverride = OFF
+MinBetOverride = 6
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThan = 5
+FoldOrGoAllInWhenOpponentsAfterFoldsLessThanStackSize = 1000000
+ApplyFoldOrAllInAfter = 0
+FoldOrGoAllInWhenOpponentsAtTableLessThan = always
+FoldOrGoAllInWhenOpponentsAtTableLessThanStackSize = 1000000
+AlwaysCallWhenOpponentsRaiseIsLessThan = 4
+AlwaysCallWhenStackSizeIsLessThanTotalInvested = 90
+Verbose = ON
+AutoPlay = ON
+UserDefinedGameType = 3
+UseOcrAtFullTilt = OFF
+AutoRebuyAtUB = ON
+AlwaysAskForTableName = OFF
+EnableFoldInTurn = OFF
+DefaultBetSizeFlop = 80
+DefaultBetSizeTurn = 60
+DefaultBetSizeRiver = 50
+
+custom
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Preflop
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//for snap/speedpoker
+//When stilltoact = 5 and raises = 0 and folds = 0 Skip force
+
+//lets take the money home & loss stop
+When StartingStackSize > 150% StackSize sitout force
+When StartingStackSize > 200% StackSize sitout force
+
+
+When (Opponent = shark OR Opponent = kkleng) usershark 
+When (Opponent = shark OR Opponent = kkleng) userfish
+
+When (Opponent = egor OR Opponent = egor) UserLooseRaiser1
+When UserLooseRaiser1 AND (Opponent = egor OR Opponent = egor) UserLooseRaiser2
+
+
+when (Hand = K6 or Hand = K5 or Hand = K4 or Hand = K3 or Hand = K2 or Hand = Q7 or Hand = Q6 or Hand = Q5 or Hand = Q4 or Hand = Q3 suited or Hand = Q2 suited or Hand = J8 or Hand = J7 or Hand = T8 or Hand = 97 or Hand = 87 or Hand = 86 or Hand = 75 suited or Hand = 54 suited or Hand = 34 suited) and BotsLastAction = None
+
+  when StillToAct = 2 and Calls = 0 and Raises = 0 Raise 1 Force
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////Sklansky Hand Groups/////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+When (Hand = AA or Hand = AK Suited or Hand = KK  or Hand = QQ or Hand = JJ) User_HandGroup_1
+When (Hand = AK or Hand = AQ Suited  or Hand = AJ  Suited or Hand = KQ  Suited or Hand = TT) User_HandGroup_2
+When (Hand = AQ or Hand = AT Suited  or Hand = KJ  Suited or Hand = QJ  Suited or Hand = TJ  Suited or Hand = 99) User_HandGroup_3
+When (Hand = AJ or Hand = KQ or Hand = KT Suited or Hand = QT Suited or Hand = J9 Suited or Hand = T9 Suited or Hand = 98 Suited or Hand = 88) User_HandGroup_4
+When (Hand = A Suited or Hand = KJ or Hand = QJ or Hand = JT or Hand = Q9  Suited or Hand = T8 Suited or Hand = 97 Suited or Hand = 87 Suited or Hand = 77 or Hand = 76 Suited or Hand = 66) User_HandGroup_5
+When (Hand = AT or Hand = KT or Hand = QT or Hand = J8 Suited or Hand = 86 Suited or Hand = 75 Suited or Hand = 65 Suited or Hand = 55 or Hand = 54 Suited) User_HandGroup_6
+When (Hand = K Suited or Hand = J9 or Hand = T9 or Hand = 98 or Hand = 64 Suited or Hand = 53 Suited or Hand = 44 or Hand = 43 Suited or Hand = 33 or Hand = 22) User_HandGroup_7
+When (Hand = A9 or Hand = K9 or Hand = Q9 or Hand = J8 or Hand = J7 Suited or Hand = T8 or Hand = 96 Suited or Hand = 87 or Hand = 85 Suited or Hand = 76 or Hand = 74 Suited or Hand = 65 or Hand = 54 or Hand = 42 Suited or Hand = 32 Suited) User_HandGroup_8
+When not(User_HandGroup_1 or User_HandGroup_2 or User_HandGroup_3 or User_HandGroup_4 or User_HandGroup_5 or User_HandGroup_6 or User_HandGroup_7 or User_HandGroup_8) User_HandGroup_9
+
+
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+when (hand = AA or hand = KK) raisemax force
+
+
+//###################################################
+//###############HU Sklansky code####################
+//###################################################
+When OpponentsAtTable = 1 and  in SmallBlind
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 4 or MaxStillToActStacksize <= 4) and  (hand = A A  or hand = K K  or hand = AK suited 
+or hand = QQ or hand = AK or hand = JJ or hand = AQ suited or hand = TT 
+or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 or hand = AT suited or hand = AJ or hand = 77 or hand = 66 
+or hand = AT or hand = A9 suited or hand = 55 or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 
+or hand = A7 suited or hand = KJ suited or hand = A5 suited or hand = A8 or hand = A6 suited or hand = A4 suited 
+or hand = 33 or hand = KT suited or hand = A7 or hand = A3 suited or hand = KQ or hand = A2 suited or hand = A5 or hand = A6 
+or hand = A4 or hand = KJ or hand = QJ suited or hand = A3 or hand = 22 or hand = K9 suited or hand = A2 or hand = KT 
+or hand = QT suited or hand = K8 suited or hand = K7 suited or hand = JT suited or hand = K9 or hand = K6 suited or hand = QJ 
+or hand = Q9 suited or hand = K5 suited or hand = K8 or hand = K4 suited or hand = QT or hand = K7 or hand = K3 suited 
+or hand = K2 suited or hand = Q8 suited or hand = K6 or hand = Q9 suited or hand = K5 or hand = Q9 or hand = JT or hand = K4 
+or hand = Q7 suited or hand = T9 suited or hand = Q6 suited or hand = K3 or hand = J8 suited or hand = Q5 suited or hand = K2 
+or hand = Q8 or hand = Q4 suited or hand = J9 or hand = Q3 suited or hand = T8 suited or hand = J7 suited or hand = Q7 
+or hand = Q2 suited or hand = Q6 or hand = 98 suited or hand = Q5 or hand = J8 or hand = T9 or hand = J6 suited 
+or hand = T7 suited or hand = J5 suited or hand = Q4 or hand = J4 suited or hand = J7 or hand = Q3 or hand = 97 suited 
+or hand = T8 or hand = J3 suited or hand = T6 suited or hand = Q2 or hand = J2 suited or hand = 87 suited or hand = J6 
+or hand = 98 or hand = T7 or hand = 96 suited or hand = J5 or hand = T5 suited or hand = T4 suited or hand = 86 suited 
+or hand = J4 or hand = T6 or hand = 97 or hand = T3 suited or hand = 76 suited or hand = 95 suited or hand = J3 
+or hand = T2 suited or hand = 87 or hand = 85 suited or hand = 96 or hand = T5 or hand = J2 or hand = 75 suited 
+or hand = 94 suited or hand = T4 or hand = 65 suited or hand = 86 or hand = 93 suited or hand = 84 suited or hand = 95 
+or hand = T3 or hand = 76 or hand = 92 suited or hand = 74 suited or hand = 54 suited or hand = T2 or hand = 85 
+or hand = 64 suited or hand = 83 suited or hand = 94 or hand = 75 or hand = 82 suited or hand = 73 suited or hand = 93 
+or hand = 65 or hand = 53 suited or hand = 63 suited or hand = 84 or hand = 92 or hand = 43 suited or hand = 74 
+or hand = 72 suited or hand = 54 or hand = 64 or hand = 52 suited or hand = 62 suited or hand = 83 or hand = 42 suited 
+or hand = 82 or hand = 73 or hand = 53 or hand = 63 or hand = 32 suited or hand = 43 or hand = 72 or hand = 52 or hand = 62 
+or hand = 42 or hand = 32) raisemax force
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 6 or MaxStillToActStacksize <= 6) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 or hand = A7 suited or hand = KJ suited 
+or hand = A5 suited or hand = A8 or hand = A6 suited or hand = A4 suited or hand = 33 or hand = KT suited or hand = A7 
+or hand = A3 suited or hand = KQ or hand = A2 suited or hand = A5 or hand = A6 or hand = A4 or hand = KJ 
+or hand = QJ suited or hand = A3 or hand = 22 or hand = K9 suited or hand = A2 or hand = KT or hand = QT suited 
+or hand = K8 suited or hand = K7 suited or hand = JT suited or hand = K9 or hand = K6 suited or hand = QJ 
+or hand = Q9 suited or hand = K5 suited or hand = K8 or hand = K4 suited or hand = QT or hand = K7 or hand = K3 suited 
+or hand = K2 suited or hand = Q8 suited or hand = K6 or hand = Q9 suited or hand = K5 or hand = Q9 or hand = JT 
+or hand = K4 or hand = Q7 suited or hand = T9 suited or hand = Q6 suited or hand = K3 or hand = J8 suited 
+or hand = Q5 suited or hand = K2 or hand = Q8 or hand = Q4 suited or hand = J9 or hand = Q3 suited or hand = T8 suited 
+or hand = J7 suited or hand = Q7 or hand = Q2 suited or hand = Q6 or hand = 98 suited or hand = Q5 or hand = J8 
+or hand = T9 or hand = J6 suited or hand = T7 suited or hand = J5 suited or hand = Q4 or hand = J4 suited or hand = J7 
+or hand = Q3 or hand = 97 suited or hand = T8 or hand = J3 suited or hand = T6 suited or hand = Q2 or hand = J2 suited 
+or hand = 87 suited or hand = J6 or hand = 98 or hand = T7 or hand = 96 suited or hand = J5 or hand = T5 suited 
+or hand = T4 suited or hand = 86 suited or hand = J4 or hand = T6 or hand = 97 or hand = T3 suited or hand = 76 suited 
+or hand = 95 suited or hand = J3 or hand = T2 suited or hand = 87 or hand = 85 suited or hand = 96 or hand = T5 
+or hand = J2 or hand = 75 suited or hand = 94 suited or hand = T4 or hand = 65 suited or hand = 86 or hand = 93 suited 
+or hand = 84 suited or hand = 95 or hand = T3 or hand = 76 or hand = 92 suited or hand = 74 suited or hand = 54 suited 
+or hand = T2 or hand = 85 or hand = 64 suited or hand = 83 suited or hand = 94 or hand = 75 or hand = 82 suited 
+or hand = 73 suited) raisemax force
+
+
+
+ 
+When OpponentsAtTable = 1 and  (Stacksize <= 8 or MaxStillToActStacksize <= 8) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 or hand = A7 suited or hand = KJ suited 
+or hand = A5 suited or hand = A8 or hand = A6 suited or hand = A4 suited or hand = 33 or hand = KT suited or hand = A7 
+or hand = A3 suited or hand = KQ or hand = A2 suited or hand = A5 or hand = A6 or hand = A4 or hand = KJ 
+or hand = QJ suited or hand = A3 or hand = 22 or hand = K9 suited or hand = A2 or hand = KT or hand = QT suited 
+or hand = K8 suited or hand = K7 suited or hand = JT suited or hand = K9 or hand = K6 suited or hand = QJ 
+or hand = Q9 suited or hand = K5 suited or hand = K8 or hand = K4 suited or hand = QT or hand = K7 or hand = K3 suited 
+or hand = K2 suited or hand = Q8 suited or hand = K6 or hand = Q9 suited or hand = K5 or hand = Q9 or hand = JT 
+or hand = K4 or hand = Q7 suited or hand = T9 suited or hand = Q6 suited or hand = K3 or hand = J8 suited 
+or hand = Q5 suited or hand = K2 or hand = Q8 or hand = Q4 suited or hand = J9 or hand = Q3 suited or hand = T8 suited 
+or hand = J7 suited or hand = Q7 or hand = Q2 suited or hand = Q6 or hand = 98 suited or hand = Q5 or hand = J8 
+or hand = T9 or hand = J6 suited or hand = T7 suited or hand = J5 suited or hand = Q4 or hand = J4 suited or hand = J7 
+or hand = Q3 or hand = 97 suited or hand = T8 or hand = J3 suited or hand = T6 suited or hand = Q2 or hand = J2 suited 
+or hand = 87 suited or hand = J6 or hand = 98 or hand = T7 or hand = 96 suited or hand = J5 or hand = T5 suited 
+or hand = T4 suited or hand = 86 suited or hand = J4 or hand = T6 or hand = 97 or hand = T3 suited or hand = 76 suited 
+or hand = 95 suited or hand = J3 or hand = T2 suited or hand = 87 or hand = 85 suited or hand = 96 or hand = T5 
+or hand = J2 or hand = 75 suited or hand = 94 suited or hand = T4 or hand = 65 suited or hand = 86 or hand = 93 suited) raisemax force
+
+
+
+ 
+When OpponentsAtTable = 1 and  (Stacksize <= 10 or MaxStillToActStacksize <= 10) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 or hand = A7 suited or hand = KJ suited 
+or hand = A5 suited or hand = A8 or hand = A6 suited or hand = A4 suited or hand = 33 or hand = KT suited or hand = A7 
+or hand = A3 suited or hand = KQ or hand = A2 suited or hand = A5 or hand = A6 or hand = A4 or hand = KJ 
+or hand = QJ suited or hand = A3 or hand = 22 or hand = K9 suited or hand = A2 or hand = KT or hand = QT suited 
+or hand = K8 suited or hand = K7 suited or hand = JT suited or hand = K9 or hand = K6 suited or hand = QJ 
+or hand = Q9 suited or hand = K5 suited or hand = K8 or hand = K4 suited or hand = QT or hand = K7 or hand = K3 suited 
+or hand = K2 suited or hand = Q8 suited or hand = K6 or hand = Q9 suited or hand = K5 or hand = Q9 or hand = JT 
+or hand = K4 or hand = Q7 suited or hand = T9 suited or hand = Q6 suited or hand = K3 or hand = J8 suited 
+or hand = Q5 suited or hand = K2 or hand = Q8 or hand = Q4 suited or hand = J9 or hand = Q3 suited or hand = T8 suited 
+or hand = J7 suited or hand = Q7 or hand = Q2 suited or hand = Q6 or hand = 98 suited or hand = Q5 or hand = J8 
+or hand = T9 or hand = J6 suited or hand = T7 suited or hand = J5 suited or hand = Q4 or hand = J4 suited or hand = J7 
+or hand = Q3 or hand = 97 suited or hand = T8 or hand = J3 suited or hand = T6 suited or hand = Q2 or hand = J2 suited 
+or hand = 87 suited or hand = J6 or hand = 98 or hand = T7 or hand = 96 suited or hand = J5 or hand = T5 suited 
+or hand = T4 suited or hand = 86 suited or hand = J4 or hand = T6 or hand = 97 or hand = T3 suited or hand = 76 suited 
+or hand = 95 suited) raisemax force
+
+ 
+
+ 
+When OpponentsAtTable = 1 and  (Stacksize <= 14 or MaxStillToActStacksize <= 14) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 or hand = A7 suited or hand = KJ suited 
+or hand = A5 suited or hand = A8 or hand = A6 suited or hand = A4 suited or hand = 33 or hand = KT suited or hand = A7 
+or hand = A3 suited or hand = KQ or hand = A2 suited or hand = A5 or hand = A6 or hand = A4 or hand = KJ 
+or hand = QJ suited or hand = A3 or hand = 22 or hand = K9 suited or hand = A2 or hand = KT or hand = QT suited 
+or hand = K8 suited or hand = K7 suited or hand = JT suited or hand = K9 or hand = K6 suited or hand = QJ 
+or hand = Q9 suited or hand = K5 suited or hand = K8 or hand = K4 suited or hand = QT or hand = K7 or hand = K3 suited 
+or hand = K2 suited or hand = Q8 suited or hand = K6 or hand = Q9 suited or hand = K5 or hand = Q9 or hand = JT 
+or hand = K4 or hand = Q7 suited or hand = T9 suited or hand = Q6 suited or hand = K3 or hand = J8 suited 
+or hand = Q5 suited or hand = K2 or hand = Q8 or hand = Q4 suited or hand = J9 or hand = Q3 suited or hand = T8 suited 
+or hand = J7 suited or hand = Q7 or hand = Q2 suited or hand = Q6 or hand = 98 suited or hand = Q5 or hand = J8 
+or hand = T9 or hand = J6 suited or hand = T7 suited or hand = J5 suited or hand = Q4 or hand = J4 suited or hand = J7 
+or hand = Q3 or hand = 97 suited or hand = T8 or hand = J3 suited or hand = T6 suited or hand = Q2 or hand = J2 suited 
+or hand = 87 suited or hand = J6 or hand = 98 or hand = T7 or hand = 96 suited) raisemax force
+
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 18 or MaxStillToActStacksize <= 18) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 or hand = A7 suited or hand = KJ suited 
+or hand = A5 suited or hand = A8 or hand = A6 suited or hand = A4 suited or hand = 33 or hand = KT suited or hand = A7 
+or hand = A3 suited or hand = KQ or hand = A2 suited or hand = A5 or hand = A6 or hand = A4 or hand = KJ 
+or hand = QJ suited or hand = A3 or hand = 22 or hand = K9 suited or hand = A2 or hand = KT or hand = QT suited 
+or hand = K8 suited or hand = K7 suited or hand = JT suited or hand = K9 or hand = K6 suited or hand = QJ 
+or hand = Q9 suited or hand = K5 suited or hand = K8 or hand = K4 suited or hand = QT or hand = K7 or hand = K3 suited 
+or hand = K2 suited or hand = Q8 suited or hand = K6 or hand = Q9 suited or hand = K5 or hand = Q9 or hand = JT 
+or hand = K4 or hand = Q7 suited or hand = T9 suited or hand = Q6 suited or hand = K3 or hand = J8 suited 
+or hand = Q5 suited or hand = K2 or hand = Q8 or hand = Q4 suited or hand = J9 or hand = Q3 suited or hand = T8 suited 
+or hand = J7 suited or hand = Q7 or hand = Q2 suited or hand = Q6 or hand = 98 suited or hand = Q5 or hand = J8 
+or hand = T9 or hand = J6 suited or hand = T7 suited or hand = J5 suited) raisemax force
+
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 24 or MaxStillToActStacksize <= 24) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 or hand = A7 suited or hand = KJ suited 
+or hand = A5 suited or hand = A8 or hand = A6 suited or hand = A4 suited or hand = 33 or hand = KT suited or hand = A7 
+or hand = A3 suited or hand = KQ or hand = A2 suited or hand = A5 or hand = A6 or hand = A4 or hand = KJ 
+or hand = QJ suited or hand = A3 or hand = 22 or hand = K9 suited or hand = A2 or hand = KT or hand = QT suited 
+or hand = K8 suited or hand = K7 suited or hand = JT suited or hand = K9 or hand = K6 suited or hand = QJ 
+or hand = Q9 suited or hand = K5 suited or hand = K8 or hand = K4 suited or hand = QT or hand = K7 or hand = K3 suited 
+or hand = K2 suited or hand = Q8 suited or hand = K6 or hand = Q9 suited or hand = K5 or hand = Q9 or hand = JT 
+or hand = K4 or hand = Q7 suited or hand = T9 suited or hand = Q6 suited or hand = K3 or hand = J8 suited 
+or hand = Q5 suited or hand = K2 or hand = Q8 or hand = Q4 suited) raisemax force
+
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 30 or MaxStillToActStacksize <= 30) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 or hand = A7 suited or hand = KJ suited 
+or hand = A5 suited or hand = A8 or hand = A6 suited or hand = A4 suited or hand = 33 or hand = KT suited or hand = A7 
+or hand = A3 suited or hand = KQ or hand = A2 suited or hand = A5 or hand = A6 or hand = A4 or hand = KJ 
+or hand = QJ suited or hand = A3 or hand = 22 or hand = K9 suited or hand = A2 or hand = KT or hand = QT suited 
+or hand = K8 suited or hand = K7 suited or hand = JT suited or hand = K9 or hand = K6 suited or hand = QJ 
+or hand = Q9 suited or hand = K5 suited or hand = K8 or hand = K4 suited or hand = QT or hand = K7 or hand = K3 suited 
+or hand = K2 suited or hand = Q8 suited or hand = K6 or hand = Q9 suited or hand = K5) raisemax force
+
+
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 40 or MaxStillToActStacksize <= 40) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 or hand = A7 suited or hand = KJ suited 
+or hand = A5 suited or hand = A8 or hand = A6 suited or hand = A4 suited or hand = 33 or hand = KT suited or hand = A7 
+or hand = A3 suited or hand = KQ or hand = A2 suited or hand = A5 or hand = A6 or hand = A4 or hand = KJ 
+or hand = QJ suited or hand = A3 or hand = 22 or hand = K9 suited or hand = A2 or hand = KT or hand = QT suited 
+or hand = K8 suited or hand = K7 suited or hand = JT suited or hand = K9 or hand = K6 suited or hand = QJ 
+or hand = Q9 suited or hand = K5 suited or hand = K8 or hand = K4 suited) raisemax force
+
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 50 or MaxStillToActStacksize <= 50) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 or hand = A7 suited or hand = KJ suited 
+or hand = A5 suited or hand = A8 or hand = A6 suited or hand = A4 suited or hand = 33 or hand = KT suited or hand = A7 
+or hand = A3 suited or hand = KQ or hand = A2 suited or hand = A5 or hand = A6 or hand = A4 or hand = KJ 
+or hand = QJ suited or hand = A3 or hand = 22 or hand = K9 suited or hand = A2 or hand = KT or hand = QT suited) raisemax force
+
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 60 or MaxStillToActStacksize <= 60) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 or hand = A7 suited or hand = KJ suited 
+or hand = A5 suited or hand = A8 or hand = A6 suited or hand = A4 suited or hand = 33 or hand = KT suited or hand = A7 
+or hand = A3 suited or hand = KQ or hand = A2 suited or hand = A5 or hand = A6 or hand = A4 or hand = KJ) raisemax force
+
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 70 or MaxStillToActStacksize <= 70) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 or hand = A7 suited or hand = KJ suited 
+or hand = A5 suited or hand = A8 or hand = A6 suited or hand = A4 suited or hand = 33 or hand = KT suited or hand = A7 
+or hand = A3 suited) raisemax force
+
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 80 or MaxStillToActStacksize <= 80) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9 or hand = A7 suited or hand = KJ suited 
+or hand = A5 suited or hand = A8 or hand = A6 suited) raisemax force
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 100 or MaxStillToActStacksize <= 100) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited or hand = 55 
+or hand = A8 suited or hand = KQ suited or hand = 44 or hand = A9) raisemax force
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 150 or MaxStillToActStacksize <= 150) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88 
+or hand = AT suited or hand = AJ or hand = 77 or hand = 66 or hand = AT or hand = A9 suited) raisemax force
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 200 or MaxStillToActStacksize <= 200) and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT or hand = AQ or hand = 99 or hand = AJ suited or hand = 88) raisemax force
+
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 300 or MaxStillToActStacksize <= 300) 
+and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ 
+or hand = AK or hand = JJ or hand = AQ suited or hand = TT) raisemax force
+
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 400 or MaxStillToActStacksize <= 400) 
+and (hand = A A  or hand = K K  or hand = AK suited or hand = QQ) raisemax force
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 600 or MaxStillToActStacksize <= 600) 
+and (hand = A A  or hand = K K) raisemax force
+
+
+When OpponentsAtTable = 1 and  (Stacksize <= 900 or MaxStillToActStacksize <= 900) 
+and hand = A A raisemax force
+
+
+When OpponentsAtTable = 1 and  others fold
+
+
+When OpponentsAtTable = 1 and  others
+
+
+//Big Blind Play
+
+//Stacksize <= 7 (Sage)
+
+When OpponentsAtTable = 1 and  stilltoact = 0 and (Stacksize <= 1 or MinOpponentStackSize <= 1) and (OpponentisAllin or raises = 1) and betsize >= 1 
+raisemax force
+
+When OpponentsAtTable = 1 and  stilltoact = 0 and (Stacksize <= 2 or MinOpponentStacksize <= 2) and (OpponentisAllin or raises = 1) and betsize >= 2
+and (hand = A or hand = K or hand = Q or hand = J or hand = T or hand = 9 or hand = 8
+or hand = 76 or hand = 75 or hand = 74 or hand = 73 or hand = 72 suited or hand = 65
+or hand = 64 suited or hand = 63 suited or PairinHand) raisemax force
+
+When OpponentsAtTable = 1 and  stilltoact = 0 and (Stacksize <= 3 or MinOpponentStacksize <= 3) and (OpponentisAllin or raises = 1) and betsize >= 3
+and (hand = A or hand = K or hand = Q or hand = J or hand = T9 or hand = T8 or hand = T7
+or hand = T6 or hand = T5 or hand = T4 or hand = T3 suited or hand = T2 suited or hand = 98
+or hand = 97 or hand = 96 or hand = 95 suited or hand = 94 suited or hand = 87 suited
+or hand = 86 suited) or PairinHand raisemax force
+
+When OpponentsAtTable = 1 and  stilltoact = 0 and (Stacksize <= 4 or MinOpponentStacksize <= 4) and (OpponentisAllin or raises = 1) and betsize >= 4
+and (hand = A or hand = K or hand = Q or hand = JT or hand = J9 or hand = J8 or hand = J7
+or hand = J6 or hand = J5 or hand = J4 or hand = J3 suited or hand = J2 suited or hand = T9 or hand = T8 
+or hand = T7 or hand = T6 or hand = T5 suited or hand = T4 suited or hand = 98
+or hand = 97 suited or hand = 96 suited or PairinHand) raisemax force
+
+When OpponentsAtTable = 1 and  stilltoact = 0 and (Stacksize <= 5 or MinOpponentStacksize <= 5) and (OpponentisAllin or raises = 1) and betsize >= 5
+and (hand = A or hand = K or hand = QJ or hand = QT or hand = Q9 or hand = Q8 or hand = Q7 or hand = Q6
+or hand = Q5 or hand = Q4 or hand = Q3 suited or hand = Q2 suited or hand = JT or hand = J9 or hand = J8 
+or hand = J7 or hand = J6 or hand = J5 suited or hand = J4 suited or hand = T9 or hand = T8 
+or hand = T7 suited or hand = T6 suited or hand = 98 suited or PairinHand) raisemax force
+
+When OpponentsAtTable = 1 and  stilltoact = 0 and (Stacksize <= 6 or MinOpponentStacksize <= 6) and (OpponentisAllin or raises = 1) and betsize >= 6
+and (hand = A or hand = KQ or hand = KJ or hand = KT or hand = K9 or hand = K8 or hand = K7 or hand = K6
+or hand = K5 or hand = K4 or hand = K3 or hand = K2 suited or hand = QJ or hand = QT or hand = Q9 
+or hand = Q8 or hand = Q7 or hand = Q6 or hand = Q5 or hand = Q4 suited or hand = Q3 suited
+or hand = JT or hand = J9 or hand = J8 or hand = J7 or hand = J6 suited or hand = J5 suited or hand = T9
+or hand = T8 suited or hand = T7 suited or PairinHand) raisemax force
+
+When OpponentsAtTable = 1 and  stilltoact = 0 and (Stacksize <= 7 or MinOpponentStacksize <= 7) and (OpponentisAllin or raises = 1) and betsize >= 7
+and (hand = A or hand = KQ or hand = KJ or hand = KT or hand = K9 or hand = K8 or hand = K7 or hand = K6
+or hand = K5 or hand = K4 or hand = K3 suited or hand = K2 suited or hand = QJ or hand = QT or hand = Q9 
+or hand = Q8 or hand = Q7 or hand = Q6 or hand = Q5 suited or hand = Q4 suited
+or hand = JT or hand = J9 or hand = J8 or hand = J7 suited or hand = J6 suited or hand = T9 suited
+or hand = T8 suited or PairinHand) and not hand = 22 raisemax force
+
+
+//Stacksize > 7 : Harrington System 
+
+//stacksize between 7 and 15
+
+When OpponentsAtTable = 1 and  stilltoact = 0 and Stacksize > 7 and stacksize <= 15 and OpponentisAllin and
+(hand = AK or hand = AQ or hand = AJ or hand = AT or hand = A9 or hand = A8 or hand = A7 or hand = A6 or hand = A5
+or hand = A4 suited or hand = A3 suited or hand = KQ or hand = KJ or hand = KT or hand = K9 or hand = K8 suited 
+or hand = K7 suited or hand = QJ or hand = QT suited or hand = Q9 suited or PairinHand) 
+and not (hand = 22 or hand = 33 or hand = 44) call force
+
+When OpponentsAtTable = 1 and  stilltoact = 0 and Stacksize > 7 and stacksize <= 15 and raises = 1 and
+(hand = AK or hand = AQ or hand = AJ or hand = AT or hand = A9 or hand = A8 or hand = A7 or hand = A6 or hand = A5
+or hand = A4 suited or hand = A3 suited or hand = KQ or hand = KJ or hand = KT or hand = K9 or hand = K8 suited 
+or hand = K7 suited or hand = QJ or hand = QT suited or hand = Q9 suited or PairinHand) 
+and not (hand = 22 or hand = 33 or hand = 44) raisemax force
+
+
+
+//Stacksize > 15
+
+When OpponentsAtTable = 1 and  stilltoact = 0 and Stacksize > 15 and OpponentisAllin and
+(hand = AK or hand = AQ or hand = AJ or hand = AT or hand = A9 or hand = A8 or hand = A7 or hand = A6 or hand = A5
+or hand = A4 suited or hand = A3 suited or hand = KQ or hand = KJ or hand = KT or hand = K9 or hand = K8 suited 
+or hand = K7 suited or hand = QJ or hand = QT suited or hand = Q9 suited or PairinHand) 
+and not (hand = 22 or hand = 33 or hand = 44) call force
+
+When OpponentsAtTable = 1 and  stilltoact = 0 and Stacksize > 15 and raises = 1 and 
+(hand = AK or hand = AQ or hand = AJ or hand = AT or hand = A9 or hand = A8 or hand = A7 or hand = A6 or hand = A5
+or hand = A4 suited or hand = A3 suited or hand = KQ or hand = KJ or hand = KT or hand = K9 or hand = K8 suited 
+or hand = K7 suited or hand = QJ or hand = QT suited or hand = Q9 suited or PairinHand) 
+and not (hand = 22 or hand = 33 or hand = 44) raisemax force
+
+
+
+When OpponentsAtTable = 1 and  others
+When OpponentsAtTable = 1 and  others fold force
+
+
+//##################################################################################
+//end HU code	
+
+////////////////////////////////////////////////////////////////////////////////////
+// Smash Strategy for NL micros ($25 NL and lower) coded by lucky1 4-14-2011////////
+////////////////////////////////////////////////////////////////////////////////////
+//If you have AA or KK preflop, just go all in, from any position, any time, against any number of limpers or none or whatever. Just move in.
+when (hand = AA or hand = KK) raisemax force
+
+
+//Limp everything else, or call a small raise with any pair or A suited and get in as cheaply as possible. 
+when pairinhand
+when opponentisallin and User_HandGroup_1 and AmountToCall < 60 and StackSize > 60 call force
+when botslastaction = call and raises <= 2 and (hand = QQ) and amounttocall < 4 call force
+when botslastaction = call and raises <= 2 and amounttocall <= 3 call force
+when raises <= 2 and (hand = QQ) and amounttocall < 4 call force
+when raises <= 2 and amounttocall <= 3 call force
+
+
+when hand = A suited
+when botslastaction = call and raises <= 2 and (hand = AK) and amounttocall < 4 call force
+when botslastaction = call and raises <= 2 and amounttocall <= 3 call force
+when raises <= 2 and (hand = AK) and amounttocall < 5 call force
+when raises <= 2 and amounttocall <= 3 call force
+
+
+//Button / Small blind opening steals
+when (pairinhand or hand = AK or hand = AQ or hand = AJ or hand = AT or hand = A9 or hand = A suited or hand = TJ or hand = TQ or hand = TK or hand = JQ or hand = JK or hand = QK or hand = 56 suited or hand = 67 suited or hand = 78 suited or hand = 89 suited or hand = 9T suited) 
+when botslastaction = raise and raises = 1 and amounttocall < 3 call force
+when stilltoact < 3 and raises = 0 and calls = 0 and (hand = 56 suited or hand = 67 suited or hand = 78 suited or hand = 89 suited or hand = 9T suited) and random <= 75 raise 150% force
+when stilltoact < 3 and raises = 0 and calls = 0 raise 150% force
+when stilltoact < 3 and raises = 0 and calls >= 2 and amounttocall < 2 call force
+
+
+
+//fold everything else
+when others
+when others fold force
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+flop
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+When opponents = 1 and OpponentIsAllIn and BetSize < 20% StackSize call force
+
+When OpponentsAtTable = 1 and  havenothing fold force
+
+When OpponentsAtTable = 1 and  (HaveQuads or HaveFullHouse or HaveFlush or HaveStraight or HaveSet or havetrips 
+or havetwopair or havetoppair or haveoverpair) Raisemax force
+
+
+When OpponentsAtTable = 1 and  (HavenutFlushDraw or Have2ndnutFlushDraw) 
+and HaveStraightDraw and not havebackdoorflushdraw Raisemax force
+
+When OpponentsAtTable = 1 and  (HavePair or hand = A) and not overcardsonboard = 3 and random <= 25 and raises > 0 and not raises = 0  Raisemax force
+When OpponentsAtTable = 1 and  (Have2ndtopPair or Have3rdtopPair or Have4thtopPair) and random <= 50 and raises > 0 and not raises = 0 Raisemax force
+
+
+When OpponentsAtTable = 1 and  Others
+When OpponentsAtTable = 1 and  Others fold force
+
+
+
+
+
+
+//When you flop a set, move in. When you make a nut flush on an unpaired board, move in. 
+
+//You should go all-in on the flop when you have the chance since you are most likely holding the nut hand with a set. Even if the board is suited or connected and your opponent has flopped a straight or a flush, you are not drawing dead. You still have a good chance 1 in 3 chance (around 30%) of winning with a full house or quads by the river
+when haveset raisemax force
+
+when havenutflush and (not paironboard) raisemax force
+
+//Edited egors codlines for dummies
+when straightpossible and (not flushpossible) and havestraight raisemax force
+when paironboard and havefullhouse raisemax force
+when paironboard and havetrips and havebestkicker raisemax force
+when not (paironboard or flushpossible or morethanonestraightpossibleonflop) and havetoptwopair and stacksize >=100 raisemax force 
+
+//If you flop a flush draw and can draw cheaply only
+when haveflushdraw 
+when bets = 0 and raises = 0 call force
+when bets = 1 and raises >=0 and amountToCall >= 34% PotSize fold force
+when bets = 1 and raises >=0 and amountToCall < 34% PotSize and betsize < 8% stacksize call force
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+turn
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//#####################################################################################################
+
+
+When OpponentsAtTable = 1 and  havenothing fold force
+
+When OpponentsAtTable = 1 and  (HaveQuads or HaveFullHouse or HaveFlush or HaveStraight or HaveSet or havetrips 
+or havetwopair or havetoppair or haveoverpair) Raisemax force
+
+
+When OpponentsAtTable = 1 and  Others
+When OpponentsAtTable = 1 and  Others fold force
+
+
+
+
+
+
+//#####################################################################################################
+
+
+when havenutflush and (not paironboard) raisemax force 
+when not (straightpossible or flushpossible or paironboard) and havestraight raisemax force
+when paironboard and havefullhouse raisemax force
+when paironboard and havetrips and havebestkicker raisemax force
+when not (paironboard or flushpossible or morethanonestraightpossibleonTurn) and (havetoptwopair or haveset) raisemax force 
+
+//Draw cheaply,
+when haveflushdraw 
+when bets = 0 and raises = 0 call force
+when bets = 1 and raises >=0 and amountToCall > 20% PotSize fold force
+when bets = 1 and raises >=0 and amountToCall <= 20% PotSize and betsize < 8% stacksize call force
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+River
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//#####################################################################################################
+// VALUE BET TO TAKE POT FROM MISSED BOARD OR WEAK OPPONENT HANDS
+
+When OpponentsAtTable = 1 and  not (HaveTwoPair or HaveSet or HaveTrips or HaveFullHouse or HaveQuads or HaveStraight or HaveFlush) 
+and BotsLastPreFlopAction = Raise and NoBettingOnTurn and botsactionsonthisround = 0 and bets = 0 
+and raises = 0 and stacksize > 15 and opponents = 1 and not opponentisallin and random < 80 Bet 3 force
+
+When OpponentsAtTable = 1 and  not (HaveTwoPair or HaveSet or HaveTrips or HaveFullHouse or HaveQuads or HaveStraight or HaveFlush) 
+and NoBettingOnTurn and botsactionsonthisround = 0 and bets = 0 and raises = 0 and stacksize > 15 
+and opponents = 1 and not opponentisallin and random < 60 Bet 2 force
+
+//#######################################
+
+When OpponentsAtTable = 1 and  havenothing fold force
+
+When OpponentsAtTable = 1 and  (HaveQuads or HaveFullHouse or HaveFlush or HaveStraight or HaveSet or havetrips 
+or havetwopair or havetoppair or haveoverpair) Raisemax force
+
+
+
+When OpponentsAtTable = 1 and  Others
+When OpponentsAtTable = 1 and  Others fold force
+
+
+when havenutflush and (not paironboard) raisemax force
+when not (straightpossible or flushpossible or paironboard) and havestraight raisemax force
+when paironboard and havefullhouse raisemax force
+when paironboard and havetrips and havebestkicker raisemax force
+when not (paironboard or flushpossible or straightpossible) and (havetoptwopair or haveset) raisemax force 
+
