@@ -1,9 +1,9 @@
-MaxSessionHands = 7500
-MaxSessionTime = 1000
+MaxSessionHands = 1500
+MaxSessionTime = 300
 MaxStackSize = 300
-BathroomBreakAfter = 9999
+BathroomBreakAfter = 90
 BathroomBreakTime = 2
-SitOutWhenOpponentsAreLessThan = 3
+SitOutWhenOpponentsAreLessThan = 0
 MakePotSizedPreFlopRaisesWhen = 1
 FoldToPre-FlopRaisesForAQAJsKQ = OFF
 FoldPost-FlopBelowTopPairToAnyBetOrRaise = OFF

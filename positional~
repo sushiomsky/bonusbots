@@ -1,0 +1,1026 @@
+custom
+preflop
+ 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Position Preflop: Full Ring Version - v1.2 - 11/04/2010
+// Copyright Shanky Bot Profiles 2010 - shankybotprofiles.com
+// This template is free for personal or commercial use as long as you acknowledge its use.
+// DISCLAIMER: This is just a template and obviously won't win anything without some work.
+//
+// ~~~ Notes ~~~
+// 2-4 Big Blinds is a standard opening raise size (4bb raise means AmountToCall = 5).
+// You may want to modify this in some cases (ie 6-10), especially for a late position raise that may be raising limpers
+// This is really only important in raised but not 3bet pots, and the idea is to allow for different play if
+// the raise size is bigger than what we consider 'standard'.
+// To Change: search for '<= 5' and '> 5' and replace with '<= x' and '> x'
+//
+// ~~~ Changelog ~~~
+// v1.0 New Release
+// v1.1 Cleaned up code a bit, and improved commenting
+// v1.2 Replaced BotsActionsOnThisRound with BotsActionsOnThisRound
+//
+//
+//
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+// #################################### Table of Contents: ####################################
+ 
+// Description                                          Line Number
+// (1). Unraised Pots:                                  40
+// (2). Raised Pots On First Orbit:                     306
+// (3). 3Bet Pots On First Orbit:                       713
+// (4). Re-Raised Pots On Second Orbit:                 964
+// (5). Re-Re-Raised Pots On Third+ Orbit:              1005
+// (6). When Others:                                    1018
+ 
+ 
+ 
+// ################################################################################
+// ##### Unraised Pots #####
+// ################################################################################
+ 
+ 
+// ######################### Bot is Under the Gun #########################
+When StillToAct = 8 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 0
+       
+        // Always first to act with unopened pot in UTG
+        When Calls = 0
+ 
+ 
+ 
+// ######################### Bot is Under the Gun + 1 #########################
+When StillToAct = 7 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 0
+       
+        // UTG Folded and we're first to act with 7 opponents left
+        When Calls = 0
+       
+        // One limper: UTG limped
+        When Calls = 1 and LastCallerPosition = 8
+       
+ 
+ 
+// ######################### Bot is in Middle Position #########################
+When StillToAct = 6 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 0
+       
+        // UTG and UTG+1 folded and we're first to act with 6 opponents left
+        When Calls = 0
+       
+        // UTG limped
+        When Calls = 1 and LastCallerPosition = 8
+       
+        // UTG+1 limped
+        When Calls = 1 and LastCallerPosition = 7
+       
+        // Two Limpers: UTG and UTG+1 limped
+        When Calls = 2 
+ 
+ 
+ 
+// ######################### Bot is in Middle Position + 1 #########################
+When StillToAct = 5 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 0
+ 
+        // UTG, UTG+1, and MP folded and we're first to act with 5 opponents left
+        When Calls = 0
+       
+        // UTG limped
+        When Calls = 1 and LastCallerPosition = 8
+       
+        // UTG+1 limped
+        When Calls = 1 and LastCallerPosition = 7
+       
+        // MP limped
+        When Calls = 1 and LastCallerPosition = 6
+       
+        // Two limpers (can't tell which)
+        When Calls = 2
+ 
+        // Three limpers: UTG, UTG+1, and MP limped
+        When Calls = 3
+       
+       
+ 
+// ######################### Bot is in Hijack #########################
+When StillToAct = 4 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 0
+ 
+        // UTG, UTG+1, MP, and MP+1 folded and we're first to act with 4 opponents left
+        When Calls = 0
+       
+        // UTG limped
+        When Calls = 1 and LastCallerPosition = 8
+       
+        // UTG+1 limped
+        When Calls = 1 and LastCallerPosition = 7
+       
+        // MP limped
+        When Calls = 1 and LastCallerPosition = 6
+       
+        // MP+1 limped
+        When Calls = 1 and LastCallerPosition = 5
+       
+        // Two limpers (can't tell which)
+        When Calls = 2
+ 
+        // Three limpers (can't tell which)
+        When Calls = 3
+       
+        // Four limpers: UTG, UTG+1, MP, and MP+1 limped
+        When Calls = 4
+ 
+ 
+ 
+// ######################### Bot is in Cutoff #########################
+When StillToAct = 3 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 0
+ 
+        // STEAL SITUATION: UTG, UTG+1, MP, MP+1, and HJ folded and we're first to act with 3 opponents left
+        When Calls = 0
+       
+        // UTG limped
+        When Calls = 1 and LastCallerPosition = 8
+       
+        // UTG+1 limped
+        When Calls = 1 and LastCallerPosition = 7
+       
+        // MP limped
+        When Calls = 1 and LastCallerPosition = 6
+       
+        // MP+1 limped
+        When Calls = 1 and LastCallerPosition = 5
+       
+        // HJ limped
+        When Calls = 1 and LastCallerPosition = 4
+       
+        // Two limpers (can't tell which)
+        When Calls = 2
+ 
+        // Three limpers (can't tell which)
+        When Calls = 3
+       
+        // Four limpers (can't tell which)
+        When Calls = 4
+       
+        // Five limpers: UTG, UTG+1, MP, MP+1, and HJ limped
+        When Calls = 5
+ 
+       
+       
+// ######################### Bot is on the Button #########################
+When In Button and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 0
+ 
+        // STEAL SITUATION: UTG, UTG+1, MP, MP+1, HJ, and CO folded and we're first to act with 2 opponents left
+        When Calls = 0
+       
+        // UTG limped
+        When Calls = 1 and LastCallerPosition = 8
+       
+        // UTG+1 limped
+        When Calls = 1 and LastCallerPosition = 7
+       
+        // MP limped
+        When Calls = 1 and LastCallerPosition = 6
+       
+        // MP+1 limped
+        When Calls = 1 and LastCallerPosition = 5
+       
+        // HJ limped
+        When Calls = 1 and LastCallerPosition = 4
+       
+        // CO limped
+        When Calls = 1 and LastCallerPosition = 3
+       
+        // Two limpers (can't tell which)
+        When Calls = 2
+ 
+        // Three limpers (can't tell which)
+        When Calls = 3
+       
+        // Four limpers (can't tell which)
+        When Calls = 4
+       
+        // Five limpers (can't tell which)
+        When Calls = 5
+       
+        // Six limpers: UTG, UTG+1, MP, MP+1, HJ, and CO limped
+        When Calls = 6
+ 
+       
+       
+// ######################### Bot is in the Small Blind #########################
+When In SmallBlind and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 0
+ 
+        // STEAL SITUATION: UTG, UTG+1, MP, MP+1, HJ, and CO folded and we're first to act with 2 opponents left
+        When Calls = 0
+       
+        // UTG limped
+        When Calls = 1 and LastCallerPosition = 8
+       
+        // UTG+1 limped
+        When Calls = 1 and LastCallerPosition = 7
+       
+        // MP limped
+        When Calls = 1 and LastCallerPosition = 6
+       
+        // MP+1 limped
+        When Calls = 1 and LastCallerPosition = 5
+       
+        // HJ limped
+        When Calls = 1 and LastCallerPosition = 4
+       
+        // CO limped
+        When Calls = 1 and LastCallerPosition = 3
+       
+        // BTN limped
+        When Calls = 1 and LastCallerPosition = 2
+       
+        // Two limpers (can't tell which)
+        When Calls = 2
+ 
+        // Three limpers (can't tell which)
+        When Calls = 3
+       
+        // Four limpers (can't tell which)
+        When Calls = 4
+       
+        // Five limpers (can't tell which)
+        When Calls = 5
+       
+        // Six limpers (can't tell which)
+        When Calls = 6
+       
+        // Seven limpers: UTG, UTG+1, MP, MP+1, HJ, CO, and BTN limped
+        When Calls = 7
+ 
+ 
+       
+// ######################### Bot is in the Big Blind #########################
+When In BigBlind and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 0
+       
+        // UTG limped
+        When Calls = 1 and LastCallerPosition = 8
+       
+        // UTG+1 limped
+        When Calls = 1 and LastCallerPosition = 7
+       
+        // MP limped
+        When Calls = 1 and LastCallerPosition = 6
+       
+        // MP+1 limped
+        When Calls = 1 and LastCallerPosition = 5
+       
+        // HJ limped
+        When Calls = 1 and LastCallerPosition = 4
+       
+        // CO limped
+        When Calls = 1 and LastCallerPosition = 3
+       
+        // BTN limped
+        When Calls = 1 and LastCallerPosition = 2
+       
+        // SB limped
+        When Calls = 1 and LastCallerPosition = 2
+       
+        // Two limpers (can't tell which)
+        When Calls = 2
+ 
+        // Three limpers (can't tell which)
+        When Calls = 3
+       
+        // Four limpers (can't tell which)
+        When Calls = 4
+       
+        // Five limpers (can't tell which)
+        When Calls = 5
+       
+        // Six limpers (can't tell which)
+        When Calls = 6
+       
+        // Seven limpers (can't tell which)
+        When Calls = 6
+       
+        // Eight limpers: UTG, UTG+1, MP, MP+1, HJ, CO, BTN, and SB limped
+        When Calls = 8
+       
+       
+       
+// ################################################################################
+// ##### Raised Pots On First Orbit #####
+// ################################################################################
+ 
+ 
+ 
+// ######################### Bot is Under the Gun + 1 #########################
+When StillToAct = 7 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 1
+ 
+        // ##### No Cold Callers #####
+        // UTG raised
+        When LastRaiserPosition = 8 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and AmountToCall > 5
+ 
+ 
+ 
+// ######################### Bot is in Middle Position #########################
+When StillToAct = 6 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 1
+ 
+ 
+        // ##### No Cold Callers #####
+        // UTG raised
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // UTG+1 raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // ##### One Cold Caller #####
+        // UTG raised and UTG+1 cold called
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall > 5
+ 
+ 
+ 
+// ######################### Bot is in Middle Position + 1 #########################
+When StillToAct = 5 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 1
+ 
+        // ##### No Cold Callers #####
+        // UTG raised
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // UTG+1 raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // MP raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // ##### One Cold Caller #####
+        // UTG raised and one cold caller
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall > 5
+       
+        // UTG+1 raised and one cold caller
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 1 and AmountToCall > 5
+ 
+        // ##### Two or More Cold Callers #####
+        // UTG raised and two cold callers
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 2 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 2 and AmountToCall > 5
+       
+ 
+// ######################### Bot is in Hijack #########################
+When StillToAct = 4 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 1
+ 
+        // ##### No Cold Callers #####
+        // UTG raised
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // UTG+1 raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // MP raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // MP+1 raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // ##### One Cold Caller #####
+        // UTG raised and one cold caller
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall > 5
+       
+        // UTG+1 raised and one cold caller
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 1 and AmountToCall > 5
+       
+        // MP raised and one cold caller
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+ 
+        // ##### Two or More Cold Callers #####
+        // UTG raised and two or more cold callers
+        When LastRaiserPosition = 8 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+       
+        // UTG+1 raised and two or more cold callers
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+ 
+ 
+ 
+// ######################### Bot is in Cutoff #########################
+When StillToAct = 3 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 1
+ 
+        // ##### No Cold Callers #####
+        // UTG raised
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // UTG+1 raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // MP raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // MP+1 raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // HJ raised
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // ##### One Cold Caller #####
+        // UTG raised and one cold caller
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall > 5
+       
+        // UTG+1 raised and one cold caller
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 1 and AmountToCall > 5
+       
+        // MP raised and one cold caller
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+       
+        // MP+1 raised and one cold caller
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+ 
+        // ##### Two or More Cold Callers #####
+        // UTG raised and two or more cold callers
+        When LastRaiserPosition = 8 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+       
+        // UTG+1 raised and two or more cold callers
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+       
+        // MP raised and two or more cold callers
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+ 
+ 
+       
+// ######################### Bot is on the Button #########################
+When In Button and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 1
+ 
+        // ##### No Cold Callers #####
+        // UTG raised
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // UTG+1 raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // MP raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // MP+1 raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // HJ raised
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // CO raised
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // ##### One Cold Caller #####
+        // UTG raised and one cold caller
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall > 5
+       
+        // UTG+1 raised and one cold caller
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 1 and AmountToCall > 5
+       
+        // MP raised and one cold caller
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+       
+        // MP+1 raised and one cold caller
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+       
+        // HJ raised and one cold caller
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+       
+        // ##### Two or More Cold Callers #####
+        // UTG raised and two or more cold callers
+        When LastRaiserPosition = 8 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+       
+        // UTG+1 raised and two or more cold callers
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+       
+        // MP raised and two or more cold callers
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+ 
+        // MP+1 raised and two or more cold callers
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+ 
+ 
+ 
+// ######################### Bot is in the Small Blind #########################
+When In SmallBlind and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 1
+ 
+        // ##### No Cold Callers #####
+        // UTG raised
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // UTG+1 raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // MP raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // MP+1 raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // HJ raised
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // CO raised
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // BTN raised
+        When LastRaiserPosition = 2 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 2 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // ##### One Cold Caller #####
+        // UTG raised and one cold caller
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall > 5
+       
+        // UTG+1 raised and one cold caller
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 1 and AmountToCall > 5
+       
+        // MP raised and one cold caller
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+       
+        // MP+1 raised and one cold caller
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+       
+        // HJ raised and one cold caller
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+       
+        // CO raised and one cold caller
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+ 
+        // ##### Two or More Cold Callers #####
+        // UTG raised and two or more cold callers
+        When LastRaiserPosition = 8 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+       
+        // UTG+1 raised and two or more cold callers
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+       
+        // MP raised and two or more cold callers
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+ 
+        // MP+1 raised and two or more cold callers
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+ 
+        // HJ raised and two or more cold callers
+        When LastRaiserPosition = 4 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 4 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+ 
+ 
+ 
+// ######################### Bot is in the Big Blind #########################
+When In BigBlind and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 1
+ 
+        // ##### No Cold Callers #####
+        // UTG raised
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // UTG+1 raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // MP raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall > 5
+       
+        // MP+1 raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // HJ raised
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // DEFEND STEAL: CO raised
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // DEFEND STEAL: BTN raised
+        When LastRaiserPosition = 2 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 2 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // DEFEND STEAL: SB raised
+        When LastRaiserPosition = 1 and CallsSinceLastRaise = 0 and AmountToCall <= 5
+        When LastRaiserPosition = 1 and CallsSinceLastRaise = 0 and AmountToCall > 5   
+       
+        // ##### One Cold Caller #####
+        // UTG raised and one cold caller
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise = 1 and AmountToCall > 5
+       
+        // UTG+1 raised and one cold caller
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 1 and AmountToCall > 5
+       
+        // MP raised and one cold caller
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+       
+        // MP+1 raised and one cold caller
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+       
+        // HJ raised and one cold caller
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+       
+        // CO raised and one cold caller
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+       
+        // BTN raised and one cold caller
+        When LastRaiserPosition = 2 and CallsSinceLastRaise = 1 and AmountToCall <= 5
+        When LastRaiserPosition = 2 and CallsSinceLastRaise = 1 and AmountToCall > 5   
+ 
+        // ##### Two or More Cold Callers #####
+        // UTG raised and two or more cold callers
+        When LastRaiserPosition = 8 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 8 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+       
+        // UTG+1 raised and two or more cold callers
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+       
+        // MP raised and two or more cold callers
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+ 
+        // MP+1 raised and two or more cold callers
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+ 
+        // HJ raised and two or more cold callers
+        When LastRaiserPosition = 4 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 4 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+ 
+        // CO raised and two or more cold callers
+        When LastRaiserPosition = 3 and CallsSinceLastRaise >= 2 and AmountToCall <= 5
+        When LastRaiserPosition = 3 and CallsSinceLastRaise >= 2 and AmountToCall > 5
+       
+       
+       
+// ################################################################################
+// ##### 3Bet Pots On First Orbit #####
+// ################################################################################
+ 
+ 
+ 
+// ######################### Bot is in Middle Position #########################
+When StillToAct = 6 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 2
+       
+        // ##### No Cold Callers #####
+        // UTG raised and UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+ 
+       
+ 
+// ######################### Bot is in Middle Position + 1 #########################
+When StillToAct = 5 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 2
+ 
+        // ##### No Cold Callers #####
+        // UTG raised and UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // MP re-raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // ##### One or More Cold Callers #####
+        // UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+ 
+       
+ 
+// ######################### Bot is in Hijack #########################
+When StillToAct = 4 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 2
+ 
+        // ##### No Cold Callers #####
+        // UTG raised and UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // MP re-raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+ 
+        // MP+1 re-raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // ##### One or More Cold Callers #####
+        // UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+       
+        // MP re-raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+ 
+ 
+ 
+// ######################### Bot is in Cutoff #########################
+When StillToAct = 3 and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 1
+ 
+        // ##### No Cold Callers #####
+        // UTG raised and UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // MP re-raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+ 
+        // MP+1 re-raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+ 
+        // HJ re-raised
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // ##### One or More Cold Callers #####
+        // UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+       
+        // MP re-raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+ 
+        // MP+1 re-raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+       
+ 
+       
+// ######################### Bot is on the Button #########################
+When In Button and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 1
+ 
+        // ##### No Cold Callers #####
+        // UTG raised and UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // MP re-raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+ 
+        // MP+1 re-raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+ 
+        // HJ re-raised
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // CO re-raised
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+ 
+        // ##### One or More Cold Callers #####
+        // UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+       
+        // MP re-raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+ 
+        // MP+1 re-raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+ 
+        // HJ re-raised
+        When LastRaiserPosition = 4 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 4 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+       
+       
+ 
+// ######################### Bot is in the Small Blind #########################
+When In SmallBlind and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 1
+ 
+        // ##### No Cold Callers #####
+        // UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // MP re-raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+ 
+        // MP+1 re-raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+ 
+        // HJ re-raised
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // CO re-raised
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // BTN re-raised
+        When LastRaiserPosition = 2 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 2 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize 
+ 
+        // ##### One or More Cold Callers #####
+        // UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+       
+        // MP re-raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+ 
+        // MP+1 re-raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+ 
+        // HJ re-raised
+        When LastRaiserPosition = 4 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 4 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+       
+        // CO re-raised
+        When LastRaiserPosition = 3 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 3 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+       
+ 
+ 
+// ######################### Bot is in the Big Blind #########################
+When In BigBlind and BotsLastAction = None and BotsActionsOnThisRound = 0 and Raises = 1
+       
+        // ##### No Cold Callers #####
+        // UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // MP re-raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 6 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+ 
+        // MP+1 re-raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 5 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+ 
+        // HJ re-raised
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 4 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // CO re-raised
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 3 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize
+       
+        // BTN re-raised
+        When LastRaiserPosition = 2 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 2 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize 
+ 
+        // SB re-raised
+        When LastRaiserPosition = 1 and CallsSinceLastRaise = 0 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 1 and CallsSinceLastRaise = 0 and AmountToCall > 50% PotSize 
+       
+       
+        // ##### One or More Cold Callers #####
+        // UTG+1 re-raised
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 7 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+       
+        // MP re-raised
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 6 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+ 
+        // MP+1 re-raised
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 5 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+ 
+        // HJ re-raised
+        When LastRaiserPosition = 4 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 4 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+       
+        // CO re-raised
+        When LastRaiserPosition = 3 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 3 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+       
+        // BTN re-raised
+        When LastRaiserPosition = 2 and CallsSinceLastRaise >= 1 and AmountToCall <= 50% PotSize
+        When LastRaiserPosition = 2 and CallsSinceLastRaise >= 1 and AmountToCall > 50% PotSize
+ 
+ 
+ 
+// ################################################################################
+// ##### Re-Raised Pots On Second Orbit #####
+// ################################################################################
+// Everyone has acted in this hand by now, so we abandon preflop position in favor of postflop position
+ 
+ 
+ 
+// ########## One Reraise ##########
+When BotsActionsOnThisRound = 1 and BotsLastAction = Raise and RaisesSinceLastPlay = 1
+ 
+    // Have position and got reraised someone who already called/raised
+    When Position = Last
+   
+    // Got reraised by someone we have position on and might have position given subsequent folds by opponents who called our raise
+    When CallsSinceLastRaise = 0 and Position = Middle
+   
+    // Got 3bet by someone with position on us with one or more subsequent calls and will be in middle if we call
+    When CallsSinceLastRaise >= 1 and Position = Middle
+   
+    // Don't have position, got 3bet by someone with position on us
+    When Position = First
+ 
+ 
+// ########## Two or More Reraises ##########
+ 
+When BotsActionsOnThisRound = 1 and BotsLastAction = Raise and RaisesSinceLastPlay >= 2
+ 
+    // Got reraised by two people, but we have position on them
+    When Position = Last
+           
+    // Got reraised by two people and we don't have position on both of them
+    When not Position = Last
+ 
+ 
+// ########## Bot Called and subsequent reraise ##########
+// Normally here we should fold unless we have good pot odds on something like a suited connector or we slowplayed something like AA
+When BotsActionsOnThisRound = 1 and RaisesSinceLastPlay >= 1
+    When BotsLastAction = Call
+ 
+ 
+ 
+// ################################################################################
+// ##### Re-Re-Raised Pots On Third or Forth Orbit #####
+// ################################################################################
+ 
+ 
+ 
+// These situations should be minimized by actions taken on re-raised pots.
+When BotsActionsOnThisRound >= 2 and RaisesSinceLastPlay >= 1
+    When BotsLastAction = Call
+    When BotsLastAction = Raise
+ 
+ 
+ 
+// ################################################################################
+// ##### When Others #####
+// ################################################################################
+ 
+ 
+ 
+// Fold everything else
+// Comment out these lines if you want a PPL file or the bot's default programming to handle the rest.
+When Others
+        When Others Fold Force
