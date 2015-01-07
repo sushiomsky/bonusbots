@@ -1,4 +1,5 @@
-﻿MaxSessionHands = 1000 
+﻿
+MaxSessionHands = 1000 
 MaxSessionTime = 300
 MaxStackSize = 5000
 BathroomBreakAfter = 90
@@ -155,16 +156,16 @@ When hand = TT and bets = 0 and raises = 0 and stilltoact >= 6 call force
 When hand = JJ and bets = 0 and raises = 0 and stilltoact >= 7 call force
 
 When hand = QQ and opponentsattable <= 2 and raises <= 1 raisepot force
-When hand = QQ and opponentsattable <= 2 and raises >= 2 and amounttocall < 36% stacksize call force
+When hand = QQ and opponentsattable <= 2 and raises >= 2 and amounttocall < 50% stacksize call force
 When hand = Q Q  and opponents = 1  and raises = 1  and OpponentIsAllIn  and ( AmountToCall < 43% PotSize  or BetSize < 32% StackSize ) call force
 When hand = Q Q  and raises >= 2  and not ( OpponentIsAllIn  or BetSize < 35% StackSize ) fold force
-When hand = Q Q  and raises >= 2  and OpponentIsAllIn  and ( AmountToCall < 50% PotSize  or AmountToCall < 35% StackSize ) call force
+When hand = Q Q  and raises >= 2  and OpponentIsAllIn  and ( AmountToCall < 50% PotSize  or AmountToCall < 50% StackSize ) call force
 When hand = Q Q  and Random <= 25  and calls = 0  and raises = 0 RaiseMin force
 When hand = Q Q  and raises = 1  and ( LastRaiserPosition > 4  or BetSize > 6 )  and AmountToCall > 3  and not ( BotsLastAction = raise  or StackSize < 45 ) call force
 When hand = QQ and stacksize <= 55 and raises = 1 and amounttocall > 8 raisemax force
 When hand = QQ and stacksize <= 40 and (calls >= 2 or raises = 1) raisemax force
-When hand = QQ and raises = 1 and botslastaction = raise and (amounttocall < 51% potsize or amounttocall < 49% stacksize) call force
-When hand = QQ and raises = 1 and amounttocall > 49% stacksize and amounttocall > 60 fold force
+When hand = QQ and raises = 1 and botslastaction = raise and (amounttocall < 51% potsize or amounttocall < 75% stacksize) call force
+When hand = QQ and raises = 1 and amounttocall > 75% stacksize and amounttocall > 60 fold force
 when hand = QQ and raises = 1 call force
 
 When hand = KJ and (not hand = KJ suited) and stilltoact >= 6 fold force
@@ -403,6 +404,16 @@ When (not hand = 76 suited) call force
 
 
 flop
+
+//fold if opponent is a nit and we don't have best possible cards
+When UserNit and checks > 0 raise 4 force 
+When UserNit and AmountToCall > 0 and not (HaveStraight or Haveflush) fold force 
+
+
+When (not board = A) and (not board=K) and (not board=Q) and (not board=J) and raises = 0 and calls > 0 and random < 75 raise 5 force
+When raises > 0 or calls > 0 and AmountToCall < 4 and random < 50 raise 5 force
+
+
 When TotalInvested > 115% StackSize  and TripsOnBoard  and ( bets = 1  or raises >= 1 ) and (not NutFullHouseOrFourOfAKind = 1) and havefullhouse call force
 When TotalInvested > 115% StackSize  and PairOnBoard  and ( bets = 1  or raises >= 1 )  and not ( NutFullHouseOrFourOfAKind = 2  or NutFullHouseOrFourOfAKind = 1  or NutFullHouseOrFourOfAKind = 3  or NutFullHouseOrFourOfAKind = 4  or HaveQuads  or HaveStraightFlush )  and ( HaveOverPair  or Have2ndOverPair  or HaveUnderPair  or HaveTopPair  or Have2ndTopPair  or HaveTrips  or HaveStraight  or HaveFlush  or HaveStraightDraw  or HaveFlushDraw ) call force
 When TotalInvested > 115% StackSize  and FlushPossible  and ( bets = 1  or raises >= 1 )  and ( not HaveFlush )  and ( HavePair  or HaveStraight  or HaveNutFlushDraw ) call force

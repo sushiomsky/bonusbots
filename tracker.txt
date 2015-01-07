@@ -1,4 +1,5 @@
-﻿MaxSessionHands = 1000 
+﻿
+MaxSessionHands = 1000 
 MaxSessionTime = 300
 MaxStackSize = 5000
 BathroomBreakAfter = 90
@@ -403,6 +404,24 @@ When (not hand = 76 suited) call force
 
 
 flop
+
+
+when hand = AK and havetoppair and opponents = 1 and position = first and bets = 0 and raises = 0 call force
+when hand = AK and havetoppair and opponents = 1 and not (paironboard or flushpossible or threecardstraightonboard or board = KJT or board = KQT or board = AQT or board = QT9 or board = AQJ or board = QJ9 or board = AKJ or board = KJ9 or board = KQ9 or board = Q98) raisemax force
+when suitsonboard = 2 and haveflushdraw and not (paironboard or raises >= 1 or amounttocall > 12 or paironboard or flushpossible or threecardstraightonboard or board = KJT or board = KQT or board = AQT or board = QT9 or board = AQJ or board = QJ9 or board = AKJ or board = KJ9 or board = KQ9 or board = Q98) raisemax force
+when haveset and not (paironboard or flushpossible or threecardstraightonboard or board = KJT or board = KQT or board = AQT or board = QT9 or board = AQJ or board = QJ9 or board = AKJ or board = KJ9 or board = KQ9 or board = Q98) raisemax force
+when havetwopair and not (paironboard or flushpossible or threecardstraightonboard or board = KJT or board = KQT or board = AQT or board = QT9 or board = AQJ or board = QJ9 or board = AKJ or board = KJ9 or board = KQ9 or board = Q98 or raises > 1 or amounttocall > 15) raisemax force
+when haveoverpair and (hand = AA or hand = KK or hand = QQ) and not (paironboard or flushpossible or threecardstraightonboard or board = KJT or board = KQT or board = AQT or board = QT9 or board = AQJ or board = QJ9 or board = AKJ or board = KJ9 or board = KQ9 or board = Q98 or raises > 1 or amounttocall > 15) raisemax force
+when havestraightdraw and not (straightpossible or flushpossible or paironboard or raises >= 1 or amounttocall > 12) raisemax force
+When (not board = A) and (not board=K) and (not board=Q) and (not board=J) and raises = 0 and calls > 0 and random < 25 raise 4 force
+
+
+//fold if opponent is a nit and we don't have best possible cards
+When UserNit and checks > 0 raise 4 force 
+When UserNit and AmountToCall > 0 and not (HaveStraight or Haveflush) fold force 
+
+
+
 When TotalInvested > 115% StackSize  and TripsOnBoard  and ( bets = 1  or raises >= 1 ) and (not NutFullHouseOrFourOfAKind = 1) and havefullhouse call force
 When TotalInvested > 115% StackSize  and PairOnBoard  and ( bets = 1  or raises >= 1 )  and not ( NutFullHouseOrFourOfAKind = 2  or NutFullHouseOrFourOfAKind = 1  or NutFullHouseOrFourOfAKind = 3  or NutFullHouseOrFourOfAKind = 4  or HaveQuads  or HaveStraightFlush )  and ( HaveOverPair  or Have2ndOverPair  or HaveUnderPair  or HaveTopPair  or Have2ndTopPair  or HaveTrips  or HaveStraight  or HaveFlush  or HaveStraightDraw  or HaveFlushDraw ) call force
 When TotalInvested > 115% StackSize  and FlushPossible  and ( bets = 1  or raises >= 1 )  and ( not HaveFlush )  and ( HavePair  or HaveStraight  or HaveNutFlushDraw ) call force
