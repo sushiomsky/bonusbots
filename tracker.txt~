@@ -1,0 +1,24 @@
+custom
+Preflop
+
+When opponents = 1 and (opponent = nisse or opponent = nit) UserNit
+
+
+
+when stilltoact < 3 and raises = 0 and calls = 0 and UserNit raise 3 force
+
+
+
+
+flop
+
+
+
+
+Turn
+
+
+
+
+River
+
