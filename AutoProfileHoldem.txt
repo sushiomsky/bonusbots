@@ -1,9 +1,9 @@
-MaxSessionHands = 1000 
+﻿MaxSessionHands = 1000 
 MaxSessionTime = 300
-MaxStackSize = 500
+MaxStackSize = 5000
 BathroomBreakAfter = 90
 BathroomBreakTime = 2
-SitOutWhenOpponentsAreLessThan = 1 
+SitOutWhenOpponentsAreLessThan = 0 
 Verbose = ON 
 AutoPlay = ON 
 UserDefinedGameType = 0 
@@ -19,9 +19,26 @@ Preflop
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+When StartingStackSize < 80% StackSize SitOut
+ 
+//##################################################################################################################################
+//////////////////////////////////////Sklansky Hand Groups/////////////////////////////////////////////////////////////////////////
+//#################################################################################################################################
+When (Hand = AA or Hand = AK Suited or Hand = KK  or Hand = QQ or Hand = JJ) User_HandGroup_1
+When (Hand = AK or Hand = AQ Suited  or Hand = AJ  Suited or Hand = KQ  Suited or Hand = TT) User_HandGroup_2
+When (Hand = AQ or Hand = AT Suited  or Hand = KJ  Suited or Hand = QJ  Suited or Hand = TJ  Suited or Hand = 99) User_HandGroup_3
+When (Hand = AJ or Hand = KQ or Hand = KT Suited or Hand = QT Suited or Hand = J9 Suited or Hand = T9 Suited or Hand = 98 Suited or Hand = 88) User_HandGroup_4
+When (Hand = A Suited or Hand = KJ or Hand = QJ or Hand = JT or Hand = Q9  Suited or Hand = T8 Suited or Hand = 97 Suited or Hand = 87 Suited or Hand = 77 or Hand = 76 Suited or Hand = 66) User_HandGroup_5
+When (Hand = AT or Hand = KT or Hand = QT or Hand = J8 Suited or Hand = 86 Suited or Hand = 75 Suited or Hand = 65 Suited or Hand = 55 or Hand = 54 Suited) User_HandGroup_6
+When (Hand = K Suited or Hand = J9 or Hand = T9 or Hand = 98 or Hand = 64 Suited or Hand = 53 Suited or Hand = 44 or Hand = 43 Suited or Hand = 33 or Hand = 22) User_HandGroup_7
+When (Hand = A9 or Hand = K9 or Hand = Q9 or Hand = J8 or Hand = J7 Suited or Hand = T8 or Hand = 96 Suited or Hand = 87 or Hand = 85 Suited or Hand = 76 or Hand = 74 Suited or Hand = 65 or Hand = 54 or Hand = 42 Suited or Hand = 32 Suited) User_HandGroup_8
+When not(User_HandGroup_1 or User_HandGroup_2 or User_HandGroup_3 or User_HandGroup_4 or User_HandGroup_5 or User_HandGroup_6 or User_HandGroup_7 or User_HandGroup_8) User_HandGroup_9
 
-//lets take the money home & loss stop
-When StartingStackSize > 200% StackSize sitout force
+
+//////////////////////////////////////////////////////////////////////////////
+////////////////1.handgruppe -> spiel/////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
 
 //#################################################################################################################################
 //Trackerstats -> Uservar 
@@ -32,12 +49,17 @@ When StartingStackSize > 200% StackSize sitout force
 //Pokertracker filter:
 //cnt_hands > 100 AND #VPIP# <= 10 AND #VPIP# >= 3 AND #PFR# >= 2 AND #PFR# <= 8
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-When opponents = 1 and (opponent = nisse or  opponent = ASteCom or opponent = can4a or opponent = Eulin or opponent = izyblek or opponent = lancelot443 or opponent = maskarado19 or opponent = mchigvintsev or opponent = motesilver or opponent = rojser or opponent = sheart268 or opponent = sr_apalon or opponent = tolik1081991 or opponent = winvanja or opponent = yasha17) UserNit
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+When opponents = 1 and (opponent = nisse or  opponent = ASteCom or opponent = can4a or opponent = Eulin or opponent = izyblek or opponent = lancelot443 or opponent = maskarado19 or opponent = mchigvintsev or opponent = motesilver or opponent = rojser or opponent = sheart268 or opponent = sr_apalon or opponent = tolik1081991 or opponent = winvanja or opponent = yasha17
+) UserNit
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Passive Fish (~30+/10) – This is what is commonly known as a calling station. They don’t like to raise (as evident by their low pre flop raise stat) and don’t like to bet. They’d rather just play nice friendly poker and call your bets. Do not bluff a calling station. They will call you down with any piece of the board. These are the best players to play with because it’s very easy to extract value from them.
 //Pokertracker filter:
 //cnt_hands > 100 AND #VPIP# >= 28 AND #PFR# <= 12
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 When opponents = 1 and ( opponent = 77nero77 
  or opponent = alanc95 
@@ -60,18 +82,16 @@ When opponents = 1 and ( opponent = 77nero77
  or opponent = Vinter447
 ) UserLooseFish
 
+
 //#################################################################################################################################
 //Trackerstats -> Uservar (end)
 //#################################################################################################################################
 
 
-
-
-
-
 When UserNit AND raises > 0 or calls > 0 and BotsActionsOnThisRound = 0 AND User_Handgroup1 call force
 When UserNit AND Stilltoact < 3 and raises = 0 and calls = 0 raise 2 force
 
+//When UserLooseFish and User_Handgroup1 or User_Handgroup2 or User_Handgroup3 AND AmountToCall < 4 raise 4 force
 
 
 
