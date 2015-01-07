@@ -155,16 +155,16 @@ When hand = TT and bets = 0 and raises = 0 and stilltoact >= 6 call force
 When hand = JJ and bets = 0 and raises = 0 and stilltoact >= 7 call force
 
 When hand = QQ and opponentsattable <= 2 and raises <= 1 raisepot force
-When hand = QQ and opponentsattable <= 2 and raises >= 2 and amounttocall < 36% stacksize call force
+When hand = QQ and opponentsattable <= 2 and raises >= 2 and amounttocall < 50% stacksize call force
 When hand = Q Q  and opponents = 1  and raises = 1  and OpponentIsAllIn  and ( AmountToCall < 43% PotSize  or BetSize < 32% StackSize ) call force
 When hand = Q Q  and raises >= 2  and not ( OpponentIsAllIn  or BetSize < 35% StackSize ) fold force
-When hand = Q Q  and raises >= 2  and OpponentIsAllIn  and ( AmountToCall < 50% PotSize  or AmountToCall < 35% StackSize ) call force
+When hand = Q Q  and raises >= 2  and OpponentIsAllIn  and ( AmountToCall < 50% PotSize  or AmountToCall < 50% StackSize ) call force
 When hand = Q Q  and Random <= 25  and calls = 0  and raises = 0 RaiseMin force
 When hand = Q Q  and raises = 1  and ( LastRaiserPosition > 4  or BetSize > 6 )  and AmountToCall > 3  and not ( BotsLastAction = raise  or StackSize < 45 ) call force
 When hand = QQ and stacksize <= 55 and raises = 1 and amounttocall > 8 raisemax force
 When hand = QQ and stacksize <= 40 and (calls >= 2 or raises = 1) raisemax force
-When hand = QQ and raises = 1 and botslastaction = raise and (amounttocall < 51% potsize or amounttocall < 49% stacksize) call force
-When hand = QQ and raises = 1 and amounttocall > 49% stacksize and amounttocall > 60 fold force
+When hand = QQ and raises = 1 and botslastaction = raise and (amounttocall < 51% potsize or amounttocall < 75% stacksize) call force
+When hand = QQ and raises = 1 and amounttocall > 75% stacksize and amounttocall > 60 fold force
 when hand = QQ and raises = 1 call force
 
 When hand = KJ and (not hand = KJ suited) and stilltoact >= 6 fold force

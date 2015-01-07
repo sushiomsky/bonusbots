@@ -93,9 +93,12 @@ When UserNit AND Stilltoact < 3 and raises = 0 and calls = 0 raise 2 force
 
 //When UserLooseFish and User_Handgroup1 or User_Handgroup2 or User_Handgroup3 AND AmountToCall < 4 raise 4 force
 
-When User_HandGroup_1 AND raises > 0 AND AmountToCall < 25 call force
+When BotsLastAction = raise AND raises > 0 AND AmountToCall < 5 call force
 
-When User_Handgroup1 or User_Handgroup2 or User_Handgroup3 AND AmountToCall < 2 and calls = 0 raise 2 force
+When User_HandGroup_1 AND raises > 0 AND AmountToCall > 5 AND AmountToCall < 15 call force
+When User_HandGroup_1 AND raises > 0 AND AmountToCall < 5 raise 4 force
+
+When User_Handgroup1 or User_Handgroup2 AND AmountToCall < 2 and calls = 0 call force
 
 
 //Doodle Profile version 105
@@ -138,8 +141,8 @@ When In BigBlind  and raises = 1 and amounttocall = 2 and lastraiserposition <= 
 When In BigBlind  and raises = 1 and calls = 0 and lastraiserposition <= 3 and amounttocall <= 3 and (hand = A suited or hand = AT or hand = KQ or hand = KJ or hand = KT suited or hand = K9 suited or hand = QJ or hand = QT suited or hand = Q9 suited or hand = JT or hand = J9 suited or hand = T9 suited or hand = 98 suited or hand = 87 suited) call force
 
 
-When stilltoact <= 2 and raises = 0 and calls = 0 and (hand = AQ or hand = AJ or hand = AT or hand = A9 or hand = A8 or hand = KQ or hand = KJ or hand = KT or hand = K9 or hand = QJ or hand = QT or hand = Q9 or hand = JT or hand = J9 or hand = T9 or hand = 98 suited or hand = 87 suited or pairinhand) and random <= 25 raise 2 force
-When stilltoact <= 2 and raises = 0 and calls = 0 and (hand = K9 or hand = K8 or hand = K7 or hand = Q9 or hand = Q8 or hand = JT or hand = J9 or hand = J8 or hand = J7 or hand = T9 or hand = T8 or hand = T7 or hand = 98 or hand = 97 suited or hand = 96 suited or hand = 87 or hand = 86 suited or hand = 76 or hand = 65 suited) raise force
+When stilltoact <= 2 and raises = 0 and calls = 0 and (hand = AQ or hand = AJ or hand = AT or hand = A9 or hand = A8 or hand = KQ or hand = KJ or hand = KT or hand = K9 or hand = QJ or hand = QT or hand = Q9 or hand = JT or hand = J9 or hand = T9 or hand = 98 suited or hand = 87 suited or pairinhand) and random <= 75 raise 2 force
+When stilltoact <= 2 and raises = 0 and calls = 0 and (hand = K9 or hand = K8 or hand = K7 or hand = Q9 or hand = Q8 or hand = JT or hand = J9 or hand = J8 or hand = J7 or hand = T9 or hand = T8 or hand = T7 or hand = 98 or hand = 97 suited or hand = 96 suited or hand = 87 or hand = 86 suited or hand = 76 or hand = 65 suited) raise 2 force
 
 //When BotsLastAction = call and not ( hand = A A  or hand = K K or hand = QQ)  and raises = 1  and calls >= 1  and BetSize <= 3 call force
 When (BotsLastAction = call or botslastaction = raise)  and not ( hand = A A  or hand = K K or hand = QQ)  and amounttocall = 1 call force
